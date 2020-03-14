@@ -12,7 +12,7 @@
  */
 declare(strict_types=1);
 
-namespace Modules\tests\Helper\Models;
+namespace Modules\Helper\tests\Models;
 
 use Modules\Admin\Models\NullAccount;
 use Modules\Helper\Models\HelperStatus;
