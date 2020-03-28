@@ -26,8 +26,6 @@ use phpOMS\Module\ModuleManager;
 use phpOMS\Router\WebRouter;
 use phpOMS\Utils\TestUtils;
 
-require_once __DIR__ . '/../../tests/Autoloader.php';
-
 /**
  * @internal
  */
