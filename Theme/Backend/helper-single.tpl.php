@@ -60,7 +60,6 @@ echo $this->getData('nav')->render(); ?>
             </div>
         </div>
 
-        <?php if (isset($tcoll['excel']) || isset($tcoll['pdf']) || isset($tcoll['word']) || isset($tcoll['powerpoint']) || isset($tcoll['csv']) || isset($tcoll['json'])) : ?>
         <div class="portlet">
             <div class="portlet-head"><?= $this->getHtml('Export') ?></div>
             <div class="portlet-body">
@@ -72,7 +71,7 @@ echo $this->getData('nav')->render(); ?>
                         <tr>
                             <td><select id="iExport" name="export-type">
                                     <option value="select" disabled><?= $this->getHtml('Select'); ?>
-                                    <option value="htm"><?= $this->getHtml('Print'); ?>
+                                    <option value="html"><?= $this->getHtml('Print'); ?>
                                     <option value="excel"<?= $this->printHtml((!isset($tcoll['excel'])) ? ' disabled' : ''); ?>>Excel
                                     <option value="pdf"<?= $this->printHtml((!isset($tcoll['pdf'])) ? ' disabled' : ''); ?>>Pdf
                                     <option value="doc"<?= $this->printHtml((!isset($tcoll['word'])) ? ' disabled' : ''); ?>>Word
@@ -87,7 +86,6 @@ echo $this->getData('nav')->render(); ?>
                 </form>
             </div>
         </div>
-        <?php endif; ?>
 
         <?php if (!empty($settings)) : ?>
         <div class="portlet">
