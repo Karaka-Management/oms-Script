@@ -26,6 +26,7 @@ use Modules\Helper\Models\TemplateDataType;
 use Modules\Helper\Models\TemplateMapper;
 
 use Modules\Media\Models\NullCollection;
+use Modules\Media\Models\NullMedia;
 use phpOMS\Account\PermissionType;
 use phpOMS\DataStorage\Database\Query\Builder;
 use phpOMS\Message\Http\HttpRequest;
@@ -237,15 +238,25 @@ final class ApiController extends Controller
      */
     public function apiTemplateCreate(RequestAbstract $request, ResponseAbstract $response, $data = null) : void
     {
-        $files = $request->getDataJson('media-list');
+        $dbFiles       = $request->getDataJson('media-list') ?? [];
+        $uploadedFiles = $request->getFiles() ?? [];
+        $files         = [];
 
-        if (empty($files)) {
-            $files = $this->app->moduleManager->get('Media')->uploadFiles(
+        if (!empty($uploadedFiles)) {
+            $uploaded = $this->app->moduleManager->get('Media')->uploadFiles(
                 $request->getData('name') ?? '',
-                $request->getFiles(),
+                $uploadedFiles,
                 $request->getHeader()->getAccount(),
                 __DIR__ . '/../../../Modules/Media/Files'
             );
+
+            foreach ($uploaded as $upload) {
+                $files[] = new NullMedia($upload->getId());
+            }
+        }
+
+        foreach ($dbFiles as $db) {
+            $files[] = new NullMedia($db);
         }
 
         $collection = $this->app->moduleManager->get('Media')->createMediaCollectionFromMedia(
@@ -281,8 +292,6 @@ final class ApiController extends Controller
         $this->createModel($request->getHeader()->getAccount(), $template, TemplateMapper::class, 'template');
         $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Template', 'Template successfully created', $template);
     }
-
-
 
     /**
      * Method to create template from request.

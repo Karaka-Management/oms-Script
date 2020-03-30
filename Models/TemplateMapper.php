@@ -45,9 +45,9 @@ final class TemplateMapper extends DataMapperAbstract
         'helper_template_desc'       => ['name' => 'helper_template_desc',        'type' => 'string',   'internal' => 'description'],
         'helper_template_desc_raw'   => ['name' => 'helper_template_desc_raw',    'type' => 'string',   'internal' => 'descriptionRaw'],
         'helper_template_media'      => ['name' => 'helper_template_media',       'type' => 'int',      'internal' => 'source'],
-        'helper_template_creator'    => ['name'     => 'helper_template_creator', 'type' => 'int',      'internal' => 'createdBy', ],
-        'helper_template_unit'    => ['name'     => 'helper_template_unit', 'type' => 'int',      'internal' => 'unit', ],
-        'helper_template_created'    => ['name'     => 'helper_template_created', 'type' => 'DateTime', 'internal' => 'createdAt', ],
+        'helper_template_creator'    => ['name' => 'helper_template_creator',     'type' => 'int',      'internal' => 'createdBy'],
+        'helper_template_unit'       => ['name' => 'helper_template_unit',        'type' => 'int',      'internal' => 'unit'],
+        'helper_template_created'    => ['name' => 'helper_template_created',     'type' => 'DateTime', 'internal' => 'createdAt'],
     ];
 
     /**
