@@ -20,6 +20,7 @@ use Modules\Media\Models\Collection;
 use Modules\Media\Models\NullCollection;
 use Modules\Organization\Models\NullUnit;
 use Modules\Organization\Models\Unit;
+use Modules\Tag\Models\Tag;
 
 /**
  * Template model.
@@ -134,6 +135,14 @@ class Template implements \JsonSerializable
      * @since 1.0.0
      */
     private array $reports = [];
+
+    /**
+     * Tags.
+     *
+     * @var Tag[]
+     * @since 1.0.0
+     */
+    private array $tags = [];
 
     /**
      * Constructor
@@ -462,6 +471,32 @@ class Template implements \JsonSerializable
     public function isStandalone() : bool
     {
         return $this->isStandalone;
+    }
+
+    /**
+     * Get tags
+     *
+     * @return array
+     *
+     * @since 1.0.0
+     */
+    public function getTags() : array
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Add tag
+     *
+     * @param Tag $tag Tag
+     *
+     * @return void
+     *
+     * @since 1.0.0
+     */
+    public function addTag(Tag $tag) : void
+    {
+        $this->tags[] = $tag;
     }
 
     /**

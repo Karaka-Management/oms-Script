@@ -18,6 +18,7 @@ use Modules\Admin\Models\AccountMapper;
 use Modules\Media\Models\CollectionMapper;
 use Modules\Organization\Models\UnitMapper;
 use phpOMS\DataStorage\Database\DataMapperAbstract;
+use Modules\Tag\Models\TagMapper;
 
 /**
  * Report mapper class.
@@ -92,6 +93,12 @@ final class TemplateMapper extends DataMapperAbstract
             'table'  => 'helper_report',
             'external' => 'helper_report_template',
             'self'   => null,
+        ],
+        'tags' => [
+            'mapper' => TagMapper::class,
+            'table'  => 'helper_template_tag',
+            'self'   => 'helper_template_tag_src',
+            'external' => 'helper_template_tag_dst',
         ],
     ];
 

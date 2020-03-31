@@ -27,8 +27,8 @@ echo $this->getData('nav')->render(); ?>
             <table class="default">
                 <thead>
                 <tr>
-                    <td><?= $this->getHtml('ID', '0', '0'); ?>
                     <td class="wf-100"><?= $this->getHtml('Name') ?>
+                    <td><?= $this->getHtml('Tag'); ?>
                     <td><?= $this->getHtml('Creator') ?>
                     <td><?= $this->getHtml('Updated') ?>
                 <tbody>
@@ -39,8 +39,11 @@ echo $this->getData('nav')->render(); ?>
                         <?php foreach ($templates as $key => $template) :
                         $url = \phpOMS\Uri\UriFactory::build('{/prefix}helper/report/view?{?}&id=' . $template->getId()); ?>
                 <tr data-href="<?= $url; ?>">
-                    <td data-label="<?= $this->getHtml('ID', '0', '0') ?>"><a href="<?= $url; ?>"><?= $this->printHtml($template->getId()); ?></a>
                     <td data-label="<?= $this->getHtml('Name') ?>"><a href="<?= $url; ?>"><?= $this->printHtml($template->getName()); ?></a>
+                    <td data-label="<?= $this->getHtml('Tag') ?>">
+                        <?php $tags = $template->getTags(); foreach ($tags as $tag) : ?>
+                            <span class="tag" style="background: <?= $this->printHtml($tag->getColor()); ?>"><?= $this->printHtml($tag->getTitle()); ?></span>
+                        <?php endforeach; ?>
                     <td data-label="<?= $this->getHtml('Creator') ?>"><a href="<?= $url; ?>"><?= $this->printHtml($template->getCreatedBy()->getName1()); ?></a>
                     <td data-label="<?= $this->getHtml('Updated') ?>"><a href="<?= $url; ?>"><?= $this->printHtml($template->getCreatedAt()->format('Y-m-d')); ?></a>
                         <?php endforeach; ?>

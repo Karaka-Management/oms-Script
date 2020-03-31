@@ -38,6 +38,8 @@ use phpOMS\System\MimeType;
 use phpOMS\Utils\Parser\Markdown\Markdown;
 use phpOMS\Utils\StringUtils;
 use phpOMS\Views\View;
+use phpOMS\Message\Http\HttpResponse;
+use Modules\Tag\Models\NullTag;
 
 /**
  * Helper controller class.
@@ -319,6 +321,22 @@ final class ApiController extends Controller
         $helperTemplate->setExpected(!empty($expected) ? \json_decode($expected, true) : []);
         $helperTemplate->setCreatedBy(new NullAccount($request->getHeader()->getAccount()));
         $helperTemplate->setDatatype((int) ($request->getData('datatype') ?? TemplateDataType::OTHER));
+
+        if (!empty($tags = $request->getDataJson('tags'))) {
+            foreach ($tags as $tag) {
+                if (!isset($tag['id'])) {
+                    $request->setData('title', $tag['title'], true);
+                    $request->setData('color', $tag['color'], true);
+                    $request->setData('language', $tag['language'], true);
+
+                    $internalResponse = new HttpResponse();
+                    $this->app->moduleManager->get('Tag')->apiTagCreate($request, $internalResponse, null);
+                    $helperTemplate->addTag($internalResponse->get($request->getUri()->__toString())['response']);
+                } else {
+                    $helperTemplate->addTag(new NullTag((int) $tag['id']));
+                }
+            }
+        }
 
         return $helperTemplate;
     }

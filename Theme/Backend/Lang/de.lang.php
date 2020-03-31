@@ -52,6 +52,7 @@ return ['Helper' => [
     'Sources'          => 'Quelle',
     'Standalone'       => 'Eigenständig',
     'Storage'          => 'Speicher',
+    'Tag'              => 'Tag',
     'Template'         => 'Template',
     'Title'            => 'Titel',
     'Type'             => 'Typ',
