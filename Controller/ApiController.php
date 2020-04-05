@@ -27,9 +27,11 @@ use Modules\Helper\Models\TemplateMapper;
 
 use Modules\Media\Models\NullCollection;
 use Modules\Media\Models\NullMedia;
+use Modules\Tag\Models\NullTag;
 use phpOMS\Account\PermissionType;
 use phpOMS\DataStorage\Database\Query\Builder;
 use phpOMS\Message\Http\HttpRequest;
+use phpOMS\Message\Http\HttpResponse;
 use phpOMS\Message\Http\RequestStatusCode;
 use phpOMS\Message\NotificationLevel;
 use phpOMS\Message\RequestAbstract;
@@ -38,8 +40,6 @@ use phpOMS\System\MimeType;
 use phpOMS\Utils\Parser\Markdown\Markdown;
 use phpOMS\Utils\StringUtils;
 use phpOMS\Views\View;
-use phpOMS\Message\Http\HttpResponse;
-use Modules\Tag\Models\NullTag;
 
 /**
  * Helper controller class.

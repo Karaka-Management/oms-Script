@@ -17,8 +17,8 @@ namespace Modules\Helper\Models;
 use Modules\Admin\Models\AccountMapper;
 use Modules\Media\Models\CollectionMapper;
 use Modules\Organization\Models\UnitMapper;
-use phpOMS\DataStorage\Database\DataMapperAbstract;
 use Modules\Tag\Models\TagMapper;
+use phpOMS\DataStorage\Database\DataMapperAbstract;
 
 /**
  * Report mapper class.
