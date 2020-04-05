@@ -20,8 +20,8 @@ use phpOMS\Uri\UriFactory;
  */
 $templates = $this->getData('reports');
 
-$previous = empty($templates) ? '{/prefix}editor/list' : '{/prefix}editor/list?{?}&id=' . \reset($templates)->getId() . '&ptype=-';
-$next     = empty($templates) ? '{/prefix}editor/list' : '{/prefix}editor/list?{?}&id=' . \end($templates)->getId() . '&ptype=+';
+$previous = empty($templates) ? '{/prefix}helper/list' : '{/prefix}helper/list?{?}&id=' . \reset($templates)->getId() . '&ptype=-';
+$next     = empty($templates) ? '{/prefix}helper/list' : '{/prefix}helper/list?{?}&id=' . \end($templates)->getId() . '&ptype=+';
 
 echo $this->getData('nav')->render(); ?>
 
