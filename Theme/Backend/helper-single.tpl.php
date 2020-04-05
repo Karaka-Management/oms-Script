@@ -130,7 +130,7 @@ echo $this->getData('nav')->render(); ?>
                         <td><?= $this->printHtml($template->getName()); ?>
                     <tr>
                         <td><?= $this->getHtml('Creator'); ?>
-                        <td><?= $this->printHtml($template->getCreatedBy()->getName1()); ?>
+                        <td><a href="<?= UriFactory::build('{/prefix}profile/single?for=' . $template->getCreatedBy()->getId()); ?>"><?= $this->printHtml($template->getCreatedBy()->getName1()); ?></a>
                     <tr>
                         <td><?= $this->getHtml('Created'); ?>
                         <td><?= $template->getCreatedAt()->format('Y-m-d'); ?>
