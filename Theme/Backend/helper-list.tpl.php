@@ -12,11 +12,16 @@
  */
 declare(strict_types=1);
 
+use phpOMS\Uri\UriFactory;
+
 /**
  * @var \phpOMS\Views\View                $this
  * @var \Modules\Helper\Models\Template[] $templates
  */
 $templates = $this->getData('reports');
+
+$previous = empty($templates) ? '{/prefix}editor/list' : '{/prefix}editor/list?{?}&id=' . \reset($templates)->getId() . '&ptype=-';
+$next     = empty($templates) ? '{/prefix}editor/list' : '{/prefix}editor/list?{?}&id=' . \end($templates)->getId() . '&ptype=+';
 
 echo $this->getData('nav')->render(); ?>
 
@@ -37,7 +42,7 @@ echo $this->getData('nav')->render(); ?>
                     <td colspan="4"><?= $this->getHtml('Empty', '0', '0'); ?>
                         <?php endif; ?>
                         <?php foreach ($templates as $key => $template) :
-                        $url = \phpOMS\Uri\UriFactory::build('{/prefix}helper/report/view?{?}&id=' . $template->getId()); ?>
+                        $url = UriFactory::build('{/prefix}helper/report/view?{?}&id=' . $template->getId()); ?>
                 <tr data-href="<?= $url; ?>">
                     <td data-label="<?= $this->getHtml('Name') ?>"><a href="<?= $url; ?>"><?= $this->printHtml($template->getName()); ?></a>
                     <td data-label="<?= $this->getHtml('Tag') ?>">
@@ -48,7 +53,10 @@ echo $this->getData('nav')->render(); ?>
                     <td data-label="<?= $this->getHtml('Updated') ?>"><a href="<?= $url; ?>"><?= $this->printHtml($template->getCreatedAt()->format('Y-m-d')); ?></a>
                         <?php endforeach; ?>
             </table>
-            <div class="portlet-foot"></div>
+            <div class="portlet-foot">
+                <a class="button" href="<?= UriFactory::build($previous); ?>"><?= $this->getHtml('Previous', '0', '0'); ?></a>
+                <a class="button" href="<?= UriFactory::build($next); ?>"><?= $this->getHtml('Next', '0', '0'); ?></a>
+            </div>
         </div>
     </div>
 </div>

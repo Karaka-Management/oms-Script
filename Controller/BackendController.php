@@ -57,8 +57,17 @@ final class BackendController extends Controller
         $view->setTemplate('/Modules/Helper/Theme/Backend/helper-list');
         $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response));
 
-        $reports = TemplateMapper::withConditional('language', $response->getHeader()->getL11n()->getLanguage())::getNewest(25);
-        $view->addData('reports', $reports);
+        if ($request->getData('ptype') === '-') {
+            $view->setData('reports',
+                TemplateMapper::withConditional('language', $response->getHeader()->getL11n()->getLanguage())
+                    ::getBeforePivot((int) ($request->getData('id') ?? 0), null, 25)
+            );
+        } else {
+            $view->setData('reports',
+                TemplateMapper::withConditional('language', $response->getHeader()->getL11n()->getLanguage())
+                    ::getAfterPivot((int) ($request->getData('id') ?? 0), null, 25)
+            );
+        }
 
         return $view;
     }
