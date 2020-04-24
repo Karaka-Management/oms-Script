@@ -1,4 +1,4 @@
-# Table of Contents
+# User Content
 
-* [Templates]({%}&page=templates)
-* [Reports]({%}&page=reports)
+* [Templates]({%}&page=Help/templates)
+* [Reports]({%}&page=Help/reports)
