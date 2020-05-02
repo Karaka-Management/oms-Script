@@ -62,10 +62,15 @@ final class BackendController extends Controller
                 TemplateMapper::withConditional('language', $response->getHeader()->getL11n()->getLanguage())
                     ::getBeforePivot((int) ($request->getData('id') ?? 0), null, 25)
             );
-        } else {
+        } elseif ($request->getData('ptype') === '+') {
             $view->setData('reports',
                 TemplateMapper::withConditional('language', $response->getHeader()->getL11n()->getLanguage())
                     ::getAfterPivot((int) ($request->getData('id') ?? 0), null, 25)
+            );
+        } else {
+            $view->setData('reports',
+                TemplateMapper::withConditional('language', $response->getHeader()->getL11n()->getLanguage())
+                    ::getAfterPivot(0, null, 25)
             );
         }
 
@@ -143,6 +148,7 @@ final class BackendController extends Controller
         $view = new View($this->app->l11nManager, $request, $response);
         //$file = preg_replace('([^\w\s\d\-_~,;:\.\[\]\(\).])', '', $template->getName());
 
+        /** @var Template $template */
         $template = TemplateMapper::get((int) $request->getData('id'));
 
         $view->setTemplate('/Modules/Helper/Theme/Backend/helper-single');
@@ -187,6 +193,7 @@ final class BackendController extends Controller
                 throw new \Exception('No template file detected.');
             }
 
+            /** @var \Modules\Helper\Models\Report $report */
             $report = ReportMapper::getNewest(1,
                 (new Builder($this->app->dbPool->get()))->where('helper_report.helper_report_template', '=', $template->getId())
             );
