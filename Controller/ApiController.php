@@ -161,7 +161,7 @@ final class ApiController extends Controller
         foreach ($files as $tMedia) {
             $lowerPath = \strtolower($tMedia->getPath());
 
-            switch ($lowerPath) {
+            switch (true) {
                 case StringUtils::endsWith($lowerPath, '.lang.php'):
                     $tcoll['lang'] = $tMedia;
                     break;
