@@ -161,38 +161,49 @@ final class ApiController extends Controller
         foreach ($files as $tMedia) {
             $lowerPath = \strtolower($tMedia->getPath());
 
-            if (StringUtils::endsWith($lowerPath, '.lang.php')) {
-                $tcoll['lang'] = $tMedia;
-            } elseif (StringUtils::endsWith($lowerPath, '.cfg.json')) {
-                $tcoll['cfg'] = $tMedia;
-            } elseif (StringUtils::endsWith($lowerPath, '.xlsx.php')
-                || StringUtils::endsWith($lowerPath, '.xls.php')
-            ) {
-                $tcoll['excel'][$tMedia->getName()] = $tMedia;
-            } elseif (StringUtils::endsWith($lowerPath, '.docx.php')
-                || StringUtils::endsWith($lowerPath, '.doc.php')
-            ) {
-                $tcoll['word'][$tMedia->getName()] = $tMedia;
-            } elseif (StringUtils::endsWith($lowerPath, '.pptx.php')
-                || StringUtils::endsWith($lowerPath, '.ppt.php')
-            ) {
-                $tcoll['powerpoint'][$tMedia->getName()] = $tMedia;
-            } elseif (StringUtils::endsWith($lowerPath, '.pdf.php')) {
-                $tcoll['pdf'][$tMedia->getName()] = $tMedia;
-            } elseif (StringUtils::endsWith($lowerPath, '.csv.php')) {
-                $tcoll['csv'][$tMedia->getName()] = $tMedia;
-            } elseif (StringUtils::endsWith($lowerPath, '.json.php')) {
-                $tcoll['json'][$tMedia->getName()] = $tMedia;
-            } elseif (StringUtils::endsWith($lowerPath, '.tpl.php')) {
-                $tcoll['template'] = $tMedia;
-            } elseif (StringUtils::endsWith($lowerPath, '.css')) {
-                $tcoll['css'][$tMedia->getName()] = $tMedia;
-            } elseif (StringUtils::endsWith($lowerPath, '.js')) {
-                $tcoll['js'][$tMedia->getName()] = $tMedia;
-            } elseif (StringUtils::endsWith($lowerPath, '.sqlite') || StringUtils::endsWith($lowerPath, '.db')) {
-                $tcoll['db'][$tMedia->getName()] = $tMedia;
-            } else {
-                $tcoll['other'][$tMedia->getName()] = $tMedia;
+            switch ($lowerPath) {
+                case StringUtils::endsWith($lowerPath, '.lang.php'):
+                    $tcoll['lang'] = $tMedia;
+                    break;
+                case StringUtils::endsWith($lowerPath, '.cfg.json'):
+                    $tcoll['cfg'] = $tMedia;
+                    break;
+                case StringUtils::endsWith($lowerPath, '.xlsx.php'):
+                case StringUtils::endsWith($lowerPath, '.xls.php'):
+                    $tcoll['excel'][$tMedia->getName()] = $tMedia;
+                    break;
+                case StringUtils::endsWith($lowerPath, '.docx.php'):
+                case StringUtils::endsWith($lowerPath, '.doc.php'):
+                    $tcoll['word'][$tMedia->getName()] = $tMedia;
+                    break;
+                case StringUtils::endsWith($lowerPath, '.pptx.php'):
+                case StringUtils::endsWith($lowerPath, '.ppt.php'):
+                    $tcoll['powerpoint'][$tMedia->getName()] = $tMedia;
+                    break;
+                case StringUtils::endsWith($lowerPath, '.pdf.php'):
+                    $tcoll['pdf'][$tMedia->getName()] = $tMedia;
+                    break;
+                case StringUtils::endsWith($lowerPath, '.csv.php'):
+                    $tcoll['csv'][$tMedia->getName()] = $tMedia;
+                    break;
+                case StringUtils::endsWith($lowerPath, '.json.php'):
+                    $tcoll['json'][$tMedia->getName()] = $tMedia;
+                    break;
+                case StringUtils::endsWith($lowerPath, '.tpl.php'):
+                    $tcoll['template'] = $tMedia;
+                    break;
+                case StringUtils::endsWith($lowerPath, '.css'):
+                    $tcoll['css'][$tMedia->getName()] = $tMedia;
+                    break;
+                case StringUtils::endsWith($lowerPath, '.js'):
+                    $tcoll['js'][$tMedia->getName()] = $tMedia;
+                    break;
+                case StringUtils::endsWith($lowerPath, '.sqlite'):
+                case StringUtils::endsWith($lowerPath, '.db'):
+                    $tcoll['db'][$tMedia->getName()] = $tMedia;
+                    break;
+                default:
+                    $tcoll['other'][$tMedia->getName()] = $tMedia;
             }
         }
 
