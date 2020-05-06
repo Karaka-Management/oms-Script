@@ -193,7 +193,7 @@ final class BackendController extends Controller
                 throw new \Exception('No template file detected.');
             }
 
-            /** @var \Modules\Helper\Models\Report $report */
+            /** @var \Modules\Helper\Models\Report[] $report */
             $report = ReportMapper::getNewest(1,
                 (new Builder($this->app->dbPool->get()))->where('helper_report.helper_report_template', '=', $template->getId())
             );
