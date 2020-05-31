@@ -25,7 +25,7 @@ echo $this->getData('nav')->render(); ?>
         <div class="bc-1">
             <ul class="l-1">
                 <li>
-                    <a href="<?= \phpOMS\Uri\UriFactory::build('{/prefix}helper/single?{?}&id=' . $this->getData('name')); ?>"
+                    <a tabindex="0" href="<?= \phpOMS\Uri\UriFactory::build('{/prefix}helper/single?{?}&id=' . $this->getData('name')); ?>"
                        class="button"><?= $this->getHtml('Report') ?></a>
             </ul>
         </div>

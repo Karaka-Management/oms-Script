@@ -301,10 +301,11 @@ final class ApiController extends Controller
                 null,
                 PermissionType::READ | PermissionType::MODIFY | PermissionType::DELETE | PermissionType::PERMISSION,
             ),
-            $request->getHeader()->getAccount()
+            $request->getHeader()->getAccount(),
+            $request->getOrigin()
         );
 
-        $this->createModel($request->getHeader()->getAccount(), $template, TemplateMapper::class, 'template');
+        $this->createModel($request->getHeader()->getAccount(), $template, TemplateMapper::class, 'template', $request->getOrigin());
         $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Template', 'Template successfully created', $template);
     }
 
@@ -403,10 +404,11 @@ final class ApiController extends Controller
                 null,
                 PermissionType::READ | PermissionType::MODIFY | PermissionType::DELETE | PermissionType::PERMISSION,
             ),
-            $request->getHeader()->getAccount()
+            $request->getHeader()->getAccount(),
+            $request->getOrigin()
         );
 
-        $this->createModel($request->getHeader()->getAccount(), $report, ReportMapper::class, 'report');
+        $this->createModel($request->getHeader()->getAccount(), $report, ReportMapper::class, 'report', $request->getOrigin());
         $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Report', 'Report successfully created', $report);
     }
 
