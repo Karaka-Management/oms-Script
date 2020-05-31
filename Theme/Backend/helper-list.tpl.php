@@ -38,12 +38,12 @@ echo $this->getData('nav')->render(); ?>
                     <td><?= $this->getHtml('Updated') ?>
                 <tbody>
                 <?php if (\count($templates) == 0) : ?>
-                <tr class="empty">
+                <tr tabindex="0" class="empty">
                     <td colspan="4"><?= $this->getHtml('Empty', '0', '0'); ?>
                         <?php endif; ?>
                         <?php foreach ($templates as $key => $template) :
                         $url = UriFactory::build('{/prefix}helper/report/view?{?}&id=' . $template->getId()); ?>
-                <tr data-href="<?= $url; ?>">
+                <tr tabindex="0" data-href="<?= $url; ?>">
                     <td data-label="<?= $this->getHtml('Name') ?>"><a href="<?= $url; ?>"><?= $this->printHtml($template->getName()); ?></a>
                     <td data-label="<?= $this->getHtml('Tag') ?>">
                         <?php $tags = $template->getTags(); foreach ($tags as $tag) : ?>
