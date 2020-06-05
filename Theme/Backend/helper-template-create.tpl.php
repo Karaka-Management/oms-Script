@@ -32,10 +32,11 @@ echo $this->getData('nav')->render(); ?>
                         <tr><td><?= $this->getData('editor')->render('report-editor'); ?>
                         <tr><td><?= $this->getData('editor')->getData('text')->render('report-editor', 'description', 'helper-template-create'); ?>
                         <tr><td>
-                                <span class="checkbox">
-                                    <input id="iStandalone" name="standalone" type="checkbox" value="1">
-                                    <label for="iStandalone"><?= $this->getHtml('Standalone'); ?></label>
-                                </span>
+                                <label class="checkbox" for="iStandalone">
+                                    <input type="checkbox" name="standalone" id="iStandalone" value="1" checked>
+                                    <span class="checkmark"></span>
+                                    <?= $this->getHtml('Standalone'); ?>
+                                </label>
                         <tr><td><label for="iExpected"><?= $this->getHtml('Expected'); ?></label>
                         <tr><td>
                             <div class="ipt-wrap">
