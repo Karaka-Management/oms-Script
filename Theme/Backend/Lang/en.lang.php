@@ -53,6 +53,7 @@ return ['Helper' => [
     'Standalone'       => 'Standalone',
     'Storage'          => 'Storage',
     'Tag'              => 'Tag',
+    'Tags'             => 'Tags',
     'Template'         => 'Template',
     'Title'            => 'Title',
     'Type'             => 'Type',

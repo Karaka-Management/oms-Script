@@ -134,6 +134,12 @@ echo $this->getData('nav')->render(); ?>
                     <tr>
                         <td><?= $this->getHtml('Created'); ?>
                         <td><?= $template->getCreatedAt()->format('Y-m-d'); ?>
+                    <tr>
+                        <td><?= $this->getHtml('Tags'); ?>
+                        <td>
+                            <?php $tags = $template->getTags(); foreach ($tags as $tag) : ?>
+                                <span class="tag" style="background: <?= $this->printHtml($tag->getColor()); ?>"><?= $this->printHtml($tag->getTitle()); ?></span>
+                            <?php endforeach; ?>
                 </table>
             </div>
         </div>
