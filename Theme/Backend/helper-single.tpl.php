@@ -44,7 +44,7 @@ echo $this->getData('nav')->render(); ?>
                         <tr>
                             <td><label for="iLang"><?= $this->getHtml('Language'); ?></label>
                         <tr>
-                            <td><select id="iLang" name="lang" data-action='[{"listener": "change", "action": [{"key": 1, "type": "redirect", "uri": "{%}&lang={#iLang}", "target": "self"}]}]'>
+                            <td><select id="iLang" name="lang" data-action='[{"listener": "change", "action": [{"key": 1, "type": "redirect", "uri": "{%}&lang={!#iLang}", "target": "self"}]}]'>
                                     <?php foreach ($reportLanguage as $key => $language) : ?>
                                     <option value="<?= $this->printHtml($key); ?>"<?= $this->printHtml($key === $cLang ? ' selected' : ''); ?>><?= $this->printHtml($language[':language']); ?>
                                     <?php endforeach; ?>
@@ -81,7 +81,7 @@ echo $this->getData('nav')->render(); ?>
 
                                 </select>
                         <tr>
-                            <td><a tabindex="0" target="_blank" class="button" href="<?= UriFactory::build('{/api}helper/report/export?{?}'); ?>&type={#iExport}&lang={#iLang}{#iUiSettings}"><?= $this->getHtml('Export'); ?></a>
+                            <td><a tabindex="0" target="_blank" class="button" href="<?= UriFactory::build('{/api}helper/report/export?{?}'); ?>&type={!#iExport}&lang={!#iLang}{#iUiSettings}"><?= $this->getHtml('Export'); ?></a>
                     </table>
                 </form>
             </div>
@@ -100,7 +100,7 @@ echo $this->getData('nav')->render(); ?>
                         <?php endforeach; ?>
                     </table>
                 </div>
-                <div class="portlet-foot"><a tabindex="0" class="button" href="<?= UriFactory::build('{%}');?>&type={#iExport}&lang={#iLang}{#iUiSettings}"><?= $this->getHtml('Load'); ?></a></div>
+                <div class="portlet-foot"><a tabindex="0" class="button" href="<?= UriFactory::build('{%}');?>&type={!#iExport}&lang={!#iLang}{#iUiSettings}"><?= $this->getHtml('Load'); ?></a></div>
             </form>
         </div>
         <?php endif; ?>
