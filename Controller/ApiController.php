@@ -40,6 +40,8 @@ use phpOMS\System\MimeType;
 use phpOMS\Utils\Parser\Markdown\Markdown;
 use phpOMS\Utils\StringUtils;
 use phpOMS\Views\View;
+use Modules\Media\Models\Collection;
+use Modules\Media\Models\CollectionMapper;
 
 /**
  * Helper controller class.
@@ -274,6 +276,7 @@ final class ApiController extends Controller
             $files[] = new NullMedia($db);
         }
 
+        /** @var Collection $collection */
         $collection = $this->app->moduleManager->get('Media')->createMediaCollectionFromMedia(
             (string) ($request->getData('name') ?? ''),
             (string) ($request->getData('description') ?? ''),
@@ -281,12 +284,17 @@ final class ApiController extends Controller
             $request->getHeader()->getAccount()
         );
 
+        $collection->setPath('/Modules/Media/Files/Modules/Helper/' . ( (string) ($request->getData('name') ?? '')));
+        $collection->setVirtualPath('/Modules/Helper');
+
         if ($collection instanceof NullCollection) {
             $response->getHeader()->setStatusCode(RequestStatusCode::R_403);
             $this->fillJsonResponse($request, $response, NotificationLevel::ERROR, 'Template', 'Couldn\'t create collection for template', null);
 
             return;
         }
+
+        CollectionMapper::create($collection);
 
         $template = $this->createTemplateFromRequest($request, $collection->getId());
 
@@ -384,12 +392,17 @@ final class ApiController extends Controller
             $request->getHeader()->getAccount()
         );
 
+        $collection->setPath('/Modules/Media/Files/Modules/Helper/' . ( (string) ($request->getData('name') ?? '')));
+        $collection->setVirtualPath('/Modules/Helper');
+
         if ($collection instanceof NullCollection) {
             $response->getHeader()->setStatusCode(RequestStatusCode::R_403);
             $this->fillJsonResponse($request, $response, NotificationLevel::ERROR, 'Report', 'Couldn\'t create collection for report', null);
 
             return;
         }
+
+        CollectionMapper::create($collection);
 
         $report = $this->createReportFromRequest($request, $response, $collection->getId());
 

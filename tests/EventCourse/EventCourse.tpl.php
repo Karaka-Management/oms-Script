@@ -26,7 +26,7 @@ require 'Worker.php';
         </ul>
     </div>
     <div class="tab-content">
-        <input type="radio" id="c-tab-1" name="tabular-2" checked>
+        <input type="radio" id="c-tab-1" name="tabular-2"<?= $this->request->getUri()->getFragment() === 'c-tab-1' ? ' checked' : '' ?>>
         <div class="tab">
             <div class="box">
                 <table class="default">
@@ -195,7 +195,7 @@ require 'Worker.php';
                 </table>
             </div>
         </div>
-        <input type="radio" id="c-tab-2" name="tabular-2">
+        <input type="radio" id="c-tab-2" name="tabular-2"<?= $this->request->getUri()->getFragment() === 'c-tab-2' ? ' checked' : '' ?>>
         <div class="tab">
             <section class="box">
                 <table class="default">
@@ -270,7 +270,7 @@ require 'Worker.php';
                 </table>
             </section>
         </div>
-        <input type="radio" id="c-tab-3" name="tabular-2">
+        <input type="radio" id="c-tab-3" name="tabular-2"<?= $this->request->getUri()->getFragment() === 'c-tab-3' ? ' checked' : '' ?>>
         <div class="tab">
             <section class="box">
                 <table class="default">
@@ -318,7 +318,7 @@ require 'Worker.php';
                 </table>
             </section>
         </div>
-        <input type="radio" id="c-tab-4" name="tabular-2">
+        <input type="radio" id="c-tab-4" name="tabular-2"<?= $this->request->getUri()->getFragment() === 'c-tab-4' ? ' checked' : '' ?>>
         <div class="tab">
             <section class="box">
                 <table class="default">
@@ -389,7 +389,7 @@ require 'Worker.php';
                 </table>
             </section>
         </div>
-        <input type="radio" id="c-tab-5" name="tabular-2">
+        <input type="radio" id="c-tab-5" name="tabular-2"<?= $this->request->getUri()->getFragment() === 'c-tab-5' ? ' checked' : '' ?>>
         <div class="tab">
             <section class="box">
                 <table class="default">
