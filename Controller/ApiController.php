@@ -25,6 +25,8 @@ use Modules\Helper\Models\Template;
 use Modules\Helper\Models\TemplateDataType;
 use Modules\Helper\Models\TemplateMapper;
 
+use Modules\Media\Models\Collection;
+use Modules\Media\Models\CollectionMapper;
 use Modules\Media\Models\NullCollection;
 use Modules\Media\Models\NullMedia;
 use Modules\Tag\Models\NullTag;
@@ -40,8 +42,6 @@ use phpOMS\System\MimeType;
 use phpOMS\Utils\Parser\Markdown\Markdown;
 use phpOMS\Utils\StringUtils;
 use phpOMS\Views\View;
-use Modules\Media\Models\Collection;
-use Modules\Media\Models\CollectionMapper;
 
 /**
  * Helper controller class.
@@ -284,7 +284,7 @@ final class ApiController extends Controller
             $request->getHeader()->getAccount()
         );
 
-        $collection->setPath('/Modules/Media/Files/Modules/Helper/' . ( (string) ($request->getData('name') ?? '')));
+        $collection->setPath('/Modules/Media/Files/Modules/Helper/' . ((string) ($request->getData('name') ?? '')));
         $collection->setVirtualPath('/Modules/Helper');
 
         if ($collection instanceof NullCollection) {
@@ -392,7 +392,7 @@ final class ApiController extends Controller
             $request->getHeader()->getAccount()
         );
 
-        $collection->setPath('/Modules/Media/Files/Modules/Helper/' . ( (string) ($request->getData('name') ?? '')));
+        $collection->setPath('/Modules/Media/Files/Modules/Helper/' . ((string) ($request->getData('name') ?? '')));
         $collection->setVirtualPath('/Modules/Helper');
 
         if ($collection instanceof NullCollection) {
