@@ -68,6 +68,7 @@ class TemplateTest extends \PHPUnit\Framework\TestCase
         $this->template->setUnit(new NullUnit(1));
         self::assertEquals(1, $this->template->getUnit()->getId());
     }
+
     /**
      * @testdox The creator can be set and returned correctly
      * @covers Modules\Helper\Models\Template

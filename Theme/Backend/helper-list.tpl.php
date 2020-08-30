@@ -28,14 +28,14 @@ echo $this->getData('nav')->render(); ?>
 <div class="row">
     <div class="col-xs-12">
         <div class="portlet">
-            <div class="portlet-head"><?= $this->getHtml('Helpers') ?><i class="fa fa-download floatRight download btn"></i></div>
+            <div class="portlet-head"><?= $this->getHtml('Helpers'); ?><i class="fa fa-download floatRight download btn"></i></div>
             <table class="default">
                 <thead>
                 <tr>
-                    <td class="wf-100"><?= $this->getHtml('Name') ?>
+                    <td class="wf-100"><?= $this->getHtml('Name'); ?>
                     <td><?= $this->getHtml('Tag'); ?>
-                    <td><?= $this->getHtml('Creator') ?>
-                    <td><?= $this->getHtml('Updated') ?>
+                    <td><?= $this->getHtml('Creator'); ?>
+                    <td><?= $this->getHtml('Updated'); ?>
                 <tbody>
                 <?php if (\count($templates) == 0) : ?>
                 <tr tabindex="0" class="empty">
@@ -44,13 +44,13 @@ echo $this->getData('nav')->render(); ?>
                         <?php foreach ($templates as $key => $template) :
                         $url = UriFactory::build('{/prefix}helper/report/view?{?}&id=' . $template->getId()); ?>
                 <tr tabindex="0" data-href="<?= $url; ?>">
-                    <td data-label="<?= $this->getHtml('Name') ?>"><a href="<?= $url; ?>"><?= $this->printHtml($template->getName()); ?></a>
-                    <td data-label="<?= $this->getHtml('Tag') ?>">
+                    <td data-label="<?= $this->getHtml('Name'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($template->getName()); ?></a>
+                    <td data-label="<?= $this->getHtml('Tag'); ?>">
                         <?php $tags = $template->getTags(); foreach ($tags as $tag) : ?>
                             <span class="tag" style="background: <?= $this->printHtml($tag->getColor()); ?>"><?= $this->printHtml($tag->getTitle()); ?></span>
                         <?php endforeach; ?>
-                    <td data-label="<?= $this->getHtml('Creator') ?>"><a href="<?= $url; ?>"><?= $this->printHtml($template->getCreatedBy()->getName1()); ?></a>
-                    <td data-label="<?= $this->getHtml('Updated') ?>"><a href="<?= $url; ?>"><?= $this->printHtml($template->getCreatedAt()->format('Y-m-d')); ?></a>
+                    <td data-label="<?= $this->getHtml('Creator'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($template->getCreatedBy()->getName1()); ?></a>
+                    <td data-label="<?= $this->getHtml('Updated'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($template->getCreatedAt()->format('Y-m-d')); ?></a>
                         <?php endforeach; ?>
             </table>
             <div class="portlet-foot">

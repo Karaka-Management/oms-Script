@@ -36,7 +36,7 @@ echo $this->getData('nav')->render(); ?>
     </div>
     <div class="col-xs-12 col-md-3">
         <div class="portlet">
-            <div class="portlet-head"><?= $this->getHtml('Reports') ?></div>
+            <div class="portlet-head"><?= $this->getHtml('Reports'); ?></div>
             <div class="portlet-body">
                 <form action="<?= UriFactory::build('{/api}helper/template'); ?>" method="post">
                     <table class="layout wf-100">
@@ -61,7 +61,7 @@ echo $this->getData('nav')->render(); ?>
         </div>
 
         <div class="portlet">
-            <div class="portlet-head"><?= $this->getHtml('Export') ?></div>
+            <div class="portlet-head"><?= $this->getHtml('Export'); ?></div>
             <div class="portlet-body">
                 <form>
                     <table class="layout wf-100">
@@ -90,7 +90,7 @@ echo $this->getData('nav')->render(); ?>
         <?php if (!empty($settings)) : ?>
         <div class="portlet">
             <form id="iUiSettings">
-                <div class="portlet-head"><?= $this->getHtml('Settings') ?></div>
+                <div class="portlet-head"><?= $this->getHtml('Settings'); ?></div>
                 <div class="portlet-body">
                     <table class="layout wf-100">
                         <tbody>
@@ -100,19 +100,19 @@ echo $this->getData('nav')->render(); ?>
                         <?php endforeach; ?>
                     </table>
                 </div>
-                <div class="portlet-foot"><a tabindex="0" class="button" href="<?= UriFactory::build('{%}');?>&type={!#iExport}&lang={!#iLang}{#iUiSettings}"><?= $this->getHtml('Load'); ?></a></div>
+                <div class="portlet-foot"><a tabindex="0" class="button" href="<?= UriFactory::build('{%}'); ?>&type={!#iExport}&lang={!#iLang}{#iUiSettings}"><?= $this->getHtml('Load'); ?></a></div>
             </form>
         </div>
         <?php endif; ?>
 
         <div class="portlet">
-            <div class="portlet-head"><?= $this->getHtml('Info') ?></div>
+            <div class="portlet-head"><?= $this->getHtml('Info'); ?></div>
             <div class="portlet-body">
                 <table class="list wf-100">
                     <tbody>
                     <?php if (!$template->isStandalone() && !($report instanceof \Modules\Helper\Models\NullReport)) : ?>
                     <tr>
-                        <th colspan="2"><?= $this->getHtml('Report') ?>
+                        <th colspan="2"><?= $this->getHtml('Report'); ?>
                     <tr>
                         <td><?= $this->getHtml('Name'); ?>
                         <td><?= $this->printHtml($report->getTitle()); ?>
@@ -124,7 +124,7 @@ echo $this->getData('nav')->render(); ?>
                         <td><?= $report->getCreatedAt()->format('Y-m-d'); ?>
                     <?php endif; ?>
                     <tr>
-                        <th colspan="2"><?= $this->getHtml('Template') ?>
+                        <th colspan="2"><?= $this->getHtml('Template'); ?>
                     <tr>
                         <td><?= $this->getHtml('Name'); ?>
                         <td><?= $this->printHtml($template->getName()); ?>
