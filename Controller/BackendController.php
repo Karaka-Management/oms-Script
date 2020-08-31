@@ -20,7 +20,6 @@ use Modules\Helper\Models\Template;
 use Modules\Helper\Models\TemplateMapper;
 use Modules\Media\Models\Media;
 use Modules\Media\Theme\Backend\Components\Upload\BaseView;
-
 use phpOMS\Contract\RenderableInterface;
 use phpOMS\DataStorage\Database\Query\Builder;
 use phpOMS\Message\RequestAbstract;
