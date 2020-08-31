@@ -183,13 +183,13 @@ class TemplateTest extends \PHPUnit\Framework\TestCase
 
         $array    = $this->template->toArray();
         $expected = [
-            'id' => 0,
-            'name' => 'testName',
-            'description' => 'testDescription',
+            'id'             => 0,
+            'name'           => 'testName',
+            'description'    => 'testDescription',
             'descriptionRaw' => 'testDescriptionRaw',
-            'status' => HelperStatus::INACTIVE,
-            'datatype' =>  TemplateDataType::OTHER,
-            'standalone' => true,
+            'status'         => HelperStatus::INACTIVE,
+            'datatype'       => TemplateDataType::OTHER,
+            'standalone'     => true,
         ];
 
         foreach ($expected as $key => $e) {
@@ -215,13 +215,13 @@ class TemplateTest extends \PHPUnit\Framework\TestCase
 
         $array    = $this->template->jsonSerialize();
         $expected = [
-            'id' => 0,
-            'name' => 'testName',
-            'description' => 'testDescription',
+            'id'             => 0,
+            'name'           => 'testName',
+            'description'    => 'testDescription',
             'descriptionRaw' => 'testDescriptionRaw',
-            'status' => HelperStatus::INACTIVE,
-            'datatype' =>  TemplateDataType::OTHER,
-            'standalone' => true,
+            'status'         => HelperStatus::INACTIVE,
+            'datatype'       => TemplateDataType::OTHER,
+            'standalone'     => true,
         ];
 
         foreach ($expected as $key => $e) {

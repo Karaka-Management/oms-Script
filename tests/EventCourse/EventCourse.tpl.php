@@ -10,7 +10,7 @@ $report   = $this->getData('report');
 
 /** @noinspection PhpIncludeInspection */
 $reportLanguage = include __DIR__ . '/../../../../' . \ltrim($tcoll['lang']->getPath(), '/');
-$lang = $reportLanguage[$cLang];
+$lang           = $reportLanguage[$cLang];
 
 require 'Worker.php';
 ?>
@@ -103,8 +103,8 @@ require 'Worker.php';
                         <td><?= (\number_format($forecast = ($type[$key][$fiscal_end->format('Y')]['value'] ?? 0.0) / \abs(((int) $fiscal_current->format('m') - ((int) $fiscal_end->format('m') + 1)) % 12 + 1) * 12, 2, ',', '.')); ?>
                         <td><?= \number_format($history == 0 ? 0 : 100 * ($forecast - $history) / $history, 2, ',', '.') . '%'; ?>
                             <?php
-                            $sum_hist += $history;
-                            $sum_current += $current;
+                            $sum_hist     += $history;
+                            $sum_current  += $current;
                             $sum_forecast += $forecast;
                             endforeach; ?>
                     <tr>
@@ -142,8 +142,8 @@ require 'Worker.php';
                         <td><?= (\number_format($forecast = ($costcenter[$key][$fiscal_end->format('Y')]['value'] ?? 0.0) / \abs(((int) $fiscal_current->format('m') - ((int) $fiscal_end->format('m') + 1)) % 12 + 1) * 12, 2, ',', '.')); ?>
                         <td><?= \number_format($history == 0 ? 0 : 100 * ($forecast - $history) / $history, 2, ',', '.') . '%'; ?>
                             <?php
-                            $sum_hist += $history;
-                            $sum_current += $current;
+                            $sum_hist     += $history;
+                            $sum_current  += $current;
                             $sum_forecast += $forecast;
                             endforeach; ?>
                     <tr>
@@ -181,8 +181,8 @@ require 'Worker.php';
                         <td><?= (\number_format($forecast = ($account[$key][$fiscal_end->format('Y')]['value'] ?? 0.0) / \abs(((int) $fiscal_current->format('m') - ((int) $fiscal_end->format('m') + 1)) % 12 + 1) * 12, 2, ',', '.')); ?>
                         <td><?= \number_format($history == 0 ? 0 : 100 * ($forecast - $history) / $history, 2, ',', '.') . '%'; ?>
                             <?php
-                            $sum_hist += $history;
-                            $sum_current += $current;
+                            $sum_hist     += $history;
+                            $sum_current  += $current;
                             $sum_forecast += $forecast;
                             endforeach; ?>
                     <tr>

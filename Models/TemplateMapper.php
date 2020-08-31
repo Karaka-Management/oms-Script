@@ -89,15 +89,15 @@ final class TemplateMapper extends DataMapperAbstract
      */
     protected static array $hasMany = [
         'reports' => [
-            'mapper' => ReportMapper::class,
-            'table'  => 'helper_report',
+            'mapper'   => ReportMapper::class,
+            'table'    => 'helper_report',
             'external' => 'helper_report_template',
-            'self'   => null,
+            'self'     => null,
         ],
         'tags' => [
-            'mapper' => TagMapper::class,
-            'table'  => 'helper_template_tag',
-            'self'   => 'helper_template_tag_src',
+            'mapper'   => TagMapper::class,
+            'table'    => 'helper_template_tag',
+            'self'     => 'helper_template_tag_src',
             'external' => 'helper_template_tag_dst',
         ],
     ];

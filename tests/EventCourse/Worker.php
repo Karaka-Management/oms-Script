@@ -103,8 +103,8 @@ if (($path = \realpath($oPath = __DIR__ . '/' . $rcoll['entries.csv']->getPath()
                 $costobject[$line[9]][$year][$month] = 0.0;
             }
 
-            $account[$line[10]][$year][$month] += $val;
-            $type[$t_name][$year][$month] += $val;
+            $account[$line[10]][$year][$month]   += $val;
+            $type[$t_name][$year][$month]        += $val;
             $costcenter[$line[8]][$year][$month] += $val;
             $costobject[$line[9]][$year][$month] += $val;
 
@@ -173,19 +173,19 @@ if (($path = \realpath($oPath = __DIR__ . '/' . $rcoll['entries.csv']->getPath()
                 $costobject[$line[9]][$fiscal_year]['cc'][$line[8]] = 0.0;
             }
 
-            $account[$line[10]][$fiscal_year]['value'] += $val;
-            $account[$line[10]][$fiscal_year]['cc'][$line[8]] += $val;
-            $account[$line[10]][$fiscal_year]['type'][$t_name] += $val;
-            $type[$t_name][$fiscal_year]['value'] += $val;
-            $type[$t_name][$fiscal_year]['cc'][$line[8]] += $val;
-            $type[$t_name][$fiscal_year]['ac'][$line[10]] += $val;
-            $costcenter[$line[8]][$fiscal_year]['value'] += $val;
-            $costcenter[$line[8]][$fiscal_year]['co'][$line[9]] += $val;
+            $account[$line[10]][$fiscal_year]['value']           += $val;
+            $account[$line[10]][$fiscal_year]['cc'][$line[8]]    += $val;
+            $account[$line[10]][$fiscal_year]['type'][$t_name]   += $val;
+            $type[$t_name][$fiscal_year]['value']                += $val;
+            $type[$t_name][$fiscal_year]['cc'][$line[8]]         += $val;
+            $type[$t_name][$fiscal_year]['ac'][$line[10]]        += $val;
+            $costcenter[$line[8]][$fiscal_year]['value']         += $val;
+            $costcenter[$line[8]][$fiscal_year]['co'][$line[9]]  += $val;
             $costcenter[$line[8]][$fiscal_year]['ac'][$line[10]] += $val;
             $costcenter[$line[8]][$fiscal_year]['type'][$t_name] += $val;
-            $costobject[$line[9]][$fiscal_year]['value'] += $val;
+            $costobject[$line[9]][$fiscal_year]['value']         += $val;
             $costobject[$line[9]][$fiscal_year]['ac'][$line[10]] += $val;
-            $costobject[$line[9]][$fiscal_year]['cc'][$line[8]] += $val;
+            $costobject[$line[9]][$fiscal_year]['cc'][$line[8]]  += $val;
 
             if (!isset($total[$fiscal_year])) {
                 $total[$fiscal_year] = 0.0;

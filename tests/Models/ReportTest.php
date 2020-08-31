@@ -143,11 +143,11 @@ class ReportTest extends \PHPUnit\Framework\TestCase
 
         $array    = $this->report->toArray();
         $expected = [
-            'id' => 0,
-            'name' => 'testTitle',
-            'description' => 'testDescription',
+            'id'             => 0,
+            'name'           => 'testTitle',
+            'description'    => 'testDescription',
             'descriptionRaw' => 'testDescriptionRaw',
-            'status' => HelperStatus::INACTIVE,
+            'status'         => HelperStatus::INACTIVE,
         ];
 
         foreach ($expected as $key => $e) {
@@ -173,11 +173,11 @@ class ReportTest extends \PHPUnit\Framework\TestCase
 
         $array    = $this->report->jsonSerialize();
         $expected = [
-            'id' => 0,
-            'name' => 'testTitle',
-            'description' => 'testDescription',
+            'id'             => 0,
+            'name'           => 'testTitle',
+            'description'    => 'testDescription',
             'descriptionRaw' => 'testDescriptionRaw',
-            'status' => HelperStatus::INACTIVE,
+            'status'         => HelperStatus::INACTIVE,
         ];
 
         foreach ($expected as $key => $e) {
