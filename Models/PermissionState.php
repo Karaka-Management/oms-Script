@@ -28,7 +28,7 @@ abstract class PermissionState extends Enum
 {
     public const TEMPLATE = 1;
 
-    public const REPORT   = 2;
+    public const REPORT = 2;
 
-    public const EXPORT   = 3;
+    public const EXPORT = 3;
 }
