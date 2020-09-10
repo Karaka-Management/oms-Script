@@ -76,7 +76,7 @@ class Report implements \JsonSerializable
      * @var \DateTime
      * @since 1.0.0
      */
-    protected \DateTime $createdAt;
+    protected \DateTimeImmutable $createdAt;
 
     /**
      * Report created by.
@@ -110,7 +110,7 @@ class Report implements \JsonSerializable
     public function __construct()
     {
         $this->createdBy = new NullAccount();
-        $this->createdAt = new \DateTime('now');
+        $this->createdAt = new \DateTimeImmutable('now');
         $this->template  = new NullTemplate();
         $this->source    = new NullCollection();
     }
@@ -238,7 +238,7 @@ class Report implements \JsonSerializable
      *
      * @since 1.0.0
      */
-    public function getCreatedAt() : \DateTime
+    public function getCreatedAt() : \DateTimeInterface
     {
         return $this->createdAt;
     }

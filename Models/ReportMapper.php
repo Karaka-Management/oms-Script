@@ -42,7 +42,7 @@ final class ReportMapper extends DataMapperAbstract
         'helper_report_media'    => ['name' => 'helper_report_media',    'type' => 'int',      'internal' => 'source'],
         'helper_report_template' => ['name' => 'helper_report_template', 'type' => 'int',      'internal' => 'template'],
         'helper_report_creator'  => ['name' => 'helper_report_creator',  'type' => 'int',      'internal' => 'createdBy', 'readonly' => true],
-        'helper_report_created'  => ['name' => 'helper_report_created',  'type' => 'DateTime', 'internal' => 'createdAt', 'readonly' => true],
+        'helper_report_created'  => ['name' => 'helper_report_created',  'type' => 'DateTimeImmutable', 'internal' => 'createdAt', 'readonly' => true],
     ];
 
     /**

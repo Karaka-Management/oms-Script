@@ -102,7 +102,7 @@ class Template implements \JsonSerializable
      * @var \DateTime
      * @since 1.0.0
      */
-    protected \DateTime $createdAt;
+    protected \DateTimeImmutable $createdAt;
 
     /**
      * Template created by.
@@ -151,7 +151,7 @@ class Template implements \JsonSerializable
      */
     public function __construct()
     {
-        $this->createdAt = new \DateTime('now');
+        $this->createdAt = new \DateTimeImmutable('now');
         $this->unit      = new NullUnit();
         $this->source    = new NullCollection();
         $this->createdBy = new NullAccount();
@@ -350,7 +350,7 @@ class Template implements \JsonSerializable
      *
      * @since 1.0.0
      */
-    public function getCreatedAt() : \DateTime
+    public function getCreatedAt() : \DateTimeInterface
     {
         return $this->createdAt;
     }
