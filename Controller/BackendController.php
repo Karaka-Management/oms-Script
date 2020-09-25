@@ -26,6 +26,7 @@ use phpOMS\Message\RequestAbstract;
 use phpOMS\Message\ResponseAbstract;
 use phpOMS\Utils\StringUtils;
 use phpOMS\Views\View;
+use Modules\Media\Models\CollectionMapper;
 
 /**
  * Helper controller class.
@@ -55,6 +56,13 @@ final class BackendController extends Controller
 
         $view->setTemplate('/Modules/Helper/Theme/Backend/helper-list');
         $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response));
+
+        $path = (string) ($request->getData('path') ?? '/');
+        $collection = CollectionMapper::getByVirtualPath(\str_replace('+', ' ', $path));
+        $parent     = CollectionMapper::getParentCollection(\str_replace('+', ' ', $path));
+
+        $view->addData('collections', $collection);
+        $view->addData('path', $path);
 
         if ($request->getData('ptype') === 'p') {
             $view->setData('reports',

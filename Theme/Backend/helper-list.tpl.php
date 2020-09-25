@@ -20,10 +20,39 @@ use phpOMS\Uri\UriFactory;
  */
 $templates = $this->getData('reports');
 
+/** @var \Modules\Media\Models\Collection[] */
+$collections = $this->getData('collections');
+$mediaPath   = \urldecode($this->getData('path') ?? '/');
+
 $previous = empty($templates) ? '{/prefix}helper/list' : '{/prefix}helper/list?{?}&id=' . \reset($templates)->getId() . '&ptype=p';
 $next     = empty($templates) ? '{/prefix}helper/list' : '{/prefix}helper/list?{?}&id=' . \end($templates)->getId() . '&ptype=n';
 
 echo $this->getData('nav')->render(); ?>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <ul class="crumbs-2">
+                <li data-href="<?= UriFactory::build('{/prefix}helper/list?path=/'); ?>"><a href="<?= UriFactory::build('{/prefix}helper/list?path=/'); ?>">/</a></li>
+                <?php
+                    $subPath = '';
+                    $paths   = \explode('/', \ltrim($mediaPath, '/'));
+                    $length  = \count($paths);
+
+                    for ($i = 0; $i < $length; ++$i) :
+                        if ($paths[$i] === '') {
+                            continue;
+                        }
+
+                        $subPath .= '/' . $paths[$i];
+
+                        $url = UriFactory::build('{/prefix}helper/list?path=' . $subPath);
+                ?>
+                    <li data-href="<?= $url; ?>"<?= $i === $length - 1 ? 'class="active"' : ''; ?>><a href="<?= $url; ?>"><?= $this->printHtml($paths[$i]); ?></a></li>
+                <?php endfor; ?>
+            </ul>
+        </div>
+    </div>
+</div>
 
 <div class="row">
     <div class="col-xs-12">
@@ -32,18 +61,26 @@ echo $this->getData('nav')->render(); ?>
             <table class="default">
                 <thead>
                 <tr>
+                    <td>
                     <td class="wf-100"><?= $this->getHtml('Name'); ?>
                     <td><?= $this->getHtml('Tag'); ?>
                     <td><?= $this->getHtml('Creator'); ?>
                     <td><?= $this->getHtml('Updated'); ?>
                 <tbody>
-                <?php if (\count($templates) == 0) : ?>
-                <tr tabindex="0" class="empty">
-                    <td colspan="4"><?= $this->getHtml('Empty', '0', '0'); ?>
-                        <?php endif; ?>
-                        <?php foreach ($templates as $key => $template) :
+                <?php $count = 0; foreach ($collections as $key => $value) : ++$count;
+                    $url = UriFactory::build('{/prefix}helper/list?path=' . \rtrim($value->getVirtualPath(), '/') . '/' . $value->getName());
+                ?>
+                    <tr data-href="<?= $url; ?>">
+                        <td><a href="<?= $url; ?>"><i class="fa fa-folder-open"></i></a>
+                        <td><a href="<?= $url; ?>"><?= $this->printHtml($value->getName()); ?></a>
+                        <td>
+                        <td><a href="<?= $url; ?>"><?= $this->printHtml($value->getCreatedBy()->getName1()); ?></a>
+                        <td><a href="<?= $url; ?>"><?= $this->printHtml($value->getCreatedAt()->format('Y-m-d')); ?></a>
+                <?php endforeach; ?>
+                        <?php foreach ($templates as $key => $template) : ++$count;
                         $url = UriFactory::build('{/prefix}helper/report/view?{?}&id=' . $template->getId()); ?>
                 <tr tabindex="0" data-href="<?= $url; ?>">
+                    <td>
                     <td data-label="<?= $this->getHtml('Name'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($template->getName()); ?></a>
                     <td data-label="<?= $this->getHtml('Tag'); ?>">
                         <?php $tags = $template->getTags(); foreach ($tags as $tag) : ?>
@@ -52,6 +89,10 @@ echo $this->getData('nav')->render(); ?>
                     <td data-label="<?= $this->getHtml('Creator'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($template->getCreatedBy()->getName1()); ?></a>
                     <td data-label="<?= $this->getHtml('Updated'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($template->getCreatedAt()->format('Y-m-d')); ?></a>
                         <?php endforeach; ?>
+                        <?php if ($count === 0) : ?>
+                <tr tabindex="0" class="empty">
+                    <td colspan="4"><?= $this->getHtml('Empty', '0', '0'); ?>
+                        <?php endif; ?>
             </table>
             <div class="portlet-foot">
                 <a tabindex="0" class="button" href="<?= UriFactory::build($previous); ?>"><?= $this->getHtml('Previous', '0', '0'); ?></a>
