@@ -18,6 +18,7 @@ use Modules\Helper\Models\NullReport;
 use Modules\Helper\Models\ReportMapper;
 use Modules\Helper\Models\Template;
 use Modules\Helper\Models\TemplateMapper;
+use Modules\Media\Models\CollectionMapper;
 use Modules\Media\Models\Media;
 use Modules\Media\Theme\Backend\Components\Upload\BaseView;
 use phpOMS\Contract\RenderableInterface;
@@ -26,7 +27,6 @@ use phpOMS\Message\RequestAbstract;
 use phpOMS\Message\ResponseAbstract;
 use phpOMS\Utils\StringUtils;
 use phpOMS\Views\View;
-use Modules\Media\Models\CollectionMapper;
 
 /**
  * Helper controller class.
@@ -57,7 +57,7 @@ final class BackendController extends Controller
         $view->setTemplate('/Modules/Helper/Theme/Backend/helper-list');
         $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response));
 
-        $path = (string) ($request->getData('path') ?? '/');
+        $path       = (string) ($request->getData('path') ?? '/');
         $collection = CollectionMapper::getByVirtualPath(\str_replace('+', ' ', $path));
         $parent     = CollectionMapper::getParentCollection(\str_replace('+', ' ', $path));
 

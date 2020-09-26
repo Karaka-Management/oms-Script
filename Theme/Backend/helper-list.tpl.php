@@ -68,7 +68,7 @@ echo $this->getData('nav')->render(); ?>
                     <td><?= $this->getHtml('Updated'); ?>
                 <tbody>
                 <?php $count = 0; foreach ($collections as $key => $value) : ++$count;
-                    $url = UriFactory::build('{/prefix}helper/list?path=' . \rtrim($value->getVirtualPath(), '/') . '/' . $value->getName());
+                    $url     = UriFactory::build('{/prefix}helper/list?path=' . \rtrim($value->getVirtualPath(), '/') . '/' . $value->getName());
                 ?>
                     <tr data-href="<?= $url; ?>">
                         <td><a href="<?= $url; ?>"><i class="fa fa-folder-open"></i></a>
