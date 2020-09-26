@@ -99,7 +99,7 @@ class Template implements \JsonSerializable
     /**
      * Template created at.
      *
-     * @var \DateTime
+     * @var \DateTimeImmutable
      * @since 1.0.0
      */
     protected \DateTimeImmutable $createdAt;
