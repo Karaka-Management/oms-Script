@@ -8,7 +8,7 @@ use phpOMS\Router\RouteVerb;
 return [
     '^.*/helper/template/create.*$' => [
         [
-            'dest'       => '\Modules\Media\Controller\BackendController::setUpFileUploader',
+            'dest'       => '\Modules\Media\Controller\BackendController::setUpFileUploaderTrait',
             'verb'       => RouteVerb::GET,
             'permission' => [
                 'module' => BackendController::MODULE_NAME,
@@ -28,7 +28,7 @@ return [
     ],
     '^.*/helper/report/create.*$' => [
         [
-            'dest'       => '\Modules\Media\Controller\BackendController::setUpFileUploader',
+            'dest'       => '\Modules\Media\Controller\BackendController::setUpFileUploaderTrait',
             'verb'       => RouteVerb::GET,
             'permission' => [
                 'module' => BackendController::MODULE_NAME,
