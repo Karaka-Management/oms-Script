@@ -32,7 +32,7 @@ $settings       = isset($tcoll['cfg']) ? \json_decode(\file_get_contents(__DIR__
 echo $this->getData('nav')->render(); ?>
 <div class="row" style="height: calc(100% - 85px);">
     <div class="col-xs-12 col-md-9">
-        <iframe src="<?= UriFactory::build('{/api}helper/report/export/?{?}&id=' . $template->getId()); ?>&u=<?=  $this->getData('unit'); ?>" allowfullscreen></iframe>
+        <iframe id="iHelperFrame" src="<?= UriFactory::build('{/api}helper/report/export/?{?}&id=' . $template->getId()); ?>&u=<?=  $this->getData('unit'); ?>" allowfullscreen></iframe>
     </div>
     <div class="col-xs-12 col-md-3">
         <div class="portlet">
@@ -44,7 +44,7 @@ echo $this->getData('nav')->render(); ?>
                         <tr>
                             <td><label for="iLang"><?= $this->getHtml('Language'); ?></label>
                         <tr>
-                            <td><select id="iLang" name="lang" data-action='[{"listener": "change", "action": [{"key": 1, "type": "redirect", "uri": "{%}&lang={!#iLang}", "target": "self"}]}]'>
+                            <td><select id="iLang" name="lang" data-action='[{"listener": "change", "action": [{"key": 1, "type": "redirect", "uri": "{%}&lang={#iLang}", "target": "self"}]}]'>
                                     <?php foreach ($reportLanguage as $key => $language) : ?>
                                     <option value="<?= $this->printHtml($key); ?>"<?= $this->printHtml($key === $cLang ? ' selected' : ''); ?>><?= $this->printHtml($language[':language']); ?>
                                     <?php endforeach; ?>
@@ -78,10 +78,9 @@ echo $this->getData('nav')->render(); ?>
                                     <option value="ppt"<?= $this->printHtml((!isset($tcoll['powerpoint'])) ? ' disabled' : ''); ?>>Powerpoint
                                     <option value="csv"<?= $this->printHtml((!isset($tcoll['csv'])) ? ' disabled' : ''); ?>>Csv
                                     <option value="json"<?= $this->printHtml((!isset($tcoll['json'])) ? ' disabled' : ''); ?>>Json
-
                                 </select>
                         <tr>
-                            <td><a tabindex="0" target="_blank" class="button" href="<?= UriFactory::build('{/api}helper/report/export?{?}'); ?>&type={!#iExport}&lang={!#iLang}{#iUiSettings}"><?= $this->getHtml('Export'); ?></a>
+                            <td><a tabindex="0" target="_blank" class="button" href="<?= UriFactory::build('{/api}helper/report/export?{?}'); ?>&type={#iExport}&lang={#iLang}{#iUiSettings}"><?= $this->getHtml('Export'); ?></a>
                     </table>
                 </form>
             </div>
@@ -100,7 +99,7 @@ echo $this->getData('nav')->render(); ?>
                         <?php endforeach; ?>
                     </table>
                 </div>
-                <div class="portlet-foot"><a tabindex="0" class="button" href="<?= UriFactory::build('{%}'); ?>&type={!#iExport}&lang={!#iLang}{#iUiSettings}"><?= $this->getHtml('Load'); ?></a></div>
+                <div class="portlet-foot"><a tabindex="0" class="button" href="<?= UriFactory::build('{%}'); ?>&type={#iExport}&lang={#iLang}{#iUiSettings}"><?= $this->getHtml('Load'); ?></a></div>
             </form>
         </div>
         <?php endif; ?>
