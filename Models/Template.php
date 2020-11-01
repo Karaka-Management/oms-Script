@@ -145,6 +145,14 @@ class Template implements \JsonSerializable
     private array $tags = [];
 
     /**
+     * Path for organizing.
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    private string $virtualPath = '/';
+
+    /**
      * Constructor
      *
      * @since 1.0.0
@@ -237,6 +245,32 @@ class Template implements \JsonSerializable
     public function getName() : string
     {
         return $this->name;
+    }
+
+    /**
+     * Get the path
+     *
+     * @return string
+     *
+     * @since 1.0.0
+     */
+    public function getVirtualPath() : string
+    {
+        return $this->virtualPath;
+    }
+
+    /**
+     * Set the path if file
+     *
+     * @param string $path Path to file
+     *
+     * @return mixed
+     *
+     * @since 1.0.0
+     */
+    public function setVirtualPath(string $path)
+    {
+        $this->virtualPath = $path;
     }
 
     /**

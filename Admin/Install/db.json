@@ -44,6 +44,11 @@
                 "type": "TEXT",
                 "null": false
             },
+            "helper_template_virtual": {
+                "name": "helper_template_virtual",
+                "type": "VARCHAR(255)",
+                "null": false
+            },
             "helper_template_media": {
                 "name": "helper_template_media",
                 "type": "INT",

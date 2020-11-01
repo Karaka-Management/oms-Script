@@ -19,6 +19,7 @@ use Modules\Media\Models\CollectionMapper;
 use Modules\Organization\Models\UnitMapper;
 use Modules\Tag\Models\TagMapper;
 use phpOMS\DataStorage\Database\DataMapperAbstract;
+use phpOMS\DataStorage\Database\RelationType;
 
 /**
  * Report mapper class.
@@ -46,6 +47,7 @@ final class TemplateMapper extends DataMapperAbstract
         'helper_template_desc'       => ['name' => 'helper_template_desc',        'type' => 'string',   'internal' => 'description'],
         'helper_template_desc_raw'   => ['name' => 'helper_template_desc_raw',    'type' => 'string',   'internal' => 'descriptionRaw'],
         'helper_template_media'      => ['name' => 'helper_template_media',       'type' => 'int',      'internal' => 'source'],
+        'helper_template_virtual'       => ['name' => 'helper_template_virtual',       'type' => 'string',   'internal' => 'virtualPath'],
         'helper_template_creator'    => ['name' => 'helper_template_creator',     'type' => 'int',      'internal' => 'createdBy'],
         'helper_template_unit'       => ['name' => 'helper_template_unit',        'type' => 'int',      'internal' => 'unit'],
         'helper_template_created'    => ['name' => 'helper_template_created',     'type' => 'DateTimeImmutable', 'internal' => 'createdAt'],
@@ -125,4 +127,23 @@ final class TemplateMapper extends DataMapperAbstract
      * @since 1.0.0
      */
     protected static string $primaryField = 'helper_template_id';
+
+    /**
+     * Get editor doc based on virtual path.
+     *
+     * @param string $virtualPath Virtual path
+     * @param int    $account     Account id
+     *
+     * @return array
+     *
+     * @since 1.0.0
+     */
+    public static function getByVirtualPath(string $virtualPath = '/') : array
+    {
+        $depth = 3;
+        $query = self::getQuery();
+        $query->where(self::$table . '_' . $depth . '.helper_template_virtual', '=', $virtualPath);
+
+        return self::getAllByQuery($query, RelationType::ALL, $depth);
+    }
 }
