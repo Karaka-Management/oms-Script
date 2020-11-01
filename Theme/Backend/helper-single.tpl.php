@@ -32,7 +32,7 @@ $settings       = isset($tcoll['cfg']) ? \json_decode(\file_get_contents(__DIR__
 echo $this->getData('nav')->render(); ?>
 <div class="row" style="height: calc(100% - 85px);">
     <div class="col-xs-12 col-md-9">
-        <iframe id="iHelperFrame" src="<?= UriFactory::build('{/api}helper/report/export/?{?}&id=' . $template->getId()); ?>&u=<?=  $this->getData('unit'); ?>" allowfullscreen></iframe>
+        <iframe data-form="iUiSettings" data-name="iframeHelper" id="iHelperFrame" src="<?= UriFactory::build('{/api}helper/report/export/?{?}&id=' . $template->getId()); ?>&u=<?=  $this->getData('unit'); ?>" allowfullscreen></iframe>
     </div>
     <div class="col-xs-12 col-md-3">
         <div class="portlet">
@@ -72,10 +72,10 @@ echo $this->getData('nav')->render(); ?>
                             <td><select id="iExport" name="export-type">
                                     <option value="select" disabled><?= $this->getHtml('Select'); ?>
                                     <option value="html"><?= $this->getHtml('Print'); ?>
-                                    <option value="excel"<?= $this->printHtml((!isset($tcoll['excel'])) ? ' disabled' : ''); ?>>Excel
+                                    <option value="xlsx"<?= $this->printHtml((!isset($tcoll['excel'])) ? ' disabled' : ''); ?>>Excel
                                     <option value="pdf"<?= $this->printHtml((!isset($tcoll['pdf'])) ? ' disabled' : ''); ?>>Pdf
-                                    <option value="doc"<?= $this->printHtml((!isset($tcoll['word'])) ? ' disabled' : ''); ?>>Word
-                                    <option value="ppt"<?= $this->printHtml((!isset($tcoll['powerpoint'])) ? ' disabled' : ''); ?>>Powerpoint
+                                    <option value="docx"<?= $this->printHtml((!isset($tcoll['word'])) ? ' disabled' : ''); ?>>Word
+                                    <option value="pptx"<?= $this->printHtml((!isset($tcoll['powerpoint'])) ? ' disabled' : ''); ?>>Powerpoint
                                     <option value="csv"<?= $this->printHtml((!isset($tcoll['csv'])) ? ' disabled' : ''); ?>>Csv
                                     <option value="json"<?= $this->printHtml((!isset($tcoll['json'])) ? ' disabled' : ''); ?>>Json
                                 </select>
