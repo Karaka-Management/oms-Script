@@ -30,6 +30,7 @@ use Modules\Media\Models\NullCollection;
 use Modules\Media\Models\NullMedia;
 use Modules\Tag\Models\NullTag;
 use phpOMS\Account\PermissionType;
+use phpOMS\Autoloader;
 use phpOMS\DataStorage\Database\Query\Builder;
 use phpOMS\Message\Http\HttpRequest;
 use phpOMS\Message\Http\HttpResponse;
@@ -80,7 +81,7 @@ final class ApiController extends Controller
             return;
         }
 
-        if ($request->getData('download') !== null) {
+        if (\in_array($request->getData('type'), ['xlsx', 'pdf', 'docx', 'pptx', 'csv'])) {
             // is allowed to export
             if (!$this->app->accountManager->get($accountId)->hasPermission(
                 PermissionType::READ, $this->app->orgId, $this->app->appName, self::MODULE_NAME, PermissionState::EXPORT
@@ -90,6 +91,7 @@ final class ApiController extends Controller
                 return;
             }
 
+            Autoloader::addPath(__DIR__ . '/../../../Resources/');
             $response->getHeader()->setDownloadable($template->getName(), (string) $request->getData('type'));
         }
 
@@ -118,11 +120,26 @@ final class ApiController extends Controller
     {
         switch ($request->getData('type')) {
             case 'pdf':
+                $response->getHeader()->set(
+                    'Content-disposition', 'attachment; filename="'
+                    . $name . '.'
+                    . ((string) $request->getData('type'))
+                    . '"'
+                , true);
                 $response->getHeader()->set('Content-Type', MimeType::M_PDF, true);
+                $view->setTemplate('/' . \substr($view->getData('tcoll')['pdf']->getPath(), 0, -8), 'pdf.php');
                 break;
             case 'csv':
+                $response->getHeader()->set(
+                    'Content-disposition', 'attachment; filename="'
+                    . $name . '.'
+                    . ((string) $request->getData('type'))
+                    . '"'
+                , true);
                 $response->getHeader()->set('Content-Type', MimeType::M_CONF, true);
+                $view->setTemplate('/' . \substr($view->getData('tcoll')['csv']->getPath(), 0, -8), 'csv.php');
                 break;
+            case 'xls':
             case 'xlsx':
                 $response->getHeader()->set(
                     'Content-disposition', 'attachment; filename="'
@@ -131,9 +148,33 @@ final class ApiController extends Controller
                     . '"'
                 , true);
                 $response->getHeader()->set('Content-Type', MimeType::M_XLSX, true);
+                $view->setTemplate('/' . \substr($view->getData('tcoll')['excel']->getPath(), 0, -8), 'xls.php');
+                break;
+            case 'doc':
+            case 'docx':
+                $response->getHeader()->set(
+                    'Content-disposition', 'attachment; filename="'
+                    . $name . '.'
+                    . ((string) $request->getData('type'))
+                    . '"'
+                , true);
+                $response->getHeader()->set('Content-Type', MimeType::M_XLSX, true);
+                $view->setTemplate('/' . \substr($view->getData('tcoll')['word']->getPath(), 0, -8), 'doc.php');
+                break;
+            case 'ppt':
+            case 'pptx':
+                $response->getHeader()->set(
+                    'Content-disposition', 'attachment; filename="'
+                    . $name . '.'
+                    . ((string) $request->getData('type'))
+                    . '"'
+                , true);
+                $response->getHeader()->set('Content-Type', MimeType::M_XLSX, true);
+                $view->setTemplate('/' . \substr($view->getData('tcoll')['powerpoint']->getPath(), 0, -8), 'ppt.php');
                 break;
             case 'json':
                 $response->getHeader()->set('Content-Type', MimeType::M_JSON, true);
+                $view->setTemplate('/' . \substr($view->getData('tcoll')['json']->getPath(), 0, -9), 'json.php');
                 break;
             default:
                 $response->getHeader()->set('Content-Type', 'text/html; charset=utf-8');
@@ -171,24 +212,24 @@ final class ApiController extends Controller
                     break;
                 case StringUtils::endsWith($lowerPath, '.xlsx.php'):
                 case StringUtils::endsWith($lowerPath, '.xls.php'):
-                    $tcoll['excel'][$tMedia->getName()] = $tMedia;
+                    $tcoll['excel'] = $tMedia;
                     break;
                 case StringUtils::endsWith($lowerPath, '.docx.php'):
                 case StringUtils::endsWith($lowerPath, '.doc.php'):
-                    $tcoll['word'][$tMedia->getName()] = $tMedia;
+                    $tcoll['word'] = $tMedia;
                     break;
                 case StringUtils::endsWith($lowerPath, '.pptx.php'):
                 case StringUtils::endsWith($lowerPath, '.ppt.php'):
-                    $tcoll['powerpoint'][$tMedia->getName()] = $tMedia;
+                    $tcoll['powerpoint'] = $tMedia;
                     break;
                 case StringUtils::endsWith($lowerPath, '.pdf.php'):
-                    $tcoll['pdf'][$tMedia->getName()] = $tMedia;
+                    $tcoll['pdf'] = $tMedia;
                     break;
                 case StringUtils::endsWith($lowerPath, '.csv.php'):
-                    $tcoll['csv'][$tMedia->getName()] = $tMedia;
+                    $tcoll['csv'] = $tMedia;
                     break;
                 case StringUtils::endsWith($lowerPath, '.json.php'):
-                    $tcoll['json'][$tMedia->getName()] = $tMedia;
+                    $tcoll['json'] = $tMedia;
                     break;
                 case StringUtils::endsWith($lowerPath, '.tpl.php'):
                     $tcoll['template'] = $tMedia;
@@ -342,6 +383,7 @@ final class ApiController extends Controller
         $helperTemplate->setExpected(!empty($expected) ? \json_decode($expected, true) : []);
         $helperTemplate->setCreatedBy(new NullAccount($request->getHeader()->getAccount()));
         $helperTemplate->setDatatype((int) ($request->getData('datatype') ?? TemplateDataType::OTHER));
+        $helperTemplate->setVirtualPath((string) ($request->getData('virtualpath') ?? '/'));
 
         if (!empty($tags = $request->getDataJson('tags'))) {
             foreach ($tags as $tag) {

@@ -27,6 +27,8 @@ use phpOMS\Message\RequestAbstract;
 use phpOMS\Message\ResponseAbstract;
 use phpOMS\Utils\StringUtils;
 use phpOMS\Views\View;
+use Modules\Admin\Models\Account;
+use Modules\Media\Models\Collection;
 
 /**
  * Helper controller class.
@@ -57,29 +59,15 @@ final class BackendController extends Controller
         $view->setTemplate('/Modules/Helper/Theme/Backend/helper-list');
         $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response));
 
-        $path       = (string) ($request->getData('path') ?? '/');
-        $collection = CollectionMapper::getByVirtualPath(\str_replace('+', ' ', $path));
-        $parent     = CollectionMapper::getParentCollection(\str_replace('+', ' ', $path));
+        $path      = \str_replace('+', ' ', (string) ($request->getData('path') ?? '/'));
+        $templates = TemplateMapper::withConditional('language', $response->getHeader()->getL11n()->getLanguage())::getByVirtualPath($path);
 
+        list($collection, $parent) = CollectionMapper::getCollectionsByPath($path);
+
+        $view->addData('parent', $parent);
         $view->addData('collections', $collection);
         $view->addData('path', $path);
-
-        if ($request->getData('ptype') === 'p') {
-            $view->setData('reports',
-                TemplateMapper::withConditional('language', $response->getHeader()->getL11n()->getLanguage())
-                    ::getBeforePivot((int) ($request->getData('id') ?? 0), null, 25)
-            );
-        } elseif ($request->getData('ptype') === 'n') {
-            $view->setData('reports',
-                TemplateMapper::withConditional('language', $response->getHeader()->getL11n()->getLanguage())
-                    ::getAfterPivot((int) ($request->getData('id') ?? 0), null, 25)
-            );
-        } else {
-            $view->setData('reports',
-                TemplateMapper::withConditional('language', $response->getHeader()->getL11n()->getLanguage())
-                    ::getAfterPivot(0, null, 25)
-            );
-        }
+        $view->addData('reports', $templates);
 
         return $view;
     }
@@ -156,7 +144,7 @@ final class BackendController extends Controller
         //$file = preg_replace('([^\w\s\d\-_~,;:\.\[\]\(\).])', '', $template->getName());
 
         /** @var Template $template */
-        $template = TemplateMapper::get((int) $request->getData('id'));
+        $template = TemplateMapper::withConditional('language', $response->getHeader()->getL11n()->getLanguage())::get((int) $request->getData('id'));
 
         $view->setTemplate('/Modules/Helper/Theme/Backend/helper-single');
 
