@@ -99,7 +99,7 @@ echo $this->getData('nav')->render(); ?>
                         <?php endforeach; ?>
                     </table>
                 </div>
-                <div class="portlet-foot"><a tabindex="0" class="button" href="<?= UriFactory::build('{%}'); ?>&type={#iExport}&lang={#iLang}{#iUiSettings}"><?= $this->getHtml('Load'); ?></a></div>
+                <div class="portlet-foot"><a tabindex="0" class="button" href="<?= UriFactory::build('{%}'); ?>&lang={#iLang}{#iUiSettings}"><?= $this->getHtml('Load'); ?></a></div>
             </form>
         </div>
         <?php endif; ?>
