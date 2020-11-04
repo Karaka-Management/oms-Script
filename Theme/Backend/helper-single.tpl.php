@@ -32,7 +32,11 @@ $settings       = isset($tcoll['cfg']) ? \json_decode(\file_get_contents(__DIR__
 echo $this->getData('nav')->render(); ?>
 <div class="row" style="height: calc(100% - 85px);">
     <div class="col-xs-12 col-md-9">
-        <iframe data-form="iUiSettings" data-name="iframeHelper" id="iHelperFrame" src="<?= UriFactory::build('{/api}helper/report/export/?{?}&id=' . $template->getId()); ?>&u=<?=  $this->getData('unit'); ?>" allowfullscreen></iframe>
+        <div class="portlet">
+            <div class="portlet-body">
+                <iframe data-form="iUiSettings" data-name="iframeHelper" id="iHelperFrame" src="<?= UriFactory::build('{/api}helper/report/export/?{?}&id=' . $template->getId()); ?>&u=<?=  $this->getData('unit'); ?>" allowfullscreen></iframe>
+            </div>
+        </div>
     </div>
     <div class="col-xs-12 col-md-3">
         <div class="portlet">
