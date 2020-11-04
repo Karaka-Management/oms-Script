@@ -75,7 +75,7 @@ echo $this->getData('nav')->render(); ?>
                                     <option value="xlsx"<?= $this->printHtml((!isset($tcoll['excel'])) ? ' disabled' : ''); ?>>Excel
                                     <option value="pdf"<?= $this->printHtml((!isset($tcoll['pdf'])) ? ' disabled' : ''); ?>>Pdf
                                     <option value="docx"<?= $this->printHtml((!isset($tcoll['word'])) ? ' disabled' : ''); ?>>Word
-                                    <option value="pptx"<?= $this->printHtml((!isset($tcoll['powerpoint'])) ? ' disabled' : ''); ?>>Powerpoint
+                                    <option value="pptx"<?= $this->printHtml((!isset($tcoll['powerpoint'])) ? ' disabled' : ''); ?>>PowerPoint
                                     <option value="csv"<?= $this->printHtml((!isset($tcoll['csv'])) ? ' disabled' : ''); ?>>Csv
                                     <option value="json"<?= $this->printHtml((!isset($tcoll['json'])) ? ' disabled' : ''); ?>>Json
                                 </select>
