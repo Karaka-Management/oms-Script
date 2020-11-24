@@ -39,15 +39,15 @@ class TemplateMapperTest extends \PHPUnit\Framework\TestCase
         $template = new Template();
 
         $template->createdBy = new NullAccount(1);
-        $template->name = 'Title';
+        $template->name      = 'Title';
         $template->setStatus(HelperStatus::ACTIVE);
-        $template->description = 'Description';
+        $template->description    = 'Description';
         $template->descriptionRaw = 'DescriptionRaw';
         $template->setDatatype(TemplateDataType::OTHER);
         $template->setStandalone(false);
         $template->setExpected(['source1.csv', 'source2.csv']);
 
-        $collection = new Collection();
+        $collection            = new Collection();
         $collection->createdBy = new NullAccount(1);
 
         $templateFiles = [
@@ -89,7 +89,7 @@ class TemplateMapperTest extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($templateFiles as $file) {
-            $media = new Media();
+            $media            = new Media();
             $media->createdBy = new NullAccount(1);
             $media->extension = $file['extension'];
             $media->setPath(\trim($file['path'], '/') . '/' . $file['filename']);

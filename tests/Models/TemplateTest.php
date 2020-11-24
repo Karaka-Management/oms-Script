@@ -176,8 +176,8 @@ class TemplateTest extends \PHPUnit\Framework\TestCase
      */
     public function testToArray() : void
     {
-        $this->template->name = 'testName';
-        $this->template->description = 'testDescription';
+        $this->template->name           = 'testName';
+        $this->template->description    = 'testDescription';
         $this->template->descriptionRaw = 'testDescriptionRaw';
         $this->template->setStandalone(true);
 
@@ -208,8 +208,8 @@ class TemplateTest extends \PHPUnit\Framework\TestCase
      */
     public function testJsonSerialize() : void
     {
-        $this->template->name = 'testName';
-        $this->template->description = 'testDescription';
+        $this->template->name           = 'testName';
+        $this->template->description    = 'testDescription';
         $this->template->descriptionRaw = 'testDescriptionRaw';
         $this->template->setStandalone(true);
 

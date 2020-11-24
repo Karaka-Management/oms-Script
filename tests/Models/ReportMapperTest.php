@@ -35,14 +35,14 @@ class ReportMapperTest extends \PHPUnit\Framework\TestCase
         $template = new Template();
 
         $template->createdBy = new NullAccount(1);
-        $template->name = 'Report Template';
+        $template->name      = 'Report Template';
         $template->setStatus(HelperStatus::ACTIVE);
         $template->description = 'Description';
         $template->setDatatype(TemplateDataType::OTHER);
         $template->setStandalone(false);
         $template->setExpected(['source1.csv', 'source2.csv']);
 
-        $collection = new Collection();
+        $collection            = new Collection();
         $collection->createdBy = new NullAccount(1);
 
         $templateFiles = [
@@ -84,7 +84,7 @@ class ReportMapperTest extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($templateFiles as $file) {
-            $media = new Media();
+            $media            = new Media();
             $media->createdBy = new NullAccount(1);
             $media->extension = $file['extension'];
             $media->setPath(\trim($file['path'], '/') . '/' . $file['filename']);
@@ -109,12 +109,12 @@ class ReportMapperTest extends \PHPUnit\Framework\TestCase
         $report = new Report();
 
         $report->createdBy = new NullAccount(1);
-        $report->title = 'Title';
+        $report->title     = 'Title';
         $report->setStatus(HelperStatus::ACTIVE);
         $report->description = 'Description';
         $report->setTemplate($this->createTemplate());
 
-        $collection = new Collection();
+        $collection            = new Collection();
         $collection->createdBy = new NullAccount(1);
 
         $reportFiles = [
@@ -156,7 +156,7 @@ class ReportMapperTest extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($reportFiles as $file) {
-            $media = new Media();
+            $media            = new Media();
             $media->createdBy = new NullAccount(1);
             $media->extension = $file['extension'];
             $media->setPath(\trim($file['path'], '/') . '/' . $file['filename']);

@@ -137,8 +137,8 @@ class ReportTest extends \PHPUnit\Framework\TestCase
     public function testToArray() : void
     {
         $this->report->setTemplate(new NullTemplate(11));
-        $this->report->title = 'testTitle';
-        $this->report->description = 'testDescription';
+        $this->report->title          = 'testTitle';
+        $this->report->description    = 'testDescription';
         $this->report->descriptionRaw = 'testDescriptionRaw';
 
         $array    = $this->report->toArray();
@@ -167,8 +167,8 @@ class ReportTest extends \PHPUnit\Framework\TestCase
     public function testJsonSerialize() : void
     {
         $this->report->setTemplate(new NullTemplate(11));
-        $this->report->title = 'testTitle';
-        $this->report->description = 'testDescription';
+        $this->report->title          = 'testTitle';
+        $this->report->description    = 'testDescription';
         $this->report->descriptionRaw = 'testDescriptionRaw';
 
         $array    = $this->report->jsonSerialize();

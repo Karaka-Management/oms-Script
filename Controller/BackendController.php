@@ -27,8 +27,6 @@ use phpOMS\Message\RequestAbstract;
 use phpOMS\Message\ResponseAbstract;
 use phpOMS\Utils\StringUtils;
 use phpOMS\Views\View;
-use Modules\Admin\Models\Account;
-use Modules\Media\Models\Collection;
 
 /**
  * Helper controller class.

@@ -370,9 +370,9 @@ final class ApiController extends Controller
     {
         $expected = $request->getData('expected');
 
-        $helperTemplate = new Template();
-        $helperTemplate->name = $request->getData('name') ?? 'Empty';
-        $helperTemplate->description = Markdown::parse((string) ($request->getData('description') ?? ''));
+        $helperTemplate                 = new Template();
+        $helperTemplate->name           = $request->getData('name') ?? 'Empty';
+        $helperTemplate->description    = Markdown::parse((string) ($request->getData('description') ?? ''));
         $helperTemplate->descriptionRaw = (string) ($request->getData('description') ?? '');
 
         if ($collectionId > 0) {
@@ -479,7 +479,7 @@ final class ApiController extends Controller
      */
     private function createReportFromRequest(RequestAbstract $request, ResponseAbstract $response, int $collectionId) : Report
     {
-        $helperReport = new Report();
+        $helperReport        = new Report();
         $helperReport->title = (string) ($request->getData('name'));
         $helperReport->setSource(new NullCollection($collectionId));
         $helperReport->setTemplate(new NullTemplate((int) $request->getData('template')));
