@@ -34,7 +34,7 @@ echo $this->getData('nav')->render(); ?>
                         <tr><td><label for="iTemplate"><?= $this->getHtml('Template'); ?></label>
                         <tr><td><select id="iTemplate" name="template">
                                     <?php foreach ($templateList as $key => $value) : ?>
-                                    <option value="<?= $this->printHtml($key); ?>"><?= $this->printHtml($value->getName()); ?>
+                                    <option value="<?= $this->printHtml($key); ?>"><?= $this->printHtml($value->name); ?>
                                         <?php endforeach; ?>
                                 </select>
                     </table>

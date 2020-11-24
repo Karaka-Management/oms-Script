@@ -68,26 +68,26 @@ echo $this->getData('nav')->render(); ?>
                     <td><?= $this->getHtml('Updated'); ?>
                 <tbody>
                 <?php $count = 0; foreach ($collections as $key => $value) : ++$count;
-                    $url     = UriFactory::build('{/prefix}helper/list?path=' . \rtrim($value->getVirtualPath(), '/') . '/' . $value->getName());
+                    $url     = UriFactory::build('{/prefix}helper/list?path=' . \rtrim($value->getVirtualPath(), '/') . '/' . $value->name);
                 ?>
                     <tr data-href="<?= $url; ?>">
                         <td><a href="<?= $url; ?>"><i class="fa fa-folder-open"></i></a>
-                        <td><a href="<?= $url; ?>"><?= $this->printHtml($value->getName()); ?></a>
+                        <td><a href="<?= $url; ?>"><?= $this->printHtml($value->name); ?></a>
                         <td>
-                        <td><a href="<?= $url; ?>"><?= $this->printHtml($value->getCreatedBy()->getName1()); ?></a>
-                        <td><a href="<?= $url; ?>"><?= $this->printHtml($value->getCreatedAt()->format('Y-m-d')); ?></a>
+                        <td><a href="<?= $url; ?>"><?= $this->printHtml($value->createdBy->name1); ?></a>
+                        <td><a href="<?= $url; ?>"><?= $this->printHtml($value->createdAt->format('Y-m-d')); ?></a>
                 <?php endforeach; ?>
                         <?php foreach ($templates as $key => $template) : ++$count;
                         $url = UriFactory::build('{/prefix}helper/report/view?{?}&id=' . $template->getId()); ?>
                 <tr tabindex="0" data-href="<?= $url; ?>">
                     <td>
-                    <td data-label="<?= $this->getHtml('Name'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($template->getName()); ?></a>
+                    <td data-label="<?= $this->getHtml('Name'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($template->name); ?></a>
                     <td data-label="<?= $this->getHtml('Tag'); ?>">
                         <?php $tags = $template->getTags(); foreach ($tags as $tag) : ?>
                             <span class="tag" style="background: <?= $this->printHtml($tag->getColor()); ?>"><?= $this->printHtml($tag->getTitle()); ?></span>
                         <?php endforeach; ?>
-                    <td data-label="<?= $this->getHtml('Creator'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($template->getCreatedBy()->getName1()); ?></a>
-                    <td data-label="<?= $this->getHtml('Updated'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($template->getCreatedAt()->format('Y-m-d')); ?></a>
+                    <td data-label="<?= $this->getHtml('Creator'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($template->createdBy->name1); ?></a>
+                    <td data-label="<?= $this->getHtml('Updated'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($template->createdAt->format('Y-m-d')); ?></a>
                         <?php endforeach; ?>
                         <?php if ($count === 0) : ?>
                 <tr tabindex="0" class="empty">

@@ -34,16 +34,16 @@ class ReportMapperTest extends \PHPUnit\Framework\TestCase
     {
         $template = new Template();
 
-        $template->setCreatedBy(new NullAccount(1));
-        $template->setName('Report Template');
+        $template->createdBy = new NullAccount(1);
+        $template->name = 'Report Template';
         $template->setStatus(HelperStatus::ACTIVE);
-        $template->setDescription('Description');
+        $template->description = 'Description';
         $template->setDatatype(TemplateDataType::OTHER);
         $template->setStandalone(false);
         $template->setExpected(['source1.csv', 'source2.csv']);
 
         $collection = new Collection();
-        $collection->setCreatedBy(new NullAccount(1));
+        $collection->createdBy = new NullAccount(1);
 
         $templateFiles = [
             [
@@ -85,11 +85,11 @@ class ReportMapperTest extends \PHPUnit\Framework\TestCase
 
         foreach ($templateFiles as $file) {
             $media = new Media();
-            $media->setCreatedBy(new NullAccount(1));
-            $media->setExtension($file['extension']);
+            $media->createdBy = new NullAccount(1);
+            $media->extension = $file['extension'];
             $media->setPath(\trim($file['path'], '/') . '/' . $file['filename']);
-            $media->setName($file['name']);
-            $media->setSize($file['size']);
+            $media->name = $file['name'];
+            $media->size = $file['size'];
 
             $collection->addSource($media);
         }
@@ -108,14 +108,14 @@ class ReportMapperTest extends \PHPUnit\Framework\TestCase
     {
         $report = new Report();
 
-        $report->setCreatedBy(new NullAccount(1));
-        $report->setTitle('Title');
+        $report->createdBy = new NullAccount(1);
+        $report->title = 'Title';
         $report->setStatus(HelperStatus::ACTIVE);
-        $report->setDescription('Description');
+        $report->description = 'Description';
         $report->setTemplate($this->createTemplate());
 
         $collection = new Collection();
-        $collection->setCreatedBy(new NullAccount(1));
+        $collection->createdBy = new NullAccount(1);
 
         $reportFiles = [
             [
@@ -157,11 +157,11 @@ class ReportMapperTest extends \PHPUnit\Framework\TestCase
 
         foreach ($reportFiles as $file) {
             $media = new Media();
-            $media->setCreatedBy(new NullAccount(1));
-            $media->setExtension($file['extension']);
+            $media->createdBy = new NullAccount(1);
+            $media->extension = $file['extension'];
             $media->setPath(\trim($file['path'], '/') . '/' . $file['filename']);
-            $media->setName($file['name']);
-            $media->setSize($file['size']);
+            $media->name = $file['name'];
+            $media->size = $file['size'];
 
             $collection->addSource($media);
         }
@@ -173,11 +173,11 @@ class ReportMapperTest extends \PHPUnit\Framework\TestCase
         self::assertEquals($id, $report->getId());
 
         $reportR = ReportMapper::get($report->getId());
-        self::assertEquals($report->getCreatedAt()->format('Y-m-d'), $reportR->getCreatedAt()->format('Y-m-d'));
-        self::assertEquals($report->getCreatedBy()->getId(), $reportR->getCreatedBy()->getId());
-        self::assertEquals($report->getDescription(), $reportR->getDescription());
-        self::assertEquals($report->getTitle(), $reportR->getTitle());
+        self::assertEquals($report->createdAt->format('Y-m-d'), $reportR->createdAt->format('Y-m-d'));
+        self::assertEquals($report->createdBy->getId(), $reportR->createdBy->getId());
+        self::assertEquals($report->description, $reportR->description);
+        self::assertEquals($report->title, $reportR->title);
         self::assertEquals($report->getStatus(), $reportR->getStatus());
-        self::assertEquals($report->getTemplate()->getName(), $reportR->getTemplate()->getName());
+        self::assertEquals($report->getTemplate()->name, $reportR->getTemplate()->name);
     }
 }

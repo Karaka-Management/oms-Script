@@ -78,7 +78,7 @@ class Template implements \JsonSerializable
      * @var string
      * @since 1.0.0
      */
-    private string $name = '';
+    public string $name = '';
 
     /**
      * Template description.
@@ -86,7 +86,7 @@ class Template implements \JsonSerializable
      * @var string
      * @since 1.0.0
      */
-    private string $description = '';
+    public string $description = '';
 
     /**
      * Template description.
@@ -94,7 +94,7 @@ class Template implements \JsonSerializable
      * @var string
      * @since 1.0.0
      */
-    private string $descriptionRaw = '';
+    public string $descriptionRaw = '';
 
     /**
      * Template created at.
@@ -102,7 +102,7 @@ class Template implements \JsonSerializable
      * @var \DateTimeImmutable
      * @since 1.0.0
      */
-    protected \DateTimeImmutable $createdAt;
+    public \DateTimeImmutable $createdAt;
 
     /**
      * Template created by.
@@ -110,7 +110,7 @@ class Template implements \JsonSerializable
      * @var Account
      * @since 1.0.0
      */
-    private Account $createdBy;
+    public Account $createdBy;
 
     /**
      * Template source.
@@ -222,32 +222,6 @@ class Template implements \JsonSerializable
     }
 
     /**
-     * Set template name
-     *
-     * @param string $name Template name
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setName(string $name) : void
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * Get template name
-     *
-     * @return string
-     *
-     * @since 1.0.0
-     */
-    public function getName() : string
-    {
-        return $this->name;
-    }
-
-    /**
      * Get the path
      *
      * @return string
@@ -271,58 +245,6 @@ class Template implements \JsonSerializable
     public function setVirtualPath(string $path)
     {
         $this->virtualPath = $path;
-    }
-
-    /**
-     * Set description
-     *
-     * @param string $description Template description
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setDescription(string $description) : void
-    {
-        $this->description = $description;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string
-     *
-     * @since 1.0.0
-     */
-    public function getDescription() : string
-    {
-        return $this->description;
-    }
-
-    /**
-     * Set raw description
-     *
-     * @param string $description Template description
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setDescriptionRaw(string $description) : void
-    {
-        $this->descriptionRaw = $description;
-    }
-
-    /**
-     * Get raw description
-     *
-     * @return string
-     *
-     * @since 1.0.0
-     */
-    public function getDescriptionRaw() : string
-    {
-        return $this->descriptionRaw;
     }
 
     /**
@@ -352,58 +274,6 @@ class Template implements \JsonSerializable
     }
 
     /**
-     * Set creator
-     *
-     * @param Account $createdBy Creator
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setCreatedBy(Account $createdBy) : void
-    {
-        $this->createdBy = $createdBy;
-    }
-
-    /**
-     * Get creator
-     *
-     * @return Account
-     *
-     * @since 1.0.0
-     */
-    public function getCreatedBy() : Account
-    {
-        return $this->createdBy;
-    }
-
-    /**
-     * Get created date
-     *
-     * @return \DateTimeImmutable
-     *
-     * @since 1.0.0
-     */
-    public function getCreatedAt() : \DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * Set expected files from reports
-     *
-     * @param array $expected Expected files
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setExpected(array $expected) : void
-    {
-        $this->expected = $expected;
-    }
-
-    /**
      * Get expected files from report
      *
      * @return array
@@ -427,6 +297,20 @@ class Template implements \JsonSerializable
     public function addExpected(string $expected) : void
     {
         $this->expected[] = $expected;
+    }
+
+    /**
+     * Set expected file from report
+     *
+     * @param string $expected Expected file
+     *
+     * @return void
+     *
+     * @since 1.0.0
+     */
+    public function setExpected(array $expected) : void
+    {
+        $this->expected = $expected;
     }
 
     /**

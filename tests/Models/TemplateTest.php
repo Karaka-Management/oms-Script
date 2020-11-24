@@ -45,12 +45,12 @@ class TemplateTest extends \PHPUnit\Framework\TestCase
     {
         self::assertEquals(0, $this->template->getId());
         self::assertEquals(0, $this->template->getUnit()->getId());
-        self::assertEquals(0, $this->template->getCreatedBy()->getId());
-        self::assertEquals((new \DateTime('now'))->format('Y-m-d'), $this->template->getCreatedAt()->format('Y-m-d'));
-        self::assertEquals('', $this->template->getName());
+        self::assertEquals(0, $this->template->createdBy->getId());
+        self::assertEquals((new \DateTime('now'))->format('Y-m-d'), $this->template->createdAt->format('Y-m-d'));
+        self::assertEquals('', $this->template->name);
         self::assertEquals(HelperStatus::INACTIVE, $this->template->getStatus());
-        self::assertEquals('', $this->template->getDescription());
-        self::assertEquals('', $this->template->getDescriptionRaw());
+        self::assertEquals('', $this->template->description);
+        self::assertEquals('', $this->template->descriptionRaw);
         self::assertEquals([], $this->template->getExpected());
         self::assertEquals(0, $this->template->getSource()->getId());
         self::assertFalse($this->template->isStandalone());
@@ -76,8 +76,8 @@ class TemplateTest extends \PHPUnit\Framework\TestCase
      */
     public function testCreatedByInputOutput() : void
     {
-        $this->template->setCreatedBy(new NullAccount(1));
-        self::assertEquals(1, $this->template->getCreatedBy()->getId());
+        $this->template->createdBy = new NullAccount(1);
+        self::assertEquals(1, $this->template->createdBy->getId());
     }
 
     /**
@@ -87,8 +87,8 @@ class TemplateTest extends \PHPUnit\Framework\TestCase
      */
     public function testNameInputOutput() : void
     {
-        $this->template->setName('Title');
-        self::assertEquals('Title', $this->template->getName());
+        $this->template->name = 'Title';
+        self::assertEquals('Title', $this->template->name);
     }
 
     /**
@@ -120,8 +120,8 @@ class TemplateTest extends \PHPUnit\Framework\TestCase
      */
     public function testDescriptionInputOutput() : void
     {
-        $this->template->setDescription('Description');
-        self::assertEquals('Description', $this->template->getDescription());
+        $this->template->description = 'Description';
+        self::assertEquals('Description', $this->template->description);
     }
 
     /**
@@ -131,8 +131,8 @@ class TemplateTest extends \PHPUnit\Framework\TestCase
      */
     public function testDescriptionRawInputOutput() : void
     {
-        $this->template->setDescriptionRaw('DescriptionRaw');
-        self::assertEquals('DescriptionRaw', $this->template->getDescriptionRaw());
+        $this->template->descriptionRaw = 'DescriptionRaw';
+        self::assertEquals('DescriptionRaw', $this->template->descriptionRaw);
     }
 
     /**
@@ -176,9 +176,9 @@ class TemplateTest extends \PHPUnit\Framework\TestCase
      */
     public function testToArray() : void
     {
-        $this->template->setName('testName');
-        $this->template->setDescription('testDescription');
-        $this->template->setDescriptionRaw('testDescriptionRaw');
+        $this->template->name = 'testName';
+        $this->template->description = 'testDescription';
+        $this->template->descriptionRaw = 'testDescriptionRaw';
         $this->template->setStandalone(true);
 
         $array    = $this->template->toArray();
@@ -208,9 +208,9 @@ class TemplateTest extends \PHPUnit\Framework\TestCase
      */
     public function testJsonSerialize() : void
     {
-        $this->template->setName('testName');
-        $this->template->setDescription('testDescription');
-        $this->template->setDescriptionRaw('testDescriptionRaw');
+        $this->template->name = 'testName';
+        $this->template->description = 'testDescription';
+        $this->template->descriptionRaw = 'testDescriptionRaw';
         $this->template->setStandalone(true);
 
         $array    = $this->template->jsonSerialize();

@@ -52,7 +52,7 @@ class Report implements \JsonSerializable
      * @var string
      * @since 1.0.0
      */
-    private string $title = '';
+    public string $title = '';
 
     /**
      * Report description.
@@ -60,7 +60,7 @@ class Report implements \JsonSerializable
      * @var string
      * @since 1.0.0
      */
-    private string $description = '';
+    public string $description = '';
 
     /**
      * Report description.
@@ -68,7 +68,7 @@ class Report implements \JsonSerializable
      * @var string
      * @since 1.0.0
      */
-    private string $descriptionRaw = '';
+    public string $descriptionRaw = '';
 
     /**
      * Report created at.
@@ -76,7 +76,7 @@ class Report implements \JsonSerializable
      * @var \DateTimeImmutable
      * @since 1.0.0
      */
-    protected \DateTimeImmutable $createdAt;
+    public \DateTimeImmutable $createdAt;
 
     /**
      * Report created by.
@@ -84,7 +84,7 @@ class Report implements \JsonSerializable
      * @var Account
      * @since 1.0.0
      */
-    private Account $createdBy;
+    public Account $createdBy;
 
     /**
      * Report template.
@@ -151,122 +151,6 @@ class Report implements \JsonSerializable
     public function setStatus(int $status) : void
     {
         $this->status = $status;
-    }
-
-    /**
-     * Get title,
-     *
-     * @return string
-     *
-     * @since 1.0.0
-     */
-    public function getTitle() : string
-    {
-        return $this->title;
-    }
-
-    /**
-     * Set the title
-     *
-     * @param string $title Title
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setTitle(string $title) : void
-    {
-        $this->title = $title;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string
-     *
-     * @since 1.0.0
-     */
-    public function getDescription() : string
-    {
-        return $this->description;
-    }
-
-    /**
-     * Set the description
-     *
-     * @param string $description Description
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setDescription(string $description) : void
-    {
-        $this->description = $description;
-    }
-
-    /**
-     * Get raw description
-     *
-     * @return string
-     *
-     * @since 1.0.0
-     */
-    public function getDescriptionRaw() : string
-    {
-        return $this->descriptionRaw;
-    }
-
-    /**
-     * Set raw description
-     *
-     * @param string $descriptionRaw Description
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setDescriptionRaw(string $descriptionRaw) : void
-    {
-        $this->descriptionRaw = $descriptionRaw;
-    }
-
-    /**
-     * Get created datetime
-     *
-     * @return \DateTimeImmutable
-     *
-     * @since 1.0.0
-     */
-    public function getCreatedAt() : \DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * Get creator
-     *
-     * @return Account
-     *
-     * @since 1.0.0
-     */
-    public function getCreatedBy() : Account
-    {
-        return $this->createdBy;
-    }
-
-    /**
-     * Set creator
-     *
-     * @param Account $creator Created by
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setCreatedBy(Account $creator) : void
-    {
-        $this->createdBy = $creator;
     }
 
     /**

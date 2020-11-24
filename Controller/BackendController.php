@@ -202,7 +202,7 @@ final class BackendController extends Controller
                 $files = $report->getSource()->getSources();
 
                 foreach ($files as $media) {
-                    $rcoll[$media->getName() . '.' . $media->getExtension()] = $media;
+                    $rcoll[$media->name . '.' . $media->extension] = $media;
                 }
             }
 

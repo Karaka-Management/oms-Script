@@ -38,17 +38,17 @@ class TemplateMapperTest extends \PHPUnit\Framework\TestCase
     {
         $template = new Template();
 
-        $template->setCreatedBy(new NullAccount(1));
-        $template->setName('Title');
+        $template->createdBy = new NullAccount(1);
+        $template->name = 'Title';
         $template->setStatus(HelperStatus::ACTIVE);
-        $template->setDescription('Description');
-        $template->setDescriptionRaw('DescriptionRaw');
+        $template->description = 'Description';
+        $template->descriptionRaw = 'DescriptionRaw';
         $template->setDatatype(TemplateDataType::OTHER);
         $template->setStandalone(false);
         $template->setExpected(['source1.csv', 'source2.csv']);
 
         $collection = new Collection();
-        $collection->setCreatedBy(new NullAccount(1));
+        $collection->createdBy = new NullAccount(1);
 
         $templateFiles = [
             [
@@ -90,11 +90,11 @@ class TemplateMapperTest extends \PHPUnit\Framework\TestCase
 
         foreach ($templateFiles as $file) {
             $media = new Media();
-            $media->setCreatedBy(new NullAccount(1));
-            $media->setExtension($file['extension']);
+            $media->createdBy = new NullAccount(1);
+            $media->extension = $file['extension'];
             $media->setPath(\trim($file['path'], '/') . '/' . $file['filename']);
-            $media->setName($file['name']);
-            $media->setSize($file['size']);
+            $media->name = $file['name'];
+            $media->size = $file['size'];
 
             $collection->addSource($media);
         }
@@ -106,11 +106,11 @@ class TemplateMapperTest extends \PHPUnit\Framework\TestCase
         self::assertEquals($id, $template->getId());
 
         $templateR = TemplateMapper::get($template->getId());
-        self::assertEquals($template->getCreatedAt()->format('Y-m-d'), $templateR->getCreatedAt()->format('Y-m-d'));
-        self::assertEquals($template->getCreatedBy()->getId(), $templateR->getCreatedBy()->getId());
-        self::assertEquals($template->getDescription(), $templateR->getDescription());
-        self::assertEquals($template->getDescriptionRaw(), $templateR->getDescriptionRaw());
-        self::assertEquals($template->getName(), $templateR->getName());
+        self::assertEquals($template->createdAt->format('Y-m-d'), $templateR->createdAt->format('Y-m-d'));
+        self::assertEquals($template->createdBy->getId(), $templateR->createdBy->getId());
+        self::assertEquals($template->description, $templateR->description);
+        self::assertEquals($template->descriptionRaw, $templateR->descriptionRaw);
+        self::assertEquals($template->name, $templateR->name);
         self::assertEquals($template->getStatus(), $templateR->getStatus());
         self::assertEquals($template->isStandalone(), $templateR->isStandalone());
         self::assertEquals($template->getDatatype(), $templateR->getDatatype());

@@ -118,25 +118,25 @@ echo $this->getData('nav')->render(); ?>
                         <th colspan="2"><?= $this->getHtml('Report'); ?>
                     <tr>
                         <td><?= $this->getHtml('Name'); ?>
-                        <td><?= $this->printHtml($report->getTitle()); ?>
+                        <td><?= $this->printHtml($report->title); ?>
                     <tr>
                         <td><?= $this->getHtml('Creator'); ?>
-                        <td><?= $this->printHtml($report->getCreatedBy()->getName1()); ?>
+                        <td><?= $this->printHtml($report->createdBy->name1); ?>
                     <tr>
                         <td><?= $this->getHtml('Created'); ?>
-                        <td><?= $report->getCreatedAt()->format('Y-m-d'); ?>
+                        <td><?= $report->createdAt->format('Y-m-d'); ?>
                     <?php endif; ?>
                     <tr>
                         <th colspan="2"><?= $this->getHtml('Template'); ?>
                     <tr>
                         <td><?= $this->getHtml('Name'); ?>
-                        <td><?= $this->printHtml($template->getName()); ?>
+                        <td><?= $this->printHtml($template->name); ?>
                     <tr>
                         <td><?= $this->getHtml('Creator'); ?>
-                        <td><a href="<?= UriFactory::build('{/prefix}profile/single?for=' . $template->getCreatedBy()->getId()); ?>"><?= $this->printHtml($template->getCreatedBy()->getName1()); ?></a>
+                        <td><a href="<?= UriFactory::build('{/prefix}profile/single?for=' . $template->createdBy->getId()); ?>"><?= $this->printHtml($template->createdBy->name1); ?></a>
                     <tr>
                         <td><?= $this->getHtml('Created'); ?>
-                        <td><?= $template->getCreatedAt()->format('Y-m-d'); ?>
+                        <td><?= $template->createdAt->format('Y-m-d'); ?>
                     <tr>
                         <td><?= $this->getHtml('Tags'); ?>
                         <td>

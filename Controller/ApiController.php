@@ -70,13 +70,13 @@ final class ApiController extends Controller
     {
         /** @var Template $template */
         $template  = TemplateMapper::get((int) $request->getData('id'));
-        $accountId = $request->getHeader()->getAccount();
+        $accountId = $request->header->account;
 
         // is allowed to read
         if (!$this->app->accountManager->get($accountId)->hasPermission(
             PermissionType::READ, $this->app->orgId, null, self::MODULE_NAME, PermissionState::REPORT, $template->getId())
         ) {
-            $response->getHeader()->setStatusCode(RequestStatusCode::R_403);
+            $response->header->status = RequestStatusCode::R_403;
 
             return;
         }
@@ -86,17 +86,17 @@ final class ApiController extends Controller
             if (!$this->app->accountManager->get($accountId)->hasPermission(
                 PermissionType::READ, $this->app->orgId, $this->app->appName, self::MODULE_NAME, PermissionState::EXPORT
             )) {
-                $response->getHeader()->setStatusCode(RequestStatusCode::R_403);
+                $response->header->status = RequestStatusCode::R_403;
 
                 return;
             }
 
             Autoloader::addPath(__DIR__ . '/../../../Resources/');
-            $response->getHeader()->setDownloadable($template->getName(), (string) $request->getData('type'));
+            $response->header->setDownloadable($template->name, (string) $request->getData('type'));
         }
 
         $view = $this->createView($template, $request, $response);
-        $this->setHelperResponseHeader($view, $template->getName(), $request, $response);
+        $this->setHelperResponseHeader($view, $template->name, $request, $response);
         $view->setData('path', __DIR__ . '/../../../');
 
         $response->set('export', $view);
@@ -120,64 +120,64 @@ final class ApiController extends Controller
     {
         switch ($request->getData('type')) {
             case 'pdf':
-                $response->getHeader()->set(
+                $response->header->set(
                     'Content-disposition', 'attachment; filename="'
                     . $name . '.'
                     . ((string) $request->getData('type'))
                     . '"'
                 , true);
-                $response->getHeader()->set('Content-Type', MimeType::M_PDF, true);
+                $response->header->set('Content-Type', MimeType::M_PDF, true);
                 $view->setTemplate('/' . \substr($view->getData('tcoll')['pdf']->getPath(), 0, -8), 'pdf.php');
                 break;
             case 'csv':
-                $response->getHeader()->set(
+                $response->header->set(
                     'Content-disposition', 'attachment; filename="'
                     . $name . '.'
                     . ((string) $request->getData('type'))
                     . '"'
                 , true);
-                $response->getHeader()->set('Content-Type', MimeType::M_CONF, true);
+                $response->header->set('Content-Type', MimeType::M_CONF, true);
                 $view->setTemplate('/' . \substr($view->getData('tcoll')['csv']->getPath(), 0, -8), 'csv.php');
                 break;
             case 'xls':
             case 'xlsx':
-                $response->getHeader()->set(
+                $response->header->set(
                     'Content-disposition', 'attachment; filename="'
                     . $name . '.'
                     . ((string) $request->getData('type'))
                     . '"'
                 , true);
-                $response->getHeader()->set('Content-Type', MimeType::M_XLSX, true);
+                $response->header->set('Content-Type', MimeType::M_XLSX, true);
                 $view->setTemplate('/' . \substr($view->getData('tcoll')['excel']->getPath(), 0, -8), 'xls.php');
                 break;
             case 'doc':
             case 'docx':
-                $response->getHeader()->set(
+                $response->header->set(
                     'Content-disposition', 'attachment; filename="'
                     . $name . '.'
                     . ((string) $request->getData('type'))
                     . '"'
                 , true);
-                $response->getHeader()->set('Content-Type', MimeType::M_XLSX, true);
+                $response->header->set('Content-Type', MimeType::M_XLSX, true);
                 $view->setTemplate('/' . \substr($view->getData('tcoll')['word']->getPath(), 0, -8), 'doc.php');
                 break;
             case 'ppt':
             case 'pptx':
-                $response->getHeader()->set(
+                $response->header->set(
                     'Content-disposition', 'attachment; filename="'
                     . $name . '.'
                     . ((string) $request->getData('type'))
                     . '"'
                 , true);
-                $response->getHeader()->set('Content-Type', MimeType::M_XLSX, true);
+                $response->header->set('Content-Type', MimeType::M_XLSX, true);
                 $view->setTemplate('/' . \substr($view->getData('tcoll')['powerpoint']->getPath(), 0, -8), 'ppt.php');
                 break;
             case 'json':
-                $response->getHeader()->set('Content-Type', MimeType::M_JSON, true);
+                $response->header->set('Content-Type', MimeType::M_JSON, true);
                 $view->setTemplate('/' . \substr($view->getData('tcoll')['json']->getPath(), 0, -9), 'json.php');
                 break;
             default:
-                $response->getHeader()->set('Content-Type', 'text/html; charset=utf-8');
+                $response->header->set('Content-Type', 'text/html; charset=utf-8');
                 $view->setTemplate('/' . \substr($view->getData('tcoll')['template']->getPath(), 0, -8));
         }
     }
@@ -235,17 +235,17 @@ final class ApiController extends Controller
                     $tcoll['template'] = $tMedia;
                     break;
                 case StringUtils::endsWith($lowerPath, '.css'):
-                    $tcoll['css'][$tMedia->getName()] = $tMedia;
+                    $tcoll['css'][$tMedia->name] = $tMedia;
                     break;
                 case StringUtils::endsWith($lowerPath, '.js'):
-                    $tcoll['js'][$tMedia->getName()] = $tMedia;
+                    $tcoll['js'][$tMedia->name] = $tMedia;
                     break;
                 case StringUtils::endsWith($lowerPath, '.sqlite'):
                 case StringUtils::endsWith($lowerPath, '.db'):
-                    $tcoll['db'][$tMedia->getName()] = $tMedia;
+                    $tcoll['db'][$tMedia->name] = $tMedia;
                     break;
                 default:
-                    $tcoll['other'][$tMedia->getName()] = $tMedia;
+                    $tcoll['other'][$tMedia->name] = $tMedia;
             }
         }
 
@@ -264,7 +264,7 @@ final class ApiController extends Controller
                 $files = $report->getSource()->getSources();
 
                 foreach ($files as $media) {
-                    $rcoll[$media->getName() . '.' . $media->getExtension()] = $media;
+                    $rcoll[$media->name . '.' . $media->extension] = $media;
                 }
             }
 
@@ -303,7 +303,7 @@ final class ApiController extends Controller
             $uploaded = $this->app->moduleManager->get('Media')->uploadFiles(
                 $request->getData('name') ?? '',
                 $uploadedFiles,
-                $request->getHeader()->getAccount(),
+                $request->header->account,
                 __DIR__ . '/../../../Modules/Media/Files'
             );
 
@@ -321,14 +321,14 @@ final class ApiController extends Controller
             (string) ($request->getData('name') ?? ''),
             (string) ($request->getData('description') ?? ''),
             $files,
-            $request->getHeader()->getAccount()
+            $request->header->account
         );
 
         $collection->setPath('/Modules/Media/Files/Modules/Helper/' . ((string) ($request->getData('name') ?? '')));
         $collection->setVirtualPath('/Modules/Helper');
 
         if ($collection instanceof NullCollection) {
-            $response->getHeader()->setStatusCode(RequestStatusCode::R_403);
+            $response->header->status = RequestStatusCode::R_403;
             $this->fillJsonResponse($request, $response, NotificationLevel::ERROR, 'Template', 'Couldn\'t create collection for template', null);
 
             return;
@@ -340,7 +340,7 @@ final class ApiController extends Controller
 
         $this->app->moduleManager->get('Admin')->createAccountModelPermission(
             new AccountPermission(
-                $request->getHeader()->getAccount(),
+                $request->header->account,
                 $this->app->orgId,
                 $this->app->appName,
                 self::MODULE_NAME,
@@ -349,11 +349,11 @@ final class ApiController extends Controller
                 null,
                 PermissionType::READ | PermissionType::MODIFY | PermissionType::DELETE | PermissionType::PERMISSION,
             ),
-            $request->getHeader()->getAccount(),
+            $request->header->account,
             $request->getOrigin()
         );
 
-        $this->createModel($request->getHeader()->getAccount(), $template, TemplateMapper::class, 'template', $request->getOrigin());
+        $this->createModel($request->header->account, $template, TemplateMapper::class, 'template', $request->getOrigin());
         $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Template', 'Template successfully created', $template);
     }
 
@@ -371,9 +371,9 @@ final class ApiController extends Controller
         $expected = $request->getData('expected');
 
         $helperTemplate = new Template();
-        $helperTemplate->setName($request->getData('name') ?? 'Empty');
-        $helperTemplate->setDescription(Markdown::parse((string) ($request->getData('description') ?? '')));
-        $helperTemplate->setDescriptionRaw((string) ($request->getData('description') ?? ''));
+        $helperTemplate->name = $request->getData('name') ?? 'Empty';
+        $helperTemplate->description = Markdown::parse((string) ($request->getData('description') ?? ''));
+        $helperTemplate->descriptionRaw = (string) ($request->getData('description') ?? '');
 
         if ($collectionId > 0) {
             $helperTemplate->setSource(new NullCollection($collectionId));
@@ -381,7 +381,7 @@ final class ApiController extends Controller
 
         $helperTemplate->setStandalone((bool) ($request->getData('standalone') ?? false));
         $helperTemplate->setExpected(!empty($expected) ? \json_decode($expected, true) : []);
-        $helperTemplate->setCreatedBy(new NullAccount($request->getHeader()->getAccount()));
+        $helperTemplate->createdBy = new NullAccount($request->header->account);
         $helperTemplate->setDatatype((int) ($request->getData('datatype') ?? TemplateDataType::OTHER));
         $helperTemplate->setVirtualPath((string) ($request->getData('virtualpath') ?? '/'));
 
@@ -394,7 +394,7 @@ final class ApiController extends Controller
 
                     $internalResponse = new HttpResponse();
                     $this->app->moduleManager->get('Tag')->apiTagCreate($request, $internalResponse, null);
-                    $helperTemplate->addTag($internalResponse->get($request->getUri()->__toString())['response']);
+                    $helperTemplate->addTag($internalResponse->get($request->uri->__toString())['response']);
                 } else {
                     $helperTemplate->addTag(new NullTag((int) $tag['id']));
                 }
@@ -422,7 +422,7 @@ final class ApiController extends Controller
         $files = $this->app->moduleManager->get('Media')->uploadFiles(
             $request->getData('name') ?? '',
             $request->getFiles(),
-            $request->getHeader()->getAccount(),
+            $request->header->account,
             __DIR__ . '/../../../Modules/Media/Files'
         );
 
@@ -430,14 +430,14 @@ final class ApiController extends Controller
             (string) ($request->getData('name') ?? ''),
             (string) ($request->getData('description') ?? ''),
             $files,
-            $request->getHeader()->getAccount()
+            $request->header->account
         );
 
         $collection->setPath('/Modules/Media/Files/Modules/Helper/' . ((string) ($request->getData('name') ?? '')));
         $collection->setVirtualPath('/Modules/Helper');
 
         if ($collection instanceof NullCollection) {
-            $response->getHeader()->setStatusCode(RequestStatusCode::R_403);
+            $response->header->status = RequestStatusCode::R_403;
             $this->fillJsonResponse($request, $response, NotificationLevel::ERROR, 'Report', 'Couldn\'t create collection for report', null);
 
             return;
@@ -449,7 +449,7 @@ final class ApiController extends Controller
 
         $this->app->moduleManager->get('Admin')->createAccountModelPermission(
             new AccountPermission(
-                $request->getHeader()->getAccount(),
+                $request->header->account,
                 $this->app->orgId,
                 $this->app->appName,
                 self::MODULE_NAME,
@@ -458,11 +458,11 @@ final class ApiController extends Controller
                 null,
                 PermissionType::READ | PermissionType::MODIFY | PermissionType::DELETE | PermissionType::PERMISSION,
             ),
-            $request->getHeader()->getAccount(),
+            $request->header->account,
             $request->getOrigin()
         );
 
-        $this->createModel($request->getHeader()->getAccount(), $report, ReportMapper::class, 'report', $request->getOrigin());
+        $this->createModel($request->header->account, $report, ReportMapper::class, 'report', $request->getOrigin());
         $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Report', 'Report successfully created', $report);
     }
 
@@ -480,10 +480,10 @@ final class ApiController extends Controller
     private function createReportFromRequest(RequestAbstract $request, ResponseAbstract $response, int $collectionId) : Report
     {
         $helperReport = new Report();
-        $helperReport->setTitle((string) ($request->getData('name')));
+        $helperReport->title = (string) ($request->getData('name'));
         $helperReport->setSource(new NullCollection($collectionId));
         $helperReport->setTemplate(new NullTemplate((int) $request->getData('template')));
-        $helperReport->setCreatedBy(new NullAccount($request->getHeader()->getAccount()));
+        $helperReport->createdBy = new NullAccount($request->header->account);
 
         return $helperReport;
     }
