@@ -56,9 +56,9 @@ final class ApiController extends Controller
     /**
      * Routing end-point for application behaviour.
      *
-     * @param HttpRequest      $request  Request
-     * @param ResponseAbstract $response Response
-     * @param mixed            $data     Generic data
+     * @param HttpRequest  $request  Request
+     * @param HttpResponse $response Response
+     * @param mixed        $data     Generic data
      *
      * @return void
      *
@@ -66,7 +66,7 @@ final class ApiController extends Controller
      *
      * @since 1.0.0
      */
-    public function apiHelperExport(HttpRequest $request, ResponseAbstract $response, $data = null) : void
+    public function apiHelperExport(HttpRequest $request, HttpResponse $response, $data = null) : void
     {
         /** @var Template $template */
         $template  = TemplateMapper::get((int) $request->getData('id'));

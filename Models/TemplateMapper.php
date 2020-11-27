@@ -132,7 +132,6 @@ final class TemplateMapper extends DataMapperAbstract
      * Get editor doc based on virtual path.
      *
      * @param string $virtualPath Virtual path
-     * @param int    $account     Account id
      *
      * @return array
      *

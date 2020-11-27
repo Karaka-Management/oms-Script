@@ -302,7 +302,7 @@ class Template implements \JsonSerializable
     /**
      * Set expected file from report
      *
-     * @param string $expected Expected file
+     * @param array $expected Expected file
      *
      * @return void
      *
