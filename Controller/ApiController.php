@@ -197,9 +197,11 @@ final class ApiController extends Controller
      */
     private function createView(Template $template, RequestAbstract $request, ResponseAbstract $response) : View
     {
+        /** @var array<string, \Modules\Media\Models\Media|array<string, \Modules\Media\Models\Media>> $tcoll */
         $tcoll = [];
         $files = $template->getSource()->getSources();
 
+        /** @var \Modules\Media\Models\Media $tMedia */
         foreach ($files as $tMedia) {
             $lowerPath = \strtolower($tMedia->getPath());
 
