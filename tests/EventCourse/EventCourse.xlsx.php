@@ -183,7 +183,7 @@ $excel->getProperties()->setCreator('Orange Management Solutions')
     ->setLastModifiedBy('Dennis Eichhorn')
     ->setTitle('Event & Course Budget')
     ->setSubject('Budget Evaluation')
-    ->description = 'Document used in order to evaluate the event & course expenses.')
+    ->setDescription('Document used in order to evaluate the event & course expenses.')
     ->setKeywords('OMS Budget Event Course')
     ->setCategory('Controlling');
 
