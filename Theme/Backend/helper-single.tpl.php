@@ -141,7 +141,7 @@ echo $this->getData('nav')->render(); ?>
                         <td><?= $this->getHtml('Tags'); ?>
                         <td>
                             <?php $tags = $template->getTags(); foreach ($tags as $tag) : ?>
-                                <span class="tag" style="background: <?= $this->printHtml($tag->getColor()); ?>"><?= $this->printHtml($tag->getTitle()); ?></span>
+                                <span class="tag" style="background: <?= $this->printHtml($tag->color); ?>"><?= $tag->icon !== null ? '<i class="' . $this->printHtml($tag->icon ?? '') . '"></i>' : ''; ?><?= $this->printHtml($tag->getTitle()); ?></span>
                             <?php endforeach; ?>
                 </table>
             </div>
