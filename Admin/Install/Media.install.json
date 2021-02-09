@@ -1,5 +1,6 @@
 [
     {
+    	"type": "collection",
         "name": "Helper",
         "virtualPath": "/Modules",
         "user": 1
