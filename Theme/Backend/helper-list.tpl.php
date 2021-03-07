@@ -58,20 +58,64 @@ echo $this->getData('nav')->render(); ?>
     <div class="col-xs-12">
         <div class="portlet">
             <div class="portlet-head"><?= $this->getHtml('Helpers'); ?><i class="fa fa-download floatRight download btn"></i></div>
-            <table class="default">
+            <table id="helperList" class="default">
                 <thead>
                 <tr>
                     <td>
                     <td class="wf-100"><?= $this->getHtml('Name'); ?>
+                        <label for="helperList-sort-1">
+                            <input type="radio" name="helperList-sort" id="helperList-sort-1">
+                            <i class="sort-asc fa fa-chevron-up"></i>
+                        </label>
+                        <label for="helperList-sort-2">
+                            <input type="radio" name="helperList-sort" id="helperList-sort-2">
+                             <i class="sort-desc fa fa-chevron-down"></i>
+                        </label>
+                        <label>
+                            <i class="filter fa fa-filter"></i>
+                        </label>
                     <td><?= $this->getHtml('Tag'); ?>
+                        <label for="helperList-sort-3">
+                            <input type="radio" name="helperList-sort" id="helperList-sort-3">
+                            <i class="sort-asc fa fa-chevron-up"></i>
+                        </label>
+                        <label for="helperList-sort-4">
+                            <input type="radio" name="helperList-sort" id="helperList-sort-4">
+                             <i class="sort-desc fa fa-chevron-down"></i>
+                        </label>
+                        <label>
+                            <i class="filter fa fa-filter"></i>
+                        </label>
                     <td><?= $this->getHtml('Creator'); ?>
+                        <label for="helperList-sort-5">
+                            <input type="radio" name="helperList-sort" id="helperList-sort-5">
+                            <i class="sort-asc fa fa-chevron-up"></i>
+                        </label>
+                        <label for="helperList-sort-6">
+                            <input type="radio" name="helperList-sort" id="helperList-sort-6">
+                             <i class="sort-desc fa fa-chevron-down"></i>
+                        </label>
+                        <label>
+                            <i class="filter fa fa-filter"></i>
+                        </label>
                     <td><?= $this->getHtml('Updated'); ?>
+                        <label for="helperList-sort-7">
+                            <input type="radio" name="helperList-sort" id="helperList-sort-7">
+                            <i class="sort-asc fa fa-chevron-up"></i>
+                        </label>
+                        <label for="helperList-sort-8">
+                            <input type="radio" name="helperList-sort" id="helperList-sort-8">
+                             <i class="sort-desc fa fa-chevron-down"></i>
+                        </label>
+                        <label>
+                            <i class="filter fa fa-filter"></i>
+                        </label>
                 <tbody>
                 <?php $count = 0; foreach ($collections as $key => $value) : ++$count;
                     $url     = UriFactory::build('{/prefix}helper/list?path=' . \rtrim($value->getVirtualPath(), '/') . '/' . $value->name);
                 ?>
                     <tr data-href="<?= $url; ?>">
-                        <td><a href="<?= $url; ?>"><i class="fa fa-folder-open"></i></a>
+                        <td><a href="<?= $url; ?>"><i class="fa fa-folder-open-o"></i></a>
                         <td><a href="<?= $url; ?>"><?= $this->printHtml($value->name); ?></a>
                         <td>
                         <td><a href="<?= $url; ?>"><?= $this->printHtml($value->createdBy->name1); ?></a>
