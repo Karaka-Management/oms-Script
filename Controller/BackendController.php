@@ -58,7 +58,7 @@ final class BackendController extends Controller
         $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response));
 
         $path      = \str_replace('+', ' ', (string) ($request->getData('path') ?? '/'));
-        $templates = TemplateMapper::withConditional('language', $response->getLanguage())::getByVirtualPath($path);
+        $templates = TemplateMapper::with('language', $response->getLanguage())::getByVirtualPath($path);
 
         list($collection, $parent) = CollectionMapper::getCollectionsByPath($path);
 
@@ -142,7 +142,7 @@ final class BackendController extends Controller
         //$file = preg_replace('([^\w\s\d\-_~,;:\.\[\]\(\).])', '', $template->getName());
 
         /** @var Template $template */
-        $template = TemplateMapper::withConditional('language', $response->getLanguage())::get((int) $request->getData('id'));
+        $template = TemplateMapper::with('language', $response->getLanguage())::get((int) $request->getData('id'));
 
         $view->setTemplate('/Modules/Helper/Theme/Backend/helper-single');
 
