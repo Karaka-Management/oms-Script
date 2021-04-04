@@ -19,7 +19,7 @@ use phpOMS\Uri\UriFactory;
  * @var \Modules\Helper\Models\Template[] $templates
  */
 $templates = $this->getData('reports');
-$account = $this->getData('account');
+$account   = $this->getData('account');
 
 $accountDir = $account->getId() . ' ' . $account->login;
 
@@ -38,9 +38,9 @@ echo $this->getData('nav')->render(); ?>
                 <li data-href="<?= UriFactory::build('{/prefix}helper/list?path=/Accounts/' . $accountDir); ?>"><a href="<?= UriFactory::build('{/prefix}helper/list?path=/Accounts/' . $accountDir); ?>"><i class="fa fa-home"></i></a>
                 <li data-href="<?= UriFactory::build('{/prefix}helper/list?path=/'); ?>"><a href="<?= UriFactory::build('{/prefix}helper/list?path=/'); ?>">/</a></li>
                 <?php
-                    $subPath = '';
-                    $paths   = \explode('/', \ltrim($mediaPath, '/'));
-                    $length  = \count($paths);
+                    $subPath    = '';
+                    $paths      = \explode('/', \ltrim($mediaPath, '/'));
+                    $length     = \count($paths);
                     $parentPath = '';
 
                     for ($i = 0; $i < $length; ++$i) :
