@@ -66,6 +66,7 @@ final class BackendController extends Controller
         $view->addData('collections', $collection);
         $view->addData('path', $path);
         $view->addData('reports', $templates);
+        $view->addData('account', $this->app->accountManager->get($request->header->account));
 
         return $view;
     }

@@ -19,6 +19,9 @@ use phpOMS\Uri\UriFactory;
  * @var \Modules\Helper\Models\Template[] $templates
  */
 $templates = $this->getData('reports');
+$account = $this->getData('account');
+
+$accountDir = $account->getId() . ' ' . $account->login;
 
 /** @var \Modules\Media\Models\Collection[] */
 $collections = $this->getData('collections');
@@ -32,15 +35,21 @@ echo $this->getData('nav')->render(); ?>
     <div class="col-xs-12">
         <div class="box">
             <ul class="crumbs-2">
+                <li data-href="<?= UriFactory::build('{/prefix}helper/list?path=/Accounts/' . $accountDir); ?>"><a href="<?= UriFactory::build('{/prefix}helper/list?path=/Accounts/' . $accountDir); ?>"><i class="fa fa-home"></i></a>
                 <li data-href="<?= UriFactory::build('{/prefix}helper/list?path=/'); ?>"><a href="<?= UriFactory::build('{/prefix}helper/list?path=/'); ?>">/</a></li>
                 <?php
                     $subPath = '';
                     $paths   = \explode('/', \ltrim($mediaPath, '/'));
                     $length  = \count($paths);
+                    $parentPath = '';
 
                     for ($i = 0; $i < $length; ++$i) :
                         if ($paths[$i] === '') {
                             continue;
+                        }
+
+                        if ($i === $length - 1) {
+                            $parentPath = $subPath === '' ? '/' : $subPath;
                         }
 
                         $subPath .= '/' . $paths[$i];
@@ -61,6 +70,10 @@ echo $this->getData('nav')->render(); ?>
             <table id="helperList" class="default">
                 <thead>
                 <tr>
+                    <td><label class="checkbox" for="helperList-0">
+                            <input type="checkbox" id="helperList-0" name="helperselect">
+                            <span class="checkmark"></span>
+                        </label>
                     <td>
                     <td class="wf-100"><?= $this->getHtml('Name'); ?>
                         <label for="helperList-sort-1">
@@ -111,10 +124,25 @@ echo $this->getData('nav')->render(); ?>
                             <i class="filter fa fa-filter"></i>
                         </label>
                 <tbody>
+                <?php if (!empty($parentPath)) : $url = UriFactory::build('{/prefix}helper/list?path=' . $parentPath); ?>
+                        <tr tabindex="0" data-href="<?= $url; ?>">
+                            <td>
+                            <td data-label="<?= $this->getHtml('Type'); ?>"><a href="<?= $url; ?>"><i class="fa fa-folder-open-o"></i></a>
+                            <td data-label="<?= $this->getHtml('Name'); ?>"><a href="<?= $url; ?>">..
+                            </a>
+                            <td>
+                            <td>
+                            <td>
+                            <td>
+                    <?php endif; ?>
                 <?php $count = 0; foreach ($collections as $key => $value) : ++$count;
                     $url     = UriFactory::build('{/prefix}helper/list?path=' . \rtrim($value->getVirtualPath(), '/') . '/' . $value->name);
                 ?>
                     <tr data-href="<?= $url; ?>">
+                        <td><label class="checkbox" for="helperList-<?= $key; ?>">
+                                    <input type="checkbox" id="helperList-<?= $key; ?>" name="helperselect">
+                                    <span class="checkmark"></span>
+                                </label>
                         <td><a href="<?= $url; ?>"><i class="fa fa-folder-open-o"></i></a>
                         <td><a href="<?= $url; ?>"><?= $this->printHtml($value->name); ?></a>
                         <td>
@@ -124,6 +152,10 @@ echo $this->getData('nav')->render(); ?>
                         <?php foreach ($templates as $key => $template) : ++$count;
                         $url = UriFactory::build('{/prefix}helper/report/view?{?}&id=' . $template->getId()); ?>
                 <tr tabindex="0" data-href="<?= $url; ?>">
+                    <td><label class="checkbox" for="helperList-<?= $key; ?>">
+                                    <input type="checkbox" id="helperList-<?= $key; ?>" name="helperselect">
+                                    <span class="checkmark"></span>
+                                </label>
                     <td>
                     <td data-label="<?= $this->getHtml('Name'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($template->name); ?></a>
                     <td data-label="<?= $this->getHtml('Tag'); ?>">
