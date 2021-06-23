@@ -18,16 +18,29 @@ use phpOMS\Uri\UriFactory;
 /**
  * @var \phpOMS\Views\View $this
  */
-$tcoll    = $this->getData('tcoll');
-$rcoll    = $this->getData('rcoll');
-$cLang    = $this->getData('lang');
+
+/** @var \Modules\Media\Models\Collection $tcoll */
+$tcoll = $this->getData('tcoll');
+
+/** @var \Modules\Media\Models\Collection $rcoll */
+$rcoll = $this->getData('rcoll');
+
+/** @var string $cLang */
+$cLang = $this->getData('lang');
+
+/** @var \Modules\Helper\Models\Template $template */
 $template = $this->getData('template');
-$report   = $this->getData('report');
+
+/** @var \Modules\Helper\Models\Report $report */
+$report = $this->getData('report');
 
 /** @noinspection PhpIncludeInspection */
+/** @var array<string, array<string, string>> $reportLanguage */
 $reportLanguage = isset($tcoll['lang']) ? include __DIR__ . '/../../../../' . \ltrim($tcoll['lang']->getPath(), '/') : [];
-$lang           = $reportLanguage[$cLang] ?? [];
-$settings       = isset($tcoll['cfg']) ? \json_decode(\file_get_contents(__DIR__ . '/../../../../' . \ltrim($tcoll['cfg']->getPath(), '/')), true) : [];
+
+/** @var array<string, string> $lang */
+$lang = $reportLanguage[$cLang] ?? [];
+$settings = isset($tcoll['cfg']) ? \json_decode(\file_get_contents(__DIR__ . '/../../../../' . \ltrim($tcoll['cfg']->getPath(), '/')), true) : [];
 
 echo $this->getData('nav')->render(); ?>
 <div class="row" style="height: calc(100% - 85px);">
@@ -141,7 +154,7 @@ echo $this->getData('nav')->render(); ?>
                         <td><?= $this->getHtml('Tags'); ?>
                         <td>
                             <?php $tags = $template->getTags(); foreach ($tags as $tag) : ?>
-                                <span class="tag" style="background: <?= $this->printHtml($tag->color); ?>"><?= $tag->icon !== null ? '<i class="' . $this->printHtml($tag->icon ?? '') . '"></i>' : ''; ?><?= $this->printHtml($tag->getTitle()); ?></span>
+                                <span class="tag" style="background: <?= $this->printHtml($tag->color); ?>"><?= $tag->icon !== null ? '<i class="' . $this->printHtml($tag->icon ?? '') . '"></i>' : ''; ?><?= $this->printHtml($tag->getL11n()); ?></span>
                             <?php endforeach; ?>
                 </table>
             </div>
