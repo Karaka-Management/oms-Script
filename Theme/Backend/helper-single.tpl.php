@@ -39,7 +39,7 @@ $report = $this->getData('report');
 $reportLanguage = isset($tcoll['lang']) ? include __DIR__ . '/../../../../' . \ltrim($tcoll['lang']->getPath(), '/') : [];
 
 /** @var array<string, string> $lang */
-$lang = $reportLanguage[$cLang] ?? [];
+$lang     = $reportLanguage[$cLang] ?? [];
 $settings = isset($tcoll['cfg']) ? \json_decode(\file_get_contents(__DIR__ . '/../../../../' . \ltrim($tcoll['cfg']->getPath(), '/')), true) : [];
 
 echo $this->getData('nav')->render(); ?>
