@@ -1,7 +1,7 @@
 [
     {
-    	"type": "collection",
-    	"create_directory": true,
+        "type": "collection",
+        "create_directory": true,
         "name": "Helper",
         "virtualPath": "/Modules",
         "user": 1

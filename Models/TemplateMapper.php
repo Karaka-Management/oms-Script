@@ -141,7 +141,7 @@ final class TemplateMapper extends DataMapperAbstract
     {
         $depth = 3;
         $query = self::getQuery();
-        $query->where(self::$table . '_' . $depth . '.helper_template_virtual', '=', $virtualPath);
+        $query->where(self::$table . '_d' . $depth . '.helper_template_virtual', '=', $virtualPath);
 
         return self::getAllByQuery($query, RelationType::ALL, $depth);
     }
