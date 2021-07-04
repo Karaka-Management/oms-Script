@@ -303,7 +303,7 @@ final class ApiController extends Controller
 
         if (!empty($uploadedFiles)) {
             $uploaded = $this->app->moduleManager->get('Media')->uploadFiles(
-                $request->getData('name') ?? '',
+                [$request->getData('name') ?? ''],
                 $uploadedFiles,
                 $request->header->account,
                 __DIR__ . '/../../../Modules/Media/Files'
@@ -424,7 +424,7 @@ final class ApiController extends Controller
     public function apiReportCreate(RequestAbstract $request, ResponseAbstract $response, $data = null) : void
     {
         $files = $this->app->moduleManager->get('Media')->uploadFiles(
-            $request->getData('name') ?? '',
+            [$request->getData('name') ?? ''],
             $request->getFiles(),
             $request->header->account,
             __DIR__ . '/../../../Modules/Media/Files'
