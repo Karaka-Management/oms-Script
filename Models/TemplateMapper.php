@@ -140,7 +140,7 @@ final class TemplateMapper extends DataMapperAbstract
     public static function getByVirtualPath(string $virtualPath = '/') : array
     {
         $depth = 3;
-        $query = self::getQuery();
+        $query = self::getQuery(depth: $depth);
         $query->where(self::$table . '_d' . $depth . '.helper_template_virtual', '=', $virtualPath);
 
         return self::getAllByQuery($query, RelationType::ALL, $depth);
