@@ -29,6 +29,9 @@ class ReportTest extends \PHPUnit\Framework\TestCase
 {
     protected Report $report;
 
+    /**
+     * {@inheritdoc}
+     */
     protected function setUp() : void
     {
         $this->report = new Report();

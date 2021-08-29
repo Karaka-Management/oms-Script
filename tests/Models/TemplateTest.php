@@ -31,6 +31,9 @@ class TemplateTest extends \PHPUnit\Framework\TestCase
 {
     protected Template $template;
 
+    /**
+     * {@inheritdoc}
+     */
     protected function setUp() : void
     {
         $this->template = new Template();
