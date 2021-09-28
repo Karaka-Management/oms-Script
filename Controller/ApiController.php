@@ -74,7 +74,7 @@ final class ApiController extends Controller
 
         // is allowed to read
         if (!$this->app->accountManager->get($accountId)->hasPermission(
-            PermissionType::READ, $this->app->orgId, null, self::MODULE_NAME, PermissionState::REPORT, $template->getId())
+            PermissionType::READ, $this->app->orgId, null, self::NAME, PermissionState::REPORT, $template->getId())
         ) {
             $response->header->status = RequestStatusCode::R_403;
 
@@ -84,7 +84,7 @@ final class ApiController extends Controller
         if (\in_array($request->getData('type'), ['xlsx', 'pdf', 'docx', 'pptx', 'csv'])) {
             // is allowed to export
             if (!$this->app->accountManager->get($accountId)->hasPermission(
-                PermissionType::READ, $this->app->orgId, $this->app->appName, self::MODULE_NAME, PermissionState::EXPORT
+                PermissionType::READ, $this->app->orgId, $this->app->appName, self::NAME, PermissionState::EXPORT
             )) {
                 $response->header->status = RequestStatusCode::R_403;
 
@@ -345,8 +345,8 @@ final class ApiController extends Controller
                 $request->header->account,
                 $this->app->orgId,
                 $this->app->appName,
-                self::MODULE_NAME,
-                self::MODULE_NAME,
+                self::NAME,
+                self::NAME,
                 PermissionState::TEMPLATE,
                 $template->getId(),
                 null,
@@ -456,8 +456,8 @@ final class ApiController extends Controller
                 $request->header->account,
                 $this->app->orgId,
                 $this->app->appName,
-                self::MODULE_NAME,
-                self::MODULE_NAME,
+                self::NAME,
+                self::NAME,
                 PermissionState::REPORT,
                 $report->getId(),
                 null,

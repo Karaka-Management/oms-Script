@@ -23,7 +23,7 @@ return [
             'dest'       => '\Modules\Helper\Controller\ApiController:apiHelperExport',
             'verb'       => RouteVerb::GET,
             'permission' => [
-                'module' => ApiController::MODULE_NAME,
+                'module' => ApiController::NAME,
                 'type'   => PermissionType::READ,
                 'state'  => PermissionState::REPORT,
             ],
@@ -34,7 +34,7 @@ return [
             'dest'       => '\Modules\Helper\Controller\ApiController:apiTemplateCreate',
             'verb'       => RouteVerb::SET,
             'permission' => [
-                'module' => ApiController::MODULE_NAME,
+                'module' => ApiController::NAME,
                 'type'   => PermissionType::READ,
                 'state'  => PermissionState::TEMPLATE,
             ],
@@ -45,7 +45,7 @@ return [
             'dest'       => '\Modules\Helper\Controller\ApiController:apiReportCreate',
             'verb'       => RouteVerb::SET,
             'permission' => [
-                'module' => ApiController::MODULE_NAME,
+                'module' => ApiController::NAME,
                 'type'   => PermissionType::CREATE,
                 'state'  => PermissionState::REPORT,
             ],

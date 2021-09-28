@@ -23,7 +23,7 @@ return [
             'dest'       => '\Modules\Media\Controller\BackendController::setUpFileUploaderTrait',
             'verb'       => RouteVerb::GET,
             'permission' => [
-                'module' => BackendController::MODULE_NAME,
+                'module' => BackendController::NAME,
                 'type'   => PermissionType::CREATE,
                 'state'  => PermissionState::TEMPLATE,
             ],
@@ -32,7 +32,7 @@ return [
             'dest'       => '\Modules\Helper\Controller\BackendController:viewTemplateCreate',
             'verb'       => RouteVerb::GET,
             'permission' => [
-                'module' => BackendController::MODULE_NAME,
+                'module' => BackendController::NAME,
                 'type'   => PermissionType::CREATE,
                 'state'  => PermissionState::TEMPLATE,
             ],
@@ -43,7 +43,7 @@ return [
             'dest'       => '\Modules\Media\Controller\BackendController::setUpFileUploaderTrait',
             'verb'       => RouteVerb::GET,
             'permission' => [
-                'module' => BackendController::MODULE_NAME,
+                'module' => BackendController::NAME,
                 'type'   => PermissionType::CREATE,
                 'state'  => PermissionState::REPORT,
             ],
@@ -52,7 +52,7 @@ return [
             'dest'       => '\Modules\Helper\Controller\BackendController:viewReportCreate',
             'verb'       => RouteVerb::GET,
             'permission' => [
-                'module' => BackendController::MODULE_NAME,
+                'module' => BackendController::NAME,
                 'type'   => PermissionType::CREATE,
                 'state'  => PermissionState::REPORT,
             ],
@@ -63,7 +63,7 @@ return [
             'dest'       => '\Modules\Helper\Controller\BackendController:viewTemplateList',
             'verb'       => RouteVerb::GET,
             'permission' => [
-                'module' => BackendController::MODULE_NAME,
+                'module' => BackendController::NAME,
                 'type'   => PermissionType::READ,
                 'state'  => PermissionState::REPORT,
             ],
@@ -74,7 +74,7 @@ return [
             'dest'       => '\Modules\Helper\Controller\BackendController:viewHelperReport',
             'verb'       => RouteVerb::GET,
             'permission' => [
-                'module' => BackendController::MODULE_NAME,
+                'module' => BackendController::NAME,
                 'type'   => PermissionType::READ,
                 'state'  => PermissionState::REPORT,
             ],
