@@ -197,7 +197,7 @@ final class ApiController extends Controller
      */
     private function createView(Template $template, RequestAbstract $request, ResponseAbstract $response) : View
     {
-        /** @var array<string, \Modules\Media\Models\Media|array<string, \Modules\Media\Models\Media>> $tcoll */
+        /** @var array<string, \Modules\Media\Models\Media|\Modules\Media\Models\Media[]> $tcoll */
         $tcoll = [];
         $files = $template->getSource()->getSources();
 
@@ -237,6 +237,10 @@ final class ApiController extends Controller
                     $tcoll['template'] = $tMedia;
                     break;
                 case StringUtils::endsWith($lowerPath, '.css'):
+                    if (!isset($tcoll['css'])) {
+                        $tcoll['css'] = [];
+                    }
+
                     $tcoll['css'][$tMedia->name] = $tMedia;
                     break;
                 case StringUtils::endsWith($lowerPath, '.js'):
@@ -244,9 +248,17 @@ final class ApiController extends Controller
                     break;
                 case StringUtils::endsWith($lowerPath, '.sqlite'):
                 case StringUtils::endsWith($lowerPath, '.db'):
+                    if (!isset($tcoll['db'])) {
+                        $tcoll['db'] = [];
+                    }
+
                     $tcoll['db'][$tMedia->name] = $tMedia;
                     break;
                 default:
+                    if (!isset($tcoll['other'])) {
+                        $tcoll['other'] = [];
+                    }
+
                     $tcoll['other'][$tMedia->name] = $tMedia;
             }
         }

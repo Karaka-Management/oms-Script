@@ -178,6 +178,10 @@ final class BackendController extends Controller
             } elseif (StringUtils::endsWith($lowerPath, '.js')) {
                 $tcoll['js'] = $tMedia;
             } elseif (StringUtils::endsWith($lowerPath, '.sqlite') || StringUtils::endsWith($lowerPath, '.db')) {
+                if (!isset($tcoll['db'])) {
+                    $tcoll['db'] = [];
+                }
+
                 $tcoll['db'][] = $tMedia;
             }
         }
