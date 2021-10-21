@@ -28,7 +28,7 @@ use Modules\Media\Models\Media;
  *
  * @internal
  */
-class ReportMapperTest extends \PHPUnit\Framework\TestCase
+final class ReportMapperTest extends \PHPUnit\Framework\TestCase
 {
     private function createTemplate()
     {

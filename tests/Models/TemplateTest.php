@@ -27,7 +27,7 @@ use Modules\Organization\Models\NullUnit;
  *
  * @internal
  */
-class TemplateTest extends \PHPUnit\Framework\TestCase
+final class TemplateTest extends \PHPUnit\Framework\TestCase
 {
     protected Template $template;
 

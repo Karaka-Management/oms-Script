@@ -25,7 +25,7 @@ use Modules\Media\Models\NullCollection;
  *
  * @internal
  */
-class ReportTest extends \PHPUnit\Framework\TestCase
+final class ReportTest extends \PHPUnit\Framework\TestCase
 {
     protected Report $report;
 

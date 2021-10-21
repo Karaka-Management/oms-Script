@@ -27,7 +27,7 @@ use Modules\Media\Models\Media;
  *
  * @internal
  */
-class TemplateMapperTest extends \PHPUnit\Framework\TestCase
+final class TemplateMapperTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @testdox The model can be created and read from the database
