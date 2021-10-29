@@ -44,7 +44,7 @@ final class TemplateMapperTest extends \PHPUnit\Framework\TestCase
         $template->description    = 'Description';
         $template->descriptionRaw = 'DescriptionRaw';
         $template->setDatatype(TemplateDataType::OTHER);
-        $template->setStandalone(false);
+        $template->isStandalone = false;
         $template->setExpected(['source1.csv', 'source2.csv']);
 
         $collection            = new Collection();
@@ -99,7 +99,7 @@ final class TemplateMapperTest extends \PHPUnit\Framework\TestCase
             $collection->addSource($media);
         }
 
-        $template->setSource($collection);
+        $template->source = $collection;
 
         $id = TemplateMapper::create($template);
         self::assertGreaterThan(0, $template->getId());
@@ -112,7 +112,7 @@ final class TemplateMapperTest extends \PHPUnit\Framework\TestCase
         self::assertEquals($template->descriptionRaw, $templateR->descriptionRaw);
         self::assertEquals($template->name, $templateR->name);
         self::assertEquals($template->getStatus(), $templateR->getStatus());
-        self::assertEquals($template->isStandalone(), $templateR->isStandalone());
+        self::assertEquals($template->isStandalone, $templateR->isStandalone);
         self::assertEquals($template->getDatatype(), $templateR->getDatatype());
         self::assertEquals($template->getExpected(), $templateR->getExpected());
     }
@@ -127,5 +127,16 @@ final class TemplateMapperTest extends \PHPUnit\Framework\TestCase
         $newest = TemplateMapper::getNewest(1);
 
         self::assertCount(1, $newest);
+    }
+
+    /**
+     * @covers Modules\Helper\Models\TemplateMapper
+     * @group module
+     */
+    public function testVirtualPath() : void
+    {
+        $virtualPath = TemplateMapper::getByVirtualPath('/');
+
+        self::assertGreaterThan(0, \count($virtualPath));
     }
 }

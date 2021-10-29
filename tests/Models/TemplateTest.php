@@ -21,6 +21,8 @@ use Modules\Helper\Models\Template;
 use Modules\Helper\Models\TemplateDataType;
 use Modules\Media\Models\NullCollection;
 use Modules\Organization\Models\NullUnit;
+use Modules\Tag\Models\Tag;
+use phpOMS\Utils\TestUtils;
 
 /**
  * @testdox Modules\tests\Helper\Models\TemplateTest: Template model
@@ -47,7 +49,7 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
     public function testDefault() : void
     {
         self::assertEquals(0, $this->template->getId());
-        self::assertEquals(0, $this->template->getUnit()->getId());
+        self::assertEquals(0, $this->template->unit->getId());
         self::assertEquals(0, $this->template->createdBy->getId());
         self::assertEquals((new \DateTime('now'))->format('Y-m-d'), $this->template->createdAt->format('Y-m-d'));
         self::assertEquals('', $this->template->name);
@@ -55,8 +57,8 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
         self::assertEquals('', $this->template->description);
         self::assertEquals('', $this->template->descriptionRaw);
         self::assertEquals([], $this->template->getExpected());
-        self::assertEquals(0, $this->template->getSource()->getId());
-        self::assertFalse($this->template->isStandalone());
+        self::assertEquals(0, $this->template->source->getId());
+        self::assertFalse($this->template->isStandalone);
         self::assertEquals(TemplateDataType::OTHER, $this->template->getDatatype());
         self::assertInstanceOf(NullReport::class, $this->template->getNewestReport());
     }
@@ -68,8 +70,8 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
      */
     public function testUnitInputOutput() : void
     {
-        $this->template->setUnit(new NullUnit(1));
-        self::assertEquals(1, $this->template->getUnit()->getId());
+        $this->template->unit = new NullUnit(1);
+        self::assertEquals(1, $this->template->unit->getId());
     }
 
     /**
@@ -112,8 +114,8 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
      */
     public function testStandalonInputOutput() : void
     {
-        $this->template->setStandalone(true);
-        self::assertTrue($this->template->isStandalone());
+        $this->template->isStandalone = true;
+        self::assertTrue($this->template->isStandalone);
     }
 
     /**
@@ -157,8 +159,8 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
      */
     public function testSourceInputOutput() : void
     {
-        $this->template->setSource(new NullCollection(4));
-        self::assertEquals(4, $this->template->getSource()->getId());
+        $this->template->source = new NullCollection(4);
+        self::assertEquals(4, $this->template->source->getId());
     }
 
     /**
@@ -173,16 +175,43 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
+     * @covers Modules\Helper\Models\Template
+     * @group module
+     */
+    public function testTagInputOutput() : void
+    {
+        $tag = new Tag();
+        $tag->setL11n('Tag');
+
+        $this->template->addTag($tag);
+        self::assertCount(1, $this->template->getTags());
+    }
+
+    /**
+     * @covers Modules\Helper\Models\Template
+     * @group module
+     */
+    public function testNewestReportOutput() : void
+    {
+        TestUtils::setMember($this->template, 'reports', [
+            $a = new NullReport(1),
+            $b = new NullReport(2),
+        ]);
+
+        self::assertEquals($b, $this->template->getNewestReport());
+    }
+
+    /**
      * @testdox Template data can be turned into an array
      * @covers Modules\Helper\Models\Template
      * @group module
      */
     public function testToArray() : void
     {
-        $this->template->name           = 'testName';
-        $this->template->description    = 'testDescription';
-        $this->template->descriptionRaw = 'testDescriptionRaw';
-        $this->template->setStandalone(true);
+        $this->template->name             = 'testName';
+        $this->template->description      = 'testDescription';
+        $this->template->descriptionRaw   = 'testDescriptionRaw';
+        $this->template->isStandalone     = true;
 
         $array    = $this->template->toArray();
         $expected = [
@@ -211,10 +240,10 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
      */
     public function testJsonSerialize() : void
     {
-        $this->template->name           = 'testName';
-        $this->template->description    = 'testDescription';
-        $this->template->descriptionRaw = 'testDescriptionRaw';
-        $this->template->setStandalone(true);
+        $this->template->name             = 'testName';
+        $this->template->description      = 'testDescription';
+        $this->template->descriptionRaw   = 'testDescriptionRaw';
+        $this->template->isStandalone     = true;
 
         $array    = $this->template->jsonSerialize();
         $expected = [

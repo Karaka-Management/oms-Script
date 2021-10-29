@@ -38,6 +38,7 @@ use phpOMS\Message\Http\RequestStatusCode;
 use phpOMS\Message\NotificationLevel;
 use phpOMS\Message\RequestAbstract;
 use phpOMS\Message\ResponseAbstract;
+use phpOMS\Model\Message\FormValidation;
 use phpOMS\System\MimeType;
 use phpOMS\Utils\Parser\Markdown\Markdown;
 use phpOMS\Utils\StringUtils;
@@ -68,29 +69,29 @@ final class ApiController extends Controller
      */
     public function apiHelperExport(HttpRequest $request, HttpResponse $response, $data = null) : void
     {
+        if (!empty($val = $this->validateExport($request))) {
+            $response->set('export', new FormValidation($val));
+            $response->header->status = RequestStatusCode::R_400;
+
+            return;
+        }
+
         /** @var Template $template */
         $template  = TemplateMapper::get((int) $request->getData('id'));
         $accountId = $request->header->account;
 
+        $isExport = \in_array($request->getData('type'), ['xlsx', 'pdf', 'docx', 'pptx', 'csv', 'json']);
+
         // is allowed to read
-        if (!$this->app->accountManager->get($accountId)->hasPermission(
-            PermissionType::READ, $this->app->orgId, null, self::NAME, PermissionState::REPORT, $template->getId())
+        if (!$this->app->accountManager->get($accountId)->hasPermission(PermissionType::READ, $this->app->orgId, null, self::NAME, PermissionState::REPORT, $template->getId())
+            || ($isExport && !$this->app->accountManager->get($accountId)->hasPermission(PermissionType::READ, $this->app->orgId, $this->app->appName, self::NAME, PermissionState::EXPORT))
         ) {
             $response->header->status = RequestStatusCode::R_403;
 
             return;
         }
 
-        if (\in_array($request->getData('type'), ['xlsx', 'pdf', 'docx', 'pptx', 'csv'])) {
-            // is allowed to export
-            if (!$this->app->accountManager->get($accountId)->hasPermission(
-                PermissionType::READ, $this->app->orgId, $this->app->appName, self::NAME, PermissionState::EXPORT
-            )) {
-                $response->header->status = RequestStatusCode::R_403;
-
-                return;
-            }
-
+        if ($isExport) {
             Autoloader::addPath(__DIR__ . '/../../../Resources/');
             $response->header->setDownloadable($template->name, (string) $request->getData('type'));
         }
@@ -100,6 +101,25 @@ final class ApiController extends Controller
         $view->setData('path', __DIR__ . '/../../../');
 
         $response->set('export', $view);
+    }
+
+    /**
+     * Validate export request
+     *
+     * @param RequestAbstract $request Request
+     *
+     * @return array<string, bool>
+     *
+     * @since 1.0.0
+     */
+    private function validateExport(RequestAbstract $request) : array
+    {
+        $val = [];
+        if (($val['id'] = empty($request->getData('id')))) {
+            return $val;
+        }
+
+        return [];
     }
 
     /**
@@ -127,7 +147,7 @@ final class ApiController extends Controller
                     . '"'
                 , true);
                 $response->header->set('Content-Type', MimeType::M_PDF, true);
-                $view->setTemplate('/' . \substr($view->getData('tcoll')['pdf']->getPath(), 0, -8), 'pdf.php');
+                $view->setTemplate('/' . \substr($view->getData('tcoll')['pdf']?->getPath(), 0, -8), 'pdf.php');
                 break;
             case 'csv':
                 $response->header->set(
@@ -137,7 +157,7 @@ final class ApiController extends Controller
                     . '"'
                 , true);
                 $response->header->set('Content-Type', MimeType::M_CONF, true);
-                $view->setTemplate('/' . \substr($view->getData('tcoll')['csv']->getPath(), 0, -8), 'csv.php');
+                $view->setTemplate('/' . \substr($view->getData('tcoll')['csv']?->getPath(), 0, -8), 'csv.php');
                 break;
             case 'xls':
             case 'xlsx':
@@ -148,7 +168,7 @@ final class ApiController extends Controller
                     . '"'
                 , true);
                 $response->header->set('Content-Type', MimeType::M_XLSX, true);
-                $view->setTemplate('/' . \substr($view->getData('tcoll')['excel']->getPath(), 0, -8), 'xls.php');
+                $view->setTemplate('/' . \substr($view->getData('tcoll')['excel']?->getPath(), 0, -8), 'xls.php');
                 break;
             case 'doc':
             case 'docx':
@@ -159,7 +179,7 @@ final class ApiController extends Controller
                     . '"'
                 , true);
                 $response->header->set('Content-Type', MimeType::M_XLSX, true);
-                $view->setTemplate('/' . \substr($view->getData('tcoll')['word']->getPath(), 0, -8), 'doc.php');
+                $view->setTemplate('/' . \substr($view->getData('tcoll')['word']?->getPath(), 0, -8), 'doc.php');
                 break;
             case 'ppt':
             case 'pptx':
@@ -170,15 +190,15 @@ final class ApiController extends Controller
                     . '"'
                 , true);
                 $response->header->set('Content-Type', MimeType::M_XLSX, true);
-                $view->setTemplate('/' . \substr($view->getData('tcoll')['powerpoint']->getPath(), 0, -8), 'ppt.php');
+                $view->setTemplate('/' . \substr($view->getData('tcoll')['powerpoint']?->getPath(), 0, -8), 'ppt.php');
                 break;
             case 'json':
                 $response->header->set('Content-Type', MimeType::M_JSON, true);
-                $view->setTemplate('/' . \substr($view->getData('tcoll')['json']->getPath(), 0, -9), 'json.php');
+                $view->setTemplate('/' . \substr($view->getData('tcoll')['json']?->getPath(), 0, -9), 'json.php');
                 break;
             default:
                 $response->header->set('Content-Type', 'text/html; charset=utf-8');
-                $view->setTemplate('/' . \substr($view->getData('tcoll')['template']->getPath(), 0, -8));
+                $view->setTemplate('/' . \substr($view->getData('tcoll')['template']?->getPath(), 0, -8));
         }
     }
 
@@ -199,7 +219,7 @@ final class ApiController extends Controller
     {
         /** @var array<string, \Modules\Media\Models\Media|\Modules\Media\Models\Media[]> $tcoll */
         $tcoll = [];
-        $files = $template->getSource()->getSources();
+        $files = $template->source->getSources();
 
         /** @var \Modules\Media\Models\Media $tMedia */
         foreach ($files as $tMedia) {
@@ -264,7 +284,7 @@ final class ApiController extends Controller
         }
 
         $view = new View($this->app->l11nManager, $request, $response);
-        if (!$template->isStandalone()) {
+        if (!$template->isStandalone) {
             /** @var Report[] $report */
             $report = ReportMapper::getNewest(1,
                 (new Builder($this->app->dbPool->get()))->where('helper_report.helper_report_template', '=', $template->getId())
@@ -275,7 +295,7 @@ final class ApiController extends Controller
             $report = $report === false ? new NullReport() : $report;
 
             if (!($report instanceof NullReport)) {
-                $files = $report->getSource()->getSources();
+                $files = $report->source->getSources();
 
                 foreach ($files as $media) {
                     $rcoll[$media->name . '.' . $media->extension] = $media;
@@ -313,17 +333,30 @@ final class ApiController extends Controller
         $uploadedFiles = $request->getFiles() ?? [];
         $files         = [];
 
-        if (!empty($uploadedFiles)) {
-            $uploaded = $this->app->moduleManager->get('Media')->uploadFiles(
-                [$request->getData('name') ?? ''],
-                $uploadedFiles,
-                $request->header->account,
-                __DIR__ . '/../../../Modules/Media/Files'
-            );
+        if (!empty($val = $this->validateTemplateCreate($request))) {
+            $response->set('template_create', new FormValidation($val));
+            $response->header->status = RequestStatusCode::R_400;
 
-            foreach ($uploaded as $upload) {
-                $files[] = new NullMedia($upload->getId());
-            }
+            return;
+        }
+
+        // is allowed to create
+        if (!$this->app->accountManager->get($request->header->account)->hasPermission(PermissionType::CREATE, $this->app->orgId, null, self::NAME, PermissionState::TEMPLATE)) {
+            $response->header->status = RequestStatusCode::R_403;
+
+            return;
+        }
+
+        $uploaded = $this->app->moduleManager->get('Media')->uploadFiles(
+            $request->getDataList('names') ?? [],
+            $request->getDataList('filenames') ?? [],
+            $uploadedFiles,
+            $request->header->account,
+            __DIR__ . '/../../../Modules/Media/Files'
+        );
+
+        foreach ($uploaded as $upload) {
+            $files[] = new NullMedia($upload->getId());
         }
 
         foreach ($dbFiles as $db) {
@@ -338,15 +371,15 @@ final class ApiController extends Controller
             $request->header->account
         );
 
-        $collection->setPath('/Modules/Media/Files/Modules/Helper/' . ((string) ($request->getData('name') ?? '')));
-        $collection->setVirtualPath('/Modules/Helper');
-
         if ($collection instanceof NullCollection) {
             $response->header->status = RequestStatusCode::R_403;
             $this->fillJsonResponse($request, $response, NotificationLevel::ERROR, 'Template', 'Couldn\'t create collection for template', null);
 
             return;
         }
+
+        $collection->setPath('/Modules/Media/Files/Modules/Helper/' . ((string) ($request->getData('name') ?? '')));
+        $collection->setVirtualPath('/Modules/Helper');
 
         CollectionMapper::create($collection);
 
@@ -373,6 +406,27 @@ final class ApiController extends Controller
     }
 
     /**
+     * Validate template create request
+     *
+     * @param RequestAbstract $request Request
+     *
+     * @return array<string, bool>
+     *
+     * @since 1.0.0
+     */
+    private function validateTemplateCreate(RequestAbstract $request) : array
+    {
+        $val = [];
+        if (($val['name'] = empty($request->getData('name')))
+            || ($val['files'] = empty($request->getFiles() ?? []))
+        ) {
+            return $val;
+        }
+
+        return [];
+    }
+
+    /**
      * Method to create template from request.
      *
      * @param RequestAbstract $request Request
@@ -391,14 +445,14 @@ final class ApiController extends Controller
         $helperTemplate->descriptionRaw = (string) ($request->getData('description') ?? '');
 
         if ($collectionId > 0) {
-            $helperTemplate->setSource(new NullCollection($collectionId));
+            $helperTemplate->source = new NullCollection($collectionId);
         }
 
-        $helperTemplate->setStandalone((bool) ($request->getData('standalone') ?? false));
+        $helperTemplate->isStandalone = (bool) ($request->getData('standalone') ?? false);
         $helperTemplate->setExpected(!empty($expected) ? \json_decode($expected, true) : []);
         $helperTemplate->createdBy = new NullAccount($request->header->account);
         $helperTemplate->setDatatype((int) ($request->getData('datatype') ?? TemplateDataType::OTHER));
-        $helperTemplate->setVirtualPath((string) ($request->getData('virtualpath') ?? '/'));
+        $helperTemplate->virtualPath = (string) ($request->getData('virtualpath') ?? '/');
 
         if (!empty($tags = $request->getDataJson('tags'))) {
             foreach ($tags as $tag) {
@@ -435,8 +489,23 @@ final class ApiController extends Controller
      */
     public function apiReportCreate(RequestAbstract $request, ResponseAbstract $response, $data = null) : void
     {
+        if (!empty($val = $this->validateReportCreate($request))) {
+            $response->set('report_create', new FormValidation($val));
+            $response->header->status = RequestStatusCode::R_400;
+
+            return;
+        }
+
+        // is allowed to create
+        if (!$this->app->accountManager->get($request->header->account)->hasPermission(PermissionType::CREATE, $this->app->orgId, null, self::NAME, PermissionState::REPORT)) {
+            $response->header->status = RequestStatusCode::R_403;
+
+            return;
+        }
+
         $files = $this->app->moduleManager->get('Media')->uploadFiles(
-            [$request->getData('name') ?? ''],
+            $request->getDataList('names') ?? [],
+            $request->getDataList('filenames') ?? [],
             $request->getFiles(),
             $request->header->account,
             __DIR__ . '/../../../Modules/Media/Files'
@@ -484,6 +553,26 @@ final class ApiController extends Controller
     }
 
     /**
+     * Validate template create request
+     *
+     * @param RequestAbstract $request Request
+     *
+     * @return array<string, bool>
+     *
+     * @since 1.0.0
+     */
+    private function validateReportCreate(RequestAbstract $request) : array
+    {
+        $val = [];
+        if (($val['template'] = empty($request->getData('template')))
+        ) {
+            return $val;
+        }
+
+        return [];
+    }
+
+    /**
      * Method to create report from request.
      *
      * @param RequestAbstract  $request      Request
@@ -496,10 +585,10 @@ final class ApiController extends Controller
      */
     private function createReportFromRequest(RequestAbstract $request, ResponseAbstract $response, int $collectionId) : Report
     {
-        $helperReport        = new Report();
-        $helperReport->title = (string) ($request->getData('name'));
-        $helperReport->setSource(new NullCollection($collectionId));
-        $helperReport->setTemplate(new NullTemplate((int) $request->getData('template')));
+        $helperReport            = new Report();
+        $helperReport->title     = (string) ($request->getData('name'));
+        $helperReport->source    = new NullCollection($collectionId);
+        $helperReport->template  = new NullTemplate((int) $request->getData('template'));
         $helperReport->createdBy = new NullAccount($request->header->account);
 
         return $helperReport;

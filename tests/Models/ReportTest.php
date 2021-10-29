@@ -51,8 +51,8 @@ final class ReportTest extends \PHPUnit\Framework\TestCase
         self::assertEquals(HelperStatus::INACTIVE, $this->report->getStatus());
         self::assertEquals('', $this->report->description);
         self::assertEquals('', $this->report->descriptionRaw);
-        self::assertEquals(0, $this->report->getTemplate()->getId());
-        self::assertEquals(0, $this->report->getSource()->getId());
+        self::assertEquals(0, $this->report->template->getId());
+        self::assertEquals(0, $this->report->source->getId());
     }
 
     /**
@@ -117,8 +117,8 @@ final class ReportTest extends \PHPUnit\Framework\TestCase
      */
     public function testTemplateInputOutput() : void
     {
-        $this->report->setTemplate(new NullTemplate(11));
-        self::assertEquals(11, $this->report->getTemplate()->getId());
+        $this->report->template = new NullTemplate(11);
+        self::assertEquals(11, $this->report->template->getId());
     }
 
     /**
@@ -128,8 +128,8 @@ final class ReportTest extends \PHPUnit\Framework\TestCase
      */
     public function testSourceInputOutput() : void
     {
-        $this->report->setSource(new NullCollection(4));
-        self::assertEquals(4, $this->report->getSource()->getId());
+        $this->report->source = new NullCollection(4);
+        self::assertEquals(4, $this->report->source->getId());
     }
 
     /**
@@ -139,7 +139,7 @@ final class ReportTest extends \PHPUnit\Framework\TestCase
      */
     public function testToArray() : void
     {
-        $this->report->setTemplate(new NullTemplate(11));
+        $this->report->template       = new NullTemplate(11);
         $this->report->title          = 'testTitle';
         $this->report->description    = 'testDescription';
         $this->report->descriptionRaw = 'testDescriptionRaw';
@@ -169,7 +169,7 @@ final class ReportTest extends \PHPUnit\Framework\TestCase
      */
     public function testJsonSerialize() : void
     {
-        $this->report->setTemplate(new NullTemplate(11));
+        $this->report->template       = new NullTemplate(11);
         $this->report->title          = 'testTitle';
         $this->report->description    = 'testDescription';
         $this->report->descriptionRaw = 'testDescriptionRaw';

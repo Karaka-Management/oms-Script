@@ -46,7 +46,7 @@ class Template implements \JsonSerializable
      * @var Unit
      * @since 1.0.0
      */
-    private Unit $unit;
+    public Unit $unit;
 
     /**
      * Template status.
@@ -70,7 +70,7 @@ class Template implements \JsonSerializable
      * @var bool
      * @since 1.0.0
      */
-    private bool $isStandalone = false;
+    public bool $isStandalone = false;
 
     /**
      * Template name.
@@ -118,7 +118,7 @@ class Template implements \JsonSerializable
      * @var Collection
      * @since 1.0.0
      */
-    private Collection $source;
+    public Collection $source;
 
     /**
      * Expected files.
@@ -149,8 +149,10 @@ class Template implements \JsonSerializable
      *
      * @var string
      * @since 1.0.0
+     *
+     * @todo maybe never used, check
      */
-    private string $virtualPath = '/';
+    public string $virtualPath = '/';
 
     /**
      * Constructor
@@ -178,34 +180,6 @@ class Template implements \JsonSerializable
     }
 
     /**
-     * Get unit this template belogns to
-     *
-     * @return Unit
-     *
-     * @since 1.0.0
-     */
-    public function getUnit() : Unit
-    {
-        return $this->unit;
-    }
-
-    /**
-     * Set unit this model belongs to
-     *
-     * Set the unit
-     *
-     * @param Unit $unit Unit
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setUnit(Unit $unit) : void
-    {
-        $this->unit = $unit;
-    }
-
-    /**
      * Get newest report for template.
      *
      * @return Report
@@ -219,58 +193,6 @@ class Template implements \JsonSerializable
         }
 
         return new NullReport();
-    }
-
-    /**
-     * Get the path
-     *
-     * @return string
-     *
-     * @since 1.0.0
-     */
-    public function getVirtualPath() : string
-    {
-        return $this->virtualPath;
-    }
-
-    /**
-     * Set the path if file
-     *
-     * @param string $path Path to file
-     *
-     * @return mixed
-     *
-     * @since 1.0.0
-     */
-    public function setVirtualPath(string $path)
-    {
-        $this->virtualPath = $path;
-    }
-
-    /**
-     * Set source media
-     *
-     * @param Collection $source Source
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setSource(Collection $source) : void
-    {
-        $this->source = $source;
-    }
-
-    /**
-     * Get source media
-     *
-     * @return Collection
-     *
-     * @since 1.0.0
-     */
-    public function getSource() : Collection
-    {
-        return $this->source;
     }
 
     /**
@@ -363,32 +285,6 @@ class Template implements \JsonSerializable
     public function getDatatype() : int
     {
         return $this->datatype;
-    }
-
-    /**
-     * Set if the template needs report data
-     *
-     * @param bool $isStandalone Is template standalone
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setStandalone(bool $isStandalone) : void
-    {
-        $this->isStandalone = $isStandalone;
-    }
-
-    /**
-     * Does the template need report data?
-     *
-     * @return bool
-     *
-     * @since 1.0.0
-     */
-    public function isStandalone() : bool
-    {
-        return $this->isStandalone;
     }
 
     /**

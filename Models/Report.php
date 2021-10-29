@@ -16,7 +16,6 @@ namespace Modules\Helper\Models;
 
 use Modules\Admin\Models\Account;
 use Modules\Admin\Models\NullAccount;
-use Modules\Helper\Admin\Install\Media;
 use Modules\Media\Models\Collection;
 use Modules\Media\Models\NullCollection;
 
@@ -92,7 +91,7 @@ class Report implements \JsonSerializable
      * @var Template
      * @since 1.0.0
      */
-    private Template $template;
+    public Template $template;
 
     /**
      * Report source.
@@ -100,7 +99,7 @@ class Report implements \JsonSerializable
      * @var Collection
      * @since 1.0.0
      */
-    private Collection $source;
+    public Collection $source;
 
     /**
      * Constructor.
@@ -151,58 +150,6 @@ class Report implements \JsonSerializable
     public function setStatus(int $status) : void
     {
         $this->status = $status;
-    }
-
-    /**
-     * Get template this report belongs to
-     *
-     * @return Template
-     *
-     * @since 1.0.0
-     */
-    public function getTemplate() : Template
-    {
-        return $this->template;
-    }
-
-    /**
-     * Set template this report belongs to
-     *
-     * @param Template $template Report template
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setTemplate(Template $template) : void
-    {
-        $this->template = $template;
-    }
-
-    /**
-     * Set source media for the report
-     *
-     * @param Collection $source Report source
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setSource(Collection $source) : void
-    {
-        $this->source = $source;
-    }
-
-    /**
-     * Get source media for the report
-     *
-     * @return Collection
-     *
-     * @since 1.0.0
-     */
-    public function getSource() : Collection
-    {
-        return $this->source;
     }
 
     /**

@@ -39,7 +39,7 @@ final class ReportMapperTest extends \PHPUnit\Framework\TestCase
         $template->setStatus(HelperStatus::ACTIVE);
         $template->description = 'Description';
         $template->setDatatype(TemplateDataType::OTHER);
-        $template->setStandalone(false);
+        $template->isStandalone = false;
         $template->setExpected(['source1.csv', 'source2.csv']);
 
         $collection            = new Collection();
@@ -94,7 +94,7 @@ final class ReportMapperTest extends \PHPUnit\Framework\TestCase
             $collection->addSource($media);
         }
 
-        $template->setSource($collection);
+        $template->source = $collection;
 
         return $template;
     }
@@ -112,7 +112,7 @@ final class ReportMapperTest extends \PHPUnit\Framework\TestCase
         $report->title     = 'Title';
         $report->setStatus(HelperStatus::ACTIVE);
         $report->description = 'Description';
-        $report->setTemplate($this->createTemplate());
+        $report->template    = $this->createTemplate();
 
         $collection            = new Collection();
         $collection->createdBy = new NullAccount(1);
@@ -166,7 +166,7 @@ final class ReportMapperTest extends \PHPUnit\Framework\TestCase
             $collection->addSource($media);
         }
 
-        $report->setSource($collection);
+        $report->source = $collection;
 
         $id = ReportMapper::create($report);
         self::assertGreaterThan(0, $report->getId());
@@ -178,6 +178,6 @@ final class ReportMapperTest extends \PHPUnit\Framework\TestCase
         self::assertEquals($report->description, $reportR->description);
         self::assertEquals($report->title, $reportR->title);
         self::assertEquals($report->getStatus(), $reportR->getStatus());
-        self::assertEquals($report->getTemplate()->name, $reportR->getTemplate()->name);
+        self::assertEquals($report->template->name, $reportR->template->name);
     }
 }
