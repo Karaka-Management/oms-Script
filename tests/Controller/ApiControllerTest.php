@@ -31,6 +31,7 @@ use phpOMS\Module\ModuleManager;
 use phpOMS\Router\WebRouter;
 use phpOMS\Uri\HttpUri;
 use phpOMS\Utils\TestUtils;
+use phpOMS\System\File\Local\Directory;
 
 /**
  * @testdox Modules\Helper\tests\Controller\ApiControllerTest: Helper api controller
@@ -186,6 +187,53 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         self::assertGreaterThan(0, self::$depreciationHelper2 = $response->get('')['response']->getId());
 
         \rmdir(__DIR__ . '/temp');
+    }
+
+    /**
+     * @covers Modules\Helper\Controller\ApiController
+     * @group module
+     */
+    public function testTemplateCreateInvalidPermission() : void
+    {
+        $response = new HttpResponse();
+        $request  = new HttpRequest(new HttpUri(''));
+
+        $request->header->account = 9999;
+        $request->setData('name', \ucfirst('depreciation'));
+        $request->setData('standalone', false);
+        $request->setData('tags', '[{"title": "TestTitle", "color": "#f0f", "language": "en"}, {"id": 1}]');
+
+        $files = [];
+
+        if (!\is_dir(__DIR__ . '/temp')) {
+            \mkdir(__DIR__ . '/temp');
+        }
+
+        $helperFiles = \scandir(__DIR__ . '/../depreciation');
+        foreach ($helperFiles as $filePath) {
+            if (!\is_file(__DIR__ . '/../depreciation/' . $filePath)
+                || $filePath === '..' || $filePath === '.'
+            ) {
+                continue;
+            }
+
+            \copy(__DIR__ . '/../depreciation/' . $filePath, __DIR__ . '/temp/' . $filePath);
+
+            $files[] = [
+                'error'    => \UPLOAD_ERR_OK,
+                'type'     => \substr($filePath, \strrpos($filePath, '.') + 1),
+                'name'     => $filePath,
+                'tmp_name' => __DIR__ . '/temp/' . $filePath,
+                'size'     => \filesize(__DIR__ . '/temp/' . $filePath),
+            ];
+        }
+
+        TestUtils::setMember($request, 'files', $files);
+
+        $this->module->apiTemplateCreate($request, $response);
+        self::assertEquals(RequestStatusCode::R_403, $response->header->status);
+
+        Directory::delete(__DIR__ . '/temp');
     }
 
     /**
@@ -385,6 +433,23 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         ]);
 
         $this->module->apiReportCreate($request, $response);
+    }
+
+    /**
+     * @covers Modules\Helper\Controller\ApiController
+     * @group module
+     */
+    public function testExportOtherTypeNotStandalone() : void
+    {
+        $response = new HttpResponse();
+        $request  = new HttpRequest(new HttpUri(''));
+
+        $request->header->account = 1;
+        $request->setData('id', self::$depreciationHelper2);
+        $request->setData('type', 'invalid');
+
+        $this->module->apiHelperExport($request, $response);
+        self::assertEquals(RequestStatusCode::R_200, $response->header->status); // is html "export"/render
     }
 
     /**

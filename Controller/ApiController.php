@@ -287,7 +287,7 @@ final class ApiController extends Controller
         if (!$template->isStandalone) {
             /** @var Report[] $report */
             $report = ReportMapper::getNewest(1,
-                (new Builder($this->app->dbPool->get()))->where('helper_report.helper_report_template', '=', $template->getId())
+                (new Builder($this->app->dbPool->get()))->where('helper_report_d3.helper_report_template', '=', $template->getId())
             );
 
             $rcoll  = [];
