@@ -29,9 +29,9 @@ use phpOMS\Message\Http\RequestStatusCode;
 use phpOMS\Module\ModuleAbstract;
 use phpOMS\Module\ModuleManager;
 use phpOMS\Router\WebRouter;
+use phpOMS\System\File\Local\Directory;
 use phpOMS\Uri\HttpUri;
 use phpOMS\Utils\TestUtils;
-use phpOMS\System\File\Local\Directory;
 
 /**
  * @testdox Modules\Helper\tests\Controller\ApiControllerTest: Helper api controller
