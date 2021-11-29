@@ -148,7 +148,7 @@ final class BackendController extends Controller
         $view->setTemplate('/Modules/Helper/Theme/Backend/helper-single');
 
         $tcoll = [];
-        $files = $template->getSource()->getSources();
+        $files = $template->source->getSources();
 
         foreach ($files as $tMedia) {
             $lowerPath = \strtolower($tMedia->getPath());
@@ -186,7 +186,7 @@ final class BackendController extends Controller
             }
         }
 
-        if (!$template->isStandalone()) {
+        if (!$template->isStandalone) {
             if (!isset($tcoll['template'])) {
                 throw new \Exception('No template file detected.');
             }
@@ -202,7 +202,7 @@ final class BackendController extends Controller
 
             if (!($report instanceof NullReport)) {
                 /** @var Media[] $files */
-                $files = $report->getSource()->getSources();
+                $files = $report->source->getSources();
 
                 foreach ($files as $media) {
                     $rcoll[$media->name . '.' . $media->extension] = $media;

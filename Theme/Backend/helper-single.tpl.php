@@ -66,7 +66,7 @@ echo $this->getData('nav')->render(); ?>
                                     <option value="<?= $this->printHtml($key); ?>"<?= $this->printHtml($key === $cLang ? ' selected' : ''); ?>><?= $this->printHtml($language[':language']); ?>
                                     <?php endforeach; ?>
                                 </select>
-                        <?php if (!$template->isStandalone()) : ?><tr>
+                        <?php if (!$template->isStandalone) : ?><tr>
                             <td><label for="iReport"><?= $this->getHtml('Report'); ?></label>
                         <tr>
                             <td><select id="iReport" name="report">
@@ -126,7 +126,7 @@ echo $this->getData('nav')->render(); ?>
             <div class="portlet-body">
                 <table class="list wf-100">
                     <tbody>
-                    <?php if (!$template->isStandalone() && !($report instanceof \Modules\Helper\Models\NullReport)) : ?>
+                    <?php if (!$template->isStandalone && !($report instanceof \Modules\Helper\Models\NullReport)) : ?>
                     <tr>
                         <th colspan="2"><?= $this->getHtml('Report'); ?>
                     <tr>
