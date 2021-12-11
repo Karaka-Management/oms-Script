@@ -18,8 +18,8 @@ use Modules\Admin\Models\AccountMapper;
 use Modules\Media\Models\CollectionMapper;
 use Modules\Organization\Models\UnitMapper;
 use Modules\Tag\Models\TagMapper;
-use phpOMS\DataStorage\Database\DataMapperAbstract;
-use phpOMS\DataStorage\Database\RelationType;
+use phpOMS\DataStorage\Database\Mapper\DataMapperFactory;
+use phpOMS\DataStorage\Database\Mapper\ReadMapper;
 
 /**
  * Report mapper class.
@@ -29,7 +29,7 @@ use phpOMS\DataStorage\Database\RelationType;
  * @link    https://orange-management.org
  * @since   1.0.0
  */
-final class TemplateMapper extends DataMapperAbstract
+final class TemplateMapper extends DataMapperFactory
 {
     /**
      * Columns.
@@ -37,7 +37,7 @@ final class TemplateMapper extends DataMapperAbstract
      * @var array<string, array{name:string, type:string, internal:string, autocomplete?:bool, readonly?:bool, writeonly?:bool, annotations?:array}>
      * @since 1.0.0
      */
-    protected static array $columns = [
+    public const COLUMNS = [
         'helper_template_id'            => ['name' => 'helper_template_id',          'type' => 'int',      'internal' => 'id'],
         'helper_template_status'        => ['name' => 'helper_template_status',      'type' => 'int',      'internal' => 'status'],
         'helper_template_title'         => ['name' => 'helper_template_title',       'type' => 'string',   'internal' => 'name'],
@@ -59,7 +59,7 @@ final class TemplateMapper extends DataMapperAbstract
      * @var array<string, array{mapper:string, external:string, by?:string, column?:string, conditional?:bool}>
      * @since 1.0.0
      */
-    protected static array $ownsOne = [
+    public const OWNS_ONE = [
         'source' => [
             'mapper'     => CollectionMapper::class,
             'external'   => 'helper_template_media',
@@ -72,7 +72,7 @@ final class TemplateMapper extends DataMapperAbstract
      * @var array<string, array{mapper:string, external:string}>
      * @since 1.0.0
      */
-    protected static array $belongsTo = [
+    public const BELONGS_TO = [
         'createdBy' => [
             'mapper'     => AccountMapper::class,
             'external'   => 'helper_template_creator',
@@ -89,7 +89,7 @@ final class TemplateMapper extends DataMapperAbstract
      * @var array<string, array{mapper:string, table:string, self?:?string, external?:?string, column?:string}>
      * @since 1.0.0
      */
-    protected static array $hasMany = [
+    public const HAS_MANY = [
         'reports' => [
             'mapper'       => ReportMapper::class,
             'table'        => 'helper_report',
@@ -110,7 +110,7 @@ final class TemplateMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $table = 'helper_template';
+    public const TABLE = 'helper_template';
 
     /**
      * Created at.
@@ -118,7 +118,7 @@ final class TemplateMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $createdAt = 'helper_template_created';
+    public const CREATED_AT = 'helper_template_created';
 
     /**
      * Primary field name.
@@ -126,23 +126,23 @@ final class TemplateMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $primaryField = 'helper_template_id';
+    public const PRIMARYFIELD ='helper_template_id';
 
     /**
      * Get editor doc based on virtual path.
      *
      * @param string $virtualPath Virtual path
      *
-     * @return array
+     * @return ReadMapper
      *
      * @since 1.0.0
      */
-    public static function getByVirtualPath(string $virtualPath = '/') : array
+    public static function getByVirtualPath(string $virtualPath = '/') : ReadMapper
     {
-        $depth = 3;
-        $query = self::getQuery(depth: $depth);
-        $query->where(self::$table . '_d' . $depth . '.helper_template_virtual', '=', $virtualPath);
-
-        return self::getAllByQuery($query, RelationType::ALL, $depth);
+        return self::getAll()
+            ->with('createdBy')
+            ->with('tags')
+            ->with('tags/title')
+            ->where('virtualPath', $virtualPath);
     }
 }

@@ -31,7 +31,7 @@ use Modules\Media\Models\NullMedia;
 use Modules\Tag\Models\NullTag;
 use phpOMS\Account\PermissionType;
 use phpOMS\Autoloader;
-use phpOMS\DataStorage\Database\Query\Builder;
+use phpOMS\DataStorage\Database\Query\OrderType;
 use phpOMS\Message\Http\HttpRequest;
 use phpOMS\Message\Http\HttpResponse;
 use phpOMS\Message\Http\RequestStatusCode;
@@ -77,10 +77,18 @@ final class ApiController extends Controller
         }
 
         /** @var Template $template */
-        $template  = TemplateMapper::get((int) $request->getData('id'));
-        $accountId = $request->header->account;
+        $template = TemplateMapper::get()
+            ->with('source')
+            ->with('source/sources')
+            ->with('reports')
+            ->with('reports/source')
+            ->with('reports/source/sources')
+            ->with('createdBy')
+            ->where('id', (int) $request->getData('id'))
+            ->execute();
 
-        $isExport = \in_array($request->getData('type'), ['xlsx', 'pdf', 'docx', 'pptx', 'csv', 'json']);
+        $accountId = $request->header->account;
+        $isExport  = \in_array($request->getData('type'), ['xlsx', 'pdf', 'docx', 'pptx', 'csv', 'json']);
 
         // is allowed to read
         if (!$this->app->accountManager->get($accountId)->hasPermission(PermissionType::READ, $this->app->orgId, null, self::NAME, PermissionState::REPORT, $template->getId())
@@ -285,13 +293,17 @@ final class ApiController extends Controller
 
         $view = new View($this->app->l11nManager, $request, $response);
         if (!$template->isStandalone) {
-            /** @var Report[] $report */
-            $report = ReportMapper::getNewest(1,
-                (new Builder($this->app->dbPool->get()))->where('helper_report_d3.helper_report_template', '=', $template->getId())
-            );
+            /** @var Report $report */
+            $report = ReportMapper::get()
+                ->with('template')
+                ->with('source')
+                ->with('source/sources')
+                ->where('template', $template->getId())
+                ->sort('id', OrderType::DESC)
+                ->limit(1)
+                ->execute();
 
             $rcoll  = [];
-            $report = \end($report);
             $report = $report === false ? new NullReport() : $report;
 
             if (!($report instanceof NullReport)) {
@@ -381,7 +393,7 @@ final class ApiController extends Controller
         $collection->setPath('/Modules/Media/Files/Modules/Helper/' . ((string) ($request->getData('name') ?? '')));
         $collection->setVirtualPath('/Modules/Helper');
 
-        CollectionMapper::create($collection);
+        CollectionMapper::create()->execute($collection);
 
         $template = $this->createTemplateFromRequest($request, $collection->getId());
 
@@ -528,7 +540,7 @@ final class ApiController extends Controller
             return;
         }
 
-        CollectionMapper::create($collection);
+        CollectionMapper::create()->execute($collection);
 
         $report = $this->createReportFromRequest($request, $response, $collection->getId());
 

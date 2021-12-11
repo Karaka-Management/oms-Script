@@ -15,7 +15,7 @@ declare(strict_types=1);
 namespace Modules\Helper\Models;
 
 use Modules\Admin\Models\AccountMapper;
-use phpOMS\DataStorage\Database\DataMapperAbstract;
+use phpOMS\DataStorage\Database\Mapper\DataMapperFactory;
 
 /**
  * Report mapper class.
@@ -25,7 +25,7 @@ use phpOMS\DataStorage\Database\DataMapperAbstract;
  * @link    https://orange-management.org
  * @since   1.0.0
  */
-final class ReportMapper extends DataMapperAbstract
+final class ReportMapper extends DataMapperFactory
 {
     /**
      * Columns.
@@ -33,7 +33,7 @@ final class ReportMapper extends DataMapperAbstract
      * @var array<string, array{name:string, type:string, internal:string, autocomplete?:bool, readonly?:bool, writeonly?:bool, annotations?:array}>
      * @since 1.0.0
      */
-    protected static array $columns = [
+    public const COLUMNS = [
         'helper_report_id'       => ['name' => 'helper_report_id',       'type' => 'int',      'internal' => 'id'],
         'helper_report_status'   => ['name' => 'helper_report_status',   'type' => 'int',      'internal' => 'status'],
         'helper_report_title'    => ['name' => 'helper_report_title',    'type' => 'string',   'internal' => 'title'],
@@ -51,7 +51,7 @@ final class ReportMapper extends DataMapperAbstract
      * @var array<string, array{mapper:string, external:string, by?:string, column?:string, conditional?:bool}>
      * @since 1.0.0
      */
-    protected static array $ownsOne = [
+    public const OWNS_ONE = [
         'source'   => [
             'mapper'     => \Modules\Media\Models\CollectionMapper::class,
             'external'   => 'helper_report_media',
@@ -68,7 +68,7 @@ final class ReportMapper extends DataMapperAbstract
      * @var array<string, array{mapper:string, external:string}>
      * @since 1.0.0
      */
-    protected static array $belongsTo = [
+    public const BELONGS_TO = [
         'createdBy' => [
             'mapper'     => AccountMapper::class,
             'external'   => 'helper_report_creator',
@@ -81,7 +81,7 @@ final class ReportMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $table = 'helper_report';
+    public const TABLE = 'helper_report';
 
     /**
      * Primary field name.
@@ -89,7 +89,7 @@ final class ReportMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $primaryField = 'helper_report_id';
+    public const PRIMARYFIELD ='helper_report_id';
 
     /**
      * Created at.
@@ -97,5 +97,5 @@ final class ReportMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $createdAt = 'helper_report_created';
+    public const CREATED_AT = 'helper_report_created';
 }

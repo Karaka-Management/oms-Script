@@ -23,6 +23,7 @@ use Modules\Media\Models\Media;
 use Modules\Media\Theme\Backend\Components\Upload\BaseView;
 use phpOMS\Contract\RenderableInterface;
 use phpOMS\DataStorage\Database\Query\Builder;
+use phpOMS\DataStorage\Database\Query\OrderType;
 use phpOMS\Message\RequestAbstract;
 use phpOMS\Message\ResponseAbstract;
 use phpOMS\Utils\StringUtils;
@@ -58,7 +59,7 @@ final class BackendController extends Controller
         $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response));
 
         $path      = \str_replace('+', ' ', (string) ($request->getData('path') ?? '/'));
-        $templates = TemplateMapper::with('language', $response->getLanguage())::getByVirtualPath($path);
+        $templates = TemplateMapper::getByVirtualPath($path)->with('tags')->with('tags/title')->where('tags/title/language', $response->getLanguage())->execute();
 
         list($collection, $parent) = CollectionMapper::getCollectionsByPath($path);
 
@@ -143,7 +144,15 @@ final class BackendController extends Controller
         //$file = preg_replace('([^\w\s\d\-_~,;:\.\[\]\(\).])', '', $template->getName());
 
         /** @var Template $template */
-        $template = TemplateMapper::with('language', $response->getLanguage())::get((int) $request->getData('id'));
+        $template = TemplateMapper::get()
+            ->with('createdBy')
+            ->with('tags')
+            ->with('tags/title')
+            ->with('source')
+            ->with('source/sources')
+            ->where('id', (int) $request->getData('id'))
+            ->where('tags/title/language', $response->getLanguage())
+            ->execute();
 
         $view->setTemplate('/Modules/Helper/Theme/Backend/helper-single');
 
@@ -192,9 +201,7 @@ final class BackendController extends Controller
             }
 
             /** @var \Modules\Helper\Models\Report[] $report */
-            $report = ReportMapper::getNewest(1,
-                (new Builder($this->app->dbPool->get()))->where('helper_report.helper_report_template', '=', $template->getId())
-            );
+            $report = ReportMapper::get()->where('template', $template->getId())->sort('id', OrderType::DESC)->limit(1)->execute();
 
             $rcoll  = [];
             $report = \end($report);

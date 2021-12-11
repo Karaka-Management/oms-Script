@@ -21,6 +21,7 @@ use Modules\Helper\Models\TemplateDataType;
 use Modules\Helper\Models\TemplateMapper;
 use Modules\Media\Models\Collection;
 use Modules\Media\Models\Media;
+use phpOMS\DataStorage\Database\Query\OrderType;
 
 /**
  * @testdox Modules\tests\Helper\Models\TemplateMapperTest: Template database mapper
@@ -101,11 +102,11 @@ final class TemplateMapperTest extends \PHPUnit\Framework\TestCase
 
         $template->source = $collection;
 
-        $id = TemplateMapper::create($template);
+        $id = TemplateMapper::create()->execute($template);
         self::assertGreaterThan(0, $template->getId());
         self::assertEquals($id, $template->getId());
 
-        $templateR = TemplateMapper::get($template->getId());
+        $templateR = TemplateMapper::get()->where('id', $template->getId())->execute();
         self::assertEquals($template->createdAt->format('Y-m-d'), $templateR->createdAt->format('Y-m-d'));
         self::assertEquals($template->createdBy->getId(), $templateR->createdBy->getId());
         self::assertEquals($template->description, $templateR->description);
@@ -124,7 +125,7 @@ final class TemplateMapperTest extends \PHPUnit\Framework\TestCase
      */
     public function testNewest() : void
     {
-        $newest = TemplateMapper::getNewest(1);
+        $newest = TemplateMapper::getAll()->sort('id', OrderType::DESC)->limit(1)->execute();
 
         self::assertCount(1, $newest);
     }
@@ -135,7 +136,7 @@ final class TemplateMapperTest extends \PHPUnit\Framework\TestCase
      */
     public function testVirtualPath() : void
     {
-        $virtualPath = TemplateMapper::getByVirtualPath('/');
+        $virtualPath = TemplateMapper::getByVirtualPath('/')->execute();
 
         self::assertGreaterThan(0, \count($virtualPath));
     }
