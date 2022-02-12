@@ -13,10 +13,10 @@
 declare(strict_types=1);
 
 return ['Navigation' => [
-    'Create'         => 'Create',
-    'CreateReport'   => 'Create Report',
-    'CreateTemplate' => 'Create Template',
-    'Helper'         => 'Helper',
-    'List'           => 'List',
-    'Reporting'      => 'Reporting',
+    'Create'         => 'Creare',
+    'CreateReport'   => 'Creare report.',
+    'CreateTemplate' => 'Creare template.',
+    'Helper'         => 'Helper.',
+    'List'           => 'Elenco',
+    'Reporting'      => 'Segnalazione',
 ]];

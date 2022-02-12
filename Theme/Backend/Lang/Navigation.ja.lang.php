@@ -13,10 +13,10 @@
 declare(strict_types=1);
 
 return ['Navigation' => [
-    'Create'         => 'Create',
-    'CreateReport'   => 'Create Report',
-    'CreateTemplate' => 'Create Template',
-    'Helper'         => 'Helper',
-    'List'           => 'List',
-    'Reporting'      => 'Reporting',
+    'Create'         => '作成',
+    'CreateReport'   => 'レポートを作成します',
+    'CreateTemplate' => 'テンプレートを作成します',
+    'Helper'         => 'ヘルパー',
+    'List'           => 'リスト',
+    'Reporting'      => '報告',
 ]];

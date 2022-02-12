@@ -4,7 +4,7 @@
  *
  * PHP Version 8.0
  *
- * @package   Modules\Helper
+ * @package   Modules\Localization
  * @copyright Dennis Eichhorn
  * @license   OMS License 1.0
  * @version   1.0.0
@@ -13,10 +13,10 @@
 declare(strict_types=1);
 
 return ['Navigation' => [
-    'Create'         => 'Erstellt',
-    'CreateReport'   => 'Erstelle Report',
-    'CreateTemplate' => 'Erstelle Template',
-    'Helper'         => 'Helper',
-    'List'           => 'Liste',
-    'Reporting'      => 'Reporting',
+    'Create'         => 'Erstellen',
+    'CreateReport'   => 'Bericht erstellen',
+    'CreateTemplate' => 'Vorlage erstellen.',
+    'Helper'         => 'Helfer',
+    'List'           => 'Aufführen',
+    'Reporting'      => 'Berichterstattung',
 ]];
