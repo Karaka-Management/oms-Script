@@ -83,7 +83,7 @@ Website: karaka.app
 Email: dennis.eichhorn@karaka.email
 Twitter: @orange_mgmt
 Twitch: spl1nes
-Youtube: Orange-Management
+Youtube: Karaka
 EOT;
 $pdf->Write(0, $text, '', 0, 'L', true, 0, false, false, 0);
 
