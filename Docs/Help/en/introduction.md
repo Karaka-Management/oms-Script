@@ -1,10 +1,10 @@
 # Introduction
 
-The **Helper** module is a very powerful module which allows users to create custom tools/helpers and make them available to other users. A very common use case is to create custom reports which can be based on the Orange-Management database but also on data from other databases. Other examples could be a helper to generate recurring mailings based on data stored in the database or small applications for storing and managing data.
+The **Helper** module is a very powerful module which allows users to create custom tools/helpers and make them available to other users. A very common use case is to create custom reports which can be based on the Karaka database but also on data from other databases. Other examples could be a helper to generate recurring mailings based on data stored in the database or small applications for storing and managing data.
 
 ## Target Group
 
-The target group for this module is every organization which would like to create customized helper & reports while still integrating and managing them through the Orange-Management application. The implementation of such helpers requires programming knowledge in PHP and potentially JavaScript.
+The target group for this module is every organization which would like to create customized helper & reports while still integrating and managing them through the Karaka application. The implementation of such helpers requires programming knowledge in PHP and potentially JavaScript.
 
 # Setup
 
