@@ -79,8 +79,8 @@ $pdf->SetXY(15, 262);
 $pdf->SetTextColor(54, 151, 219);
 
 $text = <<<EOT
-Website: orange-management.org
-Email: dennis.eichhorn@orange-management.email
+Website: karaka.app
+Email: dennis.eichhorn@karaka.email
 Twitter: @orange_mgmt
 Twitch: spl1nes
 Youtube: Orange-Management

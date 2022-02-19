@@ -179,7 +179,7 @@ $badBudget->getStyle()->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COL
 $badBudget->getStyle()->getFont()->setBold(true);
 
 // Set document properties
-$excel->getProperties()->setCreator('Orange Management Solutions')
+$excel->getProperties()->setCreator('Karaka Solutions')
     ->setLastModifiedBy('Dennis Eichhorn')
     ->setTitle('Event & Course Budget')
     ->setSubject('Budget Evaluation')
