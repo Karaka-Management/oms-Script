@@ -149,7 +149,7 @@ echo $this->getData('nav')->render(); ?>
                         <td><a href="<?= $url; ?>"><i class="fa fa-folder-open-o"></i></a>
                         <td><a href="<?= $url; ?>"><?= $this->printHtml($value->name); ?></a>
                         <td>
-                        <td><a class="content" href="<?= UriFactory::build('{/prefix}profile/single?{?}&for=' . $value->createdBy->getId()); ?>"><?= $this->printHtml($value->createdBy->name1); ?></a>
+                        <td><a class="content" href="<?= UriFactory::build('{/prefix}profile/single?{?}&for=' . $value->createdBy->getId()); ?>"><?= $this->printHtml($this->renderUserName('%3$s %2$s %1$s', [$value->createdBy->name1, $value->createdBy->name2, $value->createdBy->name3, $value->createdBy->login ?? ''])); ?></a>
                         <td><a href="<?= $url; ?>"><?= $this->printHtml($value->createdAt->format('Y-m-d')); ?></a>
                 <?php endforeach; ?>
                         <?php foreach ($templates as $key => $template) : ++$count;
@@ -165,7 +165,7 @@ echo $this->getData('nav')->render(); ?>
                         <?php $tags = $template->getTags(); foreach ($tags as $tag) : ?>
                             <span class="tag" style="background: <?= $this->printHtml($tag->color); ?>"><?= $tag->icon !== null ? '<i class="' . $this->printHtml($tag->icon ?? '') . '"></i>' : ''; ?><?= $this->printHtml($tag->getL11n()); ?></span>
                         <?php endforeach; ?>
-                    <td data-label="<?= $this->getHtml('Creator'); ?>"><a class="content" href="<?= UriFactory::build('{/prefix}profile/single?{?}&for=' . $template->createdBy->getId()); ?>"><?= $this->printHtml($template->createdBy->name1); ?></a>
+                    <td data-label="<?= $this->getHtml('Creator'); ?>"><a class="content" href="<?= UriFactory::build('{/prefix}profile/single?{?}&for=' . $template->createdBy->getId()); ?>"><?= $this->printHtml($this->renderUserName('%3$s %2$s %1$s', [$template->createdBy->name1, $template->createdBy->name2, $template->createdBy->name3, $template->createdBy->login ?? ''])); ?></a>
                     <td data-label="<?= $this->getHtml('Updated'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($template->createdAt->format('Y-m-d')); ?></a>
                         <?php endforeach; ?>
                         <?php if ($count === 0) : ?>
