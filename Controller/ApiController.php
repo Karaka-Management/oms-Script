@@ -18,7 +18,7 @@ use Modules\Admin\Models\AccountPermission;
 use Modules\Admin\Models\NullAccount;
 use Modules\Helper\Models\NullReport;
 use Modules\Helper\Models\NullTemplate;
-use Modules\Helper\Models\PermissionState;
+use Modules\Helper\Models\PermissionCategory;
 use Modules\Helper\Models\Report;
 use Modules\Helper\Models\ReportMapper;
 use Modules\Helper\Models\Template;
@@ -91,8 +91,8 @@ final class ApiController extends Controller
         $isExport  = \in_array($request->getData('type'), ['xlsx', 'pdf', 'docx', 'pptx', 'csv', 'json']);
 
         // is allowed to read
-        if (!$this->app->accountManager->get($accountId)->hasPermission(PermissionType::READ, $this->app->orgId, null, self::NAME, PermissionState::REPORT, $template->getId())
-            || ($isExport && !$this->app->accountManager->get($accountId)->hasPermission(PermissionType::READ, $this->app->orgId, $this->app->appName, self::NAME, PermissionState::EXPORT))
+        if (!$this->app->accountManager->get($accountId)->hasPermission(PermissionType::READ, $this->app->orgId, null, self::NAME, PermissionCategory::REPORT, $template->getId())
+            || ($isExport && !$this->app->accountManager->get($accountId)->hasPermission(PermissionType::READ, $this->app->orgId, $this->app->appName, self::NAME, PermissionCategory::EXPORT))
         ) {
             $response->header->status = RequestStatusCode::R_403;
 
@@ -353,7 +353,7 @@ final class ApiController extends Controller
         }
 
         // is allowed to create
-        if (!$this->app->accountManager->get($request->header->account)->hasPermission(PermissionType::CREATE, $this->app->orgId, null, self::NAME, PermissionState::TEMPLATE)) {
+        if (!$this->app->accountManager->get($request->header->account)->hasPermission(PermissionType::CREATE, $this->app->orgId, null, self::NAME, PermissionCategory::TEMPLATE)) {
             $response->header->status = RequestStatusCode::R_403;
 
             return;
@@ -404,7 +404,7 @@ final class ApiController extends Controller
                 $this->app->appName,
                 self::NAME,
                 self::NAME,
-                PermissionState::TEMPLATE,
+                PermissionCategory::TEMPLATE,
                 $template->getId(),
                 null,
                 PermissionType::READ | PermissionType::MODIFY | PermissionType::DELETE | PermissionType::PERMISSION,
@@ -509,7 +509,7 @@ final class ApiController extends Controller
         }
 
         // is allowed to create
-        if (!$this->app->accountManager->get($request->header->account)->hasPermission(PermissionType::CREATE, $this->app->orgId, null, self::NAME, PermissionState::REPORT)) {
+        if (!$this->app->accountManager->get($request->header->account)->hasPermission(PermissionType::CREATE, $this->app->orgId, null, self::NAME, PermissionCategory::REPORT)) {
             $response->header->status = RequestStatusCode::R_403;
 
             return;
@@ -551,7 +551,7 @@ final class ApiController extends Controller
                 $this->app->appName,
                 self::NAME,
                 self::NAME,
-                PermissionState::REPORT,
+                PermissionCategory::REPORT,
                 $report->getId(),
                 null,
                 PermissionType::READ | PermissionType::MODIFY | PermissionType::DELETE | PermissionType::PERMISSION,

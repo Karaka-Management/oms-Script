@@ -13,7 +13,7 @@
 declare(strict_types=1);
 
 use Modules\Helper\Controller\BackendController;
-use Modules\Helper\Models\PermissionState;
+use Modules\Helper\Models\PermissionCategory;
 use phpOMS\Account\PermissionType;
 use phpOMS\Router\RouteVerb;
 
@@ -25,7 +25,7 @@ return [
             'permission' => [
                 'module' => BackendController::NAME,
                 'type'   => PermissionType::CREATE,
-                'state'  => PermissionState::TEMPLATE,
+                'state'  => PermissionCategory::TEMPLATE,
             ],
         ],
         [
@@ -34,7 +34,7 @@ return [
             'permission' => [
                 'module' => BackendController::NAME,
                 'type'   => PermissionType::CREATE,
-                'state'  => PermissionState::TEMPLATE,
+                'state'  => PermissionCategory::TEMPLATE,
             ],
         ],
     ],
@@ -45,7 +45,7 @@ return [
             'permission' => [
                 'module' => BackendController::NAME,
                 'type'   => PermissionType::CREATE,
-                'state'  => PermissionState::REPORT,
+                'state'  => PermissionCategory::REPORT,
             ],
         ],
         [
@@ -54,7 +54,7 @@ return [
             'permission' => [
                 'module' => BackendController::NAME,
                 'type'   => PermissionType::CREATE,
-                'state'  => PermissionState::REPORT,
+                'state'  => PermissionCategory::REPORT,
             ],
         ],
     ],
@@ -65,7 +65,7 @@ return [
             'permission' => [
                 'module' => BackendController::NAME,
                 'type'   => PermissionType::READ,
-                'state'  => PermissionState::REPORT,
+                'state'  => PermissionCategory::REPORT,
             ],
         ],
     ],
@@ -76,7 +76,7 @@ return [
             'permission' => [
                 'module' => BackendController::NAME,
                 'type'   => PermissionType::READ,
-                'state'  => PermissionState::REPORT,
+                'state'  => PermissionCategory::REPORT,
             ],
         ],
     ],
