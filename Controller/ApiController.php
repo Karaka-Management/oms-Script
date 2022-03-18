@@ -452,7 +452,7 @@ final class ApiController extends Controller
         $expected = $request->getData('expected');
 
         $helperTemplate                 = new Template();
-        $helperTemplate->name           = $request->getData('name') ?? 'Empty';
+        $helperTemplate->name           = $request->getData('name') ?? '';
         $helperTemplate->description    = Markdown::parse((string) ($request->getData('description') ?? ''));
         $helperTemplate->descriptionRaw = (string) ($request->getData('description') ?? '');
 
