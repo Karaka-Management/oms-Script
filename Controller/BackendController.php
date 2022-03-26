@@ -59,7 +59,13 @@ final class BackendController extends Controller
         $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response));
 
         $path      = \str_replace('+', ' ', (string) ($request->getData('path') ?? '/'));
-        $templates = TemplateMapper::getByVirtualPath($path)->with('tags')->with('tags/title')->where('tags/title/language', $response->getLanguage())->execute();
+        $templates = TemplateMapper::getAll()
+            ->with('createdBy')
+            ->with('tags')
+            ->with('tags/title')
+            ->where('virtualPath', $path)
+            ->where('tags/title/language', $response->getLanguage())
+            ->execute();
 
         list($collection, $parent) = CollectionMapper::getCollectionsByPath($path);
 

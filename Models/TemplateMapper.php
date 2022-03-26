@@ -127,22 +127,4 @@ final class TemplateMapper extends DataMapperFactory
      * @since 1.0.0
      */
     public const PRIMARYFIELD ='helper_template_id';
-
-    /**
-     * Get editor doc based on virtual path.
-     *
-     * @param string $virtualPath Virtual path
-     *
-     * @return ReadMapper
-     *
-     * @since 1.0.0
-     */
-    public static function getByVirtualPath(string $virtualPath = '/') : ReadMapper
-    {
-        return self::getAll()
-            ->with('createdBy')
-            ->with('tags')
-            ->with('tags/title')
-            ->where('virtualPath', $virtualPath);
-    }
 }

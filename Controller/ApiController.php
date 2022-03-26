@@ -210,6 +210,13 @@ final class ApiController extends Controller
         }
     }
 
+    private function createHelperDir(Template $template) : string
+    {
+        return '/Modules/Helper/'
+            . $template->getId() . ' '
+            . $template->name;
+    }
+
     /**
      * Create view from template
      *
