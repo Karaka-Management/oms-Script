@@ -366,6 +366,7 @@ final class ApiController extends Controller
             return;
         }
 
+        /** @var \Modules\Media\Models\Media[] $uploaded */
         $uploaded = $this->app->moduleManager->get('Media')->uploadFiles(
             $request->getDataList('names') ?? [],
             $request->getDataList('filenames') ?? [],
@@ -375,7 +376,11 @@ final class ApiController extends Controller
         );
 
         foreach ($uploaded as $upload) {
-            $files[] = new NullMedia($upload->getId());
+            if ($upload instanceof NullMedia) {
+                continue;
+            }
+
+            $files[] = $upload;
         }
 
         foreach ($dbFiles as $db) {
