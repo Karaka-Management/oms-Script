@@ -210,6 +210,15 @@ final class ApiController extends Controller
         }
     }
 
+    /**
+     * Create media directory path
+     *
+     * @param Template $template Template
+     *
+     * @return string
+     *
+     * @since 1.0.0
+     */
     private function createHelperDir(Template $template) : string
     {
         return '/Modules/Helper/'
