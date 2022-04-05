@@ -357,8 +357,8 @@ final class ApiController extends Controller
      */
     public function apiTemplateCreate(RequestAbstract $request, ResponseAbstract $response, $data = null) : void
     {
-        $dbFiles       = $request->getDataJson('media-list') ?? [];
-        $uploadedFiles = $request->getFiles() ?? [];
+        $dbFiles       = $request->getDataJson('media-list');
+        $uploadedFiles = $request->getFiles();
         $files         = [];
 
         if (!empty($val = $this->validateTemplateCreate($request))) {
@@ -377,8 +377,8 @@ final class ApiController extends Controller
 
         /** @var \Modules\Media\Models\Media[] $uploaded */
         $uploaded = $this->app->moduleManager->get('Media')->uploadFiles(
-            $request->getDataList('names') ?? [],
-            $request->getDataList('filenames') ?? [],
+            $request->getDataList('names'),
+            $request->getDataList('filenames'),
             $uploadedFiles,
             $request->header->account,
             __DIR__ . '/../../../Modules/Media/Files'
@@ -451,7 +451,7 @@ final class ApiController extends Controller
     {
         $val = [];
         if (($val['name'] = empty($request->getData('name')))
-            || ($val['files'] = empty($request->getFiles() ?? []))
+            || ($val['files'] = empty($request->getFiles()))
         ) {
             return $val;
         }
@@ -537,8 +537,8 @@ final class ApiController extends Controller
         }
 
         $files = $this->app->moduleManager->get('Media')->uploadFiles(
-            $request->getDataList('names') ?? [],
-            $request->getDataList('filenames') ?? [],
+            $request->getDataList('names'),
+            $request->getDataList('filenames'),
             $request->getFiles(),
             $request->header->account,
             __DIR__ . '/../../../Modules/Media/Files'
