@@ -19,7 +19,6 @@ use Modules\Media\Models\CollectionMapper;
 use Modules\Organization\Models\UnitMapper;
 use Modules\Tag\Models\TagMapper;
 use phpOMS\DataStorage\Database\Mapper\DataMapperFactory;
-use phpOMS\DataStorage\Database\Mapper\ReadMapper;
 
 /**
  * Report mapper class.
