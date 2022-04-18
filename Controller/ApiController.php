@@ -28,6 +28,7 @@ use Modules\Media\Models\Collection;
 use Modules\Media\Models\CollectionMapper;
 use Modules\Media\Models\NullCollection;
 use Modules\Media\Models\NullMedia;
+use Modules\Media\Models\PathSettings;
 use Modules\Tag\Models\NullTag;
 use phpOMS\Account\PermissionType;
 use phpOMS\Autoloader;
@@ -375,13 +376,17 @@ final class ApiController extends Controller
             return;
         }
 
+        $path = '/Modules/Helper/' . $request->getData('name');
+
         /** @var \Modules\Media\Models\Media[] $uploaded */
         $uploaded = $this->app->moduleManager->get('Media')->uploadFiles(
             $request->getDataList('names'),
             $request->getDataList('filenames'),
             $uploadedFiles,
             $request->header->account,
-            __DIR__ . '/../../../Modules/Media/Files'
+            __DIR__ . '/../../../Modules/Media/Files' . $path,
+            $path,
+            pathSettings: PathSettings::FILE_PATH
         );
 
         foreach ($uploaded as $upload) {
