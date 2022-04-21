@@ -68,7 +68,7 @@ final class ApiController extends Controller
      *
      * @since 1.0.0
      */
-    public function apiHelperExport(HttpRequest $request, HttpResponse $response, $data = null) : void
+    public function apiHelperExport(HttpRequest $request, HttpResponse $response, mixed $data = null) : void
     {
         if (!empty($val = $this->validateExport($request))) {
             $response->set('export', new FormValidation($val));
@@ -356,7 +356,7 @@ final class ApiController extends Controller
      *
      * @since 1.0.0
      */
-    public function apiTemplateCreate(RequestAbstract $request, ResponseAbstract $response, $data = null) : void
+    public function apiTemplateCreate(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
     {
         $dbFiles       = $request->getDataJson('media-list');
         $uploadedFiles = $request->getFiles();
@@ -525,7 +525,7 @@ final class ApiController extends Controller
      *
      * @since 1.0.0
      */
-    public function apiReportCreate(RequestAbstract $request, ResponseAbstract $response, $data = null) : void
+    public function apiReportCreate(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
     {
         if (!empty($val = $this->validateReportCreate($request))) {
             $response->set('report_create', new FormValidation($val));
