@@ -80,7 +80,7 @@ $pdf->SetTextColor(54, 151, 219);
 
 $text = <<<EOT
 Website: karaka.app
-Email: dennis.eichhorn@karaka.email
+Email: dennis.eichhorn@jingga.app
 Twitter: @orange_mgmt
 Twitch: spl1nes
 Youtube: Karaka
