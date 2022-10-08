@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 $fiscal_end        = new \phpOMS\Stdlib\Base\SmartDateTime('2016/06/30');
 $fiscal_current    = new \phpOMS\Stdlib\Base\SmartDateTime('2015/09/30');
 $fiscal_start      = new \phpOMS\Stdlib\Base\SmartDateTime('2015/07/01');
