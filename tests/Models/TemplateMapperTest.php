@@ -129,15 +129,4 @@ final class TemplateMapperTest extends \PHPUnit\Framework\TestCase
 
         self::assertCount(1, $newest);
     }
-
-    /**
-     * @covers Modules\Helper\Models\TemplateMapper
-     * @group module
-     */
-    public function testVirtualPath() : void
-    {
-        $virtualPath = TemplateMapper::getByVirtualPath('/')->execute();
-
-        self::assertGreaterThan(0, \count($virtualPath));
-    }
 }

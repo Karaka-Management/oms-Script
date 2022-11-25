@@ -149,6 +149,10 @@ final class ApiController extends Controller
     {
         switch ($request->getData('type')) {
             case 'pdf':
+                if (!isset($view->getData('tcoll')['pdf'])) {
+                    break;
+                }
+
                 $response->header->set(
                     'Content-disposition', 'attachment; filename="'
                     . $name . '.'
@@ -159,6 +163,10 @@ final class ApiController extends Controller
                 $view->setTemplate('/' . \substr($view->getData('tcoll')['pdf']?->getPath(), 0, -8), 'pdf.php');
                 break;
             case 'csv':
+                if (!isset($view->getData('tcoll')['csv'])) {
+                    break;
+                }
+
                 $response->header->set(
                     'Content-disposition', 'attachment; filename="'
                     . $name . '.'
@@ -170,6 +178,10 @@ final class ApiController extends Controller
                 break;
             case 'xls':
             case 'xlsx':
+                if (!isset($view->getData('tcoll')['excel'])) {
+                    break;
+                }
+
                 $response->header->set(
                     'Content-disposition', 'attachment; filename="'
                     . $name . '.'
@@ -181,6 +193,10 @@ final class ApiController extends Controller
                 break;
             case 'doc':
             case 'docx':
+                if (!isset($view->getData('tcoll')['word'])) {
+                    break;
+                }
+
                 $response->header->set(
                     'Content-disposition', 'attachment; filename="'
                     . $name . '.'
@@ -192,6 +208,10 @@ final class ApiController extends Controller
                 break;
             case 'ppt':
             case 'pptx':
+                if (!isset($view->getData('tcoll')['powerpoint'])) {
+                    break;
+                }
+
                 $response->header->set(
                     'Content-disposition', 'attachment; filename="'
                     . $name . '.'
@@ -202,10 +222,18 @@ final class ApiController extends Controller
                 $view->setTemplate('/' . \substr($view->getData('tcoll')['powerpoint']?->getPath(), 0, -8), 'ppt.php');
                 break;
             case 'json':
+                if (!isset($view->getData('tcoll')['json'])) {
+                    break;
+                }
+
                 $response->header->set('Content-Type', MimeType::M_JSON, true);
                 $view->setTemplate('/' . \substr($view->getData('tcoll')['json']?->getPath(), 0, -9), 'json.php');
                 break;
             default:
+                if (!isset($view->getData('tcoll')['template'])) {
+                    break;
+                }
+
                 $response->header->set('Content-Type', 'text/html; charset=utf-8');
                 $view->setTemplate('/' . \substr($view->getData('tcoll')['template']?->getPath(), 0, -8));
         }
