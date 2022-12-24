@@ -160,9 +160,13 @@ final class BackendController extends Controller
 
         $view->setTemplate('/Modules/Helper/Theme/Backend/helper-single');
 
+        /** @var array<string, \Modules\Media\Models\Media> $tcoll */
         $tcoll = [];
+
+        /** @var \Modules\Media\Models\Media[] $files */
         $files = $template->source->getSources();
 
+        /** @var \Modules\Media\Models\Media $tMedia */
         foreach ($files as $tMedia) {
             $lowerPath = \strtolower($tMedia->getPath());
 
@@ -191,11 +195,7 @@ final class BackendController extends Controller
             } elseif (StringUtils::endsWith($lowerPath, '.js')) {
                 $tcoll['js'] = $tMedia;
             } elseif (StringUtils::endsWith($lowerPath, '.sqlite') || StringUtils::endsWith($lowerPath, '.db')) {
-                if (!isset($tcoll['db'])) {
-                    $tcoll['db'] = [];
-                }
-
-                $tcoll['db'][] = $tMedia;
+                $tcoll['db'] = $tMedia;
             }
         }
 

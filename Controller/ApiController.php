@@ -160,7 +160,7 @@ final class ApiController extends Controller
                     . '"'
                 , true);
                 $response->header->set('Content-Type', MimeType::M_PDF, true);
-                $view->setTemplate('/' . \substr($view->getData('tcoll')['pdf']?->getPath(), 0, -8), 'pdf.php');
+                $view->setTemplate('/' . \substr($view->getData('tcoll')['pdf']->getPath(), 0, -8), 'pdf.php');
                 break;
             case 'csv':
                 if (!isset($view->getData('tcoll')['csv'])) {
@@ -174,7 +174,7 @@ final class ApiController extends Controller
                     . '"'
                 , true);
                 $response->header->set('Content-Type', MimeType::M_CONF, true);
-                $view->setTemplate('/' . \substr($view->getData('tcoll')['csv']?->getPath(), 0, -8), 'csv.php');
+                $view->setTemplate('/' . \substr($view->getData('tcoll')['csv']->getPath(), 0, -8), 'csv.php');
                 break;
             case 'xls':
             case 'xlsx':
@@ -189,7 +189,7 @@ final class ApiController extends Controller
                     . '"'
                 , true);
                 $response->header->set('Content-Type', MimeType::M_XLSX, true);
-                $view->setTemplate('/' . \substr($view->getData('tcoll')['excel']?->getPath(), 0, -8), 'xls.php');
+                $view->setTemplate('/' . \substr($view->getData('tcoll')['excel']->getPath(), 0, -8), 'xls.php');
                 break;
             case 'doc':
             case 'docx':
@@ -204,7 +204,7 @@ final class ApiController extends Controller
                     . '"'
                 , true);
                 $response->header->set('Content-Type', MimeType::M_XLSX, true);
-                $view->setTemplate('/' . \substr($view->getData('tcoll')['word']?->getPath(), 0, -8), 'doc.php');
+                $view->setTemplate('/' . \substr($view->getData('tcoll')['word']->getPath(), 0, -8), 'doc.php');
                 break;
             case 'ppt':
             case 'pptx':
@@ -219,7 +219,7 @@ final class ApiController extends Controller
                     . '"'
                 , true);
                 $response->header->set('Content-Type', MimeType::M_XLSX, true);
-                $view->setTemplate('/' . \substr($view->getData('tcoll')['powerpoint']?->getPath(), 0, -8), 'ppt.php');
+                $view->setTemplate('/' . \substr($view->getData('tcoll')['powerpoint']->getPath(), 0, -8), 'ppt.php');
                 break;
             case 'json':
                 if (!isset($view->getData('tcoll')['json'])) {
@@ -227,7 +227,7 @@ final class ApiController extends Controller
                 }
 
                 $response->header->set('Content-Type', MimeType::M_JSON, true);
-                $view->setTemplate('/' . \substr($view->getData('tcoll')['json']?->getPath(), 0, -9), 'json.php');
+                $view->setTemplate('/' . \substr($view->getData('tcoll')['json']->getPath(), 0, -9), 'json.php');
                 break;
             default:
                 if (!isset($view->getData('tcoll')['template'])) {
@@ -235,24 +235,26 @@ final class ApiController extends Controller
                 }
 
                 $response->header->set('Content-Type', 'text/html; charset=utf-8');
-                $view->setTemplate('/' . \substr($view->getData('tcoll')['template']?->getPath(), 0, -8));
+                $view->setTemplate('/' . \substr($view->getData('tcoll')['template']->getPath(), 0, -8));
         }
     }
 
     /**
      * Create media directory path
      *
-     * @param Template $template Template
+     * @param string $name Name
      *
      * @return string
      *
      * @since 1.0.0
      */
-    private function createHelperDir(Template $template) : string
+    private function createHelperDir(string $name) : string
     {
+        $dt = new \DateTime('now');
+
         return '/Modules/Helper/'
-            . $template->getId() . ' '
-            . $template->name;
+            . $dt->format('Y-m-d') . '_'
+            . $name;
     }
 
     /**
@@ -270,8 +272,10 @@ final class ApiController extends Controller
      */
     private function createView(Template $template, RequestAbstract $request, ResponseAbstract $response) : View
     {
-        /** @var array<string, \Modules\Media\Models\Media|\Modules\Media\Models\Media[]> $tcoll */
+        /** @var array{lang?:\Modules\Media\Models\Media, cfg?:\Modules\Media\Models\Media, excel?:\Modules\Media\Models\Media, word?:\Modules\Media\Models\Media, powerpoint?:\Modules\Media\Models\Media, pdf?:\Modules\Media\Models\Media, csv?:\Modules\Media\Models\Media, json?:\Modules\Media\Models\Media, template?:\Modules\Media\Models\Media, css?:array<string, \Modules\Media\Models\Media>, js?:array<string, \Modules\Media\Models\Media>, db?:array<string, \Modules\Media\Models\Media>, other?:array<string, \Modules\Media\Models\Media>} $tcoll */
         $tcoll = [];
+
+        /** @var \Modules\Media\Models\Media[] $files */
         $files = $template->source->getSources();
 
         /** @var \Modules\Media\Models\Media $tMedia */
@@ -317,6 +321,10 @@ final class ApiController extends Controller
                     $tcoll['css'][$tMedia->name] = $tMedia;
                     break;
                 case StringUtils::endsWith($lowerPath, '.js'):
+                    if (!isset($tcoll['js'])) {
+                        $tcoll['js'] = [];
+                    }
+
                     $tcoll['js'][$tMedia->name] = $tMedia;
                     break;
                 case StringUtils::endsWith($lowerPath, '.sqlite'):
@@ -404,7 +412,7 @@ final class ApiController extends Controller
             return;
         }
 
-        $path = '/Modules/Helper/' . $request->getData('name');
+        $path = $this->createHelperDir($request->getData('name'));
 
         /** @var \Modules\Media\Models\Media[] $uploaded */
         $uploaded = $this->app->moduleManager->get('Media')->uploadFiles(
