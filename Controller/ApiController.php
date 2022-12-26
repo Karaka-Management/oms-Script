@@ -147,9 +147,12 @@ final class ApiController extends Controller
      */
     private function setHelperResponseHeader(View $view, string $name, RequestAbstract $request, ResponseAbstract $response) : void
     {
+        /** @var array $tcoll */
+        $tcoll = $view->getData('tcoll') ?? [];
+
         switch ($request->getData('type')) {
             case 'pdf':
-                if (!isset($view->getData('tcoll')['pdf'])) {
+                if (!isset($tcoll['pdf'])) {
                     break;
                 }
 
@@ -160,10 +163,10 @@ final class ApiController extends Controller
                     . '"'
                 , true);
                 $response->header->set('Content-Type', MimeType::M_PDF, true);
-                $view->setTemplate('/' . \substr($view->getData('tcoll')['pdf']->getPath(), 0, -8), 'pdf.php');
+                $view->setTemplate('/' . \substr($tcoll['pdf']->getPath(), 0, -8), 'pdf.php');
                 break;
             case 'csv':
-                if (!isset($view->getData('tcoll')['csv'])) {
+                if (!isset($tcoll['csv'])) {
                     break;
                 }
 
@@ -174,11 +177,11 @@ final class ApiController extends Controller
                     . '"'
                 , true);
                 $response->header->set('Content-Type', MimeType::M_CONF, true);
-                $view->setTemplate('/' . \substr($view->getData('tcoll')['csv']->getPath(), 0, -8), 'csv.php');
+                $view->setTemplate('/' . \substr($tcoll['csv']->getPath(), 0, -8), 'csv.php');
                 break;
             case 'xls':
             case 'xlsx':
-                if (!isset($view->getData('tcoll')['excel'])) {
+                if (!isset($tcoll['excel'])) {
                     break;
                 }
 
@@ -189,11 +192,11 @@ final class ApiController extends Controller
                     . '"'
                 , true);
                 $response->header->set('Content-Type', MimeType::M_XLSX, true);
-                $view->setTemplate('/' . \substr($view->getData('tcoll')['excel']->getPath(), 0, -8), 'xls.php');
+                $view->setTemplate('/' . \substr($tcoll['excel']->getPath(), 0, -8), 'xls.php');
                 break;
             case 'doc':
             case 'docx':
-                if (!isset($view->getData('tcoll')['word'])) {
+                if (!isset($tcoll['word'])) {
                     break;
                 }
 
@@ -204,11 +207,11 @@ final class ApiController extends Controller
                     . '"'
                 , true);
                 $response->header->set('Content-Type', MimeType::M_XLSX, true);
-                $view->setTemplate('/' . \substr($view->getData('tcoll')['word']->getPath(), 0, -8), 'doc.php');
+                $view->setTemplate('/' . \substr($tcoll['word']->getPath(), 0, -8), 'doc.php');
                 break;
             case 'ppt':
             case 'pptx':
-                if (!isset($view->getData('tcoll')['powerpoint'])) {
+                if (!isset($tcoll['powerpoint'])) {
                     break;
                 }
 
@@ -219,23 +222,23 @@ final class ApiController extends Controller
                     . '"'
                 , true);
                 $response->header->set('Content-Type', MimeType::M_XLSX, true);
-                $view->setTemplate('/' . \substr($view->getData('tcoll')['powerpoint']->getPath(), 0, -8), 'ppt.php');
+                $view->setTemplate('/' . \substr($tcoll['powerpoint']->getPath(), 0, -8), 'ppt.php');
                 break;
             case 'json':
-                if (!isset($view->getData('tcoll')['json'])) {
+                if (!isset($tcoll['json'])) {
                     break;
                 }
 
                 $response->header->set('Content-Type', MimeType::M_JSON, true);
-                $view->setTemplate('/' . \substr($view->getData('tcoll')['json']->getPath(), 0, -9), 'json.php');
+                $view->setTemplate('/' . \substr($tcoll['json']->getPath(), 0, -9), 'json.php');
                 break;
             default:
-                if (!isset($view->getData('tcoll')['template'])) {
+                if (!isset($tcoll['template'])) {
                     break;
                 }
 
                 $response->header->set('Content-Type', 'text/html; charset=utf-8');
-                $view->setTemplate('/' . \substr($view->getData('tcoll')['template']->getPath(), 0, -8));
+                $view->setTemplate('/' . \substr($tcoll['template']->getPath(), 0, -8));
         }
     }
 
@@ -514,7 +517,7 @@ final class ApiController extends Controller
         $expected = $request->getData('expected');
 
         $helperTemplate                 = new Template();
-        $helperTemplate->name           = $request->getData('name') ?? '';
+        $helperTemplate->name           = (string) ($request->getData('name') ?? '');
         $helperTemplate->description    = Markdown::parse((string) ($request->getData('description') ?? ''));
         $helperTemplate->descriptionRaw = (string) ($request->getData('description') ?? '');
 
@@ -538,7 +541,12 @@ final class ApiController extends Controller
 
                     $internalResponse = new HttpResponse();
                     $this->app->moduleManager->get('Tag')->apiTagCreate($request, $internalResponse, null);
-                    $helperTemplate->addTag($internalResponse->get($request->uri->__toString())['response']);
+
+                    if (!\is_array($data = $internalResponse->get($request->uri->__toString()))) {
+                        continue;
+                    }
+
+                    $helperTemplate->addTag($data['response']);
                 } else {
                     $helperTemplate->addTag(new NullTag((int) $tag['id']));
                 }
