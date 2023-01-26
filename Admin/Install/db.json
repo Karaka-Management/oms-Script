@@ -67,8 +67,8 @@
                 "name": "helper_template_unit",
                 "type": "INT",
                 "null": true,
-                "foreignTable": "organization_unit",
-                "foreignKey": "organization_unit_id"
+                "foreignTable": "unit",
+                "foreignKey": "unit_id"
             },
             "helper_template_created": {
                 "name": "helper_template_created",

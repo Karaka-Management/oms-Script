@@ -224,7 +224,7 @@ final class BackendController extends Controller
             $view->addData('rcoll', $rcoll);
         }
 
-        $view->addData('unit', $this->app->orgId);
+        $view->addData('unit', $this->app->unitId);
         $view->addData('tcoll', $tcoll);
         $view->addData('lang', $request->getData('lang') ?? $request->getLanguage());
         $view->addData('template', $template);
