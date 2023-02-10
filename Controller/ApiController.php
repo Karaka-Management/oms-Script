@@ -458,7 +458,7 @@ final class ApiController extends Controller
         $collection->setPath('/Modules/Media/Files/Modules/Helper/' . ((string) ($request->getData('name') ?? '')));
         $collection->setVirtualPath('/Modules/Helper');
 
-        CollectionMapper::create()->execute($collection);
+        $this->createModel($request->header->account, $collection, CollectionMapper::class, 'collection', $request->getOrigin());
 
         $template = $this->createTemplateFromRequest($request, $collection->getId());
 
@@ -610,7 +610,7 @@ final class ApiController extends Controller
             return;
         }
 
-        CollectionMapper::create()->execute($collection);
+        $this->createModel($request->header->account, $collection, CollectionMapper::class, 'collection', $request->getOrigin());
 
         $report = $this->createReportFromRequest($request, $response, $collection->getId());
 
