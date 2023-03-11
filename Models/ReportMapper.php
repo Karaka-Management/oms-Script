@@ -89,7 +89,7 @@ final class ReportMapper extends DataMapperFactory
      * @var string
      * @since 1.0.0
      */
-    public const PRIMARYFIELD ='helper_report_id';
+    public const PRIMARYFIELD = 'helper_report_id';
 
     /**
      * Created at.

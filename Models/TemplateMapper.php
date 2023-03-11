@@ -125,5 +125,5 @@ final class TemplateMapper extends DataMapperFactory
      * @var string
      * @since 1.0.0
      */
-    public const PRIMARYFIELD ='helper_template_id';
+    public const PRIMARYFIELD = 'helper_template_id';
 }
