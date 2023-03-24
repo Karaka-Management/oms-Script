@@ -6,7 +6,7 @@
  *
  * @package   Modules\Helper
  * @copyright Dennis Eichhorn
- * @license   OMS License 1.0
+ * @license   OMS License 2.0
  * @version   1.0.0
  * @link      https://jingga.app
  */
@@ -29,16 +29,16 @@ $accountDir = $account->getId() . ' ' . $account->login;
 $collections = $this->getData('collections');
 $mediaPath   = \urldecode($this->getData('path') ?? '/');
 
-$previous = empty($templates) ? '{/lang}/{/app}/helper/list' : '{/lang}/{/app}/helper/list?{?}&id=' . \reset($templates)->getId() . '&ptype=p';
-$next     = empty($templates) ? '{/lang}/{/app}/helper/list' : 'helper/list?{?}&id=' . \end($templates)->getId() . '&ptype=n';
+$previous = empty($templates) ? '{/base}/helper/list' : '{/base}/helper/list?{?}&id=' . \reset($templates)->getId() . '&ptype=p';
+$next     = empty($templates) ? '{/base}/helper/list' : 'helper/list?{?}&id=' . \end($templates)->getId() . '&ptype=n';
 
 echo $this->getData('nav')->render(); ?>
 <div class="row">
     <div class="col-xs-12">
         <div class="box">
             <ul class="crumbs-2">
-                <li data-href="<?= UriFactory::build('{/lang}/{/app}/helper/list?path=/Accounts/' . $accountDir); ?>"><a href="<?= UriFactory::build('{/lang}/{/app}/helper/list?path=/Accounts/' . $accountDir); ?>"><i class="fa fa-home"></i></a>
-                <li data-href="<?= UriFactory::build('{/lang}/{/app}/helper/list?path=/'); ?>"><a href="<?= UriFactory::build('{/lang}/{/app}/helper/list?path=/'); ?>">/</a></li>
+                <li data-href="<?= UriFactory::build('{/base}/helper/list?path=/Accounts/' . $accountDir); ?>"><a href="<?= UriFactory::build('{/base}/helper/list?path=/Accounts/' . $accountDir); ?>"><i class="fa fa-home"></i></a>
+                <li data-href="<?= UriFactory::build('{/base}/helper/list?path=/'); ?>"><a href="<?= UriFactory::build('{/base}/helper/list?path=/'); ?>">/</a></li>
                 <?php
                     $subPath    = '';
                     $paths      = \explode('/', \ltrim($mediaPath, '/'));
@@ -56,7 +56,7 @@ echo $this->getData('nav')->render(); ?>
 
                         $subPath .= '/' . $paths[$i];
 
-                        $url = UriFactory::build('{/lang}/{/app}/helper/list?path=' . $subPath);
+                        $url = UriFactory::build('{/base}/helper/list?path=' . $subPath);
                 ?>
                     <li data-href="<?= $url; ?>"<?= $i === $length - 1 ? 'class="active"' : ''; ?>><a href="<?= $url; ?>"><?= $this->printHtml($paths[$i]); ?></a></li>
                 <?php endfor; ?>
@@ -127,7 +127,7 @@ echo $this->getData('nav')->render(); ?>
                             <i class="filter fa fa-filter"></i>
                         </label>
                 <tbody>
-                <?php if (!empty($parentPath)) : $url = UriFactory::build('{/lang}/{/app}/helper/list?path=' . $parentPath); ?>
+                <?php if (!empty($parentPath)) : $url = UriFactory::build('{/base}/helper/list?path=' . $parentPath); ?>
                         <tr tabindex="0" data-href="<?= $url; ?>">
                             <td>
                             <td data-label="<?= $this->getHtml('Type'); ?>"><a href="<?= $url; ?>"><i class="fa fa-folder-open-o"></i></a>
@@ -139,7 +139,7 @@ echo $this->getData('nav')->render(); ?>
                             <td>
                     <?php endif; ?>
                 <?php $count = 0; foreach ($collections as $key => $value) : ++$count;
-                    $url     = UriFactory::build('{/lang}/{/app}/helper/list?path=' . \rtrim($value->getVirtualPath(), '/') . '/' . $value->name);
+                    $url     = UriFactory::build('{/base}/helper/list?path=' . \rtrim($value->getVirtualPath(), '/') . '/' . $value->name);
                 ?>
                     <tr data-href="<?= $url; ?>">
                         <td><label class="checkbox" for="helperList-<?= $key; ?>">
@@ -149,11 +149,11 @@ echo $this->getData('nav')->render(); ?>
                         <td><a href="<?= $url; ?>"><i class="fa fa-folder-open-o"></i></a>
                         <td><a href="<?= $url; ?>"><?= $this->printHtml($value->name); ?></a>
                         <td>
-                        <td><a class="content" href="<?= UriFactory::build('{/lang}/{/app}/profile/single?{?}&for=' . $value->createdBy->getId()); ?>"><?= $this->printHtml($this->renderUserName('%3$s %2$s %1$s', [$value->createdBy->name1, $value->createdBy->name2, $value->createdBy->name3, $value->createdBy->login ?? ''])); ?></a>
+                        <td><a class="content" href="<?= UriFactory::build('{/base}/profile/single?{?}&for=' . $value->createdBy->getId()); ?>"><?= $this->printHtml($this->renderUserName('%3$s %2$s %1$s', [$value->createdBy->name1, $value->createdBy->name2, $value->createdBy->name3, $value->createdBy->login ?? ''])); ?></a>
                         <td><a href="<?= $url; ?>"><?= $this->printHtml($value->createdAt->format('Y-m-d')); ?></a>
                 <?php endforeach; ?>
                         <?php foreach ($templates as $key => $template) : ++$count;
-                        $url = UriFactory::build('{/lang}/{/app}/helper/report/view?{?}&id=' . $template->getId()); ?>
+                        $url = UriFactory::build('{/base}/helper/report/view?{?}&id=' . $template->getId()); ?>
                 <tr tabindex="0" data-href="<?= $url; ?>">
                     <td><label class="checkbox" for="helperList-<?= $key; ?>">
                                     <input type="checkbox" id="helperList-<?= $key; ?>" name="helperselect">
@@ -165,7 +165,7 @@ echo $this->getData('nav')->render(); ?>
                         <?php $tags = $template->getTags(); foreach ($tags as $tag) : ?>
                             <span class="tag" style="background: <?= $this->printHtml($tag->color); ?>"><?= !empty($tag->icon) ? '<i class="' . $this->printHtml($tag->icon) . '"></i>' : ''; ?><?= $this->printHtml($tag->getL11n()); ?></span>
                         <?php endforeach; ?>
-                    <td data-label="<?= $this->getHtml('Creator'); ?>"><a class="content" href="<?= UriFactory::build('{/lang}/{/app}/profile/single?{?}&for=' . $template->createdBy->getId()); ?>"><?= $this->printHtml($this->renderUserName('%3$s %2$s %1$s', [$template->createdBy->name1, $template->createdBy->name2, $template->createdBy->name3, $template->createdBy->login ?? ''])); ?></a>
+                    <td data-label="<?= $this->getHtml('Creator'); ?>"><a class="content" href="<?= UriFactory::build('{/base}/profile/single?{?}&for=' . $template->createdBy->getId()); ?>"><?= $this->printHtml($this->renderUserName('%3$s %2$s %1$s', [$template->createdBy->name1, $template->createdBy->name2, $template->createdBy->name3, $template->createdBy->login ?? ''])); ?></a>
                     <td data-label="<?= $this->getHtml('Updated'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($template->createdAt->format('Y-m-d')); ?></a>
                         <?php endforeach; ?>
                         <?php if ($count === 0) : ?>

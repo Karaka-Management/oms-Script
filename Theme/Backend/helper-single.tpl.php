@@ -6,7 +6,7 @@
  *
  * @package   Modules\Helper
  * @copyright Dennis Eichhorn
- * @license   OMS License 1.0
+ * @license   OMS License 2.0
  * @version   1.0.0
  * @link      https://jingga.app
  */
@@ -97,7 +97,7 @@ echo $this->getData('nav')->render(); ?>
                                     <option value="json"<?= $this->printHtml((!isset($tcoll['json'])) ? ' disabled' : ''); ?>>Json
                                 </select>
                         <tr>
-                            <td><a tabindex="0" target="_blank" class="button" href="<?= UriFactory::build('{/lang}/{/app}/{/api}helper/report/export?{?}'); ?>&type={#iExport}&lang={#iLang}{#iUiSettings}"><?= $this->getHtml('Export'); ?></a>
+                            <td><a tabindex="0" target="_blank" class="button" href="<?= UriFactory::build('{/base}/{/api}helper/report/export?{?}'); ?>&type={#iExport}&lang={#iLang}{#iUiSettings}"><?= $this->getHtml('Export'); ?></a>
                     </table>
                 </form>
             </div>
@@ -116,7 +116,7 @@ echo $this->getData('nav')->render(); ?>
                         <?php endforeach; ?>
                     </table>
                 </div>
-                <div class="portlet-foot"><a tabindex="0" class="button" href="<?= UriFactory::build('{/lang}/{/app}/{%}'); ?>&lang={#iLang}{#iUiSettings}"><?= $this->getHtml('Load'); ?></a></div>
+                <div class="portlet-foot"><a tabindex="0" class="button" href="<?= UriFactory::build('{/base}/{%}'); ?>&lang={#iLang}{#iUiSettings}"><?= $this->getHtml('Load'); ?></a></div>
             </form>
         </div>
         <?php endif; ?>
@@ -146,7 +146,7 @@ echo $this->getData('nav')->render(); ?>
                         <td><?= $this->printHtml($template->name); ?>
                     <tr>
                         <td><?= $this->getHtml('Creator'); ?>
-                        <td><a href="<?= UriFactory::build('{/lang}/{/app}/profile/single?for=' . $template->createdBy->getId()); ?>"><?= $this->printHtml($template->createdBy->name1); ?></a>
+                        <td><a href="<?= UriFactory::build('{/base}/profile/single?for=' . $template->createdBy->getId()); ?>"><?= $this->printHtml($template->createdBy->name1); ?></a>
                     <tr>
                         <td><?= $this->getHtml('Created'); ?>
                         <td><?= $template->createdAt->format('Y-m-d'); ?>

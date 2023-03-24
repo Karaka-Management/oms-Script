@@ -6,7 +6,7 @@
  *
  * @package   Template
  * @copyright Dennis Eichhorn
- * @license   OMS License 1.0
+ * @license   OMS License 2.0
  * @version   1.0.0
  * @link      https://jingga.app
  */
@@ -38,7 +38,7 @@ $duration = (int) ($this->request->getData('duration') ?? 10);
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="<?= UriFactory::build('{/lang}/{/app}/{/base}/' . \ltrim($tcoll['css']['styles.css']->getPath(), '/')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?= UriFactory::build('{/base}/{/base}/' . \ltrim($tcoll['css']['styles.css']->getPath(), '/')); ?>">
 </head>
 <body>
 <table>

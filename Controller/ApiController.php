@@ -6,7 +6,7 @@
  *
  * @package   Modules\Helper
  * @copyright Dennis Eichhorn
- * @license   OMS License 1.0
+ * @license   OMS License 2.0
  * @version   1.0.0
  * @link      https://jingga.app
  */
@@ -49,7 +49,7 @@ use phpOMS\Views\View;
  * Helper controller class.
  *
  * @package    Modules\Helper
- * @license    OMS License 1.0
+ * @license    OMS License 2.0
  * @link       https://jingga.app
  * @since      1.0.0
  */
@@ -415,7 +415,7 @@ final class ApiController extends Controller
             return;
         }
 
-        $path = $this->createHelperDir($request->getData('name'));
+        $path = $this->createHelperDir($request->getDataString('name') ?? '');
 
         /** @var \Modules\Media\Models\Media[] $uploaded */
         $uploaded = $this->app->moduleManager->get('Media')->uploadFiles(
@@ -442,8 +442,8 @@ final class ApiController extends Controller
 
         /** @var Collection $collection */
         $collection = $this->app->moduleManager->get('Media')->createMediaCollectionFromMedia(
-            (string) ($request->getData('name') ?? ''),
-            (string) ($request->getData('description') ?? ''),
+            $request->getDataString('name') ?? '',
+            $request->getDataString('description') ?? '',
             $files,
             $request->header->account
         );
@@ -455,7 +455,7 @@ final class ApiController extends Controller
             return;
         }
 
-        $collection->setPath('/Modules/Media/Files/Modules/Helper/' . ((string) ($request->getData('name') ?? '')));
+        $collection->setPath('/Modules/Media/Files/Modules/Helper/' . ($request->getDataString('name') ?? ''));
         $collection->setVirtualPath('/Modules/Helper');
 
         $this->createModel($request->header->account, $collection, CollectionMapper::class, 'collection', $request->getOrigin());
@@ -514,22 +514,20 @@ final class ApiController extends Controller
      */
     private function createTemplateFromRequest(RequestAbstract $request, int $collectionId) : Template
     {
-        $expected = $request->getData('expected');
-
         $helperTemplate                 = new Template();
-        $helperTemplate->name           = (string) ($request->getData('name') ?? '');
-        $helperTemplate->description    = Markdown::parse((string) ($request->getData('description') ?? ''));
-        $helperTemplate->descriptionRaw = (string) ($request->getData('description') ?? '');
+        $helperTemplate->name           = $request->getDataString('name') ?? '';
+        $helperTemplate->description    = Markdown::parse($request->getDataString('description') ?? '');
+        $helperTemplate->descriptionRaw = $request->getDataString('description') ?? '';
 
         if ($collectionId > 0) {
             $helperTemplate->source = new NullCollection($collectionId);
         }
 
-        $helperTemplate->isStandalone = (bool) ($request->getData('standalone') ?? false);
-        $helperTemplate->setExpected(!empty($expected) ? \json_decode($expected, true) : []);
-        $helperTemplate->createdBy = new NullAccount($request->header->account);
-        $helperTemplate->setDatatype((int) ($request->getData('datatype') ?? TemplateDataType::OTHER));
-        $helperTemplate->virtualPath = (string) ($request->getData('virtualpath') ?? '/');
+        $helperTemplate->isStandalone = $request->getDataBool('standalone') ?? false;
+        $helperTemplate->createdBy    = new NullAccount($request->header->account);
+        $helperTemplate->virtualPath  = $request->getDataString('virtualpath') ?? '/';
+        $helperTemplate->setExpected($request->getDataJson('expected'));
+        $helperTemplate->setDatatype($request->getDataInt('datatype') ?? TemplateDataType::OTHER);
 
         if (!empty($tags = $request->getDataJson('tags'))) {
             foreach ($tags as $tag) {
@@ -594,13 +592,13 @@ final class ApiController extends Controller
         );
 
         $collection = $this->app->moduleManager->get('Media')->createMediaCollectionFromMedia(
-            (string) ($request->getData('name') ?? ''),
-            (string) ($request->getData('description') ?? ''),
+            $request->getDataString('name') ?? '',
+            $request->getDataString('description') ?? '',
             $files,
             $request->header->account
         );
 
-        $collection->setPath('/Modules/Media/Files/Modules/Helper/' . ((string) ($request->getData('name') ?? '')));
+        $collection->setPath('/Modules/Media/Files/Modules/Helper/' . ($request->getDataString('name') ?? ''));
         $collection->setVirtualPath('/Modules/Helper');
 
         if ($collection instanceof NullCollection) {
