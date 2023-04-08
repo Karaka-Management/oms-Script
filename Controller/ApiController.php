@@ -93,7 +93,7 @@ final class ApiController extends Controller
 
         // is allowed to read
         if (!$this->app->accountManager->get($accountId)->hasPermission(PermissionType::READ, $this->app->unitId, null, self::NAME, PermissionCategory::REPORT, $template->getId())
-            || ($isExport && !$this->app->accountManager->get($accountId)->hasPermission(PermissionType::READ, $this->app->unitId, $this->app->appName, self::NAME, PermissionCategory::EXPORT))
+            || ($isExport && !$this->app->accountManager->get($accountId)->hasPermission(PermissionType::READ, $this->app->unitId, $this->app->appId, self::NAME, PermissionCategory::EXPORT))
         ) {
             $response->header->status = RequestStatusCode::R_403;
 
@@ -124,7 +124,7 @@ final class ApiController extends Controller
     private function validateExport(RequestAbstract $request) : array
     {
         $val = [];
-        if (($val['id'] = empty($request->getData('id')))) {
+        if (($val['id'] = !$request->hasData('id'))) {
             return $val;
         }
 
@@ -466,7 +466,7 @@ final class ApiController extends Controller
             new AccountPermission(
                 $request->header->account,
                 $this->app->unitId,
-                $this->app->appName,
+                $this->app->appId,
                 self::NAME,
                 self::NAME,
                 PermissionCategory::TEMPLATE,
@@ -494,7 +494,7 @@ final class ApiController extends Controller
     private function validateTemplateCreate(RequestAbstract $request) : array
     {
         $val = [];
-        if (($val['name'] = empty($request->getData('name')))
+        if (($val['name'] = !$request->hasData('name'))
             || ($val['files'] = empty($request->getFiles()))
         ) {
             return $val;
@@ -616,7 +616,7 @@ final class ApiController extends Controller
             new AccountPermission(
                 $request->header->account,
                 $this->app->unitId,
-                $this->app->appName,
+                $this->app->appId,
                 self::NAME,
                 self::NAME,
                 PermissionCategory::REPORT,
@@ -644,7 +644,7 @@ final class ApiController extends Controller
     private function validateReportCreate(RequestAbstract $request) : array
     {
         $val = [];
-        if (($val['template'] = empty($request->getData('template')))
+        if (($val['template'] = !$request->hasData('template'))
         ) {
             return $val;
         }
