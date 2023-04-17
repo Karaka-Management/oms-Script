@@ -23,6 +23,7 @@ use phpOMS\Application\ApplicationAbstract;
 use phpOMS\DataStorage\Session\HttpSession;
 use phpOMS\Dispatcher\Dispatcher;
 use phpOMS\Event\EventManager;
+use phpOMS\Localization\L11nManager;
 use phpOMS\Message\Http\HttpRequest;
 use phpOMS\Message\Http\HttpResponse;
 use phpOMS\Message\Http\RequestStatusCode;
@@ -70,13 +71,14 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $this->app->eventManager   = new EventManager($this->app->dispatcher);
         $this->app->eventManager->importFromFile(__DIR__ . '/../../../../Web/Api/Hooks.php');
         $this->app->sessionManager = new HttpSession(36000);
+        $this->app->l11nManager    = new L11nManager();
 
         $account = new Account();
         TestUtils::setMember($account, 'id', 1);
 
         $permission = new AccountPermission();
         $permission->setUnit(1);
-        $permission->setApp('api');
+        $permission->setApp(1);
         $permission->setPermission(
             PermissionType::READ
             | PermissionType::CREATE
@@ -250,7 +252,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $request->setData('type', 'pdf');
 
         $this->module->apiHelperExport($request, $response);
-        self::assertTrue(\stripos($response->header->get('Content-disposition')[0], 'pdf') !== false);
+        self::assertTrue(\stripos($response->header->get('Content-disposition')[0] ?? '', 'pdf') !== false);
     }
 
     /**
@@ -267,7 +269,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $request->setData('type', 'xlsx');
 
         $this->module->apiHelperExport($request, $response);
-        self::assertTrue(\stripos($response->header->get('Content-disposition')[0], 'xlsx') !== false);
+        self::assertTrue(\stripos($response->header->get('Content-disposition')[0] ?? '', 'xlsx') !== false);
     }
 
     /**
@@ -284,7 +286,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $request->setData('type', 'docx');
 
         $this->module->apiHelperExport($request, $response);
-        self::assertTrue(\stripos($response->header->get('Content-disposition')[0], 'docx') !== false);
+        self::assertTrue(\stripos($response->header->get('Content-disposition')[0] ?? '', 'docx') !== false);
     }
 
     /**
@@ -301,7 +303,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $request->setData('type', 'pptx');
 
         $this->module->apiHelperExport($request, $response);
-        self::assertTrue(\stripos($response->header->get('Content-disposition')[0], 'pptx') !== false);
+        self::assertTrue(\stripos($response->header->get('Content-disposition')[0] ?? '', 'pptx') !== false);
     }
 
     /**
@@ -318,7 +320,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $request->setData('type', 'csv');
 
         $this->module->apiHelperExport($request, $response);
-        self::assertTrue(\stripos($response->header->get('Content-disposition')[0], 'csv') !== false);
+        self::assertTrue(\stripos($response->header->get('Content-disposition')[0] ?? '', 'csv') !== false);
     }
 
     /**
@@ -335,7 +337,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $request->setData('type', 'json');
 
         $this->module->apiHelperExport($request, $response);
-        self::assertTrue(\stripos($response->header->get('Content-disposition')[0], 'json') !== false);
+        self::assertTrue(\stripos($response->header->get('Content-disposition')[0] ?? '', 'json') !== false);
     }
 
     /**
