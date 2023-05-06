@@ -44,15 +44,15 @@ final class ReportTest extends \PHPUnit\Framework\TestCase
      */
     public function testDefault() : void
     {
-        self::assertEquals(0, $this->report->getId());
-        self::assertEquals(0, $this->report->createdBy->getId());
+        self::assertEquals(0, $this->report->id);
+        self::assertEquals(0, $this->report->createdBy->id);
         self::assertEquals((new \DateTime('now'))->format('Y-m-d'), $this->report->createdAt->format('Y-m-d'));
         self::assertEquals('', $this->report->title);
         self::assertEquals(HelperStatus::INACTIVE, $this->report->getStatus());
         self::assertEquals('', $this->report->description);
         self::assertEquals('', $this->report->descriptionRaw);
-        self::assertEquals(0, $this->report->template->getId());
-        self::assertEquals(0, $this->report->source->getId());
+        self::assertEquals(0, $this->report->template->id);
+        self::assertEquals(0, $this->report->source->id);
     }
 
     /**
@@ -63,7 +63,7 @@ final class ReportTest extends \PHPUnit\Framework\TestCase
     public function testCreatedByInputOutput() : void
     {
         $this->report->createdBy = new NullAccount(1);
-        self::assertEquals(1, $this->report->createdBy->getId());
+        self::assertEquals(1, $this->report->createdBy->id);
     }
 
     /**
@@ -118,7 +118,7 @@ final class ReportTest extends \PHPUnit\Framework\TestCase
     public function testTemplateInputOutput() : void
     {
         $this->report->template = new NullTemplate(11);
-        self::assertEquals(11, $this->report->template->getId());
+        self::assertEquals(11, $this->report->template->id);
     }
 
     /**
@@ -129,7 +129,7 @@ final class ReportTest extends \PHPUnit\Framework\TestCase
     public function testSourceInputOutput() : void
     {
         $this->report->source = new NullCollection(4);
-        self::assertEquals(4, $this->report->source->getId());
+        self::assertEquals(4, $this->report->source->id);
     }
 
     /**

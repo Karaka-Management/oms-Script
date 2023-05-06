@@ -47,7 +47,7 @@ echo $this->getData('nav')->render(); ?>
     <div class="col-xs-12 col-md-9">
         <div class="portlet">
             <div class="portlet-body">
-                <iframe data-form="iUiSettings" data-name="iframeHelper" id="iHelperFrame" src="<?= UriFactory::build('{/api}helper/report/export/?{?}&id=' . $template->getId()); ?>&u=<?=  $this->getData('unit'); ?>" allowfullscreen></iframe>
+                <iframe data-form="iUiSettings" data-name="iframeHelper" id="iHelperFrame" src="<?= UriFactory::build('{/api}helper/report/export/?{?}&id=' . $template->id); ?>&u=<?=  $this->getData('unit'); ?>" allowfullscreen></iframe>
             </div>
         </div>
     </div>
@@ -146,7 +146,7 @@ echo $this->getData('nav')->render(); ?>
                         <td><?= $this->printHtml($template->name); ?>
                     <tr>
                         <td><?= $this->getHtml('Creator'); ?>
-                        <td><a href="<?= UriFactory::build('{/base}/profile/single?for=' . $template->createdBy->getId()); ?>"><?= $this->printHtml($template->createdBy->name1); ?></a>
+                        <td><a href="<?= UriFactory::build('{/base}/profile/single?for=' . $template->createdBy->id); ?>"><?= $this->printHtml($template->createdBy->name1); ?></a>
                     <tr>
                         <td><?= $this->getHtml('Created'); ?>
                         <td><?= $template->createdAt->format('Y-m-d'); ?>

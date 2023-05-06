@@ -92,7 +92,7 @@ final class ApiController extends Controller
         $isExport  = \in_array($request->getData('type'), ['xlsx', 'pdf', 'docx', 'pptx', 'csv', 'json']);
 
         // is allowed to read
-        if (!$this->app->accountManager->get($accountId)->hasPermission(PermissionType::READ, $this->app->unitId, null, self::NAME, PermissionCategory::REPORT, $template->getId())
+        if (!$this->app->accountManager->get($accountId)->hasPermission(PermissionType::READ, $this->app->unitId, null, self::NAME, PermissionCategory::REPORT, $template->id)
             || ($isExport && !$this->app->accountManager->get($accountId)->hasPermission(PermissionType::READ, $this->app->unitId, $this->app->appId, self::NAME, PermissionCategory::EXPORT))
         ) {
             $response->header->status = RequestStatusCode::R_403;
@@ -354,7 +354,7 @@ final class ApiController extends Controller
                 ->with('template')
                 ->with('source')
                 ->with('source/sources')
-                ->where('template', $template->getId())
+                ->where('template', $template->id)
                 ->sort('id', OrderType::DESC)
                 ->limit(1)
                 ->execute();
@@ -362,7 +362,7 @@ final class ApiController extends Controller
             $rcoll  = [];
             $report = $report === false ? new NullReport() : $report;
 
-            if (!($report instanceof NullReport)) {
+            if ($report->id > 0) {
                 $files = $report->source->getSources();
 
                 foreach ($files as $media) {
@@ -429,7 +429,7 @@ final class ApiController extends Controller
         );
 
         foreach ($uploaded as $upload) {
-            if ($upload instanceof NullMedia) {
+            if ($upload->id === 0) {
                 continue;
             }
 
@@ -448,7 +448,7 @@ final class ApiController extends Controller
             $request->header->account
         );
 
-        if ($collection instanceof NullCollection) {
+        if ($collection->id === 0) {
             $response->header->status = RequestStatusCode::R_403;
             $this->fillJsonResponse($request, $response, NotificationLevel::ERROR, 'Template', 'Couldn\'t create collection for template', null);
 
@@ -460,7 +460,7 @@ final class ApiController extends Controller
 
         $this->createModel($request->header->account, $collection, CollectionMapper::class, 'collection', $request->getOrigin());
 
-        $template = $this->createTemplateFromRequest($request, $collection->getId());
+        $template = $this->createTemplateFromRequest($request, $collection->id);
 
         $this->app->moduleManager->get('Admin')->createAccountModelPermission(
             new AccountPermission(
@@ -470,7 +470,7 @@ final class ApiController extends Controller
                 self::NAME,
                 self::NAME,
                 PermissionCategory::TEMPLATE,
-                $template->getId(),
+                $template->id,
                 null,
                 PermissionType::READ | PermissionType::MODIFY | PermissionType::DELETE | PermissionType::PERMISSION,
             ),
@@ -601,7 +601,7 @@ final class ApiController extends Controller
         $collection->setPath('/Modules/Media/Files/Modules/Helper/' . ($request->getDataString('name') ?? ''));
         $collection->setVirtualPath('/Modules/Helper');
 
-        if ($collection instanceof NullCollection) {
+        if ($collection->id === 0) {
             $response->header->status = RequestStatusCode::R_403;
             $this->fillJsonResponse($request, $response, NotificationLevel::ERROR, 'Report', 'Couldn\'t create collection for report', null);
 
@@ -610,7 +610,7 @@ final class ApiController extends Controller
 
         $this->createModel($request->header->account, $collection, CollectionMapper::class, 'collection', $request->getOrigin());
 
-        $report = $this->createReportFromRequest($request, $response, $collection->getId());
+        $report = $this->createReportFromRequest($request, $response, $collection->id);
 
         $this->app->moduleManager->get('Admin')->createAccountModelPermission(
             new AccountPermission(
@@ -620,7 +620,7 @@ final class ApiController extends Controller
                 self::NAME,
                 self::NAME,
                 PermissionCategory::REPORT,
-                $report->getId(),
+                $report->id,
                 null,
                 PermissionType::READ | PermissionType::MODIFY | PermissionType::DELETE | PermissionType::PERMISSION,
             ),

@@ -48,16 +48,16 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
      */
     public function testDefault() : void
     {
-        self::assertEquals(0, $this->template->getId());
-        self::assertEquals(0, $this->template->unit->getId());
-        self::assertEquals(0, $this->template->createdBy->getId());
+        self::assertEquals(0, $this->template->id);
+        self::assertEquals(0, $this->template->unit->id);
+        self::assertEquals(0, $this->template->createdBy->id);
         self::assertEquals((new \DateTime('now'))->format('Y-m-d'), $this->template->createdAt->format('Y-m-d'));
         self::assertEquals('', $this->template->name);
         self::assertEquals(HelperStatus::INACTIVE, $this->template->getStatus());
         self::assertEquals('', $this->template->description);
         self::assertEquals('', $this->template->descriptionRaw);
         self::assertEquals([], $this->template->getExpected());
-        self::assertEquals(0, $this->template->source->getId());
+        self::assertEquals(0, $this->template->source->id);
         self::assertFalse($this->template->isStandalone);
         self::assertEquals(TemplateDataType::OTHER, $this->template->getDatatype());
         self::assertInstanceOf(NullReport::class, $this->template->getNewestReport());
@@ -71,7 +71,7 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
     public function testUnitInputOutput() : void
     {
         $this->template->unit = new NullUnit(1);
-        self::assertEquals(1, $this->template->unit->getId());
+        self::assertEquals(1, $this->template->unit->id);
     }
 
     /**
@@ -82,7 +82,7 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
     public function testCreatedByInputOutput() : void
     {
         $this->template->createdBy = new NullAccount(1);
-        self::assertEquals(1, $this->template->createdBy->getId());
+        self::assertEquals(1, $this->template->createdBy->id);
     }
 
     /**
@@ -160,7 +160,7 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
     public function testSourceInputOutput() : void
     {
         $this->template->source = new NullCollection(4);
-        self::assertEquals(4, $this->template->source->getId());
+        self::assertEquals(4, $this->template->source->id);
     }
 
     /**

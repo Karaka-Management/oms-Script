@@ -23,14 +23,14 @@ $templates = $this->getData('reports');
 /** @var \Modules\Admin\Models\Account $account */
 $account = $this->getData('account');
 
-$accountDir = $account->getId() . ' ' . $account->login;
+$accountDir = $account->id . ' ' . $account->login;
 
 /** @var \Modules\Media\Models\Collection[] */
 $collections = $this->getData('collections');
 $mediaPath   = \urldecode($this->getData('path') ?? '/');
 
-$previous = empty($templates) ? '{/base}/helper/list' : '{/base}/helper/list?{?}&id=' . \reset($templates)->getId() . '&ptype=p';
-$next     = empty($templates) ? '{/base}/helper/list' : 'helper/list?{?}&id=' . \end($templates)->getId() . '&ptype=n';
+$previous = empty($templates) ? '{/base}/helper/list' : '{/base}/helper/list?{?}&id=' . \reset($templates)->id . '&ptype=p';
+$next     = empty($templates) ? '{/base}/helper/list' : 'helper/list?{?}&id=' . \end($templates)->id . '&ptype=n';
 
 echo $this->getData('nav')->render(); ?>
 <div class="row">
@@ -149,11 +149,11 @@ echo $this->getData('nav')->render(); ?>
                         <td><a href="<?= $url; ?>"><i class="fa fa-folder-open-o"></i></a>
                         <td><a href="<?= $url; ?>"><?= $this->printHtml($value->name); ?></a>
                         <td>
-                        <td><a class="content" href="<?= UriFactory::build('{/base}/profile/single?{?}&for=' . $value->createdBy->getId()); ?>"><?= $this->printHtml($this->renderUserName('%3$s %2$s %1$s', [$value->createdBy->name1, $value->createdBy->name2, $value->createdBy->name3, $value->createdBy->login ?? ''])); ?></a>
+                        <td><a class="content" href="<?= UriFactory::build('{/base}/profile/single?{?}&for=' . $value->createdBy->id); ?>"><?= $this->printHtml($this->renderUserName('%3$s %2$s %1$s', [$value->createdBy->name1, $value->createdBy->name2, $value->createdBy->name3, $value->createdBy->login ?? ''])); ?></a>
                         <td><a href="<?= $url; ?>"><?= $this->printHtml($value->createdAt->format('Y-m-d')); ?></a>
                 <?php endforeach; ?>
                         <?php foreach ($templates as $key => $template) : ++$count;
-                        $url = UriFactory::build('{/base}/helper/report/view?{?}&id=' . $template->getId()); ?>
+                        $url = UriFactory::build('{/base}/helper/report/view?{?}&id=' . $template->id); ?>
                 <tr tabindex="0" data-href="<?= $url; ?>">
                     <td><label class="checkbox" for="helperList-<?= $key; ?>">
                                     <input type="checkbox" id="helperList-<?= $key; ?>" name="helperselect">
@@ -165,7 +165,7 @@ echo $this->getData('nav')->render(); ?>
                         <?php $tags = $template->getTags(); foreach ($tags as $tag) : ?>
                             <span class="tag" style="background: <?= $this->printHtml($tag->color); ?>"><?= !empty($tag->icon) ? '<i class="' . $this->printHtml($tag->icon) . '"></i>' : ''; ?><?= $this->printHtml($tag->getL11n()); ?></span>
                         <?php endforeach; ?>
-                    <td data-label="<?= $this->getHtml('Creator'); ?>"><a class="content" href="<?= UriFactory::build('{/base}/profile/single?{?}&for=' . $template->createdBy->getId()); ?>"><?= $this->printHtml($this->renderUserName('%3$s %2$s %1$s', [$template->createdBy->name1, $template->createdBy->name2, $template->createdBy->name3, $template->createdBy->login ?? ''])); ?></a>
+                    <td data-label="<?= $this->getHtml('Creator'); ?>"><a class="content" href="<?= UriFactory::build('{/base}/profile/single?{?}&for=' . $template->createdBy->id); ?>"><?= $this->printHtml($this->renderUserName('%3$s %2$s %1$s', [$template->createdBy->name1, $template->createdBy->name2, $template->createdBy->name3, $template->createdBy->login ?? ''])); ?></a>
                     <td data-label="<?= $this->getHtml('Updated'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($template->createdAt->format('Y-m-d')); ?></a>
                         <?php endforeach; ?>
                         <?php if ($count === 0) : ?>

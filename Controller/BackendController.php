@@ -205,13 +205,13 @@ final class BackendController extends Controller
             }
 
             /** @var \Modules\Helper\Models\Report[] $report */
-            $report = ReportMapper::get()->where('template', $template->getId())->sort('id', OrderType::DESC)->limit(1)->execute();
+            $report = ReportMapper::get()->where('template', $template->id)->sort('id', OrderType::DESC)->limit(1)->execute();
 
             $rcoll  = [];
             $report = \end($report);
             $report = $report === false ? new NullReport() : $report;
 
-            if (!($report instanceof NullReport)) {
+            if ($report->id > 0) {
                 /** @var Media[] $files */
                 $files = $report->source->getSources();
 

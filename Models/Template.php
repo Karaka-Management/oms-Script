@@ -38,7 +38,7 @@ class Template implements \JsonSerializable
      * @var int
      * @since 1.0.0
      */
-    protected int $id = 0;
+    public int $id = 0;
 
     /**
      * Unit.
@@ -54,7 +54,7 @@ class Template implements \JsonSerializable
      * @var int
      * @since 1.0.0
      */
-    private int $status = HelperStatus::INACTIVE;
+    public int $status = HelperStatus::INACTIVE;
 
     /**
      * Template data type.

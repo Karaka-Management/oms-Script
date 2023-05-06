@@ -169,12 +169,12 @@ final class ReportMapperTest extends \PHPUnit\Framework\TestCase
         $report->source = $collection;
 
         $id = ReportMapper::create()->execute($report);
-        self::assertGreaterThan(0, $report->getId());
-        self::assertEquals($id, $report->getId());
+        self::assertGreaterThan(0, $report->id);
+        self::assertEquals($id, $report->id);
 
-        $reportR = ReportMapper::get()->with('template')->where('id', $report->getId())->execute();
+        $reportR = ReportMapper::get()->with('template')->where('id', $report->id)->execute();
         self::assertEquals($report->createdAt->format('Y-m-d'), $reportR->createdAt->format('Y-m-d'));
-        self::assertEquals($report->createdBy->getId(), $reportR->createdBy->getId());
+        self::assertEquals($report->createdBy->id, $reportR->createdBy->id);
         self::assertEquals($report->description, $reportR->description);
         self::assertEquals($report->title, $reportR->title);
         self::assertEquals($report->getStatus(), $reportR->getStatus());

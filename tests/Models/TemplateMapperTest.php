@@ -103,12 +103,12 @@ final class TemplateMapperTest extends \PHPUnit\Framework\TestCase
         $template->source = $collection;
 
         $id = TemplateMapper::create()->execute($template);
-        self::assertGreaterThan(0, $template->getId());
-        self::assertEquals($id, $template->getId());
+        self::assertGreaterThan(0, $template->id);
+        self::assertEquals($id, $template->id);
 
-        $templateR = TemplateMapper::get()->where('id', $template->getId())->execute();
+        $templateR = TemplateMapper::get()->where('id', $template->id)->execute();
         self::assertEquals($template->createdAt->format('Y-m-d'), $templateR->createdAt->format('Y-m-d'));
-        self::assertEquals($template->createdBy->getId(), $templateR->createdBy->getId());
+        self::assertEquals($template->createdBy->id, $templateR->createdBy->id);
         self::assertEquals($template->description, $templateR->description);
         self::assertEquals($template->descriptionRaw, $templateR->descriptionRaw);
         self::assertEquals($template->name, $templateR->name);
