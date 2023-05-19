@@ -48,9 +48,9 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
      */
     protected ModuleAbstract $module;
 
-    protected static int $depreciationHelper = 0;
+    protected static ?int $depreciationHelper = 0;
 
-    protected static int $depreciationHelper2 = 0;
+    protected static ?int $depreciationHelper2 = 0;
 
     /**
      * {@inheritdoc}
@@ -139,7 +139,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         TestUtils::setMember($request, 'files', $files);
 
         $this->module->apiTemplateCreate($request, $response);
-        self::assertGreaterThan(0, self::$depreciationHelper = $response->get('')['response']->id);
+        self::assertGreaterThan(0, self::$depreciationHelper = $response->get('')['response']?->id);
 
         \rmdir(__DIR__ . '/temp');
     }
@@ -186,7 +186,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         TestUtils::setMember($request, 'files', $files);
 
         $this->module->apiTemplateCreate($request, $response);
-        self::assertGreaterThan(0, self::$depreciationHelper2 = $response->get('')['response']->id);
+        self::assertGreaterThan(0, self::$depreciationHelper2 = $response->get('')['response']?->id);
 
         \rmdir(__DIR__ . '/temp');
     }
