@@ -49,10 +49,10 @@ $oSlide1->setBackground($oBkgColor);
 
 $shape = new File();
 $shape->setName('Company Logo')
-	->setDescription('Company Logo')
-	->setPath(__DIR__ . '/logo.png')
-	->setHeight(300)
-	->setOffsetX(320)
+    ->setDescription('Company Logo')
+    ->setPath(__DIR__ . '/logo.png')
+    ->setHeight(300)
+    ->setOffsetX(320)
     ->setOffsetY(120);
 $oSlide1->addShape($shape);
 
@@ -145,10 +145,10 @@ $shape->createParagraph()->createTextRun('Word');
 
 $shape = new File();
 $shape->setName('Company Logo')
-	->setDescription('Company Logo')
-	->setPath(__DIR__ . '/logo.png')
-	->setHeight(50)
-	->setOffsetX(880)
+    ->setDescription('Company Logo')
+    ->setPath(__DIR__ . '/logo.png')
+    ->setHeight(50)
+    ->setOffsetX(880)
     ->setOffsetY(650);
 $oSlide2->addShape($shape);
 
@@ -234,10 +234,10 @@ $shape->createParagraph()
 
 $shape = new File();
 $shape->setName('Company Logo')
-	->setDescription('Company Logo')
-	->setPath(__DIR__ . '/logo.png')
-	->setHeight(50)
-	->setOffsetX(880)
+    ->setDescription('Company Logo')
+    ->setPath(__DIR__ . '/logo.png')
+    ->setHeight(50)
+    ->setOffsetX(880)
     ->setOffsetY(650);
 $oSlide3->addShape($shape);
 
@@ -301,10 +301,10 @@ $shape->createParagraph()->createTextRun('Internal APIs (everything from the Kar
 
 $shape = new File();
 $shape->setName('Company Logo')
-	->setDescription('Company Logo')
-	->setPath(__DIR__ . '/logo.png')
-	->setHeight(50)
-	->setOffsetX(880)
+    ->setDescription('Company Logo')
+    ->setPath(__DIR__ . '/logo.png')
+    ->setHeight(50)
+    ->setOffsetX(880)
     ->setOffsetY(650);
 $oSlide4->addShape($shape);
 
@@ -314,10 +314,10 @@ $oSlide5->setBackground($oBkgColor);
 
 $shape = new File();
 $shape->setName('Company Logo')
-	->setDescription('Company Logo')
-	->setPath(__DIR__ . '/logo.png')
-	->setHeight(300)
-	->setOffsetX(320)
+    ->setDescription('Company Logo')
+    ->setPath(__DIR__ . '/logo.png')
+    ->setHeight(300)
+    ->setOffsetX(320)
     ->setOffsetY(120);
 $oSlide5->addShape($shape);
 

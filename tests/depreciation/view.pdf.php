@@ -48,24 +48,24 @@ $pdf->SetFillColor(67, 74, 81);
 $pdf->Rect(0, 110, $pdf->getPageWidth(), 145, 'F');
 
 $html = '<table>
-	<tr>
-	    <th>' . $lang['Period'] . '</th>
-	    <th>' . $lang['StraightLine'] . '</th>
-	    <th>' . $lang['ArithmeticDegressive'] . '</th>
-	    <th>' . $lang['ArithmeticProgressive'] . '</th>
-	    <th>' . $lang['GeometricDegressive'] . '</th>
-	    <th>' . $lang['GeometricProgressive'] . '</th>
+    <tr>
+        <th>' . $lang['Period'] . '</th>
+        <th>' . $lang['StraightLine'] . '</th>
+        <th>' . $lang['ArithmeticDegressive'] . '</th>
+        <th>' . $lang['ArithmeticProgressive'] . '</th>
+        <th>' . $lang['GeometricDegressive'] . '</th>
+        <th>' . $lang['GeometricProgressive'] . '</th>
     </tr>';
 
 for ($i = 1; $i <= $duration; ++$i) {
-	$html .= '<tr>';
-	$thml .= '<td>' . $i . '</td>';
-	$thml .= '<td>' . $this->getCurrency(Depreciation::getStraightLineResidualInT($amount, $duration, $i), 'medium', '') . '</td>';
-	$thml .= '<td>' . $this->getCurrency(Depreciation::getArithmeticDegressiveDepreciationResidualInT($amount, 0.0, $duration, $i), 'medium', '') . '</td>';
-	$thml .= '<td>' . $this->getCurrency(Depreciation::getArithmeticProgressiveDepreciationResidualInT($amount, 0.0, $duration, $i), 'medium', '') . '</td>';
-	$thml .= '<td>' . $this->getCurrency(Depreciation::getGeometicProgressiveDepreciationResidualInT($amount, $amount * 0.1, $duration, $i), 'medium', '') . '</td>';
-	$thml .= '<td>' . $this->getCurrency(Depreciation::getGeometicDegressiveDepreciationResidualInT($amount, $amount * 0.1, $duration, $i), 'medium', '') . '</td>';
-	$thml .= '</tr>';
+    $html .= '<tr>';
+    $thml .= '<td>' . $i . '</td>';
+    $thml .= '<td>' . $this->getCurrency(Depreciation::getStraightLineResidualInT($amount, $duration, $i), 'medium', '') . '</td>';
+    $thml .= '<td>' . $this->getCurrency(Depreciation::getArithmeticDegressiveDepreciationResidualInT($amount, 0.0, $duration, $i), 'medium', '') . '</td>';
+    $thml .= '<td>' . $this->getCurrency(Depreciation::getArithmeticProgressiveDepreciationResidualInT($amount, 0.0, $duration, $i), 'medium', '') . '</td>';
+    $thml .= '<td>' . $this->getCurrency(Depreciation::getGeometicProgressiveDepreciationResidualInT($amount, $amount * 0.1, $duration, $i), 'medium', '') . '</td>';
+    $thml .= '<td>' . $this->getCurrency(Depreciation::getGeometicDegressiveDepreciationResidualInT($amount, $amount * 0.1, $duration, $i), 'medium', '') . '</td>';
+    $thml .= '</tr>';
 }
 
 $html = '</table>';
