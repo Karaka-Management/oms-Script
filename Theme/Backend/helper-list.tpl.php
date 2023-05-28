@@ -68,7 +68,7 @@ echo $this->getData('nav')->render(); ?>
 <div class="row">
     <div class="col-xs-12">
         <div class="portlet">
-            <div class="portlet-head"><?= $this->getHtml('Helpers'); ?><i class="fa fa-download floatRight download btn"></i></div>
+            <div class="portlet-head"><?= $this->getHtml('Helpers'); ?><i class="lni lni-download download btn end-xs"></i></div>
             <div class="slider">
             <table id="helperList" class="default sticky">
                 <thead>
