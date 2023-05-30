@@ -5,13 +5,13 @@ use phpOMS\Autoloader;
 
 require_once Autoloader::findPaths('Resources\tcpdf\tcpdf')[0];
 
-$cLang = $this->getData('lang');
+$cLang = $this->data['lang'];
 /** @noinspection PhpIncludeInspection */
 $reportLanguage = include $basepath . '/' . \ltrim($tcoll['lang']->getPath(), '/');
 $lang           = $reportLanguage[$cLang];
 
-$amount   = (float) ($this->request->getData('amount') ?? 10000.0);
-$duration = (int) ($this->request->getData('duration') ?? 10);
+$amount   = $this->request->getDataFloat('amount') ?? 10000.0;
+$duration = $this->request->getDataInt('duration') ?? 10;
 
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
@@ -40,7 +40,7 @@ $pdf->Rect(0, 0, $pdf->getPageWidth(), 5, 'F');
 
 $pdf->SetFont('helvetica', '', 32);
 $pdf->SetTextColor(54, 151, 219);
-$pdf->Write(0, 'Demo Mailing - ' . $this->request->getData('date') ?? 'Y-m-d', '', 0, 'C', true, 0, false, false, 0);
+$pdf->Write(0, 'Demo Mailing - ' . $this->request->getDataString('date') ?? 'Y-m-d', '', 0, 'C', true, 0, false, false, 0);
 
 $pdf->Image(__DIR__ . '/logo.png', $pdf->getPageWidth() / 2 - 60 / 2, 40, 60, 60, 'PNG', '', 'C', true, 300, '', false, false, 0, false, false, false);
 

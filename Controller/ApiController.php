@@ -107,7 +107,7 @@ final class ApiController extends Controller
 
         $view = $this->createView($template, $request, $response);
         $this->setHelperResponseHeader($view, $template->name, $request, $response);
-        $view->setData('path', __DIR__ . '/../../../');
+        $view->data['path'] = __DIR__ . '/../../../';
 
         $response->set('export', $view);
     }
@@ -370,14 +370,14 @@ final class ApiController extends Controller
                 }
             }
 
-            $view->addData('report', $report);
-            $view->addData('rcoll', $rcoll);
+            $view->data['report'] = $report;
+            $view->data['rcoll'] = $rcoll;
         }
 
-        $view->addData('tcoll', $tcoll);
-        $view->addData('lang', $request->getData('lang') ?? $request->header->l11n->language);
-        $view->addData('template', $template);
-        $view->addData('basepath', __DIR__ . '/../../../');
+        $view->data['tcoll'] = $tcoll;
+        $view->data['lang'] = $request->getData('lang') ?? $request->header->l11n->language;
+        $view->data['template'] = $template;
+        $view->data['basepath'] = __DIR__ . '/../../../';
 
         return $view;
     }

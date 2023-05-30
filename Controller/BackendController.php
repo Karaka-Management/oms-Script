@@ -54,7 +54,7 @@ final class BackendController extends Controller
         $view = new View($this->app->l11nManager, $request, $response);
 
         $view->setTemplate('/Modules/Helper/Theme/Backend/helper-list');
-        $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response));
+        $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response);
 
         $path      = \str_replace('+', ' ', (string) ($request->getData('path') ?? '/'));
         $templates = TemplateMapper::getAll()
@@ -67,11 +67,11 @@ final class BackendController extends Controller
 
         list($collection, $parent) = CollectionMapper::getCollectionsByPath($path);
 
-        $view->addData('parent', $parent);
-        $view->addData('collections', $collection);
-        $view->addData('path', $path);
-        $view->addData('reports', $templates);
-        $view->addData('account', $this->app->accountManager->get($request->header->account));
+        $view->data['parent'] = $parent;
+        $view->data['collections'] = $collection;
+        $view->data['path'] = $path;
+        $view->data['reports'] = $templates;
+        $view->data['account'] = $this->app->accountManager->get($request->header->account);
 
         return $view;
     }
@@ -93,11 +93,11 @@ final class BackendController extends Controller
         $view = new View($this->app->l11nManager, $request, $response);
 
         $view->setTemplate('/Modules/Helper/Theme/Backend/helper-template-create');
-        $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response));
-        $view->addData('media-upload', new \Modules\Media\Theme\Backend\Components\Upload\BaseView($this->app->l11nManager, $request, $response));
+        $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response);
+        $view->data['media-upload'] = new \Modules\Media\Theme\Backend\Components\Upload\BaseView($this->app->l11nManager, $request, $response);
 
         $editor = new \Modules\Editor\Theme\Backend\Components\Editor\BaseView($this->app->l11nManager, $request, $response);
-        $view->addData('editor', $editor);
+        $view->data['editor'] = $editor;
 
         return $view;
     }
@@ -119,11 +119,11 @@ final class BackendController extends Controller
         $view = new View($this->app->l11nManager, $request, $response);
 
         $view->setTemplate('/Modules/Helper/Theme/Backend/helper-create');
-        $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response));
-        $view->addData('media-upload', new \Modules\Media\Theme\Backend\Components\Upload\BaseView($this->app->l11nManager, $request, $response));
+        $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response);
+        $view->data['media-upload'] = new \Modules\Media\Theme\Backend\Components\Upload\BaseView($this->app->l11nManager, $request, $response);
 
         $editor = new \Modules\Editor\Theme\Backend\Components\Editor\BaseView($this->app->l11nManager, $request, $response);
-        $view->addData('editor', $editor);
+        $view->data['editor'] = $editor;
 
         return $view;
     }
@@ -220,15 +220,15 @@ final class BackendController extends Controller
                 }
             }
 
-            $view->addData('report', $report);
-            $view->addData('rcoll', $rcoll);
+            $view->data['report'] = $report;
+            $view->data['rcoll'] = $rcoll;
         }
 
-        $view->addData('unit', $this->app->unitId);
-        $view->addData('tcoll', $tcoll);
-        $view->addData('lang', $request->getData('lang') ?? $request->header->l11n->language);
-        $view->addData('template', $template);
-        $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response));
+        $view->data['unit'] = $this->app->unitId;
+        $view->data['tcoll'] = $tcoll;
+        $view->data['lang'] = $request->getData('lang') ?? $request->header->l11n->language;
+        $view->data['template'] = $template;
+        $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response);
 
         return $view;
     }
