@@ -62,7 +62,7 @@ final class BackendController extends Controller
             ->with('tags')
             ->with('tags/title')
             ->where('virtualPath', $path)
-            ->where('tags/title/language', $response->getLanguage())
+            ->where('tags/title/language', $response->header->l11n->language)
             ->execute();
 
         list($collection, $parent) = CollectionMapper::getCollectionsByPath($path);
@@ -155,7 +155,7 @@ final class BackendController extends Controller
             ->with('source')
             ->with('source/sources')
             ->where('id', (int) $request->getData('id'))
-            ->where('tags/title/language', $response->getLanguage())
+            ->where('tags/title/language', $response->header->l11n->language)
             ->execute();
 
         $view->setTemplate('/Modules/Helper/Theme/Backend/helper-single');
@@ -226,7 +226,7 @@ final class BackendController extends Controller
 
         $view->addData('unit', $this->app->unitId);
         $view->addData('tcoll', $tcoll);
-        $view->addData('lang', $request->getData('lang') ?? $request->getLanguage());
+        $view->addData('lang', $request->getData('lang') ?? $request->header->l11n->language);
         $view->addData('template', $template);
         $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response));
 
