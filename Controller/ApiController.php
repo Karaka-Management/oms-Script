@@ -71,7 +71,7 @@ final class ApiController extends Controller
     public function apiHelperExport(HttpRequest $request, HttpResponse $response, mixed $data = null) : void
     {
         if (!empty($val = $this->validateExport($request))) {
-            $response->set('export', new FormValidation($val));
+            $response->data['export'] = new FormValidation($val);
             $response->header->status = RequestStatusCode::R_400;
 
             return;
@@ -107,7 +107,7 @@ final class ApiController extends Controller
 
         $view = $this->createView($template, $request, $response);
         $this->setHelperResponseHeader($view, $template->name, $request, $response);
-        $view->setData('path', __DIR__ . '/../../../');
+        $view->data['path'] = __DIR__ . '/../../../';
 
         $response->set('export', $view);
     }
@@ -370,14 +370,14 @@ final class ApiController extends Controller
                 }
             }
 
-            $view->addData('report', $report);
-            $view->addData('rcoll', $rcoll);
+            $view->data['report'] = $report;
+            $view->data['rcoll'] = $rcoll;
         }
 
-        $view->addData('tcoll', $tcoll);
-        $view->addData('lang', $request->getData('lang') ?? $request->getLanguage());
-        $view->addData('template', $template);
-        $view->addData('basepath', __DIR__ . '/../../../');
+        $view->data['tcoll'] = $tcoll;
+        $view->data['lang'] = $request->getData('lang') ?? $request->header->l11n->language;
+        $view->data['template'] = $template;
+        $view->data['basepath'] = __DIR__ . '/../../../';
 
         return $view;
     }
@@ -398,11 +398,11 @@ final class ApiController extends Controller
     public function apiTemplateCreate(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
     {
         $dbFiles       = $request->getDataJson('media-list');
-        $uploadedFiles = $request->getFiles();
+        $uploadedFiles = $request->files;
         $files         = [];
 
         if (!empty($val = $this->validateTemplateCreate($request))) {
-            $response->set('template_create', new FormValidation($val));
+            $response->data['template_create'] = new FormValidation($val);
             $response->header->status = RequestStatusCode::R_400;
 
             return;
@@ -495,7 +495,7 @@ final class ApiController extends Controller
     {
         $val = [];
         if (($val['name'] = !$request->hasData('name'))
-            || ($val['files'] = empty($request->getFiles()))
+            || ($val['files'] = empty($request->files))
         ) {
             return $val;
         }
@@ -570,7 +570,7 @@ final class ApiController extends Controller
     public function apiReportCreate(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
     {
         if (!empty($val = $this->validateReportCreate($request))) {
-            $response->set('report_create', new FormValidation($val));
+            $response->data['report_create'] = new FormValidation($val);
             $response->header->status = RequestStatusCode::R_400;
 
             return;
@@ -586,7 +586,7 @@ final class ApiController extends Controller
         $files = $this->app->moduleManager->get('Media')->uploadFiles(
             $request->getDataList('names'),
             $request->getDataList('filenames'),
-            $request->getFiles(),
+            $request->files,
             $request->header->account,
             __DIR__ . '/../../../Modules/Media/Files'
         );

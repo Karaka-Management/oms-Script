@@ -19,7 +19,7 @@ use phpOMS\Uri\UriFactory;
  */
 $templateList = \Modules\Helper\Models\TemplateMapper::getAll()->execute();
 
-echo $this->getData('nav')->render(); ?>
+echo $this->data['nav']->render(); ?>
 
 <div class="row">
     <div class="col-xs-12 col-md-6">

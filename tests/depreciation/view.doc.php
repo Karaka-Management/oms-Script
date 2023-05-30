@@ -10,12 +10,12 @@ use PhpOffice\PhpWord\Style\Language;
 /**
  * @var \phpOMS\Views\View $this
  */
-$tcoll    = $this->getData('tcoll');
-$rcoll    = $this->getData('rcoll');
-$cLang    = $this->getData('lang');
-$template = $this->getData('template');
-$report   = $this->getData('report');
-$basepath = \rtrim($this->getData('basepath') ?? '', '/');
+$tcoll    = $this->data['tcoll'];
+$rcoll    = $this->data['rcoll'];
+$cLang    = $this->data['lang'];
+$template = $this->data['template'];
+$report   = $this->data['report'];
+$basepath = \rtrim($this->data['basepath'] ?? '', '/');
 
 /** @noinspection PhpIncludeInspection */
 $reportLanguage = include $basepath . '/' . \ltrim($tcoll['lang']->getPath(), '/');

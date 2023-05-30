@@ -18,21 +18,21 @@ use phpOMS\Uri\UriFactory;
  * @var \phpOMS\Views\View                $this
  * @var \Modules\Helper\Models\Template[] $templates
  */
-$templates = $this->getData('reports');
+$templates = $this->data['reports'];
 
 /** @var \Modules\Admin\Models\Account $account */
-$account = $this->getData('account');
+$account = $this->data['account'];
 
 $accountDir = $account->id . ' ' . $account->login;
 
 /** @var \Modules\Media\Models\Collection[] */
-$collections = $this->getData('collections');
+$collections = $this->data['collections'];
 $mediaPath   = \urldecode($this->getData('path') ?? '/');
 
 $previous = empty($templates) ? '{/base}/helper/list' : '{/base}/helper/list?{?}&id=' . \reset($templates)->id . '&ptype=p';
 $next     = empty($templates) ? '{/base}/helper/list' : 'helper/list?{?}&id=' . \end($templates)->id . '&ptype=n';
 
-echo $this->getData('nav')->render(); ?>
+echo $this->data['nav']->render(); ?>
 <div class="row">
     <div class="col-xs-12">
         <div class="box">

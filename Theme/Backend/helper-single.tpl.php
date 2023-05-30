@@ -20,19 +20,19 @@ use phpOMS\Uri\UriFactory;
  */
 
 /** @var \Modules\Media\Models\Collection $tcoll */
-$tcoll = $this->getData('tcoll');
+$tcoll = $this->data['tcoll'];
 
 /** @var \Modules\Media\Models\Collection $rcoll */
-$rcoll = $this->getData('rcoll');
+$rcoll = $this->data['rcoll'];
 
 /** @var string $cLang */
-$cLang = $this->getData('lang');
+$cLang = $this->data['lang'];
 
 /** @var \Modules\Helper\Models\Template $template */
-$template = $this->getData('template');
+$template = $this->data['template'];
 
 /** @var \Modules\Helper\Models\Report $report */
-$report = $this->getData('report');
+$report = $this->data['report'];
 
 /** @noinspection PhpIncludeInspection */
 /** @var array<string, array<string, string>> $reportLanguage */
@@ -42,12 +42,12 @@ $reportLanguage = isset($tcoll['lang']) ? include __DIR__ . '/../../../../' . \l
 $lang     = $reportLanguage[$cLang] ?? [];
 $settings = isset($tcoll['cfg']) ? \json_decode(\file_get_contents(__DIR__ . '/../../../../' . \ltrim($tcoll['cfg']->getPath(), '/')), true) : [];
 
-echo $this->getData('nav')->render(); ?>
+echo $this->data['nav']->render(); ?>
 <div class="row" style="height: calc(100% - 85px);">
     <div class="col-xs-12 col-md-9">
         <div class="portlet">
             <div class="portlet-body">
-                <iframe data-form="iUiSettings" data-name="iframeHelper" id="iHelperFrame" src="<?= UriFactory::build('{/api}helper/report/export/?{?}&id=' . $template->id); ?>&u=<?=  $this->getData('unit'); ?>" allowfullscreen></iframe>
+                <iframe data-form="iUiSettings" data-name="iframeHelper" id="iHelperFrame" src="<?= UriFactory::build('{/api}helper/report/export/?{?}&id=' . $template->id); ?>&u=<?=  $this->data['unit']; ?>" allowfullscreen></iframe>
             </div>
         </div>
     </div>
