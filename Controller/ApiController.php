@@ -371,11 +371,11 @@ final class ApiController extends Controller
             }
 
             $view->data['report'] = $report;
-            $view->data['rcoll'] = $rcoll;
+            $view->data['rcoll']  = $rcoll;
         }
 
-        $view->data['tcoll'] = $tcoll;
-        $view->data['lang'] = $request->getData('lang') ?? $request->header->l11n->language;
+        $view->data['tcoll']    = $tcoll;
+        $view->data['lang']     = $request->getData('lang') ?? $request->header->l11n->language;
         $view->data['template'] = $template;
         $view->data['basepath'] = __DIR__ . '/../../../';
 
@@ -403,7 +403,7 @@ final class ApiController extends Controller
 
         if (!empty($val = $this->validateTemplateCreate($request))) {
             $response->data['template_create'] = new FormValidation($val);
-            $response->header->status = RequestStatusCode::R_400;
+            $response->header->status          = RequestStatusCode::R_400;
 
             return;
         }
@@ -571,7 +571,7 @@ final class ApiController extends Controller
     {
         if (!empty($val = $this->validateReportCreate($request))) {
             $response->data['report_create'] = new FormValidation($val);
-            $response->header->status = RequestStatusCode::R_400;
+            $response->header->status        = RequestStatusCode::R_400;
 
             return;
         }

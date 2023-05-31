@@ -67,11 +67,11 @@ final class BackendController extends Controller
 
         list($collection, $parent) = CollectionMapper::getCollectionsByPath($path);
 
-        $view->data['parent'] = $parent;
+        $view->data['parent']      = $parent;
         $view->data['collections'] = $collection;
-        $view->data['path'] = $path;
-        $view->data['reports'] = $templates;
-        $view->data['account'] = $this->app->accountManager->get($request->header->account);
+        $view->data['path']        = $path;
+        $view->data['reports']     = $templates;
+        $view->data['account']     = $this->app->accountManager->get($request->header->account);
 
         return $view;
     }
@@ -93,10 +93,10 @@ final class BackendController extends Controller
         $view = new View($this->app->l11nManager, $request, $response);
 
         $view->setTemplate('/Modules/Helper/Theme/Backend/helper-template-create');
-        $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response);
+        $view->data['nav']          = $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response);
         $view->data['media-upload'] = new \Modules\Media\Theme\Backend\Components\Upload\BaseView($this->app->l11nManager, $request, $response);
 
-        $editor = new \Modules\Editor\Theme\Backend\Components\Editor\BaseView($this->app->l11nManager, $request, $response);
+        $editor               = new \Modules\Editor\Theme\Backend\Components\Editor\BaseView($this->app->l11nManager, $request, $response);
         $view->data['editor'] = $editor;
 
         return $view;
@@ -119,10 +119,10 @@ final class BackendController extends Controller
         $view = new View($this->app->l11nManager, $request, $response);
 
         $view->setTemplate('/Modules/Helper/Theme/Backend/helper-create');
-        $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response);
+        $view->data['nav']          = $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response);
         $view->data['media-upload'] = new \Modules\Media\Theme\Backend\Components\Upload\BaseView($this->app->l11nManager, $request, $response);
 
-        $editor = new \Modules\Editor\Theme\Backend\Components\Editor\BaseView($this->app->l11nManager, $request, $response);
+        $editor               = new \Modules\Editor\Theme\Backend\Components\Editor\BaseView($this->app->l11nManager, $request, $response);
         $view->data['editor'] = $editor;
 
         return $view;
@@ -221,14 +221,14 @@ final class BackendController extends Controller
             }
 
             $view->data['report'] = $report;
-            $view->data['rcoll'] = $rcoll;
+            $view->data['rcoll']  = $rcoll;
         }
 
-        $view->data['unit'] = $this->app->unitId;
-        $view->data['tcoll'] = $tcoll;
-        $view->data['lang'] = $request->getData('lang') ?? $request->header->l11n->language;
+        $view->data['unit']     = $this->app->unitId;
+        $view->data['tcoll']    = $tcoll;
+        $view->data['lang']     = $request->getData('lang') ?? $request->header->l11n->language;
         $view->data['template'] = $template;
-        $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response);
+        $view->data['nav']      = $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response);
 
         return $view;
     }
