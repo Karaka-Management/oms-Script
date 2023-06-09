@@ -43,7 +43,7 @@ require 'Worker.php';
         <div class="tab">
             <div class="box">
                 <table class="default">
-                    <caption><?= $lang['Budget']; ?><i class="fa fa-download floatRight download btn"></i></caption>
+                    <caption><?= $lang['Budget']; ?><i class="fa fa-download end-xs download btn"></i></caption>
                     <thead>
                     <tr>
                         <td class="wf-100"><?= $lang['Description']; ?>
@@ -93,7 +93,7 @@ require 'Worker.php';
 
             <div class="box">
                 <table class="default">
-                    <caption><?= $lang['CostObject']; ?><i class="fa fa-download floatRight download btn"></i></caption>
+                    <caption><?= $lang['CostObject']; ?><i class="fa fa-download end-xs download btn"></i></caption>
                     <thead>
                     <tr>
                         <td><?= $lang['CostObject']; ?>
@@ -132,7 +132,7 @@ require 'Worker.php';
 
             <div class="box">
                 <table class="default">
-                    <caption><?= $lang['CostCenter']; ?><i class="fa fa-download floatRight download btn"></i></caption>
+                    <caption><?= $lang['CostCenter']; ?><i class="fa fa-download end-xs download btn"></i></caption>
                     <thead>
                     <tr>
                         <td><?= $lang['CostCenter']; ?>
@@ -171,7 +171,7 @@ require 'Worker.php';
 
             <div class="box">
                 <table class="default">
-                    <caption><?= $lang['Account']; ?><i class="fa fa-download floatRight download btn"></i></caption>
+                    <caption><?= $lang['Account']; ?><i class="fa fa-download end-xs download btn"></i></caption>
                     <thead>
                     <tr>
                         <td><?= $lang['Account']; ?>
@@ -212,7 +212,7 @@ require 'Worker.php';
         <div class="tab">
             <section class="box">
                 <table class="default">
-                    <caption><?= $lang['CostObject']; ?><i class="fa fa-download floatRight download btn"></i></caption>
+                    <caption><?= $lang['CostObject']; ?><i class="fa fa-download end-xs download btn"></i></caption>
                     <thead>
                     <tr>
                         <td><?= $lang['CostObject']; ?>
@@ -239,7 +239,7 @@ require 'Worker.php';
 
             <section class="box">
                 <table class="default">
-                    <caption><?= $lang['CostCenter']; ?><i class="fa fa-download floatRight download btn"></i></caption>
+                    <caption><?= $lang['CostCenter']; ?><i class="fa fa-download end-xs download btn"></i></caption>
                     <thead>
                     <tr>
                         <td><?= $lang['CostCenter']; ?>
@@ -262,7 +262,7 @@ require 'Worker.php';
 
             <section class="box">
                 <table class="default">
-                    <caption><?= $lang['Account']; ?><i class="fa fa-download floatRight download btn"></i></caption>
+                    <caption><?= $lang['Account']; ?><i class="fa fa-download end-xs download btn"></i></caption>
                     <thead>
                     <tr>
                         <td><?= $lang['Account']; ?>
@@ -287,7 +287,7 @@ require 'Worker.php';
         <div class="tab">
             <section class="box">
                 <table class="default">
-                    <caption><?= $lang['Account']; ?><i class="fa fa-download floatRight download btn"></i></caption>
+                    <caption><?= $lang['Account']; ?><i class="fa fa-download end-xs download btn"></i></caption>
                     <thead>
                     <tr>
                         <td><?= $lang['Account']; ?>
@@ -310,7 +310,7 @@ require 'Worker.php';
 
             <section class="box">
                 <table class="default">
-                    <caption><?= $lang['CostCenter']; ?><i class="fa fa-download floatRight download btn"></i></caption>
+                    <caption><?= $lang['CostCenter']; ?><i class="fa fa-download end-xs download btn"></i></caption>
                     <thead>
                     <tr>
                         <td><?= $lang['CostCenter']; ?>
@@ -335,7 +335,7 @@ require 'Worker.php';
         <div class="tab">
             <section class="box">
                 <table class="default">
-                    <caption><?= $lang['Account']; ?><i class="fa fa-download floatRight download btn"></i></caption>
+                    <caption><?= $lang['Account']; ?><i class="fa fa-download end-xs download btn"></i></caption>
                     <thead>
                     <tr>
                         <td><?= $lang['Account']; ?>
@@ -358,7 +358,7 @@ require 'Worker.php';
 
             <section class="box">
                 <table class="default">
-                    <caption><?= $lang['Type']; ?><i class="fa fa-download floatRight download btn"></i></caption>
+                    <caption><?= $lang['Type']; ?><i class="fa fa-download end-xs download btn"></i></caption>
                     <thead>
                     <tr>
                         <td><?= $lang['Type']; ?>
@@ -381,7 +381,7 @@ require 'Worker.php';
 
             <section class="box">
                 <table class="default">
-                    <caption><?= $lang['CostObject']; ?><i class="fa fa-download floatRight download btn"></i></caption>
+                    <caption><?= $lang['CostObject']; ?><i class="fa fa-download end-xs download btn"></i></caption>
                     <thead>
                     <tr>
                         <td><?= $lang['CostObject']; ?>
@@ -406,7 +406,7 @@ require 'Worker.php';
         <div class="tab">
             <section class="box">
                 <table class="default">
-                    <caption><?= $lang['Type']; ?><i class="fa fa-download floatRight download btn"></i></caption>
+                    <caption><?= $lang['Type']; ?><i class="fa fa-download end-xs download btn"></i></caption>
                     <thead>
                     <tr>
                         <td><?= $lang['Type']; ?>
@@ -429,7 +429,7 @@ require 'Worker.php';
 
             <section class="box">
                 <table class="default">
-                    <caption><?= $lang['CostCenter']; ?><i class="fa fa-download floatRight download btn"></i></caption>
+                    <caption><?= $lang['CostCenter']; ?><i class="fa fa-download end-xs download btn"></i></caption>
                     <thead>
                     <tr>
                         <td><?= $lang['CostCenter']; ?>

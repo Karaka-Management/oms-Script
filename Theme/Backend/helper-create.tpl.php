@@ -47,6 +47,6 @@ echo $this->data['nav']->render(); ?>
     </div>
 
     <div class="col-xs-12 col-md-6">
-        <?= $this->getData('media-upload')->render('helper-report-create'); ?>
+        <?= $this->data['media-upload']->render('helper-report-create'); ?>
     </div>
 </div>
