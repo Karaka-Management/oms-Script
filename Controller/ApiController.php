@@ -36,7 +36,6 @@ use phpOMS\DataStorage\Database\Query\OrderType;
 use phpOMS\Message\Http\HttpRequest;
 use phpOMS\Message\Http\HttpResponse;
 use phpOMS\Message\Http\RequestStatusCode;
-use phpOMS\Message\NotificationLevel;
 use phpOMS\Message\RequestAbstract;
 use phpOMS\Message\ResponseAbstract;
 use phpOMS\Model\Message\FormValidation;
@@ -402,8 +401,8 @@ final class ApiController extends Controller
         $files         = [];
 
         if (!empty($val = $this->validateTemplateCreate($request))) {
-            $response->data['template_create'] = new FormValidation($val);
-            $response->header->status          = RequestStatusCode::R_400;
+            $response->header->status = RequestStatusCode::R_400;
+            $this->createInvalidCreateResponse($request, $response, $val);
 
             return;
         }
@@ -450,7 +449,7 @@ final class ApiController extends Controller
 
         if ($collection->id === 0) {
             $response->header->status = RequestStatusCode::R_403;
-            $this->fillJsonResponse($request, $response, NotificationLevel::ERROR, 'Template', 'Couldn\'t create collection for template', null);
+            $this->createInvalidCreateResponse($request, $response, $collection);
 
             return;
         }
@@ -479,7 +478,7 @@ final class ApiController extends Controller
         );
 
         $this->createModel($request->header->account, $template, TemplateMapper::class, 'template', $request->getOrigin());
-        $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Template', 'Template successfully created', $template);
+        $this->createStandardCreateResponse($request, $response, $template);
     }
 
     /**
@@ -570,8 +569,8 @@ final class ApiController extends Controller
     public function apiReportCreate(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
     {
         if (!empty($val = $this->validateReportCreate($request))) {
-            $response->data['report_create'] = new FormValidation($val);
-            $response->header->status        = RequestStatusCode::R_400;
+            $response->header->status = RequestStatusCode::R_400;
+            $this->createInvalidCreateResponse($request, $response, $val);
 
             return;
         }
@@ -603,7 +602,7 @@ final class ApiController extends Controller
 
         if ($collection->id === 0) {
             $response->header->status = RequestStatusCode::R_403;
-            $this->fillJsonResponse($request, $response, NotificationLevel::ERROR, 'Report', 'Couldn\'t create collection for report', null);
+            $this->createInvalidCreateResponse($request, $response, $collection);
 
             return;
         }
@@ -629,7 +628,7 @@ final class ApiController extends Controller
         );
 
         $this->createModel($request->header->account, $report, ReportMapper::class, 'report', $request->getOrigin());
-        $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Report', 'Report successfully created', $report);
+        $this->createStandardCreateResponse($request, $response, $report);
     }
 
     /**
