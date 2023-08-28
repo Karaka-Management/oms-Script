@@ -665,7 +665,7 @@ final class ApiController extends Controller
     private function createReportFromRequest(RequestAbstract $request, ResponseAbstract $response, int $collectionId) : Report
     {
         $helperReport            = new Report();
-        $helperReport->title     = (string) ($request->getData('name'));
+        $helperReport->title     = $request->getDataString('name') ?? '';
         $helperReport->source    = new NullCollection($collectionId);
         $helperReport->template  = new NullTemplate((int) $request->getData('template'));
         $helperReport->createdBy = new NullAccount($request->header->account);

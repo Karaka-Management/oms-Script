@@ -56,7 +56,7 @@ final class BackendController extends Controller
         $view->setTemplate('/Modules/Helper/Theme/Backend/helper-list');
         $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response);
 
-        $path      = \str_replace('+', ' ', (string) ($request->getData('path') ?? '/'));
+        $path      = \str_replace('+', ' ', $request->getDataString('path') ?? '/');
         $templates = TemplateMapper::getAll()
             ->with('createdBy')
             ->with('tags')
