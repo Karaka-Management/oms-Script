@@ -62,7 +62,7 @@ class Template implements \JsonSerializable
      * @var int
      * @since 1.0.0
      */
-    private int $datatype = TemplateDataType::OTHER;
+    public int $datatype = TemplateDataType::OTHER;
 
     /**
      * Template doesn't need reports.
@@ -126,7 +126,7 @@ class Template implements \JsonSerializable
      * @var array
      * @since 1.0.0
      */
-    private array $expected = [];
+    public array $expected = [];
 
     /**
      * Reports.
@@ -134,7 +134,7 @@ class Template implements \JsonSerializable
      * @var array
      * @since 1.0.0
      */
-    private array $reports = [];
+    public array $reports = [];
 
     /**
      * Tags.
@@ -142,7 +142,7 @@ class Template implements \JsonSerializable
      * @var Tag[]
      * @since 1.0.0
      */
-    private array $tags = [];
+    public array $tags = [];
 
     /**
      * Path for organizing.
