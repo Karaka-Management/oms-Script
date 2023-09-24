@@ -89,12 +89,12 @@ echo $this->data['nav']->render(); ?>
                             <td><select id="iExport" name="export-type">
                                     <option value="select" disabled><?= $this->getHtml('Select'); ?>
                                     <option value="html"><?= $this->getHtml('Print'); ?>
-                                    <option value="xlsx"<?= $this->printHtml((!isset($tcoll['excel'])) ? ' disabled' : ''); ?>>Excel
-                                    <option value="pdf"<?= $this->printHtml((!isset($tcoll['pdf'])) ? ' disabled' : ''); ?>>Pdf
-                                    <option value="docx"<?= $this->printHtml((!isset($tcoll['word'])) ? ' disabled' : ''); ?>>Word
-                                    <option value="pptx"<?= $this->printHtml((!isset($tcoll['powerpoint'])) ? ' disabled' : ''); ?>>PowerPoint
-                                    <option value="csv"<?= $this->printHtml((!isset($tcoll['csv'])) ? ' disabled' : ''); ?>>Csv
-                                    <option value="json"<?= $this->printHtml((!isset($tcoll['json'])) ? ' disabled' : ''); ?>>Json
+                                    <option value="xlsx"<?= $this->printHtml((isset($tcoll['excel'])) ? '' : ' disabled'); ?>>Excel
+                                    <option value="pdf"<?= $this->printHtml((isset($tcoll['pdf'])) ? '' : ' disabled'); ?>>Pdf
+                                    <option value="docx"<?= $this->printHtml((isset($tcoll['word'])) ? '' : ' disabled'); ?>>Word
+                                    <option value="pptx"<?= $this->printHtml((isset($tcoll['powerpoint'])) ? '' : ' disabled'); ?>>PowerPoint
+                                    <option value="csv"<?= $this->printHtml((isset($tcoll['csv'])) ? '' : ' disabled'); ?>>Csv
+                                    <option value="json"<?= $this->printHtml((isset($tcoll['json'])) ? '' : ' disabled'); ?>>Json
                                 </select>
                         <tr>
                             <td><a tabindex="0" target="_blank" class="button" href="<?= UriFactory::build('{/base}/{/api}helper/report/export?{?}'); ?>&type={#iExport}&lang={#iLang}{#iUiSettings}"><?= $this->getHtml('Export'); ?></a>
@@ -154,7 +154,7 @@ echo $this->data['nav']->render(); ?>
                         <td><?= $this->getHtml('Tags'); ?>
                         <td>
                             <?php $tags = $template->getTags(); foreach ($tags as $tag) : ?>
-                                <span class="tag" style="background: <?= $this->printHtml($tag->color); ?>"><?= !empty($tag->icon) ? '<i class="' . $this->printHtml($tag->icon) . '"></i>' : ''; ?><?= $this->printHtml($tag->getL11n()); ?></span>
+                                <span class="tag" style="background: <?= $this->printHtml($tag->color); ?>"><?= empty($tag->icon) ? '' : '<i class="' . $this->printHtml($tag->icon) . '"></i>'; ?><?= $this->printHtml($tag->getL11n()); ?></span>
                             <?php endforeach; ?>
                 </table>
             </div>

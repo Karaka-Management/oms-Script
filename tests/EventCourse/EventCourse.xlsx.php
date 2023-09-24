@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-require 'Worker.php';
+require __DIR__ . '/Worker.php';
 $lang = $this->getData('lang');
 
 \date_default_timezone_set('Europe/London');
@@ -387,7 +387,7 @@ foreach ($costobject as $key => $co) {
         $excel->getActiveSheet()
             ->setCellValue('A' . $i, '=MID(B' . $i . ', 1, 1)')
             ->setCellValue('B' . $i, $key)
-            ->setCellValue('C' . $i, (!isset($courseList[$key]) ? '' : $courseList[$key][2]))
+            ->setCellValue('C' . $i, (isset($courseList[$key]) ? $courseList[$key][2] : ''))
             ->setCellValue('D' . $i, isset($courseList[$key][4]) ? $courseList[$key][4] : '')
             ->setCellValue('E' . $i, isset($courseList[$key][5]) ? $courseList[$key][5] : '')
             ->setCellValue('F' . $i, $co[$fiscal_end->format('Y')]['value'])
@@ -456,7 +456,7 @@ $excel->getActiveSheet()
     ->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
 
 $conditionalStyles = $excel->getActiveSheet()->getStyle('H' . $i)->getConditionalStyles();
-\array_push($conditionalStyles, $badBudget);
+$conditionalStyles[] = $badBudget;
 $excel->getActiveSheet()->getStyle('H' . $i)->setConditionalStyles($conditionalStyles);
 
 $excel->getActiveSheet()->setTitle('Advice');
@@ -494,7 +494,7 @@ foreach ($costobject as $key => $co) {
         $excel->getActiveSheet()
             ->setCellValue('A' . $i, '=MID(B' . $i . ', 1, 1)')
             ->setCellValue('B' . $i, $key)
-            ->setCellValue('C' . $i, (!isset($courseList[$key]) ? '' : $courseList[$key][2]))
+            ->setCellValue('C' . $i, (isset($courseList[$key]) ? $courseList[$key][2] : ''))
             ->setCellValue('D' . $i, isset($courseList[$key][4]) ? $courseList[$key][4] : '')
             ->setCellValue('E' . $i, isset($courseList[$key][5]) ? $courseList[$key][5] : '')
             ->setCellValue('F' . $i, $co[$fiscal_end->format('Y')]['value'])
@@ -563,7 +563,7 @@ $excel->getActiveSheet()
     ->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
 
 $conditionalStyles = $excel->getActiveSheet()->getStyle('H' . $i)->getConditionalStyles();
-\array_push($conditionalStyles, $badBudget);
+$conditionalStyles[] = $badBudget;
 $excel->getActiveSheet()->getStyle('H' . $i)->setConditionalStyles($conditionalStyles);
 
 $excel->getActiveSheet()->setTitle('Demo');
@@ -602,7 +602,7 @@ foreach ($costobject as $key => $co) {
         $excel->getActiveSheet()
             ->setCellValue('A' . $i, '=MID(B' . $i . ', 1, 1)')
             ->setCellValue('B' . $i, $key)
-            ->setCellValue('C' . $i, (!isset($courseList[$key]) ? '' : $courseList[$key][2]))
+            ->setCellValue('C' . $i, (isset($courseList[$key]) ? $courseList[$key][2] : ''))
             ->setCellValue('D' . $i, isset($courseList[$key][4]) ? $courseList[$key][4] : '')
             ->setCellValue('E' . $i, isset($courseList[$key][5]) ? $courseList[$key][5] : '')
             ->setCellValue('F' . $i, $co[$fiscal_end->format('Y')]['value'])
@@ -665,7 +665,7 @@ $excel->getActiveSheet()
     ->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
 
 $conditionalStyles = $excel->getActiveSheet()->getStyle('H' . $i)->getConditionalStyles();
-\array_push($conditionalStyles, $badBudget);
+$conditionalStyles[] = $badBudget;
 $excel->getActiveSheet()->getStyle('H' . $i)->setConditionalStyles($conditionalStyles);
 
 $excel->getActiveSheet()->setTitle('Briefing & Training');
@@ -704,7 +704,7 @@ foreach ($costobject as $key => $co) {
         $excel->getActiveSheet()
             ->setCellValue('A' . $i, '=MID(B' . $i . ', 1, 1)')
             ->setCellValue('B' . $i, $key)
-            ->setCellValue('C' . $i, (!isset($courseList[$key]) ? '' : $courseList[$key][2]))
+            ->setCellValue('C' . $i, (isset($courseList[$key]) ? $courseList[$key][2] : ''))
             ->setCellValue('D' . $i, isset($courseList[$key][4]) ? $courseList[$key][4] : '')
             ->setCellValue('E' . $i, isset($courseList[$key][5]) ? $courseList[$key][5] : '')
             ->setCellValue('F' . $i, $co[$fiscal_end->format('Y')]['value'])
@@ -767,7 +767,7 @@ $excel->getActiveSheet()
     ->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
 
 $conditionalStyles = $excel->getActiveSheet()->getStyle('H' . $i)->getConditionalStyles();
-\array_push($conditionalStyles, $badBudget);
+$conditionalStyles[] = $badBudget;
 $excel->getActiveSheet()->getStyle('H' . $i)->setConditionalStyles($conditionalStyles);
 
 $excel->getActiveSheet()->setTitle('IMPLA');
@@ -806,7 +806,7 @@ foreach ($costobject as $key => $co) {
         $excel->getActiveSheet()
             ->setCellValue('A' . $i, '=MID(B' . $i . ', 1, 1)')
             ->setCellValue('B' . $i, $key)
-            ->setCellValue('C' . $i, (!isset($courseList[$key]) ? '' : $courseList[$key][2]))
+            ->setCellValue('C' . $i, (isset($courseList[$key]) ? $courseList[$key][2] : ''))
             ->setCellValue('D' . $i, isset($courseList[$key][4]) ? $courseList[$key][4] : '')
             ->setCellValue('E' . $i, isset($courseList[$key][5]) ? $courseList[$key][5] : '')
             ->setCellValue('F' . $i, $co[$fiscal_end->format('Y')]['value'])
@@ -869,7 +869,7 @@ $excel->getActiveSheet()
     ->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
 
 $conditionalStyles = $excel->getActiveSheet()->getStyle('H' . $i)->getConditionalStyles();
-\array_push($conditionalStyles, $badBudget);
+$conditionalStyles[] = $badBudget;
 $excel->getActiveSheet()->getStyle('H' . $i)->setConditionalStyles($conditionalStyles);
 
 $excel->getActiveSheet()->setTitle('Marketing Support');
@@ -908,7 +908,7 @@ foreach ($costobject as $key => $co) {
         $excel->getActiveSheet()
             ->setCellValue('A' . $i, '=MID(B' . $i . ', 1, 1)')
             ->setCellValue('B' . $i, $key)
-            ->setCellValue('C' . $i, (!isset($courseList[$key]) ? '' : $courseList[$key][2]))
+            ->setCellValue('C' . $i, (isset($courseList[$key]) ? $courseList[$key][2] : ''))
             ->setCellValue('D' . $i, isset($courseList[$key][4]) ? $courseList[$key][4] : '')
             ->setCellValue('E' . $i, isset($courseList[$key][5]) ? $courseList[$key][5] : '')
             ->setCellValue('F' . $i, $co[$fiscal_end->format('Y')]['value'])
@@ -971,7 +971,7 @@ $excel->getActiveSheet()
     ->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
 
 $conditionalStyles = $excel->getActiveSheet()->getStyle('H' . $i)->getConditionalStyles();
-\array_push($conditionalStyles, $badBudget);
+$conditionalStyles[] = $badBudget;
 $excel->getActiveSheet()->getStyle('H' . $i)->setConditionalStyles($conditionalStyles);
 
 $excel->getActiveSheet()->setTitle('Promotion');
@@ -1010,7 +1010,7 @@ foreach ($costobject as $key => $co) {
         $excel->getActiveSheet()
             ->setCellValue('A' . $i, '=MID(B' . $i . ', 1, 1)')
             ->setCellValue('B' . $i, $key)
-            ->setCellValue('C' . $i, (!isset($courseList[$key]) ? '' : $courseList[$key][2]))
+            ->setCellValue('C' . $i, (isset($courseList[$key]) ? $courseList[$key][2] : ''))
             ->setCellValue('D' . $i, isset($courseList[$key][4]) ? $courseList[$key][4] : '')
             ->setCellValue('E' . $i, isset($courseList[$key][5]) ? $courseList[$key][5] : '')
             ->setCellValue('F' . $i, $co[$fiscal_end->format('Y')]['value'])
@@ -1073,7 +1073,7 @@ $excel->getActiveSheet()
     ->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
 
 $conditionalStyles = $excel->getActiveSheet()->getStyle('H' . $i)->getConditionalStyles();
-\array_push($conditionalStyles, $badBudget);
+$conditionalStyles[] = $badBudget;
 $excel->getActiveSheet()->getStyle('H' . $i)->setConditionalStyles($conditionalStyles);
 
 $excel->getActiveSheet()->setTitle('Roadshow');
@@ -1112,7 +1112,7 @@ foreach ($costobject as $key => $co) {
         $excel->getActiveSheet()
             ->setCellValue('A' . $i, '=MID(B' . $i . ', 1, 1)')
             ->setCellValue('B' . $i, $key)
-            ->setCellValue('C' . $i, (!isset($courseList[$key]) ? '' : $courseList[$key][2]))
+            ->setCellValue('C' . $i, (isset($courseList[$key]) ? $courseList[$key][2] : ''))
             ->setCellValue('D' . $i, isset($courseList[$key][4]) ? $courseList[$key][4] : '')
             ->setCellValue('E' . $i, isset($courseList[$key][5]) ? $courseList[$key][5] : '')
             ->setCellValue('F' . $i, $co[$fiscal_end->format('Y')]['value'])
@@ -1175,7 +1175,7 @@ $excel->getActiveSheet()
     ->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
 
 $conditionalStyles = $excel->getActiveSheet()->getStyle('H' . $i)->getConditionalStyles();
-\array_push($conditionalStyles, $badBudget);
+$conditionalStyles[] = $badBudget;
 $excel->getActiveSheet()->getStyle('H' . $i)->setConditionalStyles($conditionalStyles);
 
 $excel->getActiveSheet()->setTitle('Additional Support');
@@ -1214,7 +1214,7 @@ foreach ($costobject as $key => $co) {
         $excel->getActiveSheet()
             ->setCellValue('A' . $i, '=MID(B' . $i . ', 1, 1)')
             ->setCellValue('B' . $i, $key)
-            ->setCellValue('C' . $i, (!isset($courseList[$key]) ? '' : $courseList[$key][2]))
+            ->setCellValue('C' . $i, (isset($courseList[$key]) ? $courseList[$key][2] : ''))
             ->setCellValue('D' . $i, isset($courseList[$key][4]) ? $courseList[$key][4] : '')
             ->setCellValue('E' . $i, isset($courseList[$key][5]) ? $courseList[$key][5] : '')
             ->setCellValue('F' . $i, $co[$fiscal_end->format('Y')]['value'])
@@ -1277,7 +1277,7 @@ $excel->getActiveSheet()
     ->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
 
 $conditionalStyles = $excel->getActiveSheet()->getStyle('H' . $i)->getConditionalStyles();
-\array_push($conditionalStyles, $badBudget);
+$conditionalStyles[] = $badBudget;
 $excel->getActiveSheet()->getStyle('H' . $i)->setConditionalStyles($conditionalStyles);
 
 $excel->getActiveSheet()->setTitle('Export Courses');
@@ -1316,7 +1316,7 @@ foreach ($costobject as $key => $co) {
         $excel->getActiveSheet()
             ->setCellValue('A' . $i, '=MID(B' . $i . ', 1, 1)')
             ->setCellValue('B' . $i, $key)
-            ->setCellValue('C' . $i, (!isset($courseList[$key]) ? '' : $courseList[$key][2]))
+            ->setCellValue('C' . $i, (isset($courseList[$key]) ? $courseList[$key][2] : ''))
             ->setCellValue('D' . $i, isset($courseList[$key][4]) ? $courseList[$key][4] : '')
             ->setCellValue('E' . $i, isset($courseList[$key][5]) ? $courseList[$key][5] : '')
             ->setCellValue('F' . $i, $co[$fiscal_end->format('Y')]['value'])
@@ -1379,7 +1379,7 @@ $excel->getActiveSheet()
     ->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
 
 $conditionalStyles = $excel->getActiveSheet()->getStyle('H' . $i)->getConditionalStyles();
-\array_push($conditionalStyles, $badBudget);
+$conditionalStyles[] = $badBudget;
 $excel->getActiveSheet()->getStyle('H' . $i)->setConditionalStyles($conditionalStyles);
 
 $excel->getActiveSheet()->setTitle('Events & Courses');

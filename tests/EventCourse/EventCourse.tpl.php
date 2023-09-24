@@ -25,7 +25,7 @@ $report   = $this->getData('report');
 $reportLanguage = include __DIR__ . '/../../../../' . \ltrim($tcoll['lang']->getPath(), '/');
 $lang           = $reportLanguage[$cLang];
 
-require 'Worker.php';
+require __DIR__ . '/Worker.php';
 ?>
 
 <div class="tabview tab-2">
