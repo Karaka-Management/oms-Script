@@ -455,7 +455,7 @@ $excel->getActiveSheet()
     ->getNumberFormat()
     ->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
 
-$conditionalStyles = $excel->getActiveSheet()->getStyle('H' . $i)->getConditionalStyles();
+$conditionalStyles   = $excel->getActiveSheet()->getStyle('H' . $i)->getConditionalStyles();
 $conditionalStyles[] = $badBudget;
 $excel->getActiveSheet()->getStyle('H' . $i)->setConditionalStyles($conditionalStyles);
 
@@ -562,7 +562,7 @@ $excel->getActiveSheet()
     ->getNumberFormat()
     ->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
 
-$conditionalStyles = $excel->getActiveSheet()->getStyle('H' . $i)->getConditionalStyles();
+$conditionalStyles   = $excel->getActiveSheet()->getStyle('H' . $i)->getConditionalStyles();
 $conditionalStyles[] = $badBudget;
 $excel->getActiveSheet()->getStyle('H' . $i)->setConditionalStyles($conditionalStyles);
 
@@ -664,7 +664,7 @@ $excel->getActiveSheet()
     ->getNumberFormat()
     ->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
 
-$conditionalStyles = $excel->getActiveSheet()->getStyle('H' . $i)->getConditionalStyles();
+$conditionalStyles   = $excel->getActiveSheet()->getStyle('H' . $i)->getConditionalStyles();
 $conditionalStyles[] = $badBudget;
 $excel->getActiveSheet()->getStyle('H' . $i)->setConditionalStyles($conditionalStyles);
 
@@ -766,7 +766,7 @@ $excel->getActiveSheet()
     ->getNumberFormat()
     ->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
 
-$conditionalStyles = $excel->getActiveSheet()->getStyle('H' . $i)->getConditionalStyles();
+$conditionalStyles   = $excel->getActiveSheet()->getStyle('H' . $i)->getConditionalStyles();
 $conditionalStyles[] = $badBudget;
 $excel->getActiveSheet()->getStyle('H' . $i)->setConditionalStyles($conditionalStyles);
 
@@ -868,7 +868,7 @@ $excel->getActiveSheet()
     ->getNumberFormat()
     ->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
 
-$conditionalStyles = $excel->getActiveSheet()->getStyle('H' . $i)->getConditionalStyles();
+$conditionalStyles   = $excel->getActiveSheet()->getStyle('H' . $i)->getConditionalStyles();
 $conditionalStyles[] = $badBudget;
 $excel->getActiveSheet()->getStyle('H' . $i)->setConditionalStyles($conditionalStyles);
 
@@ -970,7 +970,7 @@ $excel->getActiveSheet()
     ->getNumberFormat()
     ->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
 
-$conditionalStyles = $excel->getActiveSheet()->getStyle('H' . $i)->getConditionalStyles();
+$conditionalStyles   = $excel->getActiveSheet()->getStyle('H' . $i)->getConditionalStyles();
 $conditionalStyles[] = $badBudget;
 $excel->getActiveSheet()->getStyle('H' . $i)->setConditionalStyles($conditionalStyles);
 
@@ -1072,7 +1072,7 @@ $excel->getActiveSheet()
     ->getNumberFormat()
     ->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
 
-$conditionalStyles = $excel->getActiveSheet()->getStyle('H' . $i)->getConditionalStyles();
+$conditionalStyles   = $excel->getActiveSheet()->getStyle('H' . $i)->getConditionalStyles();
 $conditionalStyles[] = $badBudget;
 $excel->getActiveSheet()->getStyle('H' . $i)->setConditionalStyles($conditionalStyles);
 
@@ -1174,7 +1174,7 @@ $excel->getActiveSheet()
     ->getNumberFormat()
     ->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
 
-$conditionalStyles = $excel->getActiveSheet()->getStyle('H' . $i)->getConditionalStyles();
+$conditionalStyles   = $excel->getActiveSheet()->getStyle('H' . $i)->getConditionalStyles();
 $conditionalStyles[] = $badBudget;
 $excel->getActiveSheet()->getStyle('H' . $i)->setConditionalStyles($conditionalStyles);
 
@@ -1276,7 +1276,7 @@ $excel->getActiveSheet()
     ->getNumberFormat()
     ->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
 
-$conditionalStyles = $excel->getActiveSheet()->getStyle('H' . $i)->getConditionalStyles();
+$conditionalStyles   = $excel->getActiveSheet()->getStyle('H' . $i)->getConditionalStyles();
 $conditionalStyles[] = $badBudget;
 $excel->getActiveSheet()->getStyle('H' . $i)->setConditionalStyles($conditionalStyles);
 
@@ -1378,7 +1378,7 @@ $excel->getActiveSheet()
     ->getNumberFormat()
     ->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
 
-$conditionalStyles = $excel->getActiveSheet()->getStyle('H' . $i)->getConditionalStyles();
+$conditionalStyles   = $excel->getActiveSheet()->getStyle('H' . $i)->getConditionalStyles();
 $conditionalStyles[] = $badBudget;
 $excel->getActiveSheet()->getStyle('H' . $i)->setConditionalStyles($conditionalStyles);
 
