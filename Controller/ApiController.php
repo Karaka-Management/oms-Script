@@ -386,7 +386,7 @@ final class ApiController extends Controller
      *
      * @param RequestAbstract  $request  Request
      * @param ResponseAbstract $response Response
-     * @param mixed            $data     Generic data
+     * @param array            $data     Generic data
      *
      * @return void
      *
@@ -394,7 +394,7 @@ final class ApiController extends Controller
      *
      * @since 1.0.0
      */
-    public function apiTemplateCreate(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
+    public function apiTemplateCreate(RequestAbstract $request, ResponseAbstract $response, array $data = []) : void
     {
         $dbFiles       = $request->getDataJson('media-list');
         $uploadedFiles = $request->files;
@@ -558,7 +558,7 @@ final class ApiController extends Controller
      *
      * @param RequestAbstract  $request  Request
      * @param ResponseAbstract $response Response
-     * @param mixed            $data     Generic data
+     * @param array            $data     Generic data
      *
      * @return void
      *
@@ -566,7 +566,7 @@ final class ApiController extends Controller
      *
      * @since 1.0.0
      */
-    public function apiReportCreate(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
+    public function apiReportCreate(RequestAbstract $request, ResponseAbstract $response, array $data = []) : void
     {
         if (!empty($val = $this->validateReportCreate($request))) {
             $response->header->status = RequestStatusCode::R_400;
