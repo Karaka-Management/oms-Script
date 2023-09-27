@@ -20,15 +20,6 @@ use phpOMS\Router\RouteVerb;
 return [
     '^.*/helper/template/create.*$' => [
         [
-            'dest'       => '\Modules\Media\Controller\BackendController::setUpFileUploaderTrait',
-            'verb'       => RouteVerb::GET,
-            'permission' => [
-                'module' => BackendController::NAME,
-                'type'   => PermissionType::CREATE,
-                'state'  => PermissionCategory::TEMPLATE,
-            ],
-        ],
-        [
             'dest'       => '\Modules\Helper\Controller\BackendController:viewTemplateCreate',
             'verb'       => RouteVerb::GET,
             'permission' => [
@@ -39,15 +30,6 @@ return [
         ],
     ],
     '^.*/helper/report/create.*$' => [
-        [
-            'dest'       => '\Modules\Media\Controller\BackendController::setUpFileUploaderTrait',
-            'verb'       => RouteVerb::GET,
-            'permission' => [
-                'module' => BackendController::NAME,
-                'type'   => PermissionType::CREATE,
-                'state'  => PermissionCategory::REPORT,
-            ],
-        ],
         [
             'dest'       => '\Modules\Helper\Controller\BackendController:viewReportCreate',
             'verb'       => RouteVerb::GET,
