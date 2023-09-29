@@ -408,8 +408,11 @@ final class ApiController extends Controller
         }
 
         // is allowed to create
-        if (!$this->app->accountManager->get($request->header->account)->hasPermission(PermissionType::CREATE, $this->app->unitId, null, self::NAME, PermissionCategory::TEMPLATE)) {
+        if (!$this->app->accountManager->get($request->header->account)
+                ->hasPermission(PermissionType::CREATE, $this->app->unitId, null, self::NAME, PermissionCategory::TEMPLATE)
+        ) {
             $response->header->status = RequestStatusCode::R_403;
+            $this->createInvalidCreateResponse($request, $response, []);
 
             return;
         }
@@ -440,24 +443,24 @@ final class ApiController extends Controller
         }
 
         /** @var Collection $collection */
-        $collection = $this->app->moduleManager->get('Media')->createMediaCollectionFromMedia(
+        $collection = $this->app->moduleManager->get('Media', 'Api')->createMediaCollectionFromMedia(
             $request->getDataString('name') ?? '',
             $request->getDataString('description') ?? '',
             $files,
             $request->header->account
         );
 
-        if ($collection->id === 0) {
+        $collection->setPath('/Modules/Media/Files/Modules/Helper/' . ($request->getDataString('name') ?? ''));
+        $collection->setVirtualPath('/Modules/Helper');
+
+        $this->createModel($request->header->account, $collection, CollectionMapper::class, 'collection', $request->getOrigin());
+
+        if ($collection->id < 1) {
             $response->header->status = RequestStatusCode::R_403;
             $this->createInvalidCreateResponse($request, $response, $collection);
 
             return;
         }
-
-        $collection->setPath('/Modules/Media/Files/Modules/Helper/' . ($request->getDataString('name') ?? ''));
-        $collection->setVirtualPath('/Modules/Helper');
-
-        $this->createModel($request->header->account, $collection, CollectionMapper::class, 'collection', $request->getOrigin());
 
         $template = $this->createTemplateFromRequest($request, $collection->id);
 
@@ -600,14 +603,14 @@ final class ApiController extends Controller
         $collection->setPath('/Modules/Media/Files/Modules/Helper/' . ($request->getDataString('name') ?? ''));
         $collection->setVirtualPath('/Modules/Helper');
 
-        if ($collection->id === 0) {
+        $this->createModel($request->header->account, $collection, CollectionMapper::class, 'collection', $request->getOrigin());
+
+        if ($collection->id < 1) {
             $response->header->status = RequestStatusCode::R_403;
             $this->createInvalidCreateResponse($request, $response, $collection);
 
             return;
         }
-
-        $this->createModel($request->header->account, $collection, CollectionMapper::class, 'collection', $request->getOrigin());
 
         $report = $this->createReportFromRequest($request, $response, $collection->id);
 
