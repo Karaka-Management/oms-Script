@@ -37,7 +37,7 @@ echo $this->data['nav']->render(); ?>
     <div class="col-xs-12">
         <div class="box">
             <ul class="crumbs-2">
-                <li data-href="<?= UriFactory::build('{/base}/helper/list?path=/Accounts/' . $accountDir); ?>"><a href="<?= UriFactory::build('{/base}/helper/list?path=/Accounts/' . $accountDir); ?>"><i class="fa fa-home"></i></a>
+                <li data-href="<?= UriFactory::build('{/base}/helper/list?path=/Accounts/' . $accountDir); ?>"><a href="<?= UriFactory::build('{/base}/helper/list?path=/Accounts/' . $accountDir); ?>"><i class="g-icon">home</i></a>
                 <li data-href="<?= UriFactory::build('{/base}/helper/list?path=/'); ?>"><a href="<?= UriFactory::build('{/base}/helper/list?path=/'); ?>">/</a></li>
                 <?php
                     $subPath    = '';
@@ -68,7 +68,7 @@ echo $this->data['nav']->render(); ?>
 <div class="row">
     <div class="col-xs-12">
         <div class="portlet">
-            <div class="portlet-head"><?= $this->getHtml('Helpers'); ?><i class="lni lni-download download btn end-xs"></i></div>
+            <div class="portlet-head"><?= $this->getHtml('Helpers'); ?><i class="g-icon download btn end-xs">download</i></div>
             <div class="slider">
             <table id="helperList" class="default sticky">
                 <thead>
@@ -81,56 +81,56 @@ echo $this->data['nav']->render(); ?>
                     <td class="wf-100"><?= $this->getHtml('Name'); ?>
                         <label for="helperList-sort-1">
                             <input type="radio" name="helperList-sort" id="helperList-sort-1">
-                            <i class="sort-asc fa fa-chevron-up"></i>
+                            <i class="sort-asc g-icon">expand_less</i>
                         </label>
                         <label for="helperList-sort-2">
                             <input type="radio" name="helperList-sort" id="helperList-sort-2">
-                            <i class="sort-desc fa fa-chevron-down"></i>
+                            <i class="sort-desc g-icon">expand_more</i>
                         </label>
                         <label>
-                            <i class="filter fa fa-filter"></i>
+                            <i class="filter g-icon">filter_alt</i>
                         </label>
                     <td><?= $this->getHtml('Tag'); ?>
                         <label for="helperList-sort-3">
                             <input type="radio" name="helperList-sort" id="helperList-sort-3">
-                            <i class="sort-asc fa fa-chevron-up"></i>
+                            <i class="sort-asc g-icon">expand_less</i>
                         </label>
                         <label for="helperList-sort-4">
                             <input type="radio" name="helperList-sort" id="helperList-sort-4">
-                            <i class="sort-desc fa fa-chevron-down"></i>
+                            <i class="sort-desc g-icon">expand_more</i>
                         </label>
                         <label>
-                            <i class="filter fa fa-filter"></i>
+                            <i class="filter g-icon">filter_alt</i>
                         </label>
                     <td><?= $this->getHtml('Creator'); ?>
                         <label for="helperList-sort-5">
                             <input type="radio" name="helperList-sort" id="helperList-sort-5">
-                            <i class="sort-asc fa fa-chevron-up"></i>
+                            <i class="sort-asc g-icon">expand_less</i>
                         </label>
                         <label for="helperList-sort-6">
                             <input type="radio" name="helperList-sort" id="helperList-sort-6">
-                            <i class="sort-desc fa fa-chevron-down"></i>
+                            <i class="sort-desc g-icon">expand_more</i>
                         </label>
                         <label>
-                            <i class="filter fa fa-filter"></i>
+                            <i class="filter g-icon">filter_alt</i>
                         </label>
                     <td><?= $this->getHtml('Updated'); ?>
                         <label for="helperList-sort-7">
                             <input type="radio" name="helperList-sort" id="helperList-sort-7">
-                            <i class="sort-asc fa fa-chevron-up"></i>
+                            <i class="sort-asc g-icon">expand_less</i>
                         </label>
                         <label for="helperList-sort-8">
                             <input type="radio" name="helperList-sort" id="helperList-sort-8">
-                            <i class="sort-desc fa fa-chevron-down"></i>
+                            <i class="sort-desc g-icon">expand_more</i>
                         </label>
                         <label>
-                            <i class="filter fa fa-filter"></i>
+                            <i class="filter g-icon">filter_alt</i>
                         </label>
                 <tbody>
                 <?php if (!empty($parentPath)) : $url = UriFactory::build('{/base}/helper/list?path=' . $parentPath); ?>
                         <tr tabindex="0" data-href="<?= $url; ?>">
                             <td>
-                            <td data-label="<?= $this->getHtml('Type'); ?>"><a href="<?= $url; ?>"><i class="fa fa-folder-open-o"></i></a>
+                            <td data-label="<?= $this->getHtml('Type'); ?>"><a href="<?= $url; ?>"><i class="g-icon">folder_open</i></a>
                             <td data-label="<?= $this->getHtml('Name'); ?>"><a href="<?= $url; ?>">..
                             </a>
                             <td>
@@ -146,7 +146,7 @@ echo $this->data['nav']->render(); ?>
                                     <input type="checkbox" id="helperList-<?= $key; ?>" name="helperselect">
                                     <span class="checkmark"></span>
                                 </label>
-                        <td><a href="<?= $url; ?>"><i class="fa fa-folder-open-o"></i></a>
+                        <td><a href="<?= $url; ?>"><i class="g-icon">folder_open</i></a>
                         <td><a href="<?= $url; ?>"><?= $this->printHtml($value->name); ?></a>
                         <td>
                         <td><a class="content" href="<?= UriFactory::build('{/base}/profile/single?{?}&for=' . $value->createdBy->id); ?>"><?= $this->printHtml($this->renderUserName('%3$s %2$s %1$s', [$value->createdBy->name1, $value->createdBy->name2, $value->createdBy->name3, $value->createdBy->login ?? ''])); ?></a>
