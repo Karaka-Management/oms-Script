@@ -38,7 +38,7 @@ $duration = (int) ($this->request->getData('duration') ?? 10);
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="<?= UriFactory::build('{/base}/{/base}/' . \ltrim($tcoll['css']['styles.css']->getPath(), '/')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?= UriFactory::build('{/base}/' . \ltrim($tcoll['css']['styles.css']->getPath(), '/')); ?>">
 </head>
 <body>
 <table>

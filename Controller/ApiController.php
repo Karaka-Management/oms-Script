@@ -55,7 +55,7 @@ use phpOMS\Views\View;
 final class ApiController extends Controller
 {
     /**
-     * Routing end-point for application behaviour.
+     * Routing end-point for application behavior.
      *
      * @param HttpRequest  $request  Request
      * @param HttpResponse $response Response
@@ -346,7 +346,10 @@ final class ApiController extends Controller
             }
         }
 
-        $view = new View($this->app->l11nManager, $request, $response);
+        $view  = new View($this->app->l11nManager, $request, $response);
+        $rcoll = [];
+        $report = null;
+
         if (!$template->isStandalone) {
             /** @var Report $report */
             $report = ReportMapper::get()
@@ -358,9 +361,6 @@ final class ApiController extends Controller
                 ->limit(1)
                 ->execute();
 
-            $rcoll  = [];
-            $report = $report === false ? new NullReport() : $report;
-
             if ($report->id > 0) {
                 $files = $report->source->getSources();
 
@@ -368,11 +368,10 @@ final class ApiController extends Controller
                     $rcoll[$media->name . '.' . $media->extension] = $media;
                 }
             }
-
-            $view->data['report'] = $report;
-            $view->data['rcoll']  = $rcoll;
         }
 
+        $view->data['report'] = $report;
+        $view->data['rcoll']  = $rcoll;
         $view->data['tcoll']    = $tcoll;
         $view->data['lang']     = $request->getData('lang') ?? $request->header->l11n->language;
         $view->data['template'] = $template;
@@ -382,7 +381,7 @@ final class ApiController extends Controller
     }
 
     /**
-     * Routing end-point for application behaviour.
+     * Routing end-point for application behavior.
      *
      * @param RequestAbstract  $request  Request
      * @param ResponseAbstract $response Response
@@ -557,7 +556,7 @@ final class ApiController extends Controller
     }
 
     /**
-     * Routing end-point for application behaviour.
+     * Routing end-point for application behavior.
      *
      * @param RequestAbstract  $request  Request
      * @param ResponseAbstract $response Response

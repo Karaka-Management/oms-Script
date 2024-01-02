@@ -24,7 +24,7 @@ echo $this->data['nav']->render(); ?>
                     <table class="layout wf-100" style="table-layout: fixed">
                         <tbody>
                         <tr><td><label for="iTitle"><?= $this->getHtml('Title'); ?></label>
-                        <tr><td><input id="iTitle" name="name" type="text" placeholder="&#xf040; P&L Reporting" required>
+                        <tr><td><input id="iTitle" name="name" type="text" placeholder="P&L Reporting" required>
                         <tr><td><label for="iDescription"><?= $this->getHtml('Description'); ?></label>
                         <tr><td><?= $this->getData('editor')->render('report-editor'); ?>
                         <tr><td><?= $this->getData('editor')->getData('text')->render('report-editor', 'description', 'helper-template-create'); ?>
@@ -37,7 +37,7 @@ echo $this->data['nav']->render(); ?>
                         <tr><td><label for="iExpected"><?= $this->getHtml('Expected'); ?></label>
                         <tr><td>
                             <div class="ipt-wrap">
-                                <div class="ipt-first"><input id="iExpected" type="text" placeholder="&#xf15b; file.csv"><input name="expected" type="hidden"></div>
+                                <div class="ipt-first"><input id="iExpected" type="text" placeholder="file.csv"><input name="expected" type="hidden"></div>
                                 <div class="ipt-second"><button><?= $this->getHtml('Add', '0', '0'); ?></button></div>
                             </div>
                     </table>

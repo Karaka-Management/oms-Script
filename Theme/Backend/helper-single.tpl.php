@@ -19,10 +19,10 @@ use phpOMS\Uri\UriFactory;
  * @var \phpOMS\Views\View $this
  */
 
-/** @var \Modules\Media\Models\Collection $tcoll */
+/** @var \Modules\Media\Models\Collection[] $tcoll */
 $tcoll = $this->data['tcoll'];
 
-/** @var \Modules\Media\Models\Collection $rcoll */
+/** @var \Modules\Media\Models\Collection[] $rcoll */
 $rcoll = $this->data['rcoll'];
 
 /** @var string $cLang */
@@ -43,11 +43,11 @@ $lang     = $reportLanguage[$cLang] ?? [];
 $settings = isset($tcoll['cfg']) ? \json_decode(\file_get_contents(__DIR__ . '/../../../../' . \ltrim($tcoll['cfg']->getPath(), '/')), true) : [];
 
 echo $this->data['nav']->render(); ?>
-<div class="row" style="height: calc(100% - 85px);">
-    <div class="col-xs-12 col-md-9">
-        <div class="portlet">
-            <div class="portlet-body">
-                <iframe data-form="iUiSettings" data-name="iframeHelper" id="iHelperFrame" src="<?= UriFactory::build('{/api}helper/report/export/?{?}&id=' . $template->id); ?>&u=<?=  $this->data['unit']; ?>" allowfullscreen></iframe>
+<div class="row">
+    <div class="col-xs-12 col-md-9 col-simple">
+        <div class="portlet col-simple">
+            <div class="portlet-body col-simple">
+                <iframe class="col-simple" data-form="iUiSettings" data-name="iframeHelper" id="iHelperFrame" src="<?= UriFactory::build('{/api}helper/report/export/?{?}&id=' . $template->id); ?>&u=<?=  $this->data['unit']; ?>" allowfullscreen></iframe>
             </div>
         </div>
     </div>
@@ -97,7 +97,7 @@ echo $this->data['nav']->render(); ?>
                                     <option value="json"<?= $this->printHtml((isset($tcoll['json'])) ? '' : ' disabled'); ?>>Json
                                 </select>
                         <tr>
-                            <td><a tabindex="0" target="_blank" class="button" href="<?= UriFactory::build('{/base}/{/api}helper/report/export?{?}'); ?>&type={#iExport}&lang={#iLang}{#iUiSettings}"><?= $this->getHtml('Export'); ?></a>
+                            <td><a tabindex="0" target="_blank" class="button" href="<?= UriFactory::build('{/api}helper/report/export?{?}'); ?>&type={#iExport}&lang={#iLang}{#iUiSettings}"><?= $this->getHtml('Export'); ?></a>
                     </table>
                 </form>
             </div>
@@ -116,7 +116,7 @@ echo $this->data['nav']->render(); ?>
                         <?php endforeach; ?>
                     </table>
                 </div>
-                <div class="portlet-foot"><a tabindex="0" class="button" href="<?= UriFactory::build('{/base}/{%}'); ?>&lang={#iLang}{#iUiSettings}"><?= $this->getHtml('Load'); ?></a></div>
+                <div class="portlet-foot"><a tabindex="0" class="button" href="<?= UriFactory::build('{%}'); ?>&lang={#iLang}{#iUiSettings}"><?= $this->getHtml('Load'); ?></a></div>
             </form>
         </div>
         <?php endif; ?>
@@ -126,7 +126,9 @@ echo $this->data['nav']->render(); ?>
             <div class="portlet-body">
                 <table class="list wf-100">
                     <tbody>
-                    <?php if (!$template->isStandalone && !($report instanceof \Modules\Helper\Models\NullReport)) : ?>
+                    <?php if (!$template->isStandalone
+                        && !($report instanceof \Modules\Helper\Models\NullReport)
+                    ) : ?>
                     <tr>
                         <th colspan="2"><?= $this->getHtml('Report'); ?>
                     <tr>
@@ -153,7 +155,9 @@ echo $this->data['nav']->render(); ?>
                     <tr>
                         <td><?= $this->getHtml('Tags'); ?>
                         <td>
-                            <?php $tags = $template->getTags(); foreach ($tags as $tag) : ?>
+                            <?php
+                            $tags = $template->getTags();
+                            foreach ($tags as $tag) : ?>
                                 <span class="tag" style="background: <?= $this->printHtml($tag->color); ?>"><?= empty($tag->icon) ? '' : ''; ?><?= $this->printHtml($tag->getL11n()); ?></span>
                             <?php endforeach; ?>
                 </table>

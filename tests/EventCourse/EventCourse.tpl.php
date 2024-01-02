@@ -31,18 +31,18 @@ require __DIR__ . '/Worker.php';
 <div class="tabview tab-2">
     <div class="box">
         <ul class="tab-links">
-            <li><label for="c-tab-1"><?= $lang['Overview']; ?></label></li>
-            <li><label for="c-tab-2"><?= $lang['Type']; ?></label></li>
-            <li><label for="c-tab-3"><?= $lang['CostObject']; ?></label></li>
-            <li><label for="c-tab-4"><?= $lang['CostCenter']; ?></label></li>
-            <li><label for="c-tab-5"><?= $lang['Account']; ?></label></li>
+            <li><label for="c-tab-1"><?= $lang['Overview']; ?></label>
+            <li><label for="c-tab-2"><?= $lang['Type']; ?></label>
+            <li><label for="c-tab-3"><?= $lang['CostObject']; ?></label>
+            <li><label for="c-tab-4"><?= $lang['CostCenter']; ?></label>
+            <li><label for="c-tab-5"><?= $lang['Account']; ?></label>
         </ul>
     </div>
     <div class="tab-content">
         <input type="radio" id="c-tab-1" name="tabular-2"<?= $this->request->uri->fragment === 'c-tab-1' ? ' checked' : ''; ?>>
         <div class="tab">
             <div class="box">
-                <table class="default">
+                <table class="default sticky">
                     <caption><?= $lang['Budget']; ?><i class="g-icon end-xs download btn">download</i></caption>
                     <thead>
                     <tr>
@@ -92,7 +92,7 @@ require __DIR__ . '/Worker.php';
             </div>
 
             <div class="box">
-                <table class="default">
+                <table class="default sticky">
                     <caption><?= $lang['CostObject']; ?><i class="g-icon end-xs download btn">download</i></caption>
                     <thead>
                     <tr>
@@ -131,7 +131,7 @@ require __DIR__ . '/Worker.php';
             </div>
 
             <div class="box">
-                <table class="default">
+                <table class="default sticky">
                     <caption><?= $lang['CostCenter']; ?><i class="g-icon end-xs download btn">download</i></caption>
                     <thead>
                     <tr>
@@ -170,7 +170,7 @@ require __DIR__ . '/Worker.php';
             </div>
 
             <div class="box">
-                <table class="default">
+                <table class="default sticky">
                     <caption><?= $lang['Account']; ?><i class="g-icon end-xs download btn">download</i></caption>
                     <thead>
                     <tr>
@@ -211,7 +211,7 @@ require __DIR__ . '/Worker.php';
         <input type="radio" id="c-tab-2" name="tabular-2"<?= $this->request->uri->fragment === 'c-tab-2' ? ' checked' : ''; ?>>
         <div class="tab">
             <section class="box">
-                <table class="default">
+                <table class="default sticky">
                     <caption><?= $lang['CostObject']; ?><i class="g-icon end-xs download btn">download</i></caption>
                     <thead>
                     <tr>
@@ -238,7 +238,7 @@ require __DIR__ . '/Worker.php';
             </section>
 
             <section class="box">
-                <table class="default">
+                <table class="default sticky">
                     <caption><?= $lang['CostCenter']; ?><i class="g-icon end-xs download btn">download</i></caption>
                     <thead>
                     <tr>
@@ -261,7 +261,7 @@ require __DIR__ . '/Worker.php';
             </section>
 
             <section class="box">
-                <table class="default">
+                <table class="default sticky">
                     <caption><?= $lang['Account']; ?><i class="g-icon end-xs download btn">download</i></caption>
                     <thead>
                     <tr>
@@ -286,7 +286,7 @@ require __DIR__ . '/Worker.php';
         <input type="radio" id="c-tab-3" name="tabular-2"<?= $this->request->uri->fragment === 'c-tab-3' ? ' checked' : ''; ?>>
         <div class="tab">
             <section class="box">
-                <table class="default">
+                <table class="default sticky">
                     <caption><?= $lang['Account']; ?><i class="g-icon end-xs download btn">download</i></caption>
                     <thead>
                     <tr>
@@ -309,7 +309,7 @@ require __DIR__ . '/Worker.php';
             </section>
 
             <section class="box">
-                <table class="default">
+                <table class="default sticky">
                     <caption><?= $lang['CostCenter']; ?><i class="g-icon end-xs download btn">download</i></caption>
                     <thead>
                     <tr>
@@ -334,7 +334,7 @@ require __DIR__ . '/Worker.php';
         <input type="radio" id="c-tab-4" name="tabular-2"<?= $this->request->uri->fragment === 'c-tab-4' ? ' checked' : ''; ?>>
         <div class="tab">
             <section class="box">
-                <table class="default">
+                <table class="default sticky">
                     <caption><?= $lang['Account']; ?><i class="g-icon end-xs download btn">download</i></caption>
                     <thead>
                     <tr>
@@ -357,7 +357,7 @@ require __DIR__ . '/Worker.php';
             </section>
 
             <section class="box">
-                <table class="default">
+                <table class="default sticky">
                     <caption><?= $lang['Type']; ?><i class="g-icon end-xs download btn">download</i></caption>
                     <thead>
                     <tr>
@@ -380,7 +380,7 @@ require __DIR__ . '/Worker.php';
             </section>
 
             <section class="box">
-                <table class="default">
+                <table class="default sticky">
                     <caption><?= $lang['CostObject']; ?><i class="g-icon end-xs download btn">download</i></caption>
                     <thead>
                     <tr>
@@ -405,7 +405,7 @@ require __DIR__ . '/Worker.php';
         <input type="radio" id="c-tab-5" name="tabular-2"<?= $this->request->uri->fragment === 'c-tab-5' ? ' checked' : ''; ?>>
         <div class="tab">
             <section class="box">
-                <table class="default">
+                <table class="default sticky">
                     <caption><?= $lang['Type']; ?><i class="g-icon end-xs download btn">download</i></caption>
                     <thead>
                     <tr>
@@ -428,7 +428,7 @@ require __DIR__ . '/Worker.php';
             </section>
 
             <section class="box">
-                <table class="default">
+                <table class="default sticky">
                     <caption><?= $lang['CostCenter']; ?><i class="g-icon end-xs download btn">download</i></caption>
                     <thead>
                     <tr>

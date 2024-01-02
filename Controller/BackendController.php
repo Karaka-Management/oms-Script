@@ -38,7 +38,7 @@ use phpOMS\Views\View;
 final class BackendController extends Controller
 {
     /**
-     * Routing end-point for application behaviour.
+     * Routing end-point for application behavior.
      *
      * @param RequestAbstract  $request  Request
      * @param ResponseAbstract $response Response
@@ -77,7 +77,7 @@ final class BackendController extends Controller
     }
 
     /**
-     * Routing end-point for application behaviour.
+     * Routing end-point for application behavior.
      *
      * @param RequestAbstract  $request  Request
      * @param ResponseAbstract $response Response
@@ -103,7 +103,7 @@ final class BackendController extends Controller
     }
 
     /**
-     * Routing end-point for application behaviour.
+     * Routing end-point for application behavior.
      *
      * @param RequestAbstract  $request  Request
      * @param ResponseAbstract $response Response
@@ -129,7 +129,7 @@ final class BackendController extends Controller
     }
 
     /**
-     * Routing end-point for application behaviour.
+     * Routing end-point for application behavior.
      *
      * @param RequestAbstract  $request  Request
      * @param ResponseAbstract $response Response
@@ -199,17 +199,19 @@ final class BackendController extends Controller
             }
         }
 
+        $rcoll = [];
+        $report = null;
         if (!$template->isStandalone) {
             if (!isset($tcoll['template'])) {
                 throw new \Exception('No template file detected.');
             }
 
-            /** @var \Modules\Helper\Models\Report[] $report */
-            $report = ReportMapper::get()->where('template', $template->id)->sort('id', OrderType::DESC)->limit(1)->execute();
-
-            $rcoll  = [];
-            $report = \end($report);
-            $report = $report === false ? new NullReport() : $report;
+            /** @var \Modules\Helper\Models\Report $report */
+            $report = ReportMapper::get()
+                ->where('template', $template->id)
+                ->sort('id', OrderType::DESC)
+                ->limit(1)
+                ->execute();
 
             if ($report->id > 0) {
                 /** @var Media[] $files */
@@ -219,13 +221,12 @@ final class BackendController extends Controller
                     $rcoll[$media->name . '.' . $media->extension] = $media;
                 }
             }
-
-            $view->data['report'] = $report;
-            $view->data['rcoll']  = $rcoll;
         }
 
+        $view->data['report']   = $report;
         $view->data['unit']     = $this->app->unitId;
         $view->data['tcoll']    = $tcoll;
+        $view->data['rcoll']    = $rcoll;
         $view->data['lang']     = $request->getData('lang') ?? $request->header->l11n->language;
         $view->data['template'] = $template;
         $view->data['nav']      = $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response);
