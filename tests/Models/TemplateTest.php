@@ -21,7 +21,6 @@ use Modules\Helper\Models\Template;
 use Modules\Helper\Models\TemplateDataType;
 use Modules\Media\Models\NullCollection;
 use Modules\Organization\Models\NullUnit;
-use Modules\Tag\Models\Tag;
 use phpOMS\Utils\TestUtils;
 
 /**
@@ -53,7 +52,7 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
         self::assertEquals(0, $this->template->createdBy->id);
         self::assertEquals((new \DateTime('now'))->format('Y-m-d'), $this->template->createdAt->format('Y-m-d'));
         self::assertEquals('', $this->template->name);
-        self::assertEquals(HelperStatus::INACTIVE, $this->template->getStatus());
+        self::assertEquals(HelperStatus::INACTIVE, $this->template->status);
         self::assertEquals('', $this->template->description);
         self::assertEquals('', $this->template->descriptionRaw);
         self::assertEquals([], $this->template->getExpected());
@@ -94,17 +93,6 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
     {
         $this->template->name = 'Title';
         self::assertEquals('Title', $this->template->name);
-    }
-
-    /**
-     * @testdox The status can be set and returned correctly
-     * @covers Modules\Helper\Models\Template
-     * @group module
-     */
-    public function testStatusInputOutput() : void
-    {
-        $this->template->setStatus(HelperStatus::ACTIVE);
-        self::assertEquals(HelperStatus::ACTIVE, $this->template->getStatus());
     }
 
     /**
@@ -178,19 +166,6 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
      * @covers Modules\Helper\Models\Template
      * @group module
      */
-    public function testTagInputOutput() : void
-    {
-        $tag = new Tag();
-        $tag->setL11n('Tag');
-
-        $this->template->addTag($tag);
-        self::assertCount(1, $this->template->getTags());
-    }
-
-    /**
-     * @covers Modules\Helper\Models\Template
-     * @group module
-     */
     public function testNewestReportOutput() : void
     {
         TestUtils::setMember($this->template, 'reports', [
@@ -208,10 +183,10 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
      */
     public function testToArray() : void
     {
-        $this->template->name             = 'testName';
-        $this->template->description      = 'testDescription';
-        $this->template->descriptionRaw   = 'testDescriptionRaw';
-        $this->template->isStandalone     = true;
+        $this->template->name           = 'testName';
+        $this->template->description    = 'testDescription';
+        $this->template->descriptionRaw = 'testDescriptionRaw';
+        $this->template->isStandalone   = true;
 
         $array    = $this->template->toArray();
         $expected = [
@@ -240,10 +215,10 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
      */
     public function testJsonSerialize() : void
     {
-        $this->template->name             = 'testName';
-        $this->template->description      = 'testDescription';
-        $this->template->descriptionRaw   = 'testDescriptionRaw';
-        $this->template->isStandalone     = true;
+        $this->template->name           = 'testName';
+        $this->template->description    = 'testDescription';
+        $this->template->descriptionRaw = 'testDescriptionRaw';
+        $this->template->isStandalone   = true;
 
         $array    = $this->template->jsonSerialize();
         $expected = [

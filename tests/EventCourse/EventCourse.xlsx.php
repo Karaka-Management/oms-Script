@@ -18,23 +18,23 @@ $headStyle->applyFromArray(
             'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
             'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER,
         ],
-        'fill'      => [
+        'fill' => [
             'type' => PHPExcel_Style_Fill::FILL_SOLID,
         ],
-        'borders'   => [
+        'borders' => [
             'bottom' => [
                 'style' => PHPExcel_Style_Border::BORDER_THIN,
                 'color' => ['argb' => 'FF000000'],
             ],
-            'right'  => [
+            'right' => [
                 'style' => PHPExcel_Style_Border::BORDER_THIN,
                 'color' => ['argb' => 'FF000000'],
             ],
-            'top'    => [
+            'top' => [
                 'style' => PHPExcel_Style_Border::BORDER_THIN,
                 'color' => ['argb' => 'FF000000'],
             ],
-            'left'   => [
+            'left' => [
                 'style' => PHPExcel_Style_Border::BORDER_THIN,
                 'color' => ['argb' => 'FF000000'],
             ],
@@ -46,7 +46,7 @@ $headStyle->applyFromArray(
 $inputStyle = new PHPExcel_Style();
 $inputStyle->applyFromArray(
     [
-        'fill'    => [
+        'fill' => [
             'type'  => PHPExcel_Style_Fill::FILL_SOLID,
             'color' => ['argb' => 'FFA9FFB9'],
         ],
@@ -55,15 +55,15 @@ $inputStyle->applyFromArray(
                 'style' => PHPExcel_Style_Border::BORDER_THIN,
                 'color' => ['argb' => 'FFD1D1D1'],
             ],
-            'right'  => [
+            'right' => [
                 'style' => PHPExcel_Style_Border::BORDER_THIN,
                 'color' => ['argb' => 'FFD1D1D1'],
             ],
-            'top'    => [
+            'top' => [
                 'style' => PHPExcel_Style_Border::BORDER_THIN,
                 'color' => ['argb' => 'FFD1D1D1'],
             ],
-            'left'   => [
+            'left' => [
                 'style' => PHPExcel_Style_Border::BORDER_THIN,
                 'color' => ['argb' => 'FFD1D1D1'],
             ],
@@ -74,7 +74,7 @@ $inputStyle->applyFromArray(
 $colored1Style = new PHPExcel_Style();
 $colored1Style->applyFromArray(
     [
-        'fill'    => [
+        'fill' => [
             'type'  => PHPExcel_Style_Fill::FILL_SOLID,
             'color' => ['argb' => 'FFFFFF00'],
         ],
@@ -83,15 +83,15 @@ $colored1Style->applyFromArray(
                 'style' => PHPExcel_Style_Border::BORDER_THIN,
                 'color' => ['argb' => 'FFD1D1D1'],
             ],
-            'right'  => [
+            'right' => [
                 'style' => PHPExcel_Style_Border::BORDER_THIN,
                 'color' => ['argb' => 'FFD1D1D1'],
             ],
-            'top'    => [
+            'top' => [
                 'style' => PHPExcel_Style_Border::BORDER_THIN,
                 'color' => ['argb' => 'FFD1D1D1'],
             ],
-            'left'   => [
+            'left' => [
                 'style' => PHPExcel_Style_Border::BORDER_THIN,
                 'color' => ['argb' => 'FFD1D1D1'],
             ],
@@ -102,7 +102,7 @@ $colored1Style->applyFromArray(
 $fixedStyle = new PHPExcel_Style();
 $fixedStyle->applyFromArray(
     [
-        'fill'    => [
+        'fill' => [
             'type'  => PHPExcel_Style_Fill::FILL_SOLID,
             'color' => ['argb' => 'FFDADADA'],
         ],
@@ -111,15 +111,15 @@ $fixedStyle->applyFromArray(
                 'style' => PHPExcel_Style_Border::BORDER_THIN,
                 'color' => ['argb' => 'FFD1D1D1'],
             ],
-            'right'  => [
+            'right' => [
                 'style' => PHPExcel_Style_Border::BORDER_THIN,
                 'color' => ['argb' => 'FFD1D1D1'],
             ],
-            'top'    => [
+            'top' => [
                 'style' => PHPExcel_Style_Border::BORDER_THIN,
                 'color' => ['argb' => 'FFD1D1D1'],
             ],
-            'left'   => [
+            'left' => [
                 'style' => PHPExcel_Style_Border::BORDER_THIN,
                 'color' => ['argb' => 'FFD1D1D1'],
             ],
@@ -130,10 +130,10 @@ $fixedStyle->applyFromArray(
 $totalStyle = new PHPExcel_Style();
 $totalStyle->applyFromArray(
     [
-        'font'    => [
+        'font' => [
             'bold' => true,
         ],
-        'fill'    => [
+        'fill' => [
             'type'  => PHPExcel_Style_Fill::FILL_SOLID,
             'color' => ['argb' => 'FF97C8FF'],
         ],
@@ -142,15 +142,15 @@ $totalStyle->applyFromArray(
                 'style' => PHPExcel_Style_Border::BORDER_THIN,
                 'color' => ['argb' => 'FF000000'],
             ],
-            'right'  => [
+            'right' => [
                 'style' => PHPExcel_Style_Border::BORDER_THIN,
                 'color' => ['argb' => 'FF000000'],
             ],
-            'top'    => [
+            'top' => [
                 'style' => PHPExcel_Style_Border::BORDER_THIN,
                 'color' => ['argb' => 'FF000000'],
             ],
-            'left'   => [
+            'left' => [
                 'style' => PHPExcel_Style_Border::BORDER_THIN,
                 'color' => ['argb' => 'FF000000'],
             ],

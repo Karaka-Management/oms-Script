@@ -148,7 +148,7 @@ echo $this->data['nav']->render(); ?>
                         <td><?= $this->printHtml($template->name); ?>
                     <tr>
                         <td><?= $this->getHtml('Creator'); ?>
-                        <td><a href="<?= UriFactory::build('{/base}/profile/single?for=' . $template->createdBy->id); ?>"><?= $this->printHtml($template->createdBy->name1); ?></a>
+                        <td><a href="<?= UriFactory::build('{/base}/profile/view?for=' . $template->createdBy->id); ?>"><?= $this->printHtml($template->createdBy->name1); ?></a>
                     <tr>
                         <td><?= $this->getHtml('Created'); ?>
                         <td><?= $template->createdAt->format('Y-m-d'); ?>
@@ -156,8 +156,7 @@ echo $this->data['nav']->render(); ?>
                         <td><?= $this->getHtml('Tags'); ?>
                         <td>
                             <?php
-                            $tags = $template->getTags();
-                            foreach ($tags as $tag) : ?>
+                            foreach ($template->tags as $tag) : ?>
                                 <span class="tag" style="background: <?= $this->printHtml($tag->color); ?>"><?= empty($tag->icon) ? '' : ''; ?><?= $this->printHtml($tag->getL11n()); ?></span>
                             <?php endforeach; ?>
                 </table>

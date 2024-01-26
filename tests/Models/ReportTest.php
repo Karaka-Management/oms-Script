@@ -48,7 +48,7 @@ final class ReportTest extends \PHPUnit\Framework\TestCase
         self::assertEquals(0, $this->report->createdBy->id);
         self::assertEquals((new \DateTime('now'))->format('Y-m-d'), $this->report->createdAt->format('Y-m-d'));
         self::assertEquals('', $this->report->title);
-        self::assertEquals(HelperStatus::INACTIVE, $this->report->getStatus());
+        self::assertEquals(HelperStatus::INACTIVE, $this->report->status);
         self::assertEquals('', $this->report->description);
         self::assertEquals('', $this->report->descriptionRaw);
         self::assertEquals(0, $this->report->template->id);
@@ -75,17 +75,6 @@ final class ReportTest extends \PHPUnit\Framework\TestCase
     {
         $this->report->title = 'Title';
         self::assertEquals('Title', $this->report->title);
-    }
-
-    /**
-     * @testdox The status can be set and returned correctly
-     * @covers Modules\Helper\Models\Report
-     * @group module
-     */
-    public function testStatusInputOutput() : void
-    {
-        $this->report->setStatus(HelperStatus::ACTIVE);
-        self::assertEquals(HelperStatus::ACTIVE, $this->report->getStatus());
     }
 
     /**

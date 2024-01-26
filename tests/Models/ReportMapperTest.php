@@ -34,9 +34,9 @@ final class ReportMapperTest extends \PHPUnit\Framework\TestCase
     {
         $template = new Template();
 
-        $template->createdBy = new NullAccount(1);
-        $template->name      = 'Report Template';
-        $template->setStatus(HelperStatus::ACTIVE);
+        $template->createdBy   = new NullAccount(1);
+        $template->name        = 'Report Template';
+        $template->status      = HelperStatus::ACTIVE;
         $template->description = 'Description';
         $template->setDatatype(TemplateDataType::OTHER);
         $template->isStandalone = false;
@@ -108,9 +108,9 @@ final class ReportMapperTest extends \PHPUnit\Framework\TestCase
     {
         $report = new Report();
 
-        $report->createdBy = new NullAccount(1);
-        $report->title     = 'Title';
-        $report->setStatus(HelperStatus::ACTIVE);
+        $report->createdBy   = new NullAccount(1);
+        $report->title       = 'Title';
+        $report->status      = HelperStatus::ACTIVE;
         $report->description = 'Description';
         $report->template    = $this->createTemplate();
 
@@ -177,7 +177,7 @@ final class ReportMapperTest extends \PHPUnit\Framework\TestCase
         self::assertEquals($report->createdBy->id, $reportR->createdBy->id);
         self::assertEquals($report->description, $reportR->description);
         self::assertEquals($report->title, $reportR->title);
-        self::assertEquals($report->getStatus(), $reportR->getStatus());
+        self::assertEquals($report->status, $reportR->status);
         self::assertEquals($report->template->name, $reportR->template->name);
     }
 }

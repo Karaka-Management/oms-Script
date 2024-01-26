@@ -18,7 +18,7 @@ use phpOMS\Account\PermissionType;
 use phpOMS\Router\RouteVerb;
 
 return [
-    '^.*/helper/template/create.*$' => [
+    '^.*/helper/template/create(\?.*$|$)' => [
         [
             'dest'       => '\Modules\Helper\Controller\BackendController:viewTemplateCreate',
             'verb'       => RouteVerb::GET,
@@ -29,7 +29,7 @@ return [
             ],
         ],
     ],
-    '^.*/helper/report/create.*$' => [
+    '^.*/helper/report/create(\?.*$|$)' => [
         [
             'dest'       => '\Modules\Helper\Controller\BackendController:viewReportCreate',
             'verb'       => RouteVerb::GET,
@@ -40,7 +40,7 @@ return [
             ],
         ],
     ],
-    '^.*/helper/list.*$' => [
+    '^.*/helper/list(\?.*$|$)' => [
         [
             'dest'       => '\Modules\Helper\Controller\BackendController:viewTemplateList',
             'verb'       => RouteVerb::GET,
@@ -51,7 +51,7 @@ return [
             ],
         ],
     ],
-    '^.*/helper/report/view.*$' => [
+    '^.*/helper/report/view(\?.*$|$)' => [
         [
             'dest'       => '\Modules\Helper\Controller\BackendController:viewHelperReport',
             'verb'       => RouteVerb::GET,

@@ -14,7 +14,6 @@ declare(strict_types=1);
 
 namespace Modules\Helper\Controller;
 
-use Modules\Helper\Models\NullReport;
 use Modules\Helper\Models\ReportMapper;
 use Modules\Helper\Models\Template;
 use Modules\Helper\Models\TemplateMapper;
@@ -22,6 +21,7 @@ use Modules\Media\Models\CollectionMapper;
 use Modules\Media\Models\Media;
 use phpOMS\Contract\RenderableInterface;
 use phpOMS\DataStorage\Database\Query\OrderType;
+use phpOMS\Localization\ISO639x1Enum;
 use phpOMS\Message\RequestAbstract;
 use phpOMS\Message\ResponseAbstract;
 use phpOMS\Utils\StringUtils;
@@ -158,7 +158,7 @@ final class BackendController extends Controller
             ->where('tags/title/language', $response->header->l11n->language)
             ->execute();
 
-        $view->setTemplate('/Modules/Helper/Theme/Backend/helper-single');
+        $view->setTemplate('/Modules/Helper/Theme/Backend/helper-view');
 
         /** @var array<string, \Modules\Media\Models\Media> $tcoll */
         $tcoll = [];
@@ -199,7 +199,7 @@ final class BackendController extends Controller
             }
         }
 
-        $rcoll = [];
+        $rcoll  = [];
         $report = null;
         if (!$template->isStandalone) {
             if (!isset($tcoll['template'])) {
@@ -227,7 +227,7 @@ final class BackendController extends Controller
         $view->data['unit']     = $this->app->unitId;
         $view->data['tcoll']    = $tcoll;
         $view->data['rcoll']    = $rcoll;
-        $view->data['lang']     = $request->getData('lang') ?? $request->header->l11n->language;
+        $view->data['lang']     = ISO639x1Enum::tryFromValue($request->getDataString('lang')) ?? $request->header->l11n->language;
         $view->data['template'] = $template;
         $view->data['nav']      = $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response);
 

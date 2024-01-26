@@ -111,8 +111,8 @@ require __DIR__ . '/Worker.php';
                     <tr>
                         <td><?= $key; ?>
                         <td><?= $stype; ?>
-                        <td><?= (\number_format($history  = $type[$key][$fiscal_end_prev->format('Y')]['value'] ?? 0.0, 2, ',', '.')); ?>
-                        <td><?= (\number_format($current  = $type[$key][$fiscal_end->format('Y')]['value'] ?? 0.0, 2, ',', '.')); ?>
+                        <td><?= (\number_format($history = $type[$key][$fiscal_end_prev->format('Y')]['value'] ?? 0.0, 2, ',', '.')); ?>
+                        <td><?= (\number_format($current = $type[$key][$fiscal_end->format('Y')]['value'] ?? 0.0, 2, ',', '.')); ?>
                         <td><?= (\number_format($forecast = ($type[$key][$fiscal_end->format('Y')]['value'] ?? 0.0) / \abs(((int) $fiscal_current->format('m') - ((int) $fiscal_end->format('m') + 1)) % 12 + 1) * 12, 2, ',', '.')); ?>
                         <td><?= \number_format($history == 0 ? 0 : 100 * ($forecast - $history) / $history, 2, ',', '.') . '%'; ?>
                             <?php
@@ -150,8 +150,8 @@ require __DIR__ . '/Worker.php';
                     <tr>
                         <td><?= $key; ?>
                         <td><?=  $ccDef[$key]; ?>
-                        <td><?= (\number_format($history  = $costcenter[$key][$fiscal_end_prev->format('Y')]['value'] ?? 0.0, 2, ',', '.')); ?>
-                        <td><?= (\number_format($current  = $costcenter[$key][$fiscal_end->format('Y')]['value'] ?? 0.0, 2, ',', '.')); ?>
+                        <td><?= (\number_format($history = $costcenter[$key][$fiscal_end_prev->format('Y')]['value'] ?? 0.0, 2, ',', '.')); ?>
+                        <td><?= (\number_format($current = $costcenter[$key][$fiscal_end->format('Y')]['value'] ?? 0.0, 2, ',', '.')); ?>
                         <td><?= (\number_format($forecast = ($costcenter[$key][$fiscal_end->format('Y')]['value'] ?? 0.0) / \abs(((int) $fiscal_current->format('m') - ((int) $fiscal_end->format('m') + 1)) % 12 + 1) * 12, 2, ',', '.')); ?>
                         <td><?= \number_format($history == 0 ? 0 : 100 * ($forecast - $history) / $history, 2, ',', '.') . '%'; ?>
                             <?php
@@ -189,8 +189,8 @@ require __DIR__ . '/Worker.php';
                     <tr>
                         <td><?= $key; ?>
                         <td><?=  $acDef[$key]; ?>
-                        <td><?= (\number_format($history  = $account[$key][$fiscal_end_prev->format('Y')]['value'] ?? 0.0, 2, ',', '.')); ?>
-                        <td><?= (\number_format($current  = $account[$key][$fiscal_end->format('Y')]['value'] ?? 0.0, 2, ',', '.')); ?>
+                        <td><?= (\number_format($history = $account[$key][$fiscal_end_prev->format('Y')]['value'] ?? 0.0, 2, ',', '.')); ?>
+                        <td><?= (\number_format($current = $account[$key][$fiscal_end->format('Y')]['value'] ?? 0.0, 2, ',', '.')); ?>
                         <td><?= (\number_format($forecast = ($account[$key][$fiscal_end->format('Y')]['value'] ?? 0.0) / \abs(((int) $fiscal_current->format('m') - ((int) $fiscal_end->format('m') + 1)) % 12 + 1) * 12, 2, ',', '.')); ?>
                         <td><?= \number_format($history == 0 ? 0 : 100 * ($forecast - $history) / $history, 2, ',', '.') . '%'; ?>
                             <?php

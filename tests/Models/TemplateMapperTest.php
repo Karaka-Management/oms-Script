@@ -39,14 +39,14 @@ final class TemplateMapperTest extends \PHPUnit\Framework\TestCase
     {
         $template = new Template();
 
-        $template->createdBy = new NullAccount(1);
-        $template->name      = 'Title';
-        $template->setStatus(HelperStatus::ACTIVE);
+        $template->createdBy      = new NullAccount(1);
+        $template->name           = 'Title';
+        $template->status         = HelperStatus::ACTIVE;
         $template->description    = 'Description';
         $template->descriptionRaw = 'DescriptionRaw';
-        $template->setDatatype(TemplateDataType::OTHER);
-        $template->isStandalone = false;
-        $template->setExpected(['source1.csv', 'source2.csv']);
+        $template->datatype       = TemplateDataType::OTHER;
+        $template->isStandalone   = false;
+        $template->expected       = ['source1.csv', 'source2.csv'];
 
         $collection            = new Collection();
         $collection->createdBy = new NullAccount(1);
@@ -112,7 +112,7 @@ final class TemplateMapperTest extends \PHPUnit\Framework\TestCase
         self::assertEquals($template->description, $templateR->description);
         self::assertEquals($template->descriptionRaw, $templateR->descriptionRaw);
         self::assertEquals($template->name, $templateR->name);
-        self::assertEquals($template->getStatus(), $templateR->getStatus());
+        self::assertEquals($template->status, $templateR->status);
         self::assertEquals($template->isStandalone, $templateR->isStandalone);
         self::assertEquals($template->getDatatype(), $templateR->getDatatype());
         self::assertEquals($template->getExpected(), $templateR->getExpected());

@@ -40,19 +40,19 @@ final class TemplateMapper extends DataMapperFactory
      * @since 1.0.0
      */
     public const COLUMNS = [
-        'helper_template_id'            => ['name' => 'helper_template_id',          'type' => 'int',      'internal' => 'id'],
-        'helper_template_status'        => ['name' => 'helper_template_status',      'type' => 'int',      'internal' => 'status'],
-        'helper_template_title'         => ['name' => 'helper_template_title',       'type' => 'string',   'internal' => 'name'],
-        'helper_template_data'          => ['name' => 'helper_template_data',        'type' => 'int',      'internal' => 'datatype'],
-        'helper_template_standalone'    => ['name' => 'helper_template_standalone',  'type' => 'bool',     'internal' => 'isStandalone'],
-        'helper_template_expected'      => ['name' => 'helper_template_expected',    'type' => 'Json',     'internal' => 'expected'],
-        'helper_template_desc'          => ['name' => 'helper_template_desc',        'type' => 'string',   'internal' => 'description'],
-        'helper_template_desc_raw'      => ['name' => 'helper_template_desc_raw',    'type' => 'string',   'internal' => 'descriptionRaw'],
-        'helper_template_media'         => ['name' => 'helper_template_media',       'type' => 'int',      'internal' => 'source'],
-        'helper_template_virtual'       => ['name' => 'helper_template_virtual',       'type' => 'string',   'internal' => 'virtualPath'],
-        'helper_template_creator'       => ['name' => 'helper_template_creator',     'type' => 'int',      'internal' => 'createdBy'],
-        'helper_template_unit'          => ['name' => 'helper_template_unit',        'type' => 'int',      'internal' => 'unit'],
-        'helper_template_created'       => ['name' => 'helper_template_created',     'type' => 'DateTimeImmutable', 'internal' => 'createdAt'],
+        'helper_template_id'         => ['name' => 'helper_template_id',          'type' => 'int',      'internal' => 'id'],
+        'helper_template_status'     => ['name' => 'helper_template_status',      'type' => 'int',      'internal' => 'status'],
+        'helper_template_title'      => ['name' => 'helper_template_title',       'type' => 'string',   'internal' => 'name'],
+        'helper_template_data'       => ['name' => 'helper_template_data',        'type' => 'int',      'internal' => 'datatype'],
+        'helper_template_standalone' => ['name' => 'helper_template_standalone',  'type' => 'bool',     'internal' => 'isStandalone'],
+        'helper_template_expected'   => ['name' => 'helper_template_expected',    'type' => 'Json',     'internal' => 'expected'],
+        'helper_template_desc'       => ['name' => 'helper_template_desc',        'type' => 'string',   'internal' => 'description'],
+        'helper_template_desc_raw'   => ['name' => 'helper_template_desc_raw',    'type' => 'string',   'internal' => 'descriptionRaw'],
+        'helper_template_media'      => ['name' => 'helper_template_media',       'type' => 'int',      'internal' => 'source'],
+        'helper_template_virtual'    => ['name' => 'helper_template_virtual',       'type' => 'string',   'internal' => 'virtualPath'],
+        'helper_template_creator'    => ['name' => 'helper_template_creator',     'type' => 'int',      'internal' => 'createdBy'],
+        'helper_template_unit'       => ['name' => 'helper_template_unit',        'type' => 'int',      'internal' => 'unit'],
+        'helper_template_created'    => ['name' => 'helper_template_created',     'type' => 'DateTimeImmutable', 'internal' => 'createdAt'],
     ];
 
     /**
@@ -63,8 +63,8 @@ final class TemplateMapper extends DataMapperFactory
      */
     public const OWNS_ONE = [
         'source' => [
-            'mapper'     => CollectionMapper::class,
-            'external'   => 'helper_template_media',
+            'mapper'   => CollectionMapper::class,
+            'external' => 'helper_template_media',
         ],
     ];
 
@@ -76,12 +76,12 @@ final class TemplateMapper extends DataMapperFactory
      */
     public const BELONGS_TO = [
         'createdBy' => [
-            'mapper'     => AccountMapper::class,
-            'external'   => 'helper_template_creator',
+            'mapper'   => AccountMapper::class,
+            'external' => 'helper_template_creator',
         ],
         'unit' => [
-            'mapper'     => UnitMapper::class,
-            'external'   => 'helper_template_unit',
+            'mapper'   => UnitMapper::class,
+            'external' => 'helper_template_unit',
         ],
     ];
 
@@ -93,10 +93,10 @@ final class TemplateMapper extends DataMapperFactory
      */
     public const HAS_MANY = [
         'reports' => [
-            'mapper'       => ReportMapper::class,
-            'table'        => 'helper_report',
-            'self'         => 'helper_report_template',
-            'external'     => null,
+            'mapper'   => ReportMapper::class,
+            'table'    => 'helper_report',
+            'self'     => 'helper_report_template',
+            'external' => null,
         ],
         'tags' => [
             'mapper'   => TagMapper::class,

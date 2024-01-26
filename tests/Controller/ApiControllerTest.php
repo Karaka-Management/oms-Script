@@ -31,7 +31,6 @@ use phpOMS\Module\ModuleAbstract;
 use phpOMS\Module\ModuleManager;
 use phpOMS\Router\WebRouter;
 use phpOMS\System\File\Local\Directory;
-use phpOMS\Uri\HttpUri;
 use phpOMS\Utils\TestUtils;
 
 /**
@@ -64,13 +63,13 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
             protected int $appId = 1;
         };
 
-        $this->app->dbPool          = $GLOBALS['dbpool'];
-        $this->app->unitId          = 1;
-        $this->app->accountManager  = new AccountManager($GLOBALS['session']);
-        $this->app->appSettings     = new CoreSettings();
-        $this->app->moduleManager   = new ModuleManager($this->app, __DIR__ . '/../../../../Modules/');
-        $this->app->dispatcher      = new Dispatcher($this->app);
-        $this->app->eventManager    = new EventManager($this->app->dispatcher);
+        $this->app->dbPool         = $GLOBALS['dbpool'];
+        $this->app->unitId         = 1;
+        $this->app->accountManager = new AccountManager($GLOBALS['session']);
+        $this->app->appSettings    = new CoreSettings();
+        $this->app->moduleManager  = new ModuleManager($this->app, __DIR__ . '/../../../../Modules/');
+        $this->app->dispatcher     = new Dispatcher($this->app);
+        $this->app->eventManager   = new EventManager($this->app->dispatcher);
         $this->app->eventManager->importFromFile(__DIR__ . '/../../../../Web/Api/Hooks.php');
         $this->app->sessionManager = new HttpSession(36000);
         $this->app->l11nManager    = new L11nManager();
@@ -106,7 +105,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     public function testStandaloneTemplateCreate() : void
     {
         $response = new HttpResponse();
-        $request  = new HttpRequest(new HttpUri(''));
+        $request  = new HttpRequest();
 
         $request->header->account = 1;
         $request->setData('name', \ucfirst('depreciation'));
@@ -153,7 +152,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     public function testTemplateCreate() : void
     {
         $response = new HttpResponse();
-        $request  = new HttpRequest(new HttpUri(''));
+        $request  = new HttpRequest();
 
         $request->header->account = 1;
         $request->setData('name', \ucfirst('depreciation'));
@@ -200,7 +199,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     public function testTemplateCreateInvalidPermission() : void
     {
         $response = new HttpResponse();
-        $request  = new HttpRequest(new HttpUri(''));
+        $request  = new HttpRequest();
 
         $request->header->account = 9999;
         $request->setData('name', \ucfirst('depreciation'));
@@ -247,7 +246,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     public function testExportPdf() : void
     {
         $response = new HttpResponse();
-        $request  = new HttpRequest(new HttpUri(''));
+        $request  = new HttpRequest();
 
         $request->header->account = 1;
         $request->setData('id', self::$depreciationHelper);
@@ -264,7 +263,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     public function testExportXlsx() : void
     {
         $response = new HttpResponse();
-        $request  = new HttpRequest(new HttpUri(''));
+        $request  = new HttpRequest();
 
         $request->header->account = 1;
         $request->setData('id', self::$depreciationHelper);
@@ -281,7 +280,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     public function testExportDocx() : void
     {
         $response = new HttpResponse();
-        $request  = new HttpRequest(new HttpUri(''));
+        $request  = new HttpRequest();
 
         $request->header->account = 1;
         $request->setData('id', self::$depreciationHelper);
@@ -298,7 +297,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     public function testExportPptx() : void
     {
         $response = new HttpResponse();
-        $request  = new HttpRequest(new HttpUri(''));
+        $request  = new HttpRequest();
 
         $request->header->account = 1;
         $request->setData('id', self::$depreciationHelper);
@@ -315,7 +314,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     public function testExportCsv() : void
     {
         $response = new HttpResponse();
-        $request  = new HttpRequest(new HttpUri(''));
+        $request  = new HttpRequest();
 
         $request->header->account = 1;
         $request->setData('id', self::$depreciationHelper);
@@ -332,7 +331,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     public function testExportJson() : void
     {
         $response = new HttpResponse();
-        $request  = new HttpRequest(new HttpUri(''));
+        $request  = new HttpRequest();
 
         $request->header->account = 1;
         $request->setData('id', self::$depreciationHelper);
@@ -349,7 +348,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     public function testExportInvalidPermission() : void
     {
         $response = new HttpResponse();
-        $request  = new HttpRequest(new HttpUri(''));
+        $request  = new HttpRequest();
 
         $request->header->account = 99999;
         $request->setData('id', self::$depreciationHelper);
@@ -366,7 +365,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     public function testExportOtherType() : void
     {
         $response = new HttpResponse();
-        $request  = new HttpRequest(new HttpUri(''));
+        $request  = new HttpRequest();
 
         $request->header->account = 1;
         $request->setData('id', self::$depreciationHelper);
@@ -383,7 +382,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     public function testExportInvalidData() : void
     {
         $response = new HttpResponse();
-        $request  = new HttpRequest(new HttpUri(''));
+        $request  = new HttpRequest();
 
         $request->header->account = 1;
         $request->setData('invalid', '1');
@@ -399,7 +398,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     public function testApiTemplateCreateInvalidData() : void
     {
         $response = new HttpResponse();
-        $request  = new HttpRequest(new HttpUri(''));
+        $request  = new HttpRequest();
 
         $request->header->account = 1;
         $request->setData('invalid', '1');
@@ -416,7 +415,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     public function testReportCreate() : void
     {
         $response = new HttpResponse();
-        $request  = new HttpRequest(new HttpUri(''));
+        $request  = new HttpRequest();
 
         $request->header->account = 1;
         $request->setData('name', \ucfirst('depreciation-report'));
@@ -446,7 +445,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     public function testExportOtherTypeNotStandalone() : void
     {
         $response = new HttpResponse();
-        $request  = new HttpRequest(new HttpUri(''));
+        $request  = new HttpRequest();
 
         $request->header->account = 1;
         $request->setData('id', self::$depreciationHelper2);
@@ -463,7 +462,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     public function testReportCreateInvalidPermission() : void
     {
         $response = new HttpResponse();
-        $request  = new HttpRequest(new HttpUri(''));
+        $request  = new HttpRequest();
 
         $request->header->account = 9999;
         $request->setData('name', \ucfirst('depreciation-report'));
@@ -498,7 +497,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     public function testApiReportCreateInvalidData() : void
     {
         $response = new HttpResponse();
-        $request  = new HttpRequest(new HttpUri(''));
+        $request  = new HttpRequest();
 
         $request->header->account = 1;
         $request->setData('invalid', '1');

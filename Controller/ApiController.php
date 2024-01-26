@@ -16,7 +16,6 @@ namespace Modules\Helper\Controller;
 
 use Modules\Admin\Models\AccountPermission;
 use Modules\Admin\Models\NullAccount;
-use Modules\Helper\Models\NullReport;
 use Modules\Helper\Models\NullTemplate;
 use Modules\Helper\Models\PermissionCategory;
 use Modules\Helper\Models\Report;
@@ -29,10 +28,10 @@ use Modules\Media\Models\CollectionMapper;
 use Modules\Media\Models\NullCollection;
 use Modules\Media\Models\NullMedia;
 use Modules\Media\Models\PathSettings;
-use Modules\Tag\Models\NullTag;
 use phpOMS\Account\PermissionType;
 use phpOMS\Autoloader;
 use phpOMS\DataStorage\Database\Query\OrderType;
+use phpOMS\Localization\ISO639x1Enum;
 use phpOMS\Message\Http\HttpRequest;
 use phpOMS\Message\Http\HttpResponse;
 use phpOMS\Message\Http\RequestStatusCode;
@@ -346,8 +345,8 @@ final class ApiController extends Controller
             }
         }
 
-        $view  = new View($this->app->l11nManager, $request, $response);
-        $rcoll = [];
+        $view   = new View($this->app->l11nManager, $request, $response);
+        $rcoll  = [];
         $report = null;
 
         if (!$template->isStandalone) {
@@ -370,10 +369,10 @@ final class ApiController extends Controller
             }
         }
 
-        $view->data['report'] = $report;
-        $view->data['rcoll']  = $rcoll;
+        $view->data['report']   = $report;
+        $view->data['rcoll']    = $rcoll;
         $view->data['tcoll']    = $tcoll;
-        $view->data['lang']     = $request->getData('lang') ?? $request->header->l11n->language;
+        $view->data['lang']     = ISO639x1Enum::tryFromValue($request->getDataString('lang')) ?? $request->header->l11n->language;
         $view->data['template'] = $template;
         $view->data['basepath'] = __DIR__ . '/../../../';
 
@@ -530,26 +529,8 @@ final class ApiController extends Controller
         $helperTemplate->setExpected($request->getDataJson('expected'));
         $helperTemplate->setDatatype($request->getDataInt('datatype') ?? TemplateDataType::OTHER);
 
-        if (!empty($tags = $request->getDataJson('tags'))) {
-            foreach ($tags as $tag) {
-                if (!isset($tag['id'])) {
-                    $request->setData('title', $tag['title'], true);
-                    $request->setData('color', $tag['color'], true);
-                    $request->setData('icon', $tag['icon'] ?? null, true);
-                    $request->setData('language', $tag['language'], true);
-
-                    $internalResponse = new HttpResponse();
-                    $this->app->moduleManager->get('Tag')->apiTagCreate($request, $internalResponse);
-
-                    if (!\is_array($data = $internalResponse->getDataArray($request->uri->__toString()))) {
-                        continue;
-                    }
-
-                    $helperTemplate->addTag($data['response']);
-                } else {
-                    $helperTemplate->addTag(new NullTag((int) $tag['id']));
-                }
-            }
+        if ($request->hasData('tags')) {
+            $helperTemplate->tags = $this->app->moduleManager->get('Tag', 'Api')->createTagsFromRequest($request);
         }
 
         return $helperTemplate;

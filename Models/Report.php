@@ -115,44 +115,6 @@ class Report implements \JsonSerializable
     }
 
     /**
-     * Get model id.
-     *
-     * @return int
-     *
-     * @since 1.0.0
-     */
-    public function getId() : int
-    {
-        return $this->id;
-    }
-
-    /**
-     * Get the activity status
-     *
-     * @return int
-     *
-     * @since 1.0.0
-     */
-    public function getStatus() : int
-    {
-        return $this->status;
-    }
-
-    /**
-     * Set the activity status
-     *
-     * @param int $status Report status
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setStatus(int $status) : void
-    {
-        $this->status = $status;
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function toArray() : array

@@ -55,13 +55,13 @@ final class ReportMapper extends DataMapperFactory
      * @since 1.0.0
      */
     public const OWNS_ONE = [
-        'source'   => [
-            'mapper'     => \Modules\Media\Models\CollectionMapper::class,
-            'external'   => 'helper_report_media',
+        'source' => [
+            'mapper'   => \Modules\Media\Models\CollectionMapper::class,
+            'external' => 'helper_report_media',
         ],
         'template' => [
-            'mapper'     => TemplateMapper::class,
-            'external'   => 'helper_report_template',
+            'mapper'   => TemplateMapper::class,
+            'external' => 'helper_report_template',
         ],
     ];
 
@@ -73,8 +73,8 @@ final class ReportMapper extends DataMapperFactory
      */
     public const BELONGS_TO = [
         'createdBy' => [
-            'mapper'     => AccountMapper::class,
-            'external'   => 'helper_report_creator',
+            'mapper'   => AccountMapper::class,
+            'external' => 'helper_report_creator',
         ],
     ];
 

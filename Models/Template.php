@@ -168,18 +168,6 @@ class Template implements \JsonSerializable
     }
 
     /**
-     * Get model id
-     *
-     * @return int
-     *
-     * @since 1.0.0
-     */
-    public function getId() : int
-    {
-        return $this->id;
-    }
-
-    /**
      * Get newest report for template.
      *
      * @return Report
@@ -236,32 +224,6 @@ class Template implements \JsonSerializable
     }
 
     /**
-     * Set activity satuus
-     *
-     * @param int $status Template status (is active?)
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setStatus(int $status) : void
-    {
-        $this->status = $status;
-    }
-
-    /**
-     * Get activity status
-     *
-     * @return int
-     *
-     * @since 1.0.0
-     */
-    public function getStatus() : int
-    {
-        return $this->status;
-    }
-
-    /**
      * Set data type basis
      *
      * @param int $datatype Template datatype source
@@ -285,32 +247,6 @@ class Template implements \JsonSerializable
     public function getDatatype() : int
     {
         return $this->datatype;
-    }
-
-    /**
-     * Get tags
-     *
-     * @return array
-     *
-     * @since 1.0.0
-     */
-    public function getTags() : array
-    {
-        return $this->tags;
-    }
-
-    /**
-     * Add tag
-     *
-     * @param Tag $tag Tag
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function addTag(Tag $tag) : void
-    {
-        $this->tags[] = $tag;
     }
 
     /**
