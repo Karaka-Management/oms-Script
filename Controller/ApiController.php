@@ -418,7 +418,7 @@ final class ApiController extends Controller
         $path = $this->createHelperDir($request->getDataString('name') ?? '');
 
         /** @var \Modules\Media\Models\Media[] $uploaded */
-        $uploaded = $this->app->moduleManager->get('Media')->uploadFiles(
+        $uploaded = $this->app->moduleManager->get('Media', 'Api')->uploadFiles(
             $request->getDataList('names'),
             $request->getDataList('filenames'),
             $uploadedFiles,
@@ -565,7 +565,7 @@ final class ApiController extends Controller
             return;
         }
 
-        $files = $this->app->moduleManager->get('Media')->uploadFiles(
+        $files = $this->app->moduleManager->get('Media', 'Api')->uploadFiles(
             $request->getDataList('names'),
             $request->getDataList('filenames'),
             $request->files,
