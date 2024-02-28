@@ -4,7 +4,7 @@
     --color-transparent: rgba(54, 151, 219, .25);
     --color-subtotal: rgba(54, 151, 219, .5);
     --color-border: #d6d6d6;
-    --font-family: 'Arial', Helvetica, sans-serif;
+    --ff: 'Arial', Helvetica, sans-serif;
 }
 
 body {
@@ -13,7 +13,7 @@ body {
     min-width: 100%;
     max-width: 100%;
     overflow-x: hidden;
-    font-family: var(--font-family);
+    font-family: var(--ff);
     color: #000;
     font-size: .8rem;
 }

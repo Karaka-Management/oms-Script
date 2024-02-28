@@ -40,7 +40,13 @@ $reportLanguage = isset($tcoll['lang']) ? include __DIR__ . '/../../../../' . \l
 
 /** @var array<string, string> $lang */
 $lang     = $reportLanguage[$cLang] ?? [];
-$settings = isset($tcoll['cfg']) ? \json_decode(\file_get_contents(__DIR__ . '/../../../../' . \ltrim($tcoll['cfg']->getPath(), '/')), true) : [];
+$settings = isset($tcoll['cfg'])
+    ? \json_decode(\file_get_contents(__DIR__ . '/../../../../' . \ltrim($tcoll['cfg']->getPath(), '/')), true)
+    : [];
+
+// @todo Implement direct print instead of opening a new window with
+//      `document.getElementById('iHelperFrame').contentWindow.print();`
+//      https://github.com/Karaka-Management/oms-Helper/issues/1
 
 echo $this->data['nav']->render(); ?>
 <div class="row">
@@ -154,8 +160,7 @@ echo $this->data['nav']->render(); ?>
                         <td><?= $template->createdAt->format('Y-m-d'); ?>
                     <tr>
                         <td><?= $this->getHtml('Tags'); ?>
-                        <td>
-                            <?php
+                        <td><?php
                             foreach ($template->tags as $tag) : ?>
                                 <span class="tag" style="background: <?= $this->printHtml($tag->color); ?>"><?= empty($tag->icon) ? '' : ''; ?><?= $this->printHtml($tag->getL11n()); ?></span>
                             <?php endforeach; ?>
