@@ -21,26 +21,35 @@ echo $this->data['nav']->render(); ?>
             <form id="helper-template-create" action="<?= \phpOMS\Uri\UriFactory::build('{/api}helper/report/template'); ?>" method="post">
                 <div class="portlet-head"><?= $this->getHtml('Template'); ?></div>
                 <div class="portlet-body">
-                    <table class="layout wf-100" style="table-layout: fixed">
-                        <tbody>
-                        <tr><td><label for="iTitle"><?= $this->getHtml('Title'); ?></label>
-                        <tr><td><input id="iTitle" name="name" type="text" placeholder="P&L Reporting" required>
-                        <tr><td><label for="iDescription"><?= $this->getHtml('Description'); ?></label>
-                        <tr><td><?= $this->getData('editor')->render('report-editor'); ?>
-                        <tr><td><?= $this->getData('editor')->getData('text')->render('report-editor', 'description', 'helper-template-create'); ?>
-                        <tr><td>
-                                <label class="checkbox" for="iStandalone">
-                                    <input type="checkbox" name="standalone" id="iStandalone" value="1" checked>
-                                    <span class="checkmark"></span>
-                                    <?= $this->getHtml('Standalone'); ?>
-                                </label>
-                        <tr><td><label for="iExpected"><?= $this->getHtml('Expected'); ?></label>
-                        <tr><td>
-                            <div class="ipt-wrap">
-                                <div class="ipt-first"><input id="iExpected" type="text" placeholder="file.csv"><input name="expected" type="hidden"></div>
-                                <div class="ipt-second"><button><?= $this->getHtml('Add', '0', '0'); ?></button></div>
-                            </div>
-                    </table>
+                    <div class="form-group">
+                        <label for="iTitle"><?= $this->getHtml('Title'); ?></label>
+                        <input id="iTitle" name="name" type="text" placeholder="P&L Reporting" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="iDescription"><?= $this->getHtml('Description'); ?></label>
+                        <?= $this->getData('editor')->render('report-editor'); ?>
+                    </div>
+
+                    <div class="form-group">
+                        <?= $this->getData('editor')->getData('text')->render('report-editor', 'description', 'helper-template-create'); ?>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox" for="iStandalone">
+                            <input type="checkbox" name="standalone" id="iStandalone" value="1" checked>
+                            <span class="checkmark"></span>
+                            <?= $this->getHtml('Standalone'); ?>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="iExpected"><?= $this->getHtml('Expected'); ?></label>
+                        <div class="ipt-wrap">
+                            <div class="ipt-first"><input id="iExpected" type="text" placeholder="file.csv"><input name="expected" type="hidden"></div>
+                            <div class="ipt-second"><button><?= $this->getHtml('Add', '0', '0'); ?></button></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="portlet-foot">
                     <input type="submit" id="iReportTemplateCreateButton" name="reportTemplateCreateButton" value="<?= $this->getHtml('Create', '0', '0'); ?>">
