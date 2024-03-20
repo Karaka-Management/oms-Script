@@ -32,7 +32,7 @@ final class TemplateMapperTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @testdox The model can be created and read from the database
-     * @covers Modules\Helper\Models\TemplateMapper
+     * @covers \Modules\Helper\Models\TemplateMapper
      * @group module
      */
     public function testCR() : void
@@ -120,7 +120,7 @@ final class TemplateMapperTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @testdox The newest model can be read from the database
-     * @covers Modules\Helper\Models\TemplateMapper
+     * @covers \Modules\Helper\Models\TemplateMapper
      * @group module
      */
     public function testNewest() : void

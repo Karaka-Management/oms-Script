@@ -39,7 +39,7 @@ final class ReportTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @testdox The model has the expected default values after initialization
-     * @covers Modules\Helper\Models\Report
+     * @covers \Modules\Helper\Models\Report
      * @group module
      */
     public function testDefault() : void
@@ -57,7 +57,7 @@ final class ReportTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @testdox The creator can be set and returned correctly
-     * @covers Modules\Helper\Models\Report
+     * @covers \Modules\Helper\Models\Report
      * @group module
      */
     public function testCreatedByInputOutput() : void
@@ -68,7 +68,7 @@ final class ReportTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @testdox The title can be set and returned correctly
-     * @covers Modules\Helper\Models\Report
+     * @covers \Modules\Helper\Models\Report
      * @group module
      */
     public function testTitleInputOutput() : void
@@ -79,7 +79,7 @@ final class ReportTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @testdox The description can be set and returned correctly
-     * @covers Modules\Helper\Models\Report
+     * @covers \Modules\Helper\Models\Report
      * @group module
      */
     public function testDescriptionInputOutput() : void
@@ -90,7 +90,7 @@ final class ReportTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @testdox The raw description can be set and returned correctly
-     * @covers Modules\Helper\Models\Report
+     * @covers \Modules\Helper\Models\Report
      * @group module
      */
     public function testDescriptionRawInputOutput() : void
@@ -101,7 +101,7 @@ final class ReportTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @testdox The template can be set and returned correctly
-     * @covers Modules\Helper\Models\Report
+     * @covers \Modules\Helper\Models\Report
      * @group module
      */
     public function testTemplateInputOutput() : void
@@ -112,7 +112,7 @@ final class ReportTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @testdox The source can be set and returned correctly
-     * @covers Modules\Helper\Models\Report
+     * @covers \Modules\Helper\Models\Report
      * @group module
      */
     public function testSourceInputOutput() : void
@@ -123,7 +123,7 @@ final class ReportTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @testdox Report data can be turned into an array
-     * @covers Modules\Helper\Models\Report
+     * @covers \Modules\Helper\Models\Report
      * @group module
      */
     public function testToArray() : void
@@ -153,7 +153,7 @@ final class ReportTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @testdox Report data can be json serialized
-     * @covers Modules\Helper\Models\Report
+     * @covers \Modules\Helper\Models\Report
      * @group module
      */
     public function testJsonSerialize() : void

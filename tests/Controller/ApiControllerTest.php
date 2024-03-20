@@ -99,7 +99,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Helper\Controller\ApiController
+     * @covers \Modules\Helper\Controller\ApiController
      * @group module
      */
     public function testStandaloneTemplateCreate() : void
@@ -146,7 +146,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Helper\Controller\ApiController
+     * @covers \Modules\Helper\Controller\ApiController
      * @group module
      */
     public function testTemplateCreate() : void
@@ -193,7 +193,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Helper\Controller\ApiController
+     * @covers \Modules\Helper\Controller\ApiController
      * @group module
      */
     public function testTemplateCreateInvalidPermission() : void
@@ -240,7 +240,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Helper\Controller\ApiController
+     * @covers \Modules\Helper\Controller\ApiController
      * @group module
      */
     public function testExportPdf() : void
@@ -257,7 +257,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Helper\Controller\ApiController
+     * @covers \Modules\Helper\Controller\ApiController
      * @group module
      */
     public function testExportXlsx() : void
@@ -274,7 +274,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Helper\Controller\ApiController
+     * @covers \Modules\Helper\Controller\ApiController
      * @group module
      */
     public function testExportDocx() : void
@@ -291,7 +291,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Helper\Controller\ApiController
+     * @covers \Modules\Helper\Controller\ApiController
      * @group module
      */
     public function testExportPptx() : void
@@ -308,7 +308,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Helper\Controller\ApiController
+     * @covers \Modules\Helper\Controller\ApiController
      * @group module
      */
     public function testExportCsv() : void
@@ -325,7 +325,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Helper\Controller\ApiController
+     * @covers \Modules\Helper\Controller\ApiController
      * @group module
      */
     public function testExportJson() : void
@@ -342,7 +342,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Helper\Controller\ApiController
+     * @covers \Modules\Helper\Controller\ApiController
      * @group module
      */
     public function testExportInvalidPermission() : void
@@ -359,7 +359,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Helper\Controller\ApiController
+     * @covers \Modules\Helper\Controller\ApiController
      * @group module
      */
     public function testExportOtherType() : void
@@ -376,7 +376,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Helper\Controller\ApiController
+     * @covers \Modules\Helper\Controller\ApiController
      * @group module
      */
     public function testExportInvalidData() : void
@@ -392,7 +392,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Helper\Controller\ApiController
+     * @covers \Modules\Helper\Controller\ApiController
      * @group module
      */
     public function testApiTemplateCreateInvalidData() : void
@@ -409,7 +409,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @depends testTemplateCreate
-     * @covers Modules\Helper\Controller\ApiController
+     * @covers \Modules\Helper\Controller\ApiController
      * @group module
      */
     public function testReportCreate() : void
@@ -439,7 +439,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Helper\Controller\ApiController
+     * @covers \Modules\Helper\Controller\ApiController
      * @group module
      */
     public function testExportOtherTypeNotStandalone() : void
@@ -456,7 +456,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Helper\Controller\ApiController
+     * @covers \Modules\Helper\Controller\ApiController
      * @group module
      */
     public function testReportCreateInvalidPermission() : void
@@ -491,7 +491,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Helper\Controller\ApiController
+     * @covers \Modules\Helper\Controller\ApiController
      * @group module
      */
     public function testApiReportCreateInvalidData() : void

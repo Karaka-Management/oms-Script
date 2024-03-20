@@ -42,7 +42,7 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @testdox The model has the expected default values after initialization
-     * @covers Modules\Helper\Models\Template
+     * @covers \Modules\Helper\Models\Template
      * @group module
      */
     public function testDefault() : void
@@ -64,7 +64,7 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @testdox The unit can be set and returned correctly
-     * @covers Modules\Helper\Models\Template
+     * @covers \Modules\Helper\Models\Template
      * @group module
      */
     public function testUnitInputOutput() : void
@@ -75,7 +75,7 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @testdox The creator can be set and returned correctly
-     * @covers Modules\Helper\Models\Template
+     * @covers \Modules\Helper\Models\Template
      * @group module
      */
     public function testCreatedByInputOutput() : void
@@ -86,7 +86,7 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @testdox The title can be set and returned correctly
-     * @covers Modules\Helper\Models\Template
+     * @covers \Modules\Helper\Models\Template
      * @group module
      */
     public function testNameInputOutput() : void
@@ -97,7 +97,7 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @testdox The template can be set as standalone and returned correctly
-     * @covers Modules\Helper\Models\Template
+     * @covers \Modules\Helper\Models\Template
      * @group module
      */
     public function testStandalonInputOutput() : void
@@ -108,7 +108,7 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @testdox The description can be set and returned correctly
-     * @covers Modules\Helper\Models\Template
+     * @covers \Modules\Helper\Models\Template
      * @group module
      */
     public function testDescriptionInputOutput() : void
@@ -119,7 +119,7 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @testdox The raw description can be set and returned correctly
-     * @covers Modules\Helper\Models\Template
+     * @covers \Modules\Helper\Models\Template
      * @group module
      */
     public function testDescriptionRawInputOutput() : void
@@ -130,7 +130,7 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @testdox The expected report files can be set and returned correctly
-     * @covers Modules\Helper\Models\Template
+     * @covers \Modules\Helper\Models\Template
      * @group module
      */
     public function testExpectedInputOutput() : void
@@ -142,7 +142,7 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @testdox The source can be set and returned correctly
-     * @covers Modules\Helper\Models\Template
+     * @covers \Modules\Helper\Models\Template
      * @group module
      */
     public function testSourceInputOutput() : void
@@ -153,7 +153,7 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @testdox The data storage type can be set and returned correctly
-     * @covers Modules\Helper\Models\Template
+     * @covers \Modules\Helper\Models\Template
      * @group module
      */
     public function testDatatypeInputOutput() : void
@@ -163,7 +163,7 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Helper\Models\Template
+     * @covers \Modules\Helper\Models\Template
      * @group module
      */
     public function testNewestReportOutput() : void
@@ -178,7 +178,7 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @testdox Template data can be turned into an array
-     * @covers Modules\Helper\Models\Template
+     * @covers \Modules\Helper\Models\Template
      * @group module
      */
     public function testToArray() : void
@@ -210,7 +210,7 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @testdox Template data can be json serialized
-     * @covers Modules\Helper\Models\Template
+     * @covers \Modules\Helper\Models\Template
      * @group module
      */
     public function testJsonSerialize() : void

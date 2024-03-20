@@ -22,7 +22,7 @@ use Modules\Helper\Models\NullTemplate;
 final class NullTemplateTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @covers Modules\Helper\Models\NullTemplate
+     * @covers \Modules\Helper\Models\NullTemplate
      * @group module
      */
     public function testNull() : void
@@ -31,7 +31,7 @@ final class NullTemplateTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Helper\Models\NullTemplate
+     * @covers \Modules\Helper\Models\NullTemplate
      * @group module
      */
     public function testId() : void
@@ -41,7 +41,7 @@ final class NullTemplateTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Helper\Models\NullTemplate
+     * @covers \Modules\Helper\Models\NullTemplate
      * @group module
      */
     public function testJsonSerialize() : void

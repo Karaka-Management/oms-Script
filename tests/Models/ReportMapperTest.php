@@ -101,7 +101,7 @@ final class ReportMapperTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @testdox The model can be created and read from the database
-     * @covers Modules\Helper\Models\ReportMapper
+     * @covers \Modules\Helper\Models\ReportMapper
      * @group module
      */
     public function testCR() : void
