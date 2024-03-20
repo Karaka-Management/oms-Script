@@ -19,31 +19,23 @@ use Modules\Helper\Models\NullTemplate;
 /**
  * @internal
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\Helper\Models\NullTemplate::class)]
 final class NullTemplateTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @covers \Modules\Helper\Models\NullTemplate
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testNull() : void
     {
         self::assertInstanceOf('\Modules\Helper\Models\Template', new NullTemplate());
     }
 
-    /**
-     * @covers \Modules\Helper\Models\NullTemplate
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testId() : void
     {
         $null = new NullTemplate(2);
         self::assertEquals(2, $null->id);
     }
 
-    /**
-     * @covers \Modules\Helper\Models\NullTemplate
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testJsonSerialize() : void
     {
         $null = new NullTemplate(2);

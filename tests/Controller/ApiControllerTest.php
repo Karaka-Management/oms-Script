@@ -34,10 +34,10 @@ use phpOMS\System\File\Local\Directory;
 use phpOMS\Utils\TestUtils;
 
 /**
- * @testdox Modules\Helper\tests\Controller\ApiControllerTest: Helper api controller
- *
  * @internal
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\Helper\Controller\ApiController::class)]
+#[\PHPUnit\Framework\Attributes\TestDox('Modules\Helper\tests\Controller\ApiControllerTest: Helper api controller')]
 final class ApiControllerTest extends \PHPUnit\Framework\TestCase
 {
     protected ApplicationAbstract $app;
@@ -98,10 +98,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         TestUtils::setMember($this->module, 'app', $this->app);
     }
 
-    /**
-     * @covers \Modules\Helper\Controller\ApiController
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testStandaloneTemplateCreate() : void
     {
         $response = new HttpResponse();
@@ -145,10 +142,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         \rmdir(__DIR__ . '/temp');
     }
 
-    /**
-     * @covers \Modules\Helper\Controller\ApiController
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testTemplateCreate() : void
     {
         $response = new HttpResponse();
@@ -192,10 +186,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         \rmdir(__DIR__ . '/temp');
     }
 
-    /**
-     * @covers \Modules\Helper\Controller\ApiController
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testTemplateCreateInvalidPermission() : void
     {
         $response = new HttpResponse();
@@ -239,10 +230,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         Directory::delete(__DIR__ . '/temp');
     }
 
-    /**
-     * @covers \Modules\Helper\Controller\ApiController
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testExportPdf() : void
     {
         $response = new HttpResponse();
@@ -256,10 +244,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         self::assertTrue(\stripos($response->header->get('Content-disposition')[0] ?? '', 'pdf') !== false);
     }
 
-    /**
-     * @covers \Modules\Helper\Controller\ApiController
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testExportXlsx() : void
     {
         $response = new HttpResponse();
@@ -273,10 +258,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         self::assertTrue(\stripos($response->header->get('Content-disposition')[0] ?? '', 'xlsx') !== false);
     }
 
-    /**
-     * @covers \Modules\Helper\Controller\ApiController
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testExportDocx() : void
     {
         $response = new HttpResponse();
@@ -290,10 +272,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         self::assertTrue(\stripos($response->header->get('Content-disposition')[0] ?? '', 'docx') !== false);
     }
 
-    /**
-     * @covers \Modules\Helper\Controller\ApiController
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testExportPptx() : void
     {
         $response = new HttpResponse();
@@ -307,10 +286,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         self::assertTrue(\stripos($response->header->get('Content-disposition')[0] ?? '', 'pptx') !== false);
     }
 
-    /**
-     * @covers \Modules\Helper\Controller\ApiController
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testExportCsv() : void
     {
         $response = new HttpResponse();
@@ -324,10 +300,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         self::assertTrue(\stripos($response->header->get('Content-disposition')[0] ?? '', 'csv') !== false);
     }
 
-    /**
-     * @covers \Modules\Helper\Controller\ApiController
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testExportJson() : void
     {
         $response = new HttpResponse();
@@ -341,10 +314,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         self::assertTrue(\stripos($response->header->get('Content-disposition')[0] ?? '', 'json') !== false);
     }
 
-    /**
-     * @covers \Modules\Helper\Controller\ApiController
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testExportInvalidPermission() : void
     {
         $response = new HttpResponse();
@@ -358,10 +328,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         self::assertEquals(RequestStatusCode::R_403, $response->header->status);
     }
 
-    /**
-     * @covers \Modules\Helper\Controller\ApiController
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testExportOtherType() : void
     {
         $response = new HttpResponse();
@@ -375,10 +342,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         self::assertEquals(RequestStatusCode::R_200, $response->header->status); // is html "export"/render
     }
 
-    /**
-     * @covers \Modules\Helper\Controller\ApiController
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testExportInvalidData() : void
     {
         $response = new HttpResponse();
@@ -391,10 +355,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         self::assertEquals(RequestStatusCode::R_400, $response->header->status);
     }
 
-    /**
-     * @covers \Modules\Helper\Controller\ApiController
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testApiTemplateCreateInvalidData() : void
     {
         $response = new HttpResponse();
@@ -407,11 +368,8 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         self::assertEquals(RequestStatusCode::R_400, $response->header->status);
     }
 
-    /**
-     * @depends testTemplateCreate
-     * @covers \Modules\Helper\Controller\ApiController
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testTemplateCreate')]
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testReportCreate() : void
     {
         $response = new HttpResponse();
@@ -438,10 +396,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $this->module->apiReportCreate($request, $response);
     }
 
-    /**
-     * @covers \Modules\Helper\Controller\ApiController
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testExportOtherTypeNotStandalone() : void
     {
         $response = new HttpResponse();
@@ -455,10 +410,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         self::assertEquals(RequestStatusCode::R_200, $response->header->status); // is html "export"/render
     }
 
-    /**
-     * @covers \Modules\Helper\Controller\ApiController
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testReportCreateInvalidPermission() : void
     {
         $response = new HttpResponse();
@@ -490,10 +442,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @covers \Modules\Helper\Controller\ApiController
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testApiReportCreateInvalidData() : void
     {
         $response = new HttpResponse();

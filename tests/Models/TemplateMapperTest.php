@@ -24,17 +24,14 @@ use Modules\Media\Models\Media;
 use phpOMS\DataStorage\Database\Query\OrderType;
 
 /**
- * @testdox Modules\tests\Helper\Models\TemplateMapperTest: Template database mapper
- *
  * @internal
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\Helper\Models\TemplateMapper::class)]
+#[\PHPUnit\Framework\Attributes\TestDox('Modules\tests\Helper\Models\TemplateMapperTest: Template database mapper')]
 final class TemplateMapperTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @testdox The model can be created and read from the database
-     * @covers \Modules\Helper\Models\TemplateMapper
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
+    #[\PHPUnit\Framework\Attributes\TestDox('The model can be created and read from the database')]
     public function testCR() : void
     {
         $template = new Template();
@@ -118,11 +115,8 @@ final class TemplateMapperTest extends \PHPUnit\Framework\TestCase
         self::assertEquals($template->getExpected(), $templateR->getExpected());
     }
 
-    /**
-     * @testdox The newest model can be read from the database
-     * @covers \Modules\Helper\Models\TemplateMapper
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
+    #[\PHPUnit\Framework\Attributes\TestDox('The newest model can be read from the database')]
     public function testNewest() : void
     {
         $newest = TemplateMapper::getAll()->sort('id', OrderType::DESC)->limit(1)->execute();

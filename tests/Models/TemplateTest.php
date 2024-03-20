@@ -24,10 +24,10 @@ use Modules\Organization\Models\NullUnit;
 use phpOMS\Utils\TestUtils;
 
 /**
- * @testdox Modules\tests\Helper\Models\TemplateTest: Template model
- *
  * @internal
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\Helper\Models\Template::class)]
+#[\PHPUnit\Framework\Attributes\TestDox('Modules\tests\Helper\Models\TemplateTest: Template model')]
 final class TemplateTest extends \PHPUnit\Framework\TestCase
 {
     protected Template $template;
@@ -40,11 +40,8 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
         $this->template = new Template();
     }
 
-    /**
-     * @testdox The model has the expected default values after initialization
-     * @covers \Modules\Helper\Models\Template
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
+    #[\PHPUnit\Framework\Attributes\TestDox('The model has the expected default values after initialization')]
     public function testDefault() : void
     {
         self::assertEquals(0, $this->template->id);
@@ -62,77 +59,56 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
         self::assertInstanceOf(NullReport::class, $this->template->getNewestReport());
     }
 
-    /**
-     * @testdox The unit can be set and returned correctly
-     * @covers \Modules\Helper\Models\Template
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
+    #[\PHPUnit\Framework\Attributes\TestDox('The unit can be set and returned correctly')]
     public function testUnitInputOutput() : void
     {
         $this->template->unit = new NullUnit(1);
         self::assertEquals(1, $this->template->unit->id);
     }
 
-    /**
-     * @testdox The creator can be set and returned correctly
-     * @covers \Modules\Helper\Models\Template
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
+    #[\PHPUnit\Framework\Attributes\TestDox('The creator can be set and returned correctly')]
     public function testCreatedByInputOutput() : void
     {
         $this->template->createdBy = new NullAccount(1);
         self::assertEquals(1, $this->template->createdBy->id);
     }
 
-    /**
-     * @testdox The title can be set and returned correctly
-     * @covers \Modules\Helper\Models\Template
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
+    #[\PHPUnit\Framework\Attributes\TestDox('The title can be set and returned correctly')]
     public function testNameInputOutput() : void
     {
         $this->template->name = 'Title';
         self::assertEquals('Title', $this->template->name);
     }
 
-    /**
-     * @testdox The template can be set as standalone and returned correctly
-     * @covers \Modules\Helper\Models\Template
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
+    #[\PHPUnit\Framework\Attributes\TestDox('The template can be set as standalone and returned correctly')]
     public function testStandalonInputOutput() : void
     {
         $this->template->isStandalone = true;
         self::assertTrue($this->template->isStandalone);
     }
 
-    /**
-     * @testdox The description can be set and returned correctly
-     * @covers \Modules\Helper\Models\Template
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
+    #[\PHPUnit\Framework\Attributes\TestDox('The description can be set and returned correctly')]
     public function testDescriptionInputOutput() : void
     {
         $this->template->description = 'Description';
         self::assertEquals('Description', $this->template->description);
     }
 
-    /**
-     * @testdox The raw description can be set and returned correctly
-     * @covers \Modules\Helper\Models\Template
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
+    #[\PHPUnit\Framework\Attributes\TestDox('The raw description can be set and returned correctly')]
     public function testDescriptionRawInputOutput() : void
     {
         $this->template->descriptionRaw = 'DescriptionRaw';
         self::assertEquals('DescriptionRaw', $this->template->descriptionRaw);
     }
 
-    /**
-     * @testdox The expected report files can be set and returned correctly
-     * @covers \Modules\Helper\Models\Template
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
+    #[\PHPUnit\Framework\Attributes\TestDox('The expected report files can be set and returned correctly')]
     public function testExpectedInputOutput() : void
     {
         $this->template->setExpected(['source1.csv', 'source2.csv']);
@@ -140,32 +116,23 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
         self::assertEquals(['source1.csv', 'source2.csv', 'source3.csv'], $this->template->getExpected());
     }
 
-    /**
-     * @testdox The source can be set and returned correctly
-     * @covers \Modules\Helper\Models\Template
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
+    #[\PHPUnit\Framework\Attributes\TestDox('The source can be set and returned correctly')]
     public function testSourceInputOutput() : void
     {
         $this->template->source = new NullCollection(4);
         self::assertEquals(4, $this->template->source->id);
     }
 
-    /**
-     * @testdox The data storage type can be set and returned correctly
-     * @covers \Modules\Helper\Models\Template
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
+    #[\PHPUnit\Framework\Attributes\TestDox('The data storage type can be set and returned correctly')]
     public function testDatatypeInputOutput() : void
     {
         $this->template->setDatatype(TemplateDataType::GLOBAL_DB);
         self::assertEquals(TemplateDataType::GLOBAL_DB, $this->template->getDatatype());
     }
 
-    /**
-     * @covers \Modules\Helper\Models\Template
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testNewestReportOutput() : void
     {
         TestUtils::setMember($this->template, 'reports', [
@@ -176,11 +143,8 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
         self::assertEquals($b, $this->template->getNewestReport());
     }
 
-    /**
-     * @testdox Template data can be turned into an array
-     * @covers \Modules\Helper\Models\Template
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
+    #[\PHPUnit\Framework\Attributes\TestDox('Template data can be turned into an array')]
     public function testToArray() : void
     {
         $this->template->name           = 'testName';
@@ -208,11 +172,8 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
         self::assertTrue(true);
     }
 
-    /**
-     * @testdox Template data can be json serialized
-     * @covers \Modules\Helper\Models\Template
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
+    #[\PHPUnit\Framework\Attributes\TestDox('Template data can be json serialized')]
     public function testJsonSerialize() : void
     {
         $this->template->name           = 'testName';

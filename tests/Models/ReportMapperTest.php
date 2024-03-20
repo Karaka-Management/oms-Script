@@ -24,10 +24,10 @@ use Modules\Media\Models\Collection;
 use Modules\Media\Models\Media;
 
 /**
- * @testdox Modules\tests\Helper\Models\ReportMapperTest: Report database mapper
- *
  * @internal
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\Helper\Models\ReportMapper::class)]
+#[\PHPUnit\Framework\Attributes\TestDox('Modules\tests\Helper\Models\ReportMapperTest: Report database mapper')]
 final class ReportMapperTest extends \PHPUnit\Framework\TestCase
 {
     private function createTemplate()
@@ -99,11 +99,8 @@ final class ReportMapperTest extends \PHPUnit\Framework\TestCase
         return $template;
     }
 
-    /**
-     * @testdox The model can be created and read from the database
-     * @covers \Modules\Helper\Models\ReportMapper
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
+    #[\PHPUnit\Framework\Attributes\TestDox('The model can be created and read from the database')]
     public function testCR() : void
     {
         $report = new Report();

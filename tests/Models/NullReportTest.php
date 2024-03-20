@@ -19,31 +19,23 @@ use Modules\Helper\Models\NullReport;
 /**
  * @internal
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\Helper\Models\NullReport::class)]
 final class NullReportTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @covers \Modules\Helper\Models\NullReport
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testNull() : void
     {
         self::assertInstanceOf('\Modules\Helper\Models\Report', new NullReport());
     }
 
-    /**
-     * @covers \Modules\Helper\Models\NullReport
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testId() : void
     {
         $null = new NullReport(2);
         self::assertEquals(2, $null->id);
     }
 
-    /**
-     * @covers \Modules\Helper\Models\NullReport
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testJsonSerialize() : void
     {
         $null = new NullReport(2);

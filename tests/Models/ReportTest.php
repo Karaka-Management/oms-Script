@@ -21,10 +21,10 @@ use Modules\Helper\Models\Report;
 use Modules\Media\Models\NullCollection;
 
 /**
- * @testdox Modules\tests\Helper\Models\ReportTest: Report model
- *
  * @internal
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\Helper\Models\Report::class)]
+#[\PHPUnit\Framework\Attributes\TestDox('Modules\tests\Helper\Models\ReportTest: Report model')]
 final class ReportTest extends \PHPUnit\Framework\TestCase
 {
     protected Report $report;
@@ -37,11 +37,8 @@ final class ReportTest extends \PHPUnit\Framework\TestCase
         $this->report = new Report();
     }
 
-    /**
-     * @testdox The model has the expected default values after initialization
-     * @covers \Modules\Helper\Models\Report
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
+    #[\PHPUnit\Framework\Attributes\TestDox('The model has the expected default values after initialization')]
     public function testDefault() : void
     {
         self::assertEquals(0, $this->report->id);
@@ -55,77 +52,56 @@ final class ReportTest extends \PHPUnit\Framework\TestCase
         self::assertEquals(0, $this->report->source->id);
     }
 
-    /**
-     * @testdox The creator can be set and returned correctly
-     * @covers \Modules\Helper\Models\Report
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
+    #[\PHPUnit\Framework\Attributes\TestDox('The creator can be set and returned correctly')]
     public function testCreatedByInputOutput() : void
     {
         $this->report->createdBy = new NullAccount(1);
         self::assertEquals(1, $this->report->createdBy->id);
     }
 
-    /**
-     * @testdox The title can be set and returned correctly
-     * @covers \Modules\Helper\Models\Report
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
+    #[\PHPUnit\Framework\Attributes\TestDox('The title can be set and returned correctly')]
     public function testTitleInputOutput() : void
     {
         $this->report->title = 'Title';
         self::assertEquals('Title', $this->report->title);
     }
 
-    /**
-     * @testdox The description can be set and returned correctly
-     * @covers \Modules\Helper\Models\Report
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
+    #[\PHPUnit\Framework\Attributes\TestDox('The description can be set and returned correctly')]
     public function testDescriptionInputOutput() : void
     {
         $this->report->description = 'Description';
         self::assertEquals('Description', $this->report->description);
     }
 
-    /**
-     * @testdox The raw description can be set and returned correctly
-     * @covers \Modules\Helper\Models\Report
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
+    #[\PHPUnit\Framework\Attributes\TestDox('The raw description can be set and returned correctly')]
     public function testDescriptionRawInputOutput() : void
     {
         $this->report->descriptionRaw = 'DescriptionRaw';
         self::assertEquals('DescriptionRaw', $this->report->descriptionRaw);
     }
 
-    /**
-     * @testdox The template can be set and returned correctly
-     * @covers \Modules\Helper\Models\Report
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
+    #[\PHPUnit\Framework\Attributes\TestDox('The template can be set and returned correctly')]
     public function testTemplateInputOutput() : void
     {
         $this->report->template = new NullTemplate(11);
         self::assertEquals(11, $this->report->template->id);
     }
 
-    /**
-     * @testdox The source can be set and returned correctly
-     * @covers \Modules\Helper\Models\Report
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
+    #[\PHPUnit\Framework\Attributes\TestDox('The source can be set and returned correctly')]
     public function testSourceInputOutput() : void
     {
         $this->report->source = new NullCollection(4);
         self::assertEquals(4, $this->report->source->id);
     }
 
-    /**
-     * @testdox Report data can be turned into an array
-     * @covers \Modules\Helper\Models\Report
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
+    #[\PHPUnit\Framework\Attributes\TestDox('Report data can be turned into an array')]
     public function testToArray() : void
     {
         $this->report->template       = new NullTemplate(11);
@@ -151,11 +127,8 @@ final class ReportTest extends \PHPUnit\Framework\TestCase
         self::assertTrue(true);
     }
 
-    /**
-     * @testdox Report data can be json serialized
-     * @covers \Modules\Helper\Models\Report
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
+    #[\PHPUnit\Framework\Attributes\TestDox('Report data can be json serialized')]
     public function testJsonSerialize() : void
     {
         $this->report->template       = new NullTemplate(11);
