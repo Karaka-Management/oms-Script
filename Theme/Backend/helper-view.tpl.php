@@ -61,7 +61,7 @@ echo $this->data['nav']->render(); ?>
         <div class="portlet">
             <div class="portlet-head"><?= $this->getHtml('Reports'); ?></div>
             <div class="portlet-body">
-                <form action="<?= UriFactory::build('{/api}helper/template'); ?>" method="post">
+                <form action="<?= UriFactory::build('{/api}helper/template?csrf={$CSRF}'); ?>" method="post">
                     <table class="layout wf-100">
                         <tbody>
                         <tr>

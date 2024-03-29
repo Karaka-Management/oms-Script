@@ -18,12 +18,12 @@ echo $this->data['nav']->render(); ?>
 <div class="row">
     <div class="col-xs-12 col-md-6">
         <div class="portlet">
-            <form id="helper-template-create" action="<?= \phpOMS\Uri\UriFactory::build('{/api}helper/report/template'); ?>" method="post">
+            <form id="helper-template-create" action="<?= \phpOMS\Uri\UriFactory::build('{/api}helper/report/template?csrf={$CSRF}'); ?>" method="post">
                 <div class="portlet-head"><?= $this->getHtml('Template'); ?></div>
                 <div class="portlet-body">
                     <div class="form-group">
                         <label for="iTitle"><?= $this->getHtml('Title'); ?></label>
-                        <input id="iTitle" name="name" type="text" placeholder="P&L Reporting" required>
+                        <input id="iTitle" name="name" type="text" required>
                     </div>
 
                     <div class="form-group">
@@ -46,7 +46,7 @@ echo $this->data['nav']->render(); ?>
                     <div class="form-group">
                         <label for="iExpected"><?= $this->getHtml('Expected'); ?></label>
                         <div class="ipt-wrap">
-                            <div class="ipt-first"><input id="iExpected" type="text" placeholder="file.csv"><input name="expected" type="hidden"></div>
+                            <div class="ipt-first"><input id="iExpected" type="text"><input name="expected" type="hidden"></div>
                             <div class="ipt-second"><button><?= $this->getHtml('Add', '0', '0'); ?></button></div>
                         </div>
                     </div>

@@ -24,18 +24,18 @@ echo $this->data['nav']->render(); ?>
 <div class="row">
     <div class="col-xs-12 col-md-6">
         <div class="portlet">
-            <form id="helper-report-create" action="<?= UriFactory::build('{/api}helper/report/report'); ?>" method="post">
+            <form id="helper-report-create" action="<?= UriFactory::build('{/api}helper/report/report?csrf={$CSRF}'); ?>" method="post">
                 <div class="portlet-head"><?= $this->getHtml('Report'); ?></div>
                 <div class="portlet-body">
                     <table class="layout wf-100">
                         <tbody>
                         <tr><td><label for="iTitle"><?= $this->getHtml('Title'); ?></label>
-                        <tr><td><input id="iTitle" name="name" type="text" placeholder="P&L Reporting 2015 December v1.0" required>
+                        <tr><td><input id="iTitle" name="name" type="text" required>
                         <tr><td><label for="iTemplate"><?= $this->getHtml('Template'); ?></label>
                         <tr><td><select id="iTemplate" name="template">
                                     <?php foreach ($templateList as $key => $value) : ?>
                                     <option value="<?= (int) $key; ?>"><?= $this->printHtml($value->name); ?>
-                                        <?php endforeach; ?>
+                                    <?php endforeach; ?>
                                 </select>
                     </table>
                 </div>
