@@ -17,7 +17,7 @@ use phpOMS\Uri\UriFactory;
 /**
  * @var \phpOMS\Views\View $this
  */
-$templateList = \Modules\Helper\Models\TemplateMapper::getAll()->execute();
+$templateList = \Modules\Helper\Models\TemplateMapper::getAll()->executeGetArray();
 
 echo $this->data['nav']->render(); ?>
 

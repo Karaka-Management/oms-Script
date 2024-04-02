@@ -119,7 +119,7 @@ final class TemplateMapperTest extends \PHPUnit\Framework\TestCase
     #[\PHPUnit\Framework\Attributes\TestDox('The newest model can be read from the database')]
     public function testNewest() : void
     {
-        $newest = TemplateMapper::getAll()->sort('id', OrderType::DESC)->limit(1)->execute();
+        $newest = TemplateMapper::getAll()->sort('id', OrderType::DESC)->limit(1)->executeGetArray();
 
         self::assertCount(1, $newest);
     }

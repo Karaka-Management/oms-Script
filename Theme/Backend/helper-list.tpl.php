@@ -29,8 +29,8 @@ $accountDir = $account->id . ' ' . $account->login;
 $collections = $this->data['collections'];
 $mediaPath   = \urldecode($this->getData('path') ?? '/');
 
-$previous = empty($templates) ? '{/base}/helper/list' : '{/base}/helper/list?{?}&id=' . \reset($templates)->id . '&ptype=p';
-$next     = empty($templates) ? '{/base}/helper/list' : 'helper/list?{?}&id=' . \end($templates)->id . '&ptype=n';
+$previous = empty($templates) ? '{/base}/helper/list' : '{/base}/helper/list?{?}&offset=' . \reset($templates)->id . '&ptype=p';
+$next     = empty($templates) ? '{/base}/helper/list' : 'helper/list?{?}&offset=' . \end($templates)->id . '&ptype=n';
 
 echo $this->data['nav']->render(); ?>
 <div class="row">
