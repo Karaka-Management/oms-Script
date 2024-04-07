@@ -23,6 +23,7 @@ return [
             'dest'       => '\Modules\Helper\Controller\ApiController:apiHelperExport',
             'verb'       => RouteVerb::GET,
             'csrf'       => true,
+            'active' => true,
             'permission' => [
                 'module' => ApiController::NAME,
                 'type'   => PermissionType::READ,
@@ -35,6 +36,7 @@ return [
             'dest'       => '\Modules\Helper\Controller\ApiController:apiTemplateCreate',
             'verb'       => RouteVerb::SET,
             'csrf'       => true,
+            'active' => true,
             'permission' => [
                 'module' => ApiController::NAME,
                 'type'   => PermissionType::READ,
@@ -47,6 +49,7 @@ return [
             'dest'       => '\Modules\Helper\Controller\ApiController:apiReportCreate',
             'verb'       => RouteVerb::SET,
             'csrf'       => true,
+            'active' => true,
             'permission' => [
                 'module' => ApiController::NAME,
                 'type'   => PermissionType::CREATE,
