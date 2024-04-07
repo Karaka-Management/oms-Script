@@ -22,7 +22,7 @@ return [
         [
             'dest'       => '\Modules\Helper\Controller\BackendController:viewTemplateCreate',
             'verb'       => RouteVerb::GET,
-            'active' => true,
+            'active'     => true,
             'permission' => [
                 'module' => BackendController::NAME,
                 'type'   => PermissionType::CREATE,
@@ -34,7 +34,7 @@ return [
         [
             'dest'       => '\Modules\Helper\Controller\BackendController:viewReportCreate',
             'verb'       => RouteVerb::GET,
-            'active' => true,
+            'active'     => true,
             'permission' => [
                 'module' => BackendController::NAME,
                 'type'   => PermissionType::CREATE,
@@ -46,7 +46,7 @@ return [
         [
             'dest'       => '\Modules\Helper\Controller\BackendController:viewTemplateList',
             'verb'       => RouteVerb::GET,
-            'active' => true,
+            'active'     => true,
             'permission' => [
                 'module' => BackendController::NAME,
                 'type'   => PermissionType::READ,
@@ -58,7 +58,7 @@ return [
         [
             'dest'       => '\Modules\Helper\Controller\BackendController:viewHelperReport',
             'verb'       => RouteVerb::GET,
-            'active' => true,
+            'active'     => true,
             'permission' => [
                 'module' => BackendController::NAME,
                 'type'   => PermissionType::READ,
