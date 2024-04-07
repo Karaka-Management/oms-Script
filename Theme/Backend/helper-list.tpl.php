@@ -105,6 +105,7 @@ echo $this->data['nav']->render(); ?>
                     <td>
                     <td data-label="<?= $this->getHtml('Name'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($template->name); ?></a>
                     <td data-label="<?= $this->getHtml('Tag'); ?>">
+                        <div class="tag-list">
                         <?php
                         foreach ($template->tags as $tag) : ?>
                             <span class="tag" style="background: <?= $this->printHtml($tag->color); ?>">
@@ -112,6 +113,7 @@ echo $this->data['nav']->render(); ?>
                                 <?= $this->printHtml($tag->getL11n()); ?>
                             </span>
                         <?php endforeach; ?>
+                        </div>
                     <td data-label="<?= $this->getHtml('Creator'); ?>"><a class="content" href="<?= UriFactory::build('{/base}/profile/view?{?}&for=' . $template->createdBy->id); ?>"><?= $this->printHtml($this->renderUserName('%3$s %2$s %1$s', [$template->createdBy->name1, $template->createdBy->name2, $template->createdBy->name3, $template->createdBy->login ?? ''])); ?></a>
                     <td data-label="<?= $this->getHtml('Updated'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($template->createdAt->format('Y-m-d')); ?></a>
                 <?php endforeach; ?>

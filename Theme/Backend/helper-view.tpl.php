@@ -160,13 +160,16 @@ echo $this->data['nav']->render(); ?>
                         <td><?= $template->createdAt->format('Y-m-d'); ?>
                     <tr>
                         <td><?= $this->getHtml('Tags'); ?>
-                        <td><?php
+                        <td>
+                            <div class="tag-list">
+                            <?php
                             foreach ($template->tags as $tag) : ?>
                                 <span class="tag" style="background: <?= $this->printHtml($tag->color); ?>">
                                     <?= empty($tag->icon) ? '' : '<i class="g-icon">' . $this->printHtml($tag->icon) . '</i>'; ?>
                                     <?= $this->printHtml($tag->getL11n()); ?>
                                 </span>
                             <?php endforeach; ?>
+                            </div>
                 </table>
             </div>
         </div>
