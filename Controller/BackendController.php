@@ -203,7 +203,7 @@ final class BackendController extends Controller
         $report = null;
         if (!$template->isStandalone) {
             if (!isset($tcoll['template'])) {
-                throw new \Exception('No template file detected.');
+                return $view;
             }
 
             /** @var \Modules\Helper\Models\Report $report */

@@ -24,7 +24,6 @@ use Modules\Helper\Models\Template;
 use Modules\Helper\Models\TemplateDataType;
 use Modules\Helper\Models\TemplateMapper;
 use Modules\Media\Models\Collection;
-use Modules\Media\Models\CollectionMapper;
 use Modules\Media\Models\NullCollection;
 use Modules\Media\Models\NullMedia;
 use Modules\Media\Models\PathSettings;
@@ -394,9 +393,8 @@ final class ApiController extends Controller
      */
     public function apiTemplateCreate(RequestAbstract $request, ResponseAbstract $response, array $data = []) : void
     {
-        $dbFiles       = $request->getDataJson('media-list');
-        $uploadedFiles = $request->files;
-        $files         = [];
+        $dbFiles = $request->getDataJson('media-list');
+        $files   = [];
 
         if (!empty($val = $this->validateTemplateCreate($request))) {
             $response->header->status = RequestStatusCode::R_400;
@@ -417,18 +415,18 @@ final class ApiController extends Controller
 
         $path = $this->createHelperDir($request->getDataString('name') ?? '');
 
-        /** @var \Modules\Media\Models\Media[] $uploaded */
+        /** @var \Modules\Media\Models\Collection $uploaded */
         $uploaded = $this->app->moduleManager->get('Media', 'Api')->uploadFiles(
-            $request->getDataList('names'),
-            $request->getDataList('filenames'),
-            $uploadedFiles,
-            $request->header->account,
-            __DIR__ . '/../../../Modules/Media/Files' . $path,
-            $path,
+            names: $request->getDataList('names'),
+            fileNames: $request->getDataList('filenames'),
+            files: $request->files,
+            account: $request->header->account,
+            basePath: __DIR__ . '/../../../Modules/Media/Files' . $path,
+            virtualPath: $path,
             pathSettings: PathSettings::FILE_PATH
         );
 
-        foreach ($uploaded as $upload) {
+        foreach ($uploaded->sources as $upload) {
             if ($upload->id === 0) {
                 continue;
             }
@@ -440,27 +438,7 @@ final class ApiController extends Controller
             $files[] = new NullMedia($db);
         }
 
-        /** @var Collection $collection */
-        $collection = $this->app->moduleManager->get('Media', 'Api')->createMediaCollectionFromMedia(
-            $request->getDataString('name') ?? '',
-            $request->getDataString('description') ?? '',
-            $files,
-            $request->header->account
-        );
-
-        $collection->setPath('/Modules/Media/Files/Modules/Helper/' . ($request->getDataString('name') ?? ''));
-        $collection->setVirtualPath('/Modules/Helper');
-
-        $this->createModel($request->header->account, $collection, CollectionMapper::class, 'collection', $request->getOrigin());
-
-        if ($collection->id < 1) {
-            $response->header->status = RequestStatusCode::R_403;
-            $this->createInvalidCreateResponse($request, $response, $collection);
-
-            return;
-        }
-
-        $template = $this->createTemplateFromRequest($request, $collection->id);
+        $template = $this->createTemplateFromRequest($request, $uploaded->id);
 
         $this->app->moduleManager->get('Admin')->createAccountModelPermission(
             new AccountPermission(
@@ -565,25 +543,15 @@ final class ApiController extends Controller
             return;
         }
 
-        $files = $this->app->moduleManager->get('Media', 'Api')->uploadFiles(
-            $request->getDataList('names'),
-            $request->getDataList('filenames'),
-            $request->files,
-            $request->header->account,
-            __DIR__ . '/../../../Modules/Media/Files'
+        $path       = '/Modules/Helper/' . ($request->getDataString('name') ?? '');
+        $collection = $this->app->moduleManager->get('Media', 'Api')->uploadFiles(
+            names: $request->getDataList('names'),
+            fileNames: $request->getDataList('filenames'),
+            files: $request->files,
+            account: $request->header->account,
+            basePath: __DIR__ . '/../../../Modules/Media/Files' . $path,
+            virtualPath: $path
         );
-
-        $collection = $this->app->moduleManager->get('Media')->createMediaCollectionFromMedia(
-            $request->getDataString('name') ?? '',
-            $request->getDataString('description') ?? '',
-            $files,
-            $request->header->account
-        );
-
-        $collection->setPath('/Modules/Media/Files/Modules/Helper/' . ($request->getDataString('name') ?? ''));
-        $collection->setVirtualPath('/Modules/Helper');
-
-        $this->createModel($request->header->account, $collection, CollectionMapper::class, 'collection', $request->getOrigin());
 
         if ($collection->id < 1) {
             $response->header->status = RequestStatusCode::R_403;

@@ -12,6 +12,8 @@
  */
 declare(strict_types=1);
 
+use Modules\Helper\Models\NullReport;
+use Modules\Helper\Models\NullTemplate;
 use phpOMS\Model\Html\FormElementGenerator;
 use phpOMS\Uri\UriFactory;
 
@@ -19,20 +21,22 @@ use phpOMS\Uri\UriFactory;
  * @var \phpOMS\Views\View $this
  */
 
+// @todo If no template is defined this is breaking;
+
 /** @var \Modules\Media\Models\Collection[] $tcoll */
-$tcoll = $this->data['tcoll'];
+$tcoll = $this->data['tcoll'] ?? [];
 
 /** @var \Modules\Media\Models\Collection[] $rcoll */
-$rcoll = $this->data['rcoll'];
+$rcoll = $this->data['rcoll'] ?? [];
 
 /** @var string $cLang */
-$cLang = $this->data['lang'];
+$cLang = $this->data['lang'] ?? 'en';
 
 /** @var \Modules\Helper\Models\Template $template */
-$template = $this->data['template'];
+$template = $this->data['template'] ?? new NullTemplate();
 
 /** @var \Modules\Helper\Models\Report $report */
-$report = $this->data['report'];
+$report = $this->data['report'] ?? new NullReport();
 
 /** @noinspection PhpIncludeInspection */
 /** @var array<string, array<string, string>> $reportLanguage */
@@ -161,17 +165,4 @@ echo $this->data['nav']->render(); ?>
                     <tr>
                         <td><?= $this->getHtml('Tags'); ?>
                         <td>
-                            <div class="tag-list">
-                            <?php
-                            foreach ($template->tags as $tag) : ?>
-                                <span class="tag" style="background: <?= $this->printHtml($tag->color); ?>">
-                                    <?= empty($tag->icon) ? '' : '<i class="g-icon">' . $this->printHtml($tag->icon) . '</i>'; ?>
-                                    <?= $this->printHtml($tag->getL11n()); ?>
-                                </span>
-                            <?php endforeach; ?>
-                            </div>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
+                            <div
