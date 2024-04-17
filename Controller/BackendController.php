@@ -94,7 +94,6 @@ final class BackendController extends Controller
 
         $view->setTemplate('/Modules/Helper/Theme/Backend/helper-template-create');
         $view->data['nav']          = $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response);
-        $view->data['media-upload'] = new \Modules\Media\Theme\Backend\Components\Upload\BaseView($this->app->l11nManager, $request, $response);
 
         $editor               = new \Modules\Editor\Theme\Backend\Components\Editor\BaseView($this->app->l11nManager, $request, $response);
         $view->data['editor'] = $editor;
@@ -120,7 +119,6 @@ final class BackendController extends Controller
 
         $view->setTemplate('/Modules/Helper/Theme/Backend/helper-create');
         $view->data['nav']          = $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response);
-        $view->data['media-upload'] = new \Modules\Media\Theme\Backend\Components\Upload\BaseView($this->app->l11nManager, $request, $response);
 
         $editor               = new \Modules\Editor\Theme\Backend\Components\Editor\BaseView($this->app->l11nManager, $request, $response);
         $view->data['editor'] = $editor;

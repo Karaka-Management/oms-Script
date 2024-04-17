@@ -17,7 +17,7 @@ echo $this->data['nav']->render(); ?>
 
 <div class="row">
     <div class="col-xs-12 col-md-6">
-        <div class="portlet">
+        <section class="portlet">
             <form id="helper-template-create" action="<?= \phpOMS\Uri\UriFactory::build('{/api}helper/report/template?csrf={$CSRF}'); ?>" method="post">
                 <div class="portlet-head"><?= $this->getHtml('Template'); ?></div>
                 <div class="portlet-body">
@@ -50,15 +50,16 @@ echo $this->data['nav']->render(); ?>
                             <div class="ipt-second"><button><?= $this->getHtml('Add', '0', '0'); ?></button></div>
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label for="iFiles"><?= $this->getHtml('Files'); ?></label>
+                        <input type="file" id="iFiles" name="files">
+                    </div>
                 </div>
                 <div class="portlet-foot">
                     <input type="submit" id="iReportTemplateCreateButton" name="reportTemplateCreateButton" value="<?= $this->getHtml('Create', '0', '0'); ?>">
                 </div>
             </form>
-        </div>
-    </div>
-
-    <div class="col-xs-12 col-md-6">
-        <?= $this->getData('media-upload')->render('helper-template-create', '/Modules/Helper'); ?>
+        </section>
     </div>
 </div>

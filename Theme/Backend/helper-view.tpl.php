@@ -57,12 +57,12 @@ echo $this->data['nav']->render(); ?>
     <div class="col-xs-12 col-md-9 col-simple">
         <div class="portlet col-simple">
             <div class="portlet-body col-simple">
-                <iframe class="col-simple" data-form="iUiSettings" data-name="iframeHelper" id="iHelperFrame" src="<?= UriFactory::build('{/api}helper/report/export/?{?}&id=' . $template->id); ?>&u=<?=  $this->data['unit']; ?>" allowfullscreen></iframe>
+                <iframe class="col-simple" data-form="iUiSettings" data-name="iframeHelper" id="iHelperFrame" src="<?= UriFactory::build('{/api}helper/report/export/?{?}&id=' . $template->id . '&csrf={$CSRF}'); ?>&u=<?=  $this->data['unit']; ?>" allowfullscreen></iframe>
             </div>
         </div>
     </div>
     <div class="col-xs-12 col-md-3">
-        <div class="portlet">
+        <section class="portlet">
             <div class="portlet-head"><?= $this->getHtml('Reports'); ?></div>
             <div class="portlet-body">
                 <form action="<?= UriFactory::build('{/api}helper/template?csrf={$CSRF}'); ?>" method="post">
@@ -85,9 +85,9 @@ echo $this->data['nav']->render(); ?>
                     </table>
                 </form>
             </div>
-        </div>
+        </section>
 
-        <div class="portlet">
+        <section class="portlet">
             <div class="portlet-head"><?= $this->getHtml('Export'); ?></div>
             <div class="portlet-body">
                 <form>
@@ -111,10 +111,10 @@ echo $this->data['nav']->render(); ?>
                     </table>
                 </form>
             </div>
-        </div>
+        </section>
 
         <?php if (!empty($settings)) : ?>
-        <div class="portlet">
+        <section class="portlet">
             <form id="iUiSettings">
                 <div class="portlet-head"><?= $this->getHtml('Settings'); ?></div>
                 <div class="portlet-body">
@@ -128,10 +128,10 @@ echo $this->data['nav']->render(); ?>
                 </div>
                 <div class="portlet-foot"><a tabindex="0" class="button" href="<?= UriFactory::build('{%}'); ?>&lang={#iLang}{#iUiSettings}"><?= $this->getHtml('Load'); ?></a></div>
             </form>
-        </div>
+        </section>
         <?php endif; ?>
 
-        <div class="portlet">
+        <section class="portlet">
             <div class="portlet-head"><?= $this->getHtml('Info'); ?></div>
             <div class="portlet-body">
                 <table class="list wf-100">
@@ -164,5 +164,16 @@ echo $this->data['nav']->render(); ?>
                         <td><?= $template->createdAt->format('Y-m-d'); ?>
                     <tr>
                         <td><?= $this->getHtml('Tags'); ?>
-                        <td>
-                            <div
+                        <td><div class="tag-list"><?php
+                            foreach ($template->tags as $tag) : ?>
+                                <span class="tag" style="background: <?= $this->printHtml($tag->color); ?>">
+                                    <?= empty($tag->icon) ? '' : '<i class="g-icon">' . $this->printHtml($tag->icon) . '</i>'; ?>
+                                    <?= $this->printHtml($tag->getL11n()); ?>
+                                </span>
+                            <?php endforeach; ?>
+                            </div>
+                </table>
+            </div>
+        </section>
+    </div>
+</div>
