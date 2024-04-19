@@ -57,7 +57,7 @@ echo $this->data['nav']->render(); ?>
     <div class="col-xs-12 col-md-9 col-simple">
         <div class="portlet col-simple">
             <div class="portlet-body col-simple">
-                <iframe class="col-simple" data-form="iUiSettings" data-name="iframeHelper" id="iHelperFrame" src="<?= UriFactory::build('{/api}helper/report/export/?{?}&id=' . $template->id . '&csrf={$CSRF}'); ?>&u=<?=  $this->data['unit']; ?>" allowfullscreen></iframe>
+                <iframe class="col-simple" data-form="iUiSettings" data-name="iframeHelper" id="iHelperFrame" src="<?= UriFactory::build('{/api}helper/report/export/?{?}&id=' . $template->id . '&csrf={$CSRF}'); ?>&u=<?= $this->data['unit']; ?>" allowfullscreen></iframe>
             </div>
         </div>
     </div>

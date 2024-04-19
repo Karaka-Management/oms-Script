@@ -157,6 +157,9 @@ final class BackendController extends Controller
             ->execute();
 
         $view->setTemplate('/Modules/Helper/Theme/Backend/helper-view');
+        $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response);
+
+        $view->data['unit'] = $this->app->unitId;
 
         /** @var array<string, \Modules\Media\Models\Media> $tcoll */
         $tcoll = [];
@@ -222,7 +225,6 @@ final class BackendController extends Controller
         }
 
         $view->data['report']   = $report;
-        $view->data['unit']     = $this->app->unitId;
         $view->data['tcoll']    = $tcoll;
         $view->data['rcoll']    = $rcoll;
         $view->data['lang']     = ISO639x1Enum::tryFromValue($request->getDataString('lang')) ?? $request->header->l11n->language;
