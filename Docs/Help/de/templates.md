@@ -25,7 +25,7 @@ Other file endings can be used as well but they don't have a special meaning for
 
 ## Standalone
 
-By defining a helper `standalone` no additional user upload is required after the creation of a new helper. This is often useful if the helper is using global data stored in databases. If the template is not `standalone` the user needs to upload additional data whenever he wants to create a new output. This is helpful whenever large amounts of user input is required and therefore makes more sense to be provided as file uploads.
+By defining a helper `standalone` no additional user upload is required after the creation of a new helper. This is often useful if the helper is using global data stored in databases. If the template is not `standalone` the user needs to upload additional data whenever he wants to create a new output. This is helpful whenever large amounts of user input is required and therefore  makes more sense to be provided as file uploads.
 
 ## Media
 
