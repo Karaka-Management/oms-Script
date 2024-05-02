@@ -23,7 +23,6 @@ use Modules\Helper\Models\ReportMapper;
 use Modules\Helper\Models\Template;
 use Modules\Helper\Models\TemplateDataType;
 use Modules\Helper\Models\TemplateMapper;
-use Modules\Media\Models\Collection;
 use Modules\Media\Models\NullCollection;
 use Modules\Media\Models\NullMedia;
 use Modules\Media\Models\PathSettings;
@@ -49,6 +48,13 @@ use phpOMS\Views\View;
  * @license    OMS License 2.0
  * @link       https://jingga.app
  * @since      1.0.0
+ *
+ * @todo Implement direct print instead of opening a new window
+ *      document.getElementById('iHelperFrame').contentWindow.print();
+ *      https://github.com/Karaka-Management/oms-Helper/issues/1
+ *
+ * @todo Rename module to Script
+ *      https://github.com/Karaka-Management/oms-Helper/issues/2
  */
 final class ApiController extends Controller
 {
