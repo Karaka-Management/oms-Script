@@ -12,20 +12,20 @@
  */
 declare(strict_types=1);
 
-namespace Modules\Helper\tests\Models;
+namespace Modules\Script\tests\Models;
 
-use Modules\Helper\Models\NullTemplate;
+use Modules\Script\Models\NullTemplate;
 
 /**
  * @internal
  */
-#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\Helper\Models\NullTemplate::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\Script\Models\NullTemplate::class)]
 final class NullTemplateTest extends \PHPUnit\Framework\TestCase
 {
     #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testNull() : void
     {
-        self::assertInstanceOf('\Modules\Helper\Models\Template', new NullTemplate());
+        self::assertInstanceOf('\Modules\Script\Models\Template', new NullTemplate());
     }
 
     #[\PHPUnit\Framework\Attributes\Group('module')]

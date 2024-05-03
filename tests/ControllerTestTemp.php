@@ -12,7 +12,7 @@
  */
 declare(strict_types=1);
 
-namespace Modules\Helper\tests;
+namespace Modules\Script\tests;
 
 use Model\CoreSettings;
 use Modules\Admin\Models\AccountPermission;

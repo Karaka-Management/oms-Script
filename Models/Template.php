@@ -4,7 +4,7 @@
  *
  * PHP Version 8.2
  *
- * @package   Modules\Helper\Models
+ * @package   Modules\Script\Models
  * @copyright Dennis Eichhorn
  * @license   OMS License 2.0
  * @version   1.0.0
@@ -12,7 +12,7 @@
  */
 declare(strict_types=1);
 
-namespace Modules\Helper\Models;
+namespace Modules\Script\Models;
 
 use Modules\Admin\Models\Account;
 use Modules\Admin\Models\NullAccount;
@@ -25,7 +25,7 @@ use Modules\Tag\Models\Tag;
 /**
  * Template model.
  *
- * @package Modules\Helper\Models
+ * @package Modules\Script\Models
  * @license OMS License 2.0
  * @link    https://jingga.app
  * @since   1.0.0
@@ -54,7 +54,7 @@ class Template implements \JsonSerializable
      * @var int
      * @since 1.0.0
      */
-    public int $status = HelperStatus::INACTIVE;
+    public int $status = ScriptStatus::INACTIVE;
 
     /**
      * Template data type.

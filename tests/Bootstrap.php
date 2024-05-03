@@ -4,7 +4,7 @@
  *
  * PHP Version 8.2
  *
- * @package   Modules\Helper\tests
+ * @package   Modules\Script\tests
  * @copyright Dennis Eichhorn
  * @license   OMS License 2.0
  * @version   1.0.0

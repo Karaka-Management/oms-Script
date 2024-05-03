@@ -16,7 +16,7 @@ use phpOMS\Uri\UriFactory;
 
 /**
  * @var \phpOMS\Views\View                $this
- * @var \Modules\Helper\Models\Template[] $templates
+ * @var \Modules\Script\Models\Template[] $templates
  */
 $templates = $this->data['reports'];
 

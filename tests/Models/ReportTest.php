@@ -12,18 +12,18 @@
  */
 declare(strict_types=1);
 
-namespace Modules\Helper\tests\Models;
+namespace Modules\Script\tests\Models;
 
 use Modules\Admin\Models\NullAccount;
-use Modules\Helper\Models\HelperStatus;
-use Modules\Helper\Models\NullTemplate;
-use Modules\Helper\Models\Report;
+use Modules\Script\Models\ScriptStatus;
+use Modules\Script\Models\NullTemplate;
+use Modules\Script\Models\Report;
 use Modules\Media\Models\NullCollection;
 
 /**
  * @internal
  */
-#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\Helper\Models\Report::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\Script\Models\Report::class)]
 #[\PHPUnit\Framework\Attributes\TestDox('Modules\tests\Helper\Models\ReportTest: Report model')]
 final class ReportTest extends \PHPUnit\Framework\TestCase
 {
@@ -45,7 +45,7 @@ final class ReportTest extends \PHPUnit\Framework\TestCase
         self::assertEquals(0, $this->report->createdBy->id);
         self::assertEquals((new \DateTime('now'))->format('Y-m-d'), $this->report->createdAt->format('Y-m-d'));
         self::assertEquals('', $this->report->title);
-        self::assertEquals(HelperStatus::INACTIVE, $this->report->status);
+        self::assertEquals(ScriptStatus::INACTIVE, $this->report->status);
         self::assertEquals('', $this->report->description);
         self::assertEquals('', $this->report->descriptionRaw);
         self::assertEquals(0, $this->report->template->id);
@@ -115,7 +115,7 @@ final class ReportTest extends \PHPUnit\Framework\TestCase
             'name'           => 'testTitle',
             'description'    => 'testDescription',
             'descriptionRaw' => 'testDescriptionRaw',
-            'status'         => HelperStatus::INACTIVE,
+            'status'         => ScriptStatus::INACTIVE,
         ];
 
         foreach ($expected as $key => $e) {
@@ -142,7 +142,7 @@ final class ReportTest extends \PHPUnit\Framework\TestCase
             'name'           => 'testTitle',
             'description'    => 'testDescription',
             'descriptionRaw' => 'testDescriptionRaw',
-            'status'         => HelperStatus::INACTIVE,
+            'status'         => ScriptStatus::INACTIVE,
         ];
 
         foreach ($expected as $key => $e) {

@@ -12,11 +12,11 @@
  */
 declare(strict_types=1);
 
-namespace Modules\Helper\Controller;
+namespace Modules\Script\Controller;
 
-use Modules\Helper\Models\ReportMapper;
-use Modules\Helper\Models\Template;
-use Modules\Helper\Models\TemplateMapper;
+use Modules\Script\Models\ReportMapper;
+use Modules\Script\Models\Template;
+use Modules\Script\Models\TemplateMapper;
 use Modules\Media\Models\CollectionMapper;
 use Modules\Media\Models\Media;
 use phpOMS\Contract\RenderableInterface;
@@ -207,7 +207,7 @@ final class BackendController extends Controller
                 return $view;
             }
 
-            /** @var \Modules\Helper\Models\Report $report */
+            /** @var \Modules\Script\Models\Report $report */
             $report = ReportMapper::get()
                 ->where('template', $template->id)
                 ->sort('id', OrderType::DESC)

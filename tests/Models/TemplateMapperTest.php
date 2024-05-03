@@ -12,13 +12,13 @@
  */
 declare(strict_types=1);
 
-namespace Modules\Helper\tests\Models;
+namespace Modules\Script\tests\Models;
 
 use Modules\Admin\Models\NullAccount;
-use Modules\Helper\Models\HelperStatus;
-use Modules\Helper\Models\Template;
-use Modules\Helper\Models\TemplateDataType;
-use Modules\Helper\Models\TemplateMapper;
+use Modules\Script\Models\ScriptStatus;
+use Modules\Script\Models\Template;
+use Modules\Script\Models\TemplateDataType;
+use Modules\Script\Models\TemplateMapper;
 use Modules\Media\Models\Collection;
 use Modules\Media\Models\Media;
 use phpOMS\DataStorage\Database\Query\OrderType;
@@ -26,7 +26,7 @@ use phpOMS\DataStorage\Database\Query\OrderType;
 /**
  * @internal
  */
-#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\Helper\Models\TemplateMapper::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\Script\Models\TemplateMapper::class)]
 #[\PHPUnit\Framework\Attributes\TestDox('Modules\tests\Helper\Models\TemplateMapperTest: Template database mapper')]
 final class TemplateMapperTest extends \PHPUnit\Framework\TestCase
 {
@@ -38,7 +38,7 @@ final class TemplateMapperTest extends \PHPUnit\Framework\TestCase
 
         $template->createdBy      = new NullAccount(1);
         $template->name           = 'Title';
-        $template->status         = HelperStatus::ACTIVE;
+        $template->status         = ScriptStatus::ACTIVE;
         $template->description    = 'Description';
         $template->descriptionRaw = 'DescriptionRaw';
         $template->datatype       = TemplateDataType::OTHER;

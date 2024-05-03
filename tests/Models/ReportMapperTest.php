@@ -12,21 +12,21 @@
  */
 declare(strict_types=1);
 
-namespace Modules\Helper\tests\Models;
+namespace Modules\Script\tests\Models;
 
 use Modules\Admin\Models\NullAccount;
-use Modules\Helper\Models\HelperStatus;
-use Modules\Helper\Models\Report;
-use Modules\Helper\Models\ReportMapper;
-use Modules\Helper\Models\Template;
-use Modules\Helper\Models\TemplateDataType;
+use Modules\Script\Models\ScriptStatus;
+use Modules\Script\Models\Report;
+use Modules\Script\Models\ReportMapper;
+use Modules\Script\Models\Template;
+use Modules\Script\Models\TemplateDataType;
 use Modules\Media\Models\Collection;
 use Modules\Media\Models\Media;
 
 /**
  * @internal
  */
-#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\Helper\Models\ReportMapper::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\Script\Models\ReportMapper::class)]
 #[\PHPUnit\Framework\Attributes\TestDox('Modules\tests\Helper\Models\ReportMapperTest: Report database mapper')]
 final class ReportMapperTest extends \PHPUnit\Framework\TestCase
 {
@@ -36,7 +36,7 @@ final class ReportMapperTest extends \PHPUnit\Framework\TestCase
 
         $template->createdBy   = new NullAccount(1);
         $template->name        = 'Report Template';
-        $template->status      = HelperStatus::ACTIVE;
+        $template->status      = ScriptStatus::ACTIVE;
         $template->description = 'Description';
         $template->setDatatype(TemplateDataType::OTHER);
         $template->isStandalone = false;
@@ -107,7 +107,7 @@ final class ReportMapperTest extends \PHPUnit\Framework\TestCase
 
         $report->createdBy   = new NullAccount(1);
         $report->title       = 'Title';
-        $report->status      = HelperStatus::ACTIVE;
+        $report->status      = ScriptStatus::ACTIVE;
         $report->description = 'Description';
         $report->template    = $this->createTemplate();
 

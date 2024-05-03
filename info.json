@@ -1,8 +1,8 @@
 {
     "name": {
         "id": 1002700000,
-        "internal": "Helper",
-        "external": "Helper"
+        "internal": "Script",
+        "external": "Script"
     },
     "category": "Tools",
     "version": "1.0.0",
@@ -15,7 +15,7 @@
         "website": "jingga.app"
     },
     "description": "The helper module supports creating static and dynamic reportings.",
-    "directory": "Helper",
+    "directory": "Script",
     "dependencies": {
         "Admin": "1.0.0",
         "Media": "1.0.0",
@@ -32,15 +32,15 @@
             ],
             "type": 4,
             "for": "Content",
-            "file": "Helper",
-            "from": "Helper"
+            "file": "Script",
+            "from": "Script"
         },
         {
             "pid": [
                 "/"
             ],
             "type": 5,
-            "from": "Helper",
+            "from": "Script",
             "for": "Navigation",
             "file": "Navigation"
         }

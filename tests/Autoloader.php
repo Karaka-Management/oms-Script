@@ -12,9 +12,9 @@
  */
 declare(strict_types=1);
 
-namespace Modules\Helper\tests;
+namespace Modules\Script\tests;
 
-\spl_autoload_register('\Modules\Helper\tests\Autoloader::defaultAutoloader');
+\spl_autoload_register('\Modules\Script\tests\Autoloader::defaultAutoloader');
 
 /**
  * Autoloader class.

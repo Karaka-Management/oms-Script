@@ -12,8 +12,8 @@
  */
 declare(strict_types=1);
 
-use Modules\Helper\Models\NullReport;
-use Modules\Helper\Models\NullTemplate;
+use Modules\Script\Models\NullReport;
+use Modules\Script\Models\NullTemplate;
 use phpOMS\Model\Html\FormElementGenerator;
 use phpOMS\Uri\UriFactory;
 
@@ -32,10 +32,10 @@ $rcoll = $this->data['rcoll'] ?? [];
 /** @var string $cLang */
 $cLang = $this->data['lang'] ?? 'en';
 
-/** @var \Modules\Helper\Models\Template $template */
+/** @var \Modules\Script\Models\Template $template */
 $template = $this->data['template'] ?? new NullTemplate();
 
-/** @var \Modules\Helper\Models\Report $report */
+/** @var \Modules\Script\Models\Report $report */
 $report = $this->data['report'] ?? new NullReport();
 
 /** @noinspection PhpIncludeInspection */
@@ -137,7 +137,7 @@ echo $this->data['nav']->render(); ?>
                 <table class="list wf-100">
                     <tbody>
                     <?php if (!$template->isStandalone
-                        && !($report instanceof \Modules\Helper\Models\NullReport)
+                        && !($report instanceof \Modules\Script\Models\NullReport)
                     ) : ?>
                     <tr>
                         <th colspan="2"><?= $this->getHtml('Report'); ?>

@@ -12,7 +12,7 @@
  */
 declare(strict_types=1);
 
-namespace Modules\Helper\Controller;
+namespace Modules\Script\Controller;
 
 use phpOMS\Module\ModuleAbstract;
 

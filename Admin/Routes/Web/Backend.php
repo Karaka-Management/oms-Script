@@ -12,15 +12,15 @@
  */
 declare(strict_types=1);
 
-use Modules\Helper\Controller\BackendController;
-use Modules\Helper\Models\PermissionCategory;
+use Modules\Script\Controller\BackendController;
+use Modules\Script\Models\PermissionCategory;
 use phpOMS\Account\PermissionType;
 use phpOMS\Router\RouteVerb;
 
 return [
     '^/helper/template/create(\?.*$|$)' => [
         [
-            'dest'       => '\Modules\Helper\Controller\BackendController:viewTemplateCreate',
+            'dest'       => '\Modules\Script\Controller\BackendController:viewTemplateCreate',
             'verb'       => RouteVerb::GET,
             'active'     => true,
             'permission' => [
@@ -32,7 +32,7 @@ return [
     ],
     '^/helper/report/create(\?.*$|$)' => [
         [
-            'dest'       => '\Modules\Helper\Controller\BackendController:viewReportCreate',
+            'dest'       => '\Modules\Script\Controller\BackendController:viewReportCreate',
             'verb'       => RouteVerb::GET,
             'active'     => true,
             'permission' => [
@@ -44,7 +44,7 @@ return [
     ],
     '^/helper/list(\?.*$|$)' => [
         [
-            'dest'       => '\Modules\Helper\Controller\BackendController:viewTemplateList',
+            'dest'       => '\Modules\Script\Controller\BackendController:viewTemplateList',
             'verb'       => RouteVerb::GET,
             'active'     => true,
             'permission' => [
@@ -56,7 +56,7 @@ return [
     ],
     '^/helper/report/view(\?.*$|$)' => [
         [
-            'dest'       => '\Modules\Helper\Controller\BackendController:viewHelperReport',
+            'dest'       => '\Modules\Script\Controller\BackendController:viewHelperReport',
             'verb'       => RouteVerb::GET,
             'active'     => true,
             'permission' => [

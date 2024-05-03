@@ -12,17 +12,17 @@
  */
 declare(strict_types=1);
 
-namespace Modules\Helper\Controller;
+namespace Modules\Script\Controller;
 
 use Modules\Admin\Models\AccountPermission;
 use Modules\Admin\Models\NullAccount;
-use Modules\Helper\Models\NullTemplate;
-use Modules\Helper\Models\PermissionCategory;
-use Modules\Helper\Models\Report;
-use Modules\Helper\Models\ReportMapper;
-use Modules\Helper\Models\Template;
-use Modules\Helper\Models\TemplateDataType;
-use Modules\Helper\Models\TemplateMapper;
+use Modules\Script\Models\NullTemplate;
+use Modules\Script\Models\PermissionCategory;
+use Modules\Script\Models\Report;
+use Modules\Script\Models\ReportMapper;
+use Modules\Script\Models\Template;
+use Modules\Script\Models\TemplateDataType;
+use Modules\Script\Models\TemplateMapper;
 use Modules\Media\Models\NullCollection;
 use Modules\Media\Models\NullMedia;
 use Modules\Media\Models\PathSettings;

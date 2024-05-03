@@ -4,7 +4,7 @@
  *
  * PHP Version 8.2
  *
- * @package   Modules\Helper\Models
+ * @package   Modules\Script\Models
  * @copyright Dennis Eichhorn
  * @license   OMS License 2.0
  * @version   1.0.0
@@ -12,7 +12,7 @@
  */
 declare(strict_types=1);
 
-namespace Modules\Helper\Models;
+namespace Modules\Script\Models;
 
 use Modules\Admin\Models\AccountMapper;
 use Modules\Media\Models\CollectionMapper;
@@ -23,7 +23,7 @@ use phpOMS\DataStorage\Database\Mapper\DataMapperFactory;
 /**
  * Report mapper class.
  *
- * @package Modules\Helper\Models
+ * @package Modules\Script\Models
  * @license OMS License 2.0
  * @link    https://jingga.app
  * @since   1.0.0

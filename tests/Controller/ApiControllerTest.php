@@ -12,7 +12,7 @@
  */
 declare(strict_types=1);
 
-namespace Modules\Helper\tests\Controller;
+namespace Modules\Script\tests\Controller;
 
 use Model\CoreSettings;
 use Modules\Admin\Models\AccountPermission;
@@ -36,14 +36,14 @@ use phpOMS\Utils\TestUtils;
 /**
  * @internal
  */
-#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\Helper\Controller\ApiController::class)]
-#[\PHPUnit\Framework\Attributes\TestDox('Modules\Helper\tests\Controller\ApiControllerTest: Helper api controller')]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\Script\Controller\ApiController::class)]
+#[\PHPUnit\Framework\Attributes\TestDox('Modules\Script\tests\Controller\ApiControllerTest: Helper api controller')]
 final class ApiControllerTest extends \PHPUnit\Framework\TestCase
 {
     protected ApplicationAbstract $app;
 
     /**
-     * @var \Modules\Helper\Controller\ApiController
+     * @var \Modules\Script\Controller\ApiController
      */
     protected ModuleAbstract $module;
 

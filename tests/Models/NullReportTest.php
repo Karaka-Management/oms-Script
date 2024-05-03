@@ -12,20 +12,20 @@
  */
 declare(strict_types=1);
 
-namespace Modules\Helper\tests\Models;
+namespace Modules\Script\tests\Models;
 
-use Modules\Helper\Models\NullReport;
+use Modules\Script\Models\NullReport;
 
 /**
  * @internal
  */
-#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\Helper\Models\NullReport::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\Script\Models\NullReport::class)]
 final class NullReportTest extends \PHPUnit\Framework\TestCase
 {
     #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testNull() : void
     {
-        self::assertInstanceOf('\Modules\Helper\Models\Report', new NullReport());
+        self::assertInstanceOf('\Modules\Script\Models\Report', new NullReport());
     }
 
     #[\PHPUnit\Framework\Attributes\Group('module')]

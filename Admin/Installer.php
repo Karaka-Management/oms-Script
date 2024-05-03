@@ -4,7 +4,7 @@
  *
  * PHP Version 8.2
  *
- * @package   Modules\Helper\Admin
+ * @package   Modules\Script\Admin
  * @copyright Dennis Eichhorn
  * @license   OMS License 2.0
  * @version   1.0.0
@@ -12,14 +12,14 @@
  */
 declare(strict_types=1);
 
-namespace Modules\Helper\Admin;
+namespace Modules\Script\Admin;
 
 use phpOMS\Module\InstallerAbstract;
 
 /**
  * Installer class.
  *
- * @package Modules\Helper\Admin
+ * @package Modules\Script\Admin
  * @license OMS License 2.0
  * @link    https://jingga.app
  * @since   1.0.0

@@ -12,15 +12,15 @@
  */
 declare(strict_types=1);
 
-use Modules\Helper\Controller\ApiController;
-use Modules\Helper\Models\PermissionCategory;
+use Modules\Script\Controller\ApiController;
+use Modules\Script\Models\PermissionCategory;
 use phpOMS\Account\PermissionType;
 use phpOMS\Router\RouteVerb;
 
 return [
     '^.*/helper/report/export(\?.*$|$)' => [
         [
-            'dest'       => '\Modules\Helper\Controller\ApiController:apiHelperExport',
+            'dest'       => '\Modules\Script\Controller\ApiController:apiHelperExport',
             'verb'       => RouteVerb::GET,
             'csrf'       => true,
             'active'     => true,
@@ -33,7 +33,7 @@ return [
     ],
     '^.*/helper/report/template(\?.*$|$)' => [
         [
-            'dest'       => '\Modules\Helper\Controller\ApiController:apiTemplateCreate',
+            'dest'       => '\Modules\Script\Controller\ApiController:apiTemplateCreate',
             'verb'       => RouteVerb::SET,
             'csrf'       => true,
             'active'     => true,
@@ -46,7 +46,7 @@ return [
     ],
     '^.*/helper/report/report(\?.*$|$)' => [
         [
-            'dest'       => '\Modules\Helper\Controller\ApiController:apiReportCreate',
+            'dest'       => '\Modules\Script\Controller\ApiController:apiReportCreate',
             'verb'       => RouteVerb::SET,
             'csrf'       => true,
             'active'     => true,

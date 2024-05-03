@@ -12,13 +12,13 @@
  */
 declare(strict_types=1);
 
-namespace Modules\Helper\tests\Models;
+namespace Modules\Script\tests\Models;
 
 use Modules\Admin\Models\NullAccount;
-use Modules\Helper\Models\HelperStatus;
-use Modules\Helper\Models\NullReport;
-use Modules\Helper\Models\Template;
-use Modules\Helper\Models\TemplateDataType;
+use Modules\Script\Models\ScriptStatus;
+use Modules\Script\Models\NullReport;
+use Modules\Script\Models\Template;
+use Modules\Script\Models\TemplateDataType;
 use Modules\Media\Models\NullCollection;
 use Modules\Organization\Models\NullUnit;
 use phpOMS\Utils\TestUtils;
@@ -26,7 +26,7 @@ use phpOMS\Utils\TestUtils;
 /**
  * @internal
  */
-#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\Helper\Models\Template::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\Script\Models\Template::class)]
 #[\PHPUnit\Framework\Attributes\TestDox('Modules\tests\Helper\Models\TemplateTest: Template model')]
 final class TemplateTest extends \PHPUnit\Framework\TestCase
 {
@@ -49,7 +49,7 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
         self::assertEquals(0, $this->template->createdBy->id);
         self::assertEquals((new \DateTime('now'))->format('Y-m-d'), $this->template->createdAt->format('Y-m-d'));
         self::assertEquals('', $this->template->name);
-        self::assertEquals(HelperStatus::INACTIVE, $this->template->status);
+        self::assertEquals(ScriptStatus::INACTIVE, $this->template->status);
         self::assertEquals('', $this->template->description);
         self::assertEquals('', $this->template->descriptionRaw);
         self::assertEquals([], $this->template->getExpected());
@@ -158,7 +158,7 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
             'name'           => 'testName',
             'description'    => 'testDescription',
             'descriptionRaw' => 'testDescriptionRaw',
-            'status'         => HelperStatus::INACTIVE,
+            'status'         => ScriptStatus::INACTIVE,
             'datatype'       => TemplateDataType::OTHER,
             'standalone'     => true,
         ];
@@ -187,7 +187,7 @@ final class TemplateTest extends \PHPUnit\Framework\TestCase
             'name'           => 'testName',
             'description'    => 'testDescription',
             'descriptionRaw' => 'testDescriptionRaw',
-            'status'         => HelperStatus::INACTIVE,
+            'status'         => ScriptStatus::INACTIVE,
             'datatype'       => TemplateDataType::OTHER,
             'standalone'     => true,
         ];
