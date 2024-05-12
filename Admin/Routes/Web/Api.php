@@ -18,7 +18,7 @@ use phpOMS\Account\PermissionType;
 use phpOMS\Router\RouteVerb;
 
 return [
-    '^.*/helper/report/export(\?.*$|$)' => [
+    '^.*/script/report/export(\?.*$|$)' => [
         [
             'dest'       => '\Modules\Script\Controller\ApiController:apiHelperExport',
             'verb'       => RouteVerb::GET,
@@ -31,7 +31,7 @@ return [
             ],
         ],
     ],
-    '^.*/helper/report/template(\?.*$|$)' => [
+    '^.*/script/report/template(\?.*$|$)' => [
         [
             'dest'       => '\Modules\Script\Controller\ApiController:apiTemplateCreate',
             'verb'       => RouteVerb::SET,
@@ -44,7 +44,7 @@ return [
             ],
         ],
     ],
-    '^.*/helper/report/report(\?.*$|$)' => [
+    '^.*/script/report/report(\?.*$|$)' => [
         [
             'dest'       => '\Modules\Script\Controller\ApiController:apiReportCreate',
             'verb'       => RouteVerb::SET,

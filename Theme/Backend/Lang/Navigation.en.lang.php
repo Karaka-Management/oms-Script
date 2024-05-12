@@ -16,7 +16,7 @@ return ['Navigation' => [
     'Create'         => 'Create',
     'CreateReport'   => 'Create Report',
     'CreateTemplate' => 'Create Template',
-    'Helper'         => 'Helper',
+    'Script'         => 'Script',
     'List'           => 'List',
     'Reporting'      => 'Reporting',
 ]];

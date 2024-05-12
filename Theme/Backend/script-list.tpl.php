@@ -4,7 +4,7 @@
  *
  * PHP Version 8.2
  *
- * @package   Modules\Helper
+ * @package   Modules\Script
  * @copyright Dennis Eichhorn
  * @license   OMS License 2.0
  * @version   1.0.0

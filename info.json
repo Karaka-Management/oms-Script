@@ -14,7 +14,7 @@
         "name": "Jingga",
         "website": "jingga.app"
     },
-    "description": "The helper module supports creating static and dynamic reportings.",
+    "description": "The script module supports creating static and dynamic reportings.",
     "directory": "Script",
     "dependencies": {
         "Admin": "1.0.0",
@@ -28,7 +28,7 @@
     "load": [
         {
             "pid": [
-                "/helper"
+                "/script"
             ],
             "type": 4,
             "for": "Content",

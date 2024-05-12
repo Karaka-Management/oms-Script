@@ -2,4 +2,4 @@
 
 ## ER
 
-![ER](Modules/Helper/Docs/Dev/img/er.png)
+![ER](Modules/Script/Docs/Dev/img/er.png)

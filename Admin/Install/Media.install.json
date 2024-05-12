@@ -2,7 +2,7 @@
     {
         "type": "collection",
         "create_directory": true,
-        "name": "Helper",
+        "name": "Script",
         "virtualPath": "/Modules",
         "user": 1
     }

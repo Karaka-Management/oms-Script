@@ -4,7 +4,7 @@
  *
  * PHP Version 8.2
  *
- * @package   Modules\Helper
+ * @package   Modules\Script
  * @copyright Dennis Eichhorn
  * @license   OMS License 2.0
  * @version   1.0.0
@@ -17,9 +17,9 @@ namespace Modules\Script\Controller;
 use phpOMS\Module\ModuleAbstract;
 
 /**
- * Helper controller class.
+ * Script controller class.
  *
- * @package    Modules\Helper
+ * @package    Modules\Script
  * @license    OMS License 2.0
  * @link       https://jingga.app
  * @since      1.0.0
@@ -48,7 +48,7 @@ class Controller extends ModuleAbstract
      * @var string
      * @since 1.0.0
      */
-    public const NAME = 'Helper';
+    public const NAME = 'Script';
 
     /**
      * Module id.

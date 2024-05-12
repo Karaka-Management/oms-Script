@@ -4,7 +4,7 @@
  *
  * PHP Version 8.2
  *
- * @package   Modules\Helper
+ * @package   Modules\Script
  * @copyright Dennis Eichhorn
  * @license   OMS License 2.0
  * @version   1.0.0
@@ -28,9 +28,9 @@ use phpOMS\Utils\StringUtils;
 use phpOMS\Views\View;
 
 /**
- * Helper controller class.
+ * Script controller class.
  *
- * @package    Modules\Helper
+ * @package    Modules\Script
  * @license    OMS License 2.0
  * @link       https://jingga.app
  * @since      1.0.0
@@ -53,7 +53,7 @@ final class BackendController extends Controller
     {
         $view = new View($this->app->l11nManager, $request, $response);
 
-        $view->setTemplate('/Modules/Helper/Theme/Backend/helper-list');
+        $view->setTemplate('/Modules/Script/Theme/Backend/helper-list');
         $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response);
 
         $path      = \str_replace('+', ' ', $request->getDataString('path') ?? '/');
@@ -92,7 +92,7 @@ final class BackendController extends Controller
     {
         $view = new View($this->app->l11nManager, $request, $response);
 
-        $view->setTemplate('/Modules/Helper/Theme/Backend/helper-template-create');
+        $view->setTemplate('/Modules/Script/Theme/Backend/helper-template-create');
         $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response);
 
         $editor               = new \Modules\Editor\Theme\Backend\Components\Editor\BaseView($this->app->l11nManager, $request, $response);
@@ -117,7 +117,7 @@ final class BackendController extends Controller
     {
         $view = new View($this->app->l11nManager, $request, $response);
 
-        $view->setTemplate('/Modules/Helper/Theme/Backend/helper-create');
+        $view->setTemplate('/Modules/Script/Theme/Backend/helper-create');
         $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response);
 
         $editor               = new \Modules\Editor\Theme\Backend\Components\Editor\BaseView($this->app->l11nManager, $request, $response);
@@ -140,7 +140,7 @@ final class BackendController extends Controller
      * @since 1.0.0
      * @codeCoverageIgnore
      */
-    public function viewHelperReport(RequestAbstract $request, ResponseAbstract $response, array $data = []) : RenderableInterface
+    public function viewScriptReport(RequestAbstract $request, ResponseAbstract $response, array $data = []) : RenderableInterface
     {
         $view = new View($this->app->l11nManager, $request, $response);
         //$file = preg_replace('([^\w\s\d\-_~,;:\.\[\]\(\).])', '', $template->getName());
@@ -156,7 +156,7 @@ final class BackendController extends Controller
             ->where('tags/title/language', $response->header->l11n->language)
             ->execute();
 
-        $view->setTemplate('/Modules/Helper/Theme/Backend/helper-view');
+        $view->setTemplate('/Modules/Script/Theme/Backend/helper-view');
         $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response);
 
         $view->data['unit'] = $this->app->unitId;

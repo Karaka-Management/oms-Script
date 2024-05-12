@@ -12,7 +12,7 @@
  */
 declare(strict_types=1);
 
-return ['Helper' => [
+return ['Script' => [
     'Add'              => 'Add',
     'CentralizedDB'    => 'Centralized DB',
     'CentralizedFiles' => 'Centralized Files',
@@ -29,8 +29,8 @@ return ['Helper' => [
     'Export'           => 'Export',
     'FileNames'        => 'File Names',
     'Files'            => 'Files',
-    'Helper'           => 'Helper',
-    'Helpers'          => 'Helpers',
+    'Script'           => 'Script',
+    'Scripts'          => 'Scripts',
     'IndividualDB'     => 'Individual DB',
     'Info'             => 'Info',
     'Language'         => 'Language',

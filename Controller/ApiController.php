@@ -4,7 +4,7 @@
  *
  * PHP Version 8.2
  *
- * @package   Modules\Helper
+ * @package   Modules\Script
  * @copyright Dennis Eichhorn
  * @license   OMS License 2.0
  * @version   1.0.0
@@ -42,19 +42,19 @@ use phpOMS\Utils\StringUtils;
 use phpOMS\Views\View;
 
 /**
- * Helper controller class.
+ * Script controller class.
  *
- * @package    Modules\Helper
+ * @package    Modules\Script
  * @license    OMS License 2.0
  * @link       https://jingga.app
  * @since      1.0.0
  *
  * @todo Implement direct print instead of opening a new window
- *      document.getElementById('iHelperFrame').contentWindow.print();
- *      https://github.com/Karaka-Management/oms-Helper/issues/1
+ *      document.getElementById('iScriptFrame').contentWindow.print();
+ *      https://github.com/Karaka-Management/oms-Script/issues/1
  *
  * @todo Rename module to Script
- *      https://github.com/Karaka-Management/oms-Helper/issues/2
+ *      https://github.com/Karaka-Management/oms-Script/issues/2
  */
 final class ApiController extends Controller
 {
@@ -71,7 +71,7 @@ final class ApiController extends Controller
      *
      * @since 1.0.0
      */
-    public function apiHelperExport(HttpRequest $request, HttpResponse $response, mixed $data = null) : void
+    public function apiScriptExport(HttpRequest $request, HttpResponse $response, mixed $data = null) : void
     {
         if (!empty($val = $this->validateExport($request))) {
             $response->data['export'] = new FormValidation($val);
@@ -109,7 +109,7 @@ final class ApiController extends Controller
         }
 
         $view = $this->createView($template, $request, $response);
-        $this->setHelperResponseHeader($view, $template->name, $request, $response);
+        $this->setScriptResponseHeader($view, $template->name, $request, $response);
         $view->data['path'] = __DIR__ . '/../../../';
 
         $response->set('export', $view);
@@ -148,7 +148,7 @@ final class ApiController extends Controller
      *
      * @since 1.0.0
      */
-    private function setHelperResponseHeader(View $view, string $name, RequestAbstract $request, ResponseAbstract $response) : void
+    private function setScriptResponseHeader(View $view, string $name, RequestAbstract $request, ResponseAbstract $response) : void
     {
         /** @var array $tcoll */
         $tcoll = $view->getData('tcoll') ?? [];
@@ -254,11 +254,11 @@ final class ApiController extends Controller
      *
      * @since 1.0.0
      */
-    private function createHelperDir(string $name) : string
+    private function createScriptDir(string $name) : string
     {
         $dt = new \DateTime('now');
 
-        return '/Modules/Helper/'
+        return '/Modules/Script/'
             . $dt->format('Y-m-d') . '_'
             . $name;
     }
@@ -419,7 +419,7 @@ final class ApiController extends Controller
             return;
         }
 
-        $path = $this->createHelperDir($request->getDataString('name') ?? '');
+        $path = $this->createScriptDir($request->getDataString('name') ?? '');
 
         /** @var \Modules\Media\Models\Collection $uploaded */
         $uploaded = $this->app->moduleManager->get('Media', 'Api')->uploadFiles(
@@ -513,9 +513,11 @@ final class ApiController extends Controller
         $helperTemplate->setExpected($request->getDataJson('expected'));
         $helperTemplate->setDatatype($request->getDataInt('datatype') ?? TemplateDataType::OTHER);
 
+        /*
         if ($request->hasData('tags')) {
             $helperTemplate->tags = $this->app->moduleManager->get('Tag', 'Api')->createTagsFromRequest($request);
         }
+        */
 
         return $helperTemplate;
     }
@@ -549,7 +551,7 @@ final class ApiController extends Controller
             return;
         }
 
-        $path       = '/Modules/Helper/' . ($request->getDataString('name') ?? '');
+        $path       = '/Modules/Script/' . ($request->getDataString('name') ?? '');
         $collection = $this->app->moduleManager->get('Media', 'Api')->uploadFiles(
             names: $request->getDataList('names'),
             fileNames: $request->getDataList('filenames'),
