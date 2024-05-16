@@ -15,12 +15,12 @@ declare(strict_types=1);
 namespace Modules\Script\tests\Models;
 
 use Modules\Admin\Models\NullAccount;
-use Modules\Script\Models\ScriptStatus;
-use Modules\Script\Models\NullReport;
-use Modules\Script\Models\Template;
-use Modules\Script\Models\TemplateDataType;
 use Modules\Media\Models\NullCollection;
 use Modules\Organization\Models\NullUnit;
+use Modules\Script\Models\NullReport;
+use Modules\Script\Models\ScriptStatus;
+use Modules\Script\Models\Template;
+use Modules\Script\Models\TemplateDataType;
 use phpOMS\Utils\TestUtils;
 
 /**

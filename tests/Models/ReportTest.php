@@ -15,10 +15,10 @@ declare(strict_types=1);
 namespace Modules\Script\tests\Models;
 
 use Modules\Admin\Models\NullAccount;
-use Modules\Script\Models\ScriptStatus;
+use Modules\Media\Models\NullCollection;
 use Modules\Script\Models\NullTemplate;
 use Modules\Script\Models\Report;
-use Modules\Media\Models\NullCollection;
+use Modules\Script\Models\ScriptStatus;
 
 /**
  * @internal

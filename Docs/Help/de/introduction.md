@@ -8,7 +8,7 @@ The target group for this module is every organization which would like to creat
 
 # Setup
 
-This module doesn't have any additional setup requirements since it is installed during the application install process.
+This module doesn't have any additional setup requirements.
 
 # Features
 

@@ -14,11 +14,11 @@ declare(strict_types=1);
 
 namespace Modules\Script\Controller;
 
+use Modules\Media\Models\CollectionMapper;
+use Modules\Media\Models\Media;
 use Modules\Script\Models\ReportMapper;
 use Modules\Script\Models\Template;
 use Modules\Script\Models\TemplateMapper;
-use Modules\Media\Models\CollectionMapper;
-use Modules\Media\Models\Media;
 use phpOMS\Contract\RenderableInterface;
 use phpOMS\DataStorage\Database\Query\OrderType;
 use phpOMS\Localization\ISO639x1Enum;

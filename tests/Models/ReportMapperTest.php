@@ -15,13 +15,13 @@ declare(strict_types=1);
 namespace Modules\Script\tests\Models;
 
 use Modules\Admin\Models\NullAccount;
-use Modules\Script\Models\ScriptStatus;
-use Modules\Script\Models\Report;
-use Modules\Script\Models\ReportMapper;
-use Modules\Script\Models\Template;
-use Modules\Script\Models\TemplateDataType;
 use Modules\Media\Models\Collection;
 use Modules\Media\Models\Media;
+use Modules\Script\Models\Report;
+use Modules\Script\Models\ReportMapper;
+use Modules\Script\Models\ScriptStatus;
+use Modules\Script\Models\Template;
+use Modules\Script\Models\TemplateDataType;
 
 /**
  * @internal
