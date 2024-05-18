@@ -23,6 +23,7 @@ return ['Script' => [
     'Language'         => 'Language',
     'Load'             => 'Load',
     'Name'             => 'Name',
+    'Scripts'            => 'Scripts',
     'Print'            => 'Print',
     'Report'           => 'Report',
     'Reports'          => 'Reports',

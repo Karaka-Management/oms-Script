@@ -23,6 +23,7 @@ return ['Script' => [
     'Language'         => 'Sprache',
     'Load'             => 'Belastung',
     'Name'             => 'Name',
+    'Scripts'             => 'Scripts',
     'Print'            => 'Drucken',
     'Report'           => 'Prüfbericht',
     'Reports'          => 'Berichte',
