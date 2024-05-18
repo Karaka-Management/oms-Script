@@ -53,7 +53,7 @@ final class BackendController extends Controller
     {
         $view = new View($this->app->l11nManager, $request, $response);
 
-        $view->setTemplate('/Modules/Script/Theme/Backend/helper-list');
+        $view->setTemplate('/Modules/Script/Theme/Backend/script-list');
         $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response);
 
         $path      = \str_replace('+', ' ', $request->getDataString('path') ?? '/');
@@ -92,7 +92,7 @@ final class BackendController extends Controller
     {
         $view = new View($this->app->l11nManager, $request, $response);
 
-        $view->setTemplate('/Modules/Script/Theme/Backend/helper-template-create');
+        $view->setTemplate('/Modules/Script/Theme/Backend/script-template-create');
         $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response);
 
         $editor               = new \Modules\Editor\Theme\Backend\Components\Editor\BaseView($this->app->l11nManager, $request, $response);
@@ -117,7 +117,7 @@ final class BackendController extends Controller
     {
         $view = new View($this->app->l11nManager, $request, $response);
 
-        $view->setTemplate('/Modules/Script/Theme/Backend/helper-create');
+        $view->setTemplate('/Modules/Script/Theme/Backend/script-create');
         $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response);
 
         $editor               = new \Modules\Editor\Theme\Backend\Components\Editor\BaseView($this->app->l11nManager, $request, $response);
@@ -156,7 +156,7 @@ final class BackendController extends Controller
             ->where('tags/title/language', $response->header->l11n->language)
             ->execute();
 
-        $view->setTemplate('/Modules/Script/Theme/Backend/helper-view');
+        $view->setTemplate('/Modules/Script/Theme/Backend/script-view');
         $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1002701001, $request, $response);
 
         $view->data['unit'] = $this->app->unitId;
