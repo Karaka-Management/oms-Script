@@ -27,7 +27,7 @@ use phpOMS\DataStorage\Database\Query\OrderType;
  * @internal
  */
 #[\PHPUnit\Framework\Attributes\CoversClass(\Modules\Script\Models\TemplateMapper::class)]
-#[\PHPUnit\Framework\Attributes\TestDox('Modules\tests\Helper\Models\TemplateMapperTest: Template database mapper')]
+#[\PHPUnit\Framework\Attributes\TestDox('Modules\tests\Script\Models\TemplateMapperTest: Template database mapper')]
 final class TemplateMapperTest extends \PHPUnit\Framework\TestCase
 {
     #[\PHPUnit\Framework\Attributes\Group('module')]

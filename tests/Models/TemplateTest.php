@@ -27,7 +27,7 @@ use phpOMS\Utils\TestUtils;
  * @internal
  */
 #[\PHPUnit\Framework\Attributes\CoversClass(\Modules\Script\Models\Template::class)]
-#[\PHPUnit\Framework\Attributes\TestDox('Modules\tests\Helper\Models\TemplateTest: Template model')]
+#[\PHPUnit\Framework\Attributes\TestDox('Modules\tests\Script\Models\TemplateTest: Template model')]
 final class TemplateTest extends \PHPUnit\Framework\TestCase
 {
     protected Template $template;

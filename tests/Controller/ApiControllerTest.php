@@ -93,7 +93,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $this->app->accountManager->add($account);
         $this->app->router = new WebRouter();
 
-        $this->module = $this->app->moduleManager->get('Helper');
+        $this->module = $this->app->moduleManager->get('Script');
 
         TestUtils::setMember($this->module, 'app', $this->app);
     }

@@ -27,7 +27,7 @@ use Modules\Script\Models\TemplateDataType;
  * @internal
  */
 #[\PHPUnit\Framework\Attributes\CoversClass(\Modules\Script\Models\ReportMapper::class)]
-#[\PHPUnit\Framework\Attributes\TestDox('Modules\tests\Helper\Models\ReportMapperTest: Report database mapper')]
+#[\PHPUnit\Framework\Attributes\TestDox('Modules\tests\Script\Models\ReportMapperTest: Report database mapper')]
 final class ReportMapperTest extends \PHPUnit\Framework\TestCase
 {
     private function createTemplate()

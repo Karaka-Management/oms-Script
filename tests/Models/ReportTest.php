@@ -24,7 +24,7 @@ use Modules\Script\Models\ScriptStatus;
  * @internal
  */
 #[\PHPUnit\Framework\Attributes\CoversClass(\Modules\Script\Models\Report::class)]
-#[\PHPUnit\Framework\Attributes\TestDox('Modules\tests\Helper\Models\ReportTest: Report model')]
+#[\PHPUnit\Framework\Attributes\TestDox('Modules\tests\Script\Models\ReportTest: Report model')]
 final class ReportTest extends \PHPUnit\Framework\TestCase
 {
     protected Report $report;

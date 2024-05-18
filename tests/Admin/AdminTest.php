@@ -19,9 +19,9 @@ namespace Modules\Script\tests\Admin;
  */
 final class AdminTest extends \PHPUnit\Framework\TestCase
 {
-    protected const NAME = 'Helper';
+    protected const NAME = 'Script';
 
-    protected const URI_LOAD = 'http://127.0.0.1/en/backend/helper';
+    protected const URI_LOAD = 'http://127.0.0.1/en/backend/script';
 
     use \tests\Modules\ModuleTestTrait;
 }
