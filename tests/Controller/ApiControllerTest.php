@@ -240,7 +240,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $request->setData('id', self::$depreciationHelper);
         $request->setData('type', 'pdf');
 
-        $this->module->apiHelperExport($request, $response);
+        $this->module->apiScriptExport($request, $response);
         self::assertTrue(\stripos($response->header->get('Content-disposition')[0] ?? '', 'pdf') !== false);
     }
 
@@ -254,7 +254,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $request->setData('id', self::$depreciationHelper);
         $request->setData('type', 'xlsx');
 
-        $this->module->apiHelperExport($request, $response);
+        $this->module->apiScriptExport($request, $response);
         self::assertTrue(\stripos($response->header->get('Content-disposition')[0] ?? '', 'xlsx') !== false);
     }
 
@@ -268,7 +268,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $request->setData('id', self::$depreciationHelper);
         $request->setData('type', 'docx');
 
-        $this->module->apiHelperExport($request, $response);
+        $this->module->apiScriptExport($request, $response);
         self::assertTrue(\stripos($response->header->get('Content-disposition')[0] ?? '', 'docx') !== false);
     }
 
@@ -282,7 +282,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $request->setData('id', self::$depreciationHelper);
         $request->setData('type', 'pptx');
 
-        $this->module->apiHelperExport($request, $response);
+        $this->module->apiScriptExport($request, $response);
         self::assertTrue(\stripos($response->header->get('Content-disposition')[0] ?? '', 'pptx') !== false);
     }
 
@@ -296,7 +296,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $request->setData('id', self::$depreciationHelper);
         $request->setData('type', 'csv');
 
-        $this->module->apiHelperExport($request, $response);
+        $this->module->apiScriptExport($request, $response);
         self::assertTrue(\stripos($response->header->get('Content-disposition')[0] ?? '', 'csv') !== false);
     }
 
@@ -310,7 +310,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $request->setData('id', self::$depreciationHelper);
         $request->setData('type', 'json');
 
-        $this->module->apiHelperExport($request, $response);
+        $this->module->apiScriptExport($request, $response);
         self::assertTrue(\stripos($response->header->get('Content-disposition')[0] ?? '', 'json') !== false);
     }
 
@@ -324,7 +324,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $request->setData('id', self::$depreciationHelper);
         $request->setData('type', 'csv');
 
-        $this->module->apiHelperExport($request, $response);
+        $this->module->apiScriptExport($request, $response);
         self::assertEquals(RequestStatusCode::R_403, $response->header->status);
     }
 
@@ -338,7 +338,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $request->setData('id', self::$depreciationHelper);
         $request->setData('type', 'invalid');
 
-        $this->module->apiHelperExport($request, $response);
+        $this->module->apiScriptExport($request, $response);
         self::assertEquals(RequestStatusCode::R_200, $response->header->status); // is html "export"/render
     }
 
@@ -351,7 +351,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $request->header->account = 1;
         $request->setData('invalid', '1');
 
-        $this->module->apiHelperExport($request, $response);
+        $this->module->apiScriptExport($request, $response);
         self::assertEquals(RequestStatusCode::R_400, $response->header->status);
     }
 
@@ -406,7 +406,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $request->setData('id', self::$depreciationHelper2);
         $request->setData('type', 'invalid');
 
-        $this->module->apiHelperExport($request, $response);
+        $this->module->apiScriptExport($request, $response);
         self::assertEquals(RequestStatusCode::R_200, $response->header->status); // is html "export"/render
     }
 

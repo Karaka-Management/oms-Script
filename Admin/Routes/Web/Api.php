@@ -20,7 +20,7 @@ use phpOMS\Router\RouteVerb;
 return [
     '^.*/script/report/export(\?.*$|$)' => [
         [
-            'dest'       => '\Modules\Script\Controller\ApiController:apiHelperExport',
+            'dest'       => '\Modules\Script\Controller\ApiController:apiScriptExport',
             'verb'       => RouteVerb::GET,
             'csrf'       => true,
             'active'     => true,
