@@ -4,7 +4,7 @@ The **Script** module is a very powerful module which allows users to create cus
 
 ## Target Group
 
-The target group for this module is every organization which would like to create customized scripts & reports while still integrating and managing them through the Karaka application. The implementation of such scripts requires programming knowledge in PHP and potentially JavaScript.
+The target group for this module is every organization which would like to create customized scripts & reports while still integrating and managing them through the Karaka application. The implementation of such scripts requires programming knowledge in PHP and potentially JS.
 
 # Setup
 
