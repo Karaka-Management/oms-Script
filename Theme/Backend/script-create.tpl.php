@@ -24,7 +24,7 @@ echo $this->data['nav']->render(); ?>
 <div class="row">
     <div class="col-xs-12 col-md-6">
         <section class="portlet">
-            <form id="helper-report-create" action="<?= UriFactory::build('{/api}helper/report/report?csrf={$CSRF}'); ?>" method="post">
+            <form id="helper-report-create" action="<?= UriFactory::build('{/api}script/report/report?csrf={$CSRF}'); ?>" method="post">
                 <div class="portlet-head"><?= $this->getHtml('Report'); ?></div>
                 <div class="portlet-body">
                     <div class="form-group">

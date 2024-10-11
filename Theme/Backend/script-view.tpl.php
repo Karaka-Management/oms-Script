@@ -57,7 +57,7 @@ echo $this->data['nav']->render(); ?>
     <div class="col-xs-12 col-md-9 col-simple">
         <div class="portlet col-simple">
             <div class="portlet-body col-simple">
-                <iframe class="col-simple" data-form="iUiSettings" data-name="iframeHelper" id="iHelperFrame" src="<?= UriFactory::build('{/api}helper/report/export/?{?}&id=' . $template->id . '&csrf={$CSRF}'); ?>&u=<?= $this->data['unit']; ?>" allowfullscreen></iframe>
+                <iframe class="col-simple" data-form="iUiSettings" data-name="iframeHelper" id="iHelperFrame" src="<?= UriFactory::build('{/api}script/report/export/?{?}&id=' . $template->id . '&csrf={$CSRF}'); ?>&u=<?= $this->data['unit']; ?>" allowfullscreen></iframe>
             </div>
         </div>
     </div>
@@ -65,7 +65,7 @@ echo $this->data['nav']->render(); ?>
         <section class="portlet">
             <div class="portlet-head"><?= $this->getHtml('Reports'); ?></div>
             <div class="portlet-body">
-                <form action="<?= UriFactory::build('{/api}helper/template?csrf={$CSRF}'); ?>" method="post">
+                <form action="<?= UriFactory::build('{/api}script/template?csrf={$CSRF}'); ?>" method="post">
                     <table class="layout wf-100">
                         <tbody>
                         <tr>
@@ -107,7 +107,7 @@ echo $this->data['nav']->render(); ?>
                                     <option value="json"<?= $this->printHtml((isset($tcoll['json'])) ? '' : ' disabled'); ?>>Json
                                 </select>
                         <tr>
-                            <td><a tabindex="0" target="_blank" class="button" href="<?= UriFactory::build('{/api}helper/report/export?{?}'); ?>&type={#iExport}&lang={#iLang}{#iUiSettings}"><?= $this->getHtml('Export'); ?></a>
+                            <td><a tabindex="0" target="_blank" class="button" href="<?= UriFactory::build('{/api}script/report/export?{?}'); ?>&type={#iExport}&lang={#iLang}{#iUiSettings}"><?= $this->getHtml('Export'); ?></a>
                     </table>
                 </form>
             </div>

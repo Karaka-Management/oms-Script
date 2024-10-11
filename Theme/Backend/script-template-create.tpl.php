@@ -18,7 +18,7 @@ echo $this->data['nav']->render(); ?>
 <div class="row">
     <div class="col-xs-12 col-md-6">
         <section class="portlet">
-            <form id="helper-template-create" action="<?= \phpOMS\Uri\UriFactory::build('{/api}helper/report/template?csrf={$CSRF}'); ?>" method="post">
+            <form id="helper-template-create" action="<?= \phpOMS\Uri\UriFactory::build('{/api}script/report/template?csrf={$CSRF}'); ?>" method="post">
                 <div class="portlet-head"><?= $this->getHtml('Template'); ?></div>
                 <div class="portlet-body">
                     <div class="form-group">

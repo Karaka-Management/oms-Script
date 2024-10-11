@@ -29,8 +29,8 @@ $accountDir = $account->id . ' ' . $account->login;
 $collections = $this->data['collections'];
 $mediaPath   = \urldecode($this->getData('path') ?? '/');
 
-$previous = empty($templates) ? '{/base}/helper/list' : '{/base}/helper/list?{?}&offset=' . \reset($templates)->id . '&ptype=p';
-$next     = empty($templates) ? '{/base}/helper/list' : 'helper/list?{?}&offset=' . \end($templates)->id . '&ptype=n';
+$previous = empty($templates) ? '{/base}/script/list' : '{/base}/script/list?{?}&offset=' . \reset($templates)->id . '&ptype=p';
+$next     = empty($templates) ? '{/base}/script/list' : 'script/list?{?}&offset=' . \end($templates)->id . '&ptype=n';
 
 echo $this->data['nav']->render(); ?>
 <div class="row">
@@ -96,7 +96,7 @@ echo $this->data['nav']->render(); ?>
                         </label>
                 <tbody>
                 <?php $count = 0; foreach ($templates as $key => $template) : ++$count;
-                        $url = UriFactory::build('{/base}/helper/report/view?{?}&id=' . $template->id); ?>
+                        $url = UriFactory::build('{/base}/script/report/view?{?}&id=' . $template->id); ?>
                 <tr tabindex="0" data-href="<?= $url; ?>">
                     <td><label class="checkbox" for="helperList-<?= $key; ?>">
                                     <input type="checkbox" id="helperList-<?= $key; ?>" name="helperselect">
