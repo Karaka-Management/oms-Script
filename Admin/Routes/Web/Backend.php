@@ -56,7 +56,7 @@ return [
     ],
     '^/script/report/view(\?.*$|$)' => [
         [
-            'dest'       => '\Modules\Script\Controller\BackendController:viewHelperReport',
+            'dest'       => '\Modules\Script\Controller\BackendController:viewScriptReport',
             'verb'       => RouteVerb::GET,
             'active'     => true,
             'permission' => [

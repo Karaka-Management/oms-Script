@@ -107,7 +107,7 @@ echo $this->data['nav']->render(); ?>
                                     <option value="json"<?= $this->printHtml((isset($tcoll['json'])) ? '' : ' disabled'); ?>>Json
                                 </select>
                         <tr>
-                            <td><a tabindex="0" target="_blank" class="button" href="<?= UriFactory::build('{/api}script/report/export?{?}'); ?>&type={#iExport}&lang={#iLang}{#iUiSettings}"><?= $this->getHtml('Export'); ?></a>
+                            <td><a tabindex="0" target="_blank" class="button" href="<?= UriFactory::build('{/api}script/report/export?csrf={$CSRF}{?}'); ?>&type={#iExport}&lang={#iLang}{#iUiSettings}"><?= $this->getHtml('Export'); ?></a>
                     </table>
                 </form>
             </div>
