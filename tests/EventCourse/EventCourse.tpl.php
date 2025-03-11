@@ -27,7 +27,6 @@ $lang           = $reportLanguage[$cLang];
 
 require __DIR__ . '/Worker.php';
 ?>
-
 <div class="tabview tab-2">
     <div class="box">
         <ul class="tab-links">
