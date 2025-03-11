@@ -33,7 +33,7 @@ $amount   = (float) ($this->request->getData('amount') ?? 10000.0);
 $duration = (int) ($this->request->getData('duration') ?? 10);
 
 ?>
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="<?= $cLang; ?>">
 <head>
     <meta charset="utf-8">
