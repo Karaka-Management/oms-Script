@@ -152,7 +152,7 @@ final class BackendController extends Controller
             ->with('tags/title')
             ->with('source')
             ->with('source/sources')
-            ->where('id', (int) $request->getData('id'))
+            ->where('id', $request->getDataInt('id') ?? 0)
             ->where('tags/title/language', $response->header->l11n->language)
             ->execute();
 

@@ -28,11 +28,11 @@ echo $this->data['nav']->render(); ?>
 
                     <div class="form-group">
                         <label for="iDescription"><?= $this->getHtml('Description'); ?></label>
-                        <?= $this->getData('editor')->render('report-editor'); ?>
+                        <?= $this->data['editor']->render('report-editor'); ?>
                     </div>
 
                     <div class="form-group">
-                        <?= $this->getData('editor')->getData('text')->render('report-editor', 'description', 'helper-template-create'); ?>
+                        <?= $this->data['editor']->data['text']->render('report-editor', 'description', 'helper-template-create'); ?>
                     </div>
 
                     <div class="form-group">

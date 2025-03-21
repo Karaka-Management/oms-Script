@@ -88,7 +88,7 @@ final class ApiController extends Controller
             ->with('reports/source')
             ->with('reports/source/sources')
             ->with('createdBy')
-            ->where('id', (int) $request->getData('id'))
+            ->where('id', $request->getDataInt('id') ?? 0)
             ->execute();
 
         $accountId = $request->header->account;
@@ -151,7 +151,7 @@ final class ApiController extends Controller
     private function setScriptResponseHeader(View $view, string $name, RequestAbstract $request, ResponseAbstract $response) : void
     {
         /** @var array $tcoll */
-        $tcoll = $view->getData('tcoll') ?? [];
+        $tcoll = $view->data['tcoll'] ?? [];
 
         switch ($request->getData('type')) {
             case 'pdf':

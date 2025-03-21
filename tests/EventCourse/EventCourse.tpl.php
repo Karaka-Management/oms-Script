@@ -15,11 +15,11 @@ declare(strict_types=1);
 /**
  * @var \phpOMS\Views\View $this
  */
-$tcoll    = $this->getData('tcoll');
-$rcoll    = $this->getData('rcoll');
-$cLang    = $this->getData('lang');
-$template = $this->getData('template');
-$report   = $this->getData('report');
+$tcoll    = $this->data['tcoll'];
+$rcoll    = $this->data['rcoll'];
+$cLang    = $this->data['lang'];
+$template = $this->data['template'];
+$report   = $this->data['report'];
 
 /** @noinspection PhpIncludeInspection */
 $reportLanguage = include __DIR__ . '/../../../../' . \ltrim($tcoll['lang']->getPath(), '/');

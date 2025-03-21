@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 require __DIR__ . '/Worker.php';
-$lang = $this->getData('lang');
+$lang = $this->data['lang'];
 
 \date_default_timezone_set('Europe/London');
 
